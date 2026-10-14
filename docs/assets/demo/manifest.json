@@ -1,0 +1,71 @@
+{
+  "dashboard_url": "http://127.0.0.1:18501",
+  "screenshots": [
+    {
+      "file": "01-analysis.png",
+      "tab": "Analysis",
+      "purpose": "Default RELIANCE analysis, disclosed synthetic inputs"
+    },
+    {
+      "file": "02-sources.png",
+      "tab": "Sources",
+      "purpose": "Exact synthetic source document with its cited passage visibly highlighted"
+    },
+    {
+      "file": "03-portfolio.png",
+      "tab": "Portfolio & watchlist",
+      "purpose": "Cash-aware allocation and illustrative portfolio what-if"
+    },
+    {
+      "file": "04-comparison.png",
+      "tab": "Compare users",
+      "purpose": "Three profiles using identical market and document inputs"
+    },
+    {
+      "file": "05-evaluation.png",
+      "tab": "Metrics",
+      "purpose": "Actual synthetic sample, baseline comparison and uncertainty disclosure"
+    },
+    {
+      "file": "05-calibration.png",
+      "tab": "Metrics",
+      "purpose": "Actual defined-outcome calibration chart; action strength is not profit probability"
+    },
+    {
+      "file": "05-metrics.png",
+      "tab": "Metrics",
+      "purpose": "Measured latency and honestly scoped synthetic evaluation"
+    },
+    {
+      "file": "06-history.png",
+      "tab": "History",
+      "purpose": "Recorded analysis sessions, without creating user decisions"
+    },
+    {
+      "file": "07-profile.png",
+      "tab": "History",
+      "purpose": "Sidebar profile form; no edits submitted"
+    },
+    {
+      "file": "08-conflict.png",
+      "tab": "Analysis",
+      "purpose": "Bullish momentum opposed by cautionary synthetic filing"
+    },
+    {
+      "file": "09-outage.png",
+      "tab": "Analysis",
+      "purpose": "Seeded sentiment outage with degraded analysis"
+    },
+    {
+      "file": "10-missing-filing.png",
+      "tab": "Analysis",
+      "purpose": "Missing-document disclosure without fabricated fundamentals"
+    }
+  ],
+  "mp4": "dashboard-backup.mp4",
+  "capture_method": "Chromium CDP screencast + system FFmpeg",
+  "recorded_browser_frames": 305,
+  "elapsed_seconds": 126.77,
+  "browser_errors": [],
+  "disclosure": "Real browser capture of a synthetic-data demo; silent automation, no narration."
+}

@@ -1,0 +1,23 @@
+services:
+  vibefinance:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    image: vibefinance:local
+    ports:
+      - "127.0.0.1:8501:8501"
+    environment:
+      VIBEFINANCE_DASHBOARD_HOST: "0.0.0.0"
+      VIBEFINANCE_DASHBOARD_PORT: "8501"
+      VIBEFINANCE_API_HOST: "127.0.0.1"
+      VIBEFINANCE_API_PORT: "8000"
+      VIBEFINANCE_STATE_DIR: "/data"
+      # Required because the dashboard binds to the container's public interface.
+      # Supply through the operator's environment; never commit it to the repo.
+      VIBEFINANCE_API_TOKEN: "${VIBEFINANCE_API_TOKEN:?Set a strong demo access token in your environment}"
+    volumes:
+      - state:/data
+    restart: unless-stopped
+
+volumes:
+  state:

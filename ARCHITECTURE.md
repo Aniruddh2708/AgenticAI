@@ -1,163 +1,186 @@
-# Architecture
+# Architecture and verification boundaries
 
-## Execution
+## Flow and contracts
 
 ```mermaid
 flowchart LR
-    UI[Streamlit dashboard] --> API[FastAPI]
-    API --> M[Seeded OHLCV or optional live fallback]
-    API --> R[Ticker-filtered retrieval]
-    M --> P[asyncio.gather: five workers]
+    UI[Streamlit with shared demo access] --> API[FastAPI]
+    API --> M[OHLCV ingest and validation]
+    API --> R[Filtered document retrieval]
+    M --> P[Five agents in asyncio.gather]
     R --> P
-    U[SQLite profile snapshot] --> P
-    P --> V[Passage/provenance validator]
-    V --> S[Weighted synthesis and profile policy]
-    S --> DB[SQLite sessions and metrics]
+    U[Exact profile snapshot] --> P
+    P --> V[Registered citations and atomic claim checks]
+    V --> S[Portfolio policies and weighted synthesis]
+    S --> DB[Atomic SQLite session or explicit unsaved result]
     S --> UI
 ```
 
-`orchestrator.analyze` prepares immutable data snapshots and retrieves filings/news,
-then invokes momentum, volume, sentiment, filings and portfolio risk through
-`asyncio.gather`. Each computation runs through `asyncio.to_thread`, with a 5-second
-timeout and a timing/exception boundary. CPU-heavy work is not parallelized across
-processes; these small computations primarily demonstrate independent scheduling.
-Timed-out Python threads cannot be forcibly stopped and may finish in the background.
-Retrieval and optional live ingestion occur before the five-agent window. No LLM runs.
+Pydantic preserves the original Citation, AgentOutput, UserProfile and Recommendation
+fields. Citation adds a date. AgentOutput adds EvidenceClaim records with claim ID,
+text, citation IDs, method and optional fact key/value/unit. Recommendation adds
+decision_basis, confidence_kind and policy_rules. Fractions and confidence must be
+finite. Behavior fields used by policies are validated.
 
-The API owns a persistent Store and Retriever. The dashboard calls the API; it does
-not maintain a second analysis engine. Compare-users shares one frame and retrieval
-index with all profiles. Session history is independent of current profile edits.
+All five agents use thread-backed workers with a five-second waiting timeout.
+A real barrier test establishes overlapping execution. This does not guarantee CPU
+speedup: CPython scheduling and the GIL affect these small calculations.
+Timed-out worker threads cannot be forcibly killed; they may complete later, and
+loop shutdown may wait for them. Production hard isolation remains unimplemented.
 
-## Contracts and agents
+The engine also bounds market/retriever initialization and queries. Invalid markets
+are not charted; failed retrieval withholds textual claims. Corpus files with invalid
+metadata are skipped with explicit warnings. Optional model failures disable that
+backend for the Retriever instance and retain BM25.
 
-Pydantic models in `agents/base.py` follow the blueprint's Citation, AgentOutput,
-UserProfile and Recommendation contracts. Citation adds a backward-compatible date
-field. Confidence is finite and constrained to [0,1]; list defaults use factories.
-Profiles reject invalid fractions. AgentOutput includes status, timing, numeric
-evidence and exact citations; failures return UNKNOWN/0 with no assertions.
+## Signals and financial extraction
 
-| Agent | Computation and labels | Confidence formula |
+| Agent | Method | Confidence meaning |
 |---|---|---|
-| Momentum | Wilder-style exponentially smoothed RSI(14), EMA12−EMA26 MACD, 20/50 SMA, 20-session return; BULLISH/BEARISH/NEUTRAL | `s=.45*tanh(12*r20)+.35*tanh(30*(SMA20/SMA50−1))+.15*tanh(500*MACD_hist/price)+.05*(RSI−50)/50`; directional if abs(s)>.15, confidence abs(s); neutral confidence `1−abs(s)/.15` |
-| Volume | Latest volume vs previous 30 sessions; SPIKE_UP/SPIKE_DOWN/NORMAL; warning if price rises while volume ratio<.8 | z-score with population std; strength `max(abs(z)/4,(1−ratio)/.5)` for divergence; anomaly confidence tanh(strength), normal `max(0,1−abs(z)/2)` |
-| Sentiment | Counts an explicit positive/negative lexicon in retrieved synthetic news; POSITIVE/NEGATIVE/MIXED | `t=(positive−negative)/(positive+negative+1)`; directional confidence abs(t); mixed `1/(positive+negative+1)` |
-| Filings | Same transparent tone rule across top-k retrieved filings; SUPPORTIVE/CAUTIONARY/UNKNOWN | abs(t), label threshold ±.1; missing documents confidence 0 |
-| Risk | Position/limit, portfolio HHI, largest equity sector; RISK_LOW/MED/HIGH | severity=max(position/limit,HHI/.4,sector_weight/.5); high if position>limit or severity>1.25; medium if >.75; confidence `1−exp(−2*abs(severity−boundary))`, boundary 1.25 for high, .75 otherwise |
+| Momentum | Wilder-style RSI14, EMA12/26 MACD, SMA20/50, 20-session return | Absolute normalized trend score; neutral uses distance from directional threshold |
+| Volume | Latest z-score against previous 30 sessions; 5-session volume ratio and price divergence | tanh anomaly strength; normal confidence is distance from anomaly threshold |
+| Sentiment | Finite financial phrases and same-clause negation in news | Normalized signed lexical evidence; does not model arbitrary language |
+| Filings | Extracts supported financial facts and guidance/risk flags, with source quotations | Combined deterministic fact/tone strength; not a trained fundamentals forecast |
+| Risk | Portfolio position, normalized equity HHI, equity sector exposure, cash allocation | Separation from disclosed policy thresholds; not probability of losses |
 
-RSI is 50 for flat prices and 100 when gains occur with zero losses. There is no
-division by zero for constant volume. Market validation checks completeness,
-finiteness, nonnegative volume, positive prices and consistent OHLC bounds.
+Momentum score:
+`s=.45*tanh(12*r20)+.35*tanh(30*(SMA20/SMA50-1))+.15*tanh(500*MACD_hist/price)+.05*(RSI-50)/50`.
+Directional threshold is ±.15. Flat RSI is 50; zero-loss rising RSI is 100.
+Volume strength uses max(abs(z)/4,(1-ratio)/.5) for divergence, with a .8 volume-ratio
+threshold. OHLCV must be finite, complete, positive-price and internally consistent.
 
-Risk confidence describes threshold separation, not a loss probability. HHI includes
-cash; a cash-heavy portfolio can be concentrated under that definition without large
-equity exposure. Sector exposure is computed separately. The risk label does not
-automatically veto a trade; the explicit position-limit check does.
+Financial templates extract revenue/profit/operating-profit signed changes, explicit
+margins and percentage-point changes, debt changes/amounts, guidance changes, weak
+demand and legal/regulatory statements. Forecast-qualified text stays qualified.
+Simple negation covers no growth, not strong and absent/resolved litigation.
+Complex accounting, distant negation, sarcasm and general causal interpretation
+remain outside these finite rules.
 
-## Retrieval and attribution
+## Retrieval and evidence
 
-The 21 Markdown documents contain a JSON metadata header: source_id, ticker,
-doc_type, date and title. Ingestion chunks at 120 words with 20-word overlap. Ticker
-and document-type filters apply before ranking. HDFCBANK has news but no filing.
+Each Markdown document has a JSON metadata header. Its date is the availability
+date. Ingestion stores original body text and chunks at 120 words with 20-word
+overlap, preserving exact character spans including whitespace. Therefore source
+passages can be highlighted in the original document.
 
-BM25 uses k1=1.5, b=.75 and log(1+(N−df+.5)/(df+.5)); relevance is `score/(score+1)`.
-The optional local-only MiniLM/Chroma path fuses embedding ranks and BM25 ranks using
-reciprocal rank fusion with denominator 60+rank. RRF scores are scaled by 30; neither
-score is a probability. Chroma stores ticker/type metadata and filters both. Missing
-model/dependencies/index/query falls back to BM25 and records the reason. The offline
-default is BM25, not a claim that a neural model has been exercised.
+BM25: k1=1.5, b=.75, IDF=log(1+(N-df+.5)/(df+.5)); relevance=score/(score+1).
+Ticker, document type and optional as_of date filters apply before ranking.
+HDFCBANK intentionally has news but no filing.
 
-Every retrieved passage is registered for the session. The validator rejects citations
-whose source ID, chunk ID, title, date or excerpt differs from the registry. On
-rejection it removes the agent's evidence, zeroes confidence and marks degradation.
-Momentum/volume cite generated indicator snapshots; risk cites the exact input
-profile, clearly distinguished from document citations. Synthesis is an arithmetic
-and policy trace grounded in these outputs; it introduces no external market facts.
-The UI offers the stored source passage for inspection. Registry validation proves
-provenance, not semantic entailment or truth. Optional LLM narration is not enabled.
+Optional local CPU MiniLM plus Chroma ranks are fused with reciprocal rank fusion.
+The model revision is pinned. A model/corpus fingerprint isolates indexes; only
+the matching index is reconciled, not another corpus's active collection.
+Chroma telemetry is disabled. Successful real MiniLM retrieval has not been
+verified because model downloads are blocked. Real Chroma fixture-vector tests are
+reported separately; they are not neural retrieval evidence.
 
-## Synthesis and personalization
+Citation validation matches chunk ID, source ID, title, date, excerpt and relevance
+score against the session registry. Statement validation:
+- quotation: exact text from registered source;
+- financial_fact: independently re-extract the exact fact/template/quantity;
+- computed: exact approved market/profile statement regenerated from inputs.
 
-Weights: momentum .30, volume .15, sentiment .20, filings .35. Risk is a separate
+One authorization supports one displayed evidence statement. Duplicate/orphan
+claims, changed quantities, unsupported substitutions and empty-rationale signals
+are rejected. Signal label/confidence must match deterministic recomputation before
+claims are retained; unsupported fractions reduce strength. Failed outputs are
+UNKNOWN/0 with no evidence.
+
+These checks do not establish generic semantic entailment or factual truth. The
+synthetic passages remain fabricated. Policy reasoning is an arithmetic/rule trace
+over validated inputs, not an LLM reasoning chain.
+
+## Portfolio policies
+
+Total HHI=sum of squared total weights, including cash, is descriptive.
+Equity HHI excludes cash and normalizes equity weights to sum to one; it is zero
+when no equities exist. Sector weights use the total portfolio denominator.
+Cash is an allocation, not automatically high equity risk.
+
+The selected stock exceeding the user's limit triggers REDUCE before market
+completeness checks. Its explanation cites the profile; absent filings are never
+invented. Missing usable momentum or filings otherwise causes WATCH. Opposing
+directional evidence causes HOLD. Negative score below -.25 selects REDUCE if held
+or AVOID if unheld. Conservative entries require score>.65 and volatility<30%;
+moderate entries stage above .30; aggressive entries can BUY above .30.
+
+Additional entry guards:
+- stock at limit: pause an increase;
+- target equity sector at or above 50%: pause purchases in that sector;
+- equity allocation>=50% with normalized equity HHI>.40: pause adding to largest holding;
+- unavailable cash: do not suggest a cash-funded purchase;
+- horizon<=6 months: volatility caps 30% conservative/moderate, 60% aggressive;
+- momentum-chasing behavior: require a cited, non-degraded supportive filing
+  with strength>=.5 before new exposure.
+
+Panic-selling and short holding history produce reassessment nudges, not forecasts
+or automatic trading. These fixed thresholds are demo policies, not empirically
+validated suitability. Current HHI guards do not optimize every prospective trade
+or model correlations.
+
+Synthesis weights momentum .30, volume .15, sentiment .20, filings .35. Risk is a
 guardrail, not a directional vote. Failed outputs contribute zero; degraded outputs
-receive half weight. Directional labels vote ±1 and neutral labels 0. Raw score is
-the sum of weight × confidence × sign. Raw confidence sums weight × confidence,
-retaining the full denominator so absent evidence never inflates certainty.
-Every opposing directional pair adds a visible conflict. Final confidence is
-`raw_confidence * (1−min(.5,.15*conflict_count))`.
+receive half weight. Full denominator is retained. Each opposing pair reduces raw
+confidence by .15, capped at a total .5 penalty. confidence_kind=evidence_strength
+is uncalibrated market evidence; decision_basis distinguishes portfolio-policy,
+incomplete-evidence, conflict-resolution and market-evidence actions.
 
-Policies execute in this order:
+What-if transfers up to five percentage points between stock and cash, bounded by
+position/sector limits and available cash. It preserves total weight, never mutates
+actual holdings and has no costs, optimizer or predicted returns. Total HHI can rise
+after selling into cash while equity concentration falls.
 
-| Condition | Result |
-|---|---|
-| Missing usable momentum or cited filings | WATCH; do not invent actionable fundamentals |
-| Held stock exceeds profile limit | REDUCE; gradual concentration rebalance overrides direction |
-| Any directional conflict | HOLD; pause additional exposure |
-| Score<−.25 | REDUCE if held, otherwise AVOID |
-| Conservative | ACCUMULATE only if score>.65 and annualized volatility<30%, otherwise HOLD |
-| Moderate | ACCUMULATE above .30, otherwise HOLD |
-| Aggressive | BUY above .30, otherwise WATCH |
+## Persistence, API and dashboard
 
-Horizon<=6 months adds drawdown context. Momentum chasing adds a confirmation/FOMO
-nudge. Two or more panic sells add gradual-exit language. Average holding period<30
-days adds a reassessment nudge. These are explicit rules, not inferred psychology.
-Identical RELIANCE inputs yield Meera REDUCE (22% holding vs 15% limit), Arjun
-ACCUMULATE and Rohan BUY. ITC/Meera independently demonstrates 45% concentration.
+Each session includes its final trace and is inserted in one SQLite transaction.
+Connections close after commit/rollback. If storage fails, the response is usable
+but persistence.status=failed; inline source documents remain available and decision
+writes are disabled. No failed configured database is silently redirected elsewhere.
 
-## Degradation matrix
+Unavailable profile storage uses disclosed read-only seeds; customized profiles are
+not treated as recovered. Storage-only mutations/history return 503, missing records
+404, malformed requests 422. Health reports discovered degradation. The HTTP
+Server-Timing header measures backend request processing; stored compute latency
+excludes HTTP and persistence. Unknown unexpected bugs are not a promise of immunity
+to every possible process or infrastructure failure.
 
-| Failure | Behaviour |
-|---|---|
-| Optional live feed import/request/data invalid | Deterministic simulated frame; mode and warning exposed |
-| Optional embedding path unavailable | BM25 retrieval and warning |
-| Sentiment outage (ITC seeded or toggle) | MIXED, degraded, 0 confidence, no sentiment claims |
-| Missing filing (HDFCBANK seeded or toggle) | UNKNOWN, degraded, 0 confidence, no fundamental claims; WATCH |
-| Invalid OHLCV | Momentum/volume failed; others finish; WATCH |
-| Agent exception/timeout | Failed output with 0 confidence; remaining agents finish |
-| Forged/altered citation | Evidence removed, confidence 0; degraded status |
-| All agents fail | WATCH, 0 confidence, profile snapshot only; UI says market evidence unavailable |
-| API unavailable | Dashboard shows restart guidance rather than fabricated results |
+Profile forms preserve behavior and validate weights; cached analyses include
+profile signatures. Dashboard API failures become actionable messages. Beginner
+mode hides analyst evidence/strength numbers, while actual source transparency
+remains available. Sources show an escaped original-document view with exact spans.
 
-Unsupported request tickers and malformed profiles receive 422; missing records 404.
-SQLite/storage errors are operational errors, not silently successful persistence.
+VIBEFINANCE_API_TOKEN provides shared Bearer/password access. External launcher
+bindings require it. This is not per-user accounts or privacy isolation. The
+Docker setup runs non-root, keeps API loopback-only, and persists SQLite on /data.
+Public hosting is not provisioned.
 
-## Metrics and evaluation
+## Evaluation and timing
 
-Sessions store individual agent latencies, parallel-window wall time, compute latency
-(including ingestion/retrieval/synthesis; excluding persistence/HTTP), sum of wrapped
-agent timings and their ratio to the parallel window. The sum is an overlap estimate,
-**not measured sequential speedup**; scheduling and GIL contention affect it.
+Technical evaluation uses 12 independent seeds × 5 uninjected synthetic price paths
+× 600 sessions. Constant drift/volatility are disclosed. Targets use 30 subsequent
+trading sessions with no overlapping target windows per path; neutral signals
+abstain. Momentum, random and always-up directions share the scored dates.
 
-HHI is the sum of squared portfolio fractions, including cash. The what-if transfers
-up to five percentage points from cash to stock for BUY/ACCUMULATE (bounded by the
-limit), or stock to cash for REDUCE; other actions transfer zero. Both weights sum to
-one. It is an illustration, not an optimizer, and HHI can increase or decrease.
-Top holding excludes cash. Real holdings are never changed by the what-if.
+Probability calibration targets P(next 30-session return>0), using Laplace-smoothed
+up rates conditioned on the label and only matured previous observations on that
+path. It does not calibrate recommendation confidence. Brier baselines, seed-cluster
+bootstrap intervals, paired differences and sample/abstention counts are reported.
 
-Citation coverage counts evidence bullets from agents with valid provenance divided
-by total emitted evidence bullets; no evidence gives N/A. It does not count every
-grammatical claim or audit semantic truth. Degraded and failed counts are distinct.
+Separate policy evaluation uses independent dated synthetic financial/news fixtures.
+Only sources available at each cutoff are indexed. All five agents and three
+profiles are replayed; checks cover concentration precedence, cash classification
+and date visibility. Action-conditioned returns are descriptive, not profitability,
+causal benefit or action-success probabilities.
 
-Evaluation predicts bullish/bearish technical direction at non-overlapping cutoffs
-beginning with 60 sessions, stepped by 30. Only historical prefixes reach indicators.
-Forward return uses exactly 30 subsequent trading sessions; neutral signals are
-excluded. Hit rate, seeded random baseline and always-up baseline use the same
-observations. Mean forward return is grouped by label. Up probability is
-`0.5 ± directional_confidence/2`; five buckets plot mean forecast vs realized-up rate.
-Brier score is mean squared error of forecast vs realized-up indicator. Sample size
-and limitations are always shown. No historical filings are used in this technical
-evaluation, so it is not an evaluation of personalized actions.
-Each session also stores the current deterministic technical hit rate, sample size
-and Brier score alongside its own latency/provenance/portfolio metrics.
+The benchmark warms both modes, alternates order, uses identical inputs and compares
+outputs. It measures real sequential and parallel compute windows without delays.
+Persistence, HTTP and downloads are excluded. Local results may show a slowdown;
+neither concurrency nor synthetic accuracy demonstrates a production advantage.
 
-## Data disclosure and known limitations
+## Remaining limits
 
-Seed 42 plus stable ticker offsets generates 300 business sessions ending 2026-09-30.
-Final-window trends, RELIANCE volume spike and INFY participation decline are injected
-to exercise demos, not discovered investment opportunities. Documents are fabricated
-and dated 2026-09-25. Demo outcomes are deterministic; UUIDs and timings vary.
-
-This is a local educational prototype: no brokerage execution, authentication,
-regulatory approval, licensed live feeds, transaction costs, market calendar/holiday
-model, corporate actions, historical fundamentals, portfolio optimizer or proven
-investment edge. Lexicon sentiment is crude and cannot handle complex negation.
-Optional model/live-feed successful integration is separate from core readiness.
+No real filing/PDF ingestion, licensed news, neural-model success, successful live
+feed, optional LLM narration, calibrated recommendation-success model, trading
+simulation, transaction costs, portfolio optimization or regulatory approval.
+Shared demo access is not multi-tenant security. Public hosting and native macOS
+operation are unverified. See docs/VALIDATION.md and docs/HANDOFF_FOR_CLAUDE.md.

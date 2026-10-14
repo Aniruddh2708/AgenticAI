@@ -17,6 +17,17 @@ class Citation(BaseModel):
     date: str = ""
 
 
+class EvidenceClaim(BaseModel):
+    """An atomic statement with a bounded, reproducible support check."""
+    claim_id: str
+    text: str
+    citation_ids: list[str]
+    method: Literal["quotation", "financial_fact", "computed"] = "quotation"
+    fact_key: str | None = None
+    value: float | None = Field(default=None, allow_inf_nan=False)
+    unit: str | None = None
+
+
 class AgentOutput(BaseModel):
     agent: str
     ticker: str
@@ -28,6 +39,7 @@ class AgentOutput(BaseModel):
     status: Literal["ok", "degraded", "failed"] = "ok"
     degraded_reason: str | None = None
     latency_ms: float = Field(default=0, ge=0)
+    claims: list[EvidenceClaim] = Field(default_factory=list)
 
 
 class UserProfile(BaseModel):
@@ -68,6 +80,9 @@ class Recommendation(BaseModel):
     conflicts: list[str]
     personalization_notes: list[str]
     disclaimer: str
+    decision_basis: str = "market_evidence"
+    confidence_kind: str = "evidence_strength"
+    policy_rules: list[str] = Field(default_factory=list)
 
 
 async def run_agent(dimension: Dimension, ticker: str, fn: Callable[[], AgentOutput],

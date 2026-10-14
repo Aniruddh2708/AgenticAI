@@ -1,0 +1,9 @@
+# Isolated optional environment; install CPU torch first on Linux:
+# uv pip install --python .runtime/embeddings-venv/bin/python \
+#   --index-url https://download.pytorch.org/whl/cpu 'torch==2.7.1+cpu'
+# Then install this file from PyPI. Installed +cpu satisfies the torch pin.
+torch==2.7.1
+chromadb==1.0.20
+sentence-transformers==5.1.0
+transformers==4.57.1
+pydantic==2.11.7

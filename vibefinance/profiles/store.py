@@ -1,5 +1,6 @@
 import json
 import sqlite3
+from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -26,8 +27,14 @@ class Store:
                     db.execute("INSERT OR IGNORE INTO profiles VALUES (?,?)", (profile.user_id, profile.model_dump_json()))
                 db.execute("INSERT OR IGNORE INTO metadata VALUES ('seeded','1')")
 
+    @contextmanager
     def connect(self):
-        return sqlite3.connect(self.path, timeout=10)
+        connection = sqlite3.connect(self.path, timeout=10)
+        try:
+            with connection:
+                yield connection
+        finally:
+            connection.close()
 
     def profiles(self):
         with self.connect() as db:

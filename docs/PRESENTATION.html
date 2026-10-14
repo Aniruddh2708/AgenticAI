@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VibeFinance · Evidence before action</title>
+<style>
+:root{--bg:#071b1b;--panel:#102a29;--ink:#eef7ec;--muted:#b2c9be;--accent:#c4f270;--line:#35514c;--warn:#ffd89c}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.55 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+main{max-width:1280px;margin:auto;padding:4vh 5vw 100px}.slide{display:none;min-height:75vh;animation:appear .25s ease}.slide.active{display:flex;flex-direction:column;justify-content:center}
+.eyebrow{text-transform:uppercase;letter-spacing:.17em;color:var(--accent);font-size:14px;font-weight:700}.slide h1{font-size:clamp(46px,6.5vw,88px);line-height:1.06;letter-spacing:-.04em;max-width:1000px;margin:20px 0 28px}.slide h2{font-size:clamp(34px,4.5vw,60px);line-height:1.1;letter-spacing:-.035em;margin:14px 0 26px}.lead{font-size:clamp(20px,2.1vw,28px);max-width:900px;color:var(--muted)}p{margin:0 0 18px}strong{color:var(--accent)}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:22px 0}.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:23px}.card h3{margin:0 0 13px;font-size:23px}.card p{font-size:17px;color:var(--muted)}.badge{display:inline-block;color:var(--accent);border:1px solid var(--line);padding:6px 14px;border-radius:40px;font-size:14px;margin:8px 10px 0 0}.flow{display:flex;align-items:stretch;gap:18px;margin:24px 0}.flow>.card{flex:1}.agents{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;font-size:16px}.agents span{border:1px solid var(--line);padding:9px;border-radius:9px}.arrow{align-self:center;color:var(--accent);font-size:28px}.note{border-left:3px solid var(--accent);padding:12px 18px;background:var(--panel);color:var(--muted);font-size:16px}.warn{color:var(--warn)}table{width:100%;border-collapse:collapse;margin:20px 0;font-size:18px}th,td{text-align:left;padding:12px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--accent);font-size:15px;text-transform:uppercase;letter-spacing:.04em}.small{font-size:15px;color:var(--muted)}a{color:var(--accent)}footer{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:16px 5vw;background:rgba(7,27,27,.97);border-top:1px solid var(--line);gap:15px;font-size:14px;color:var(--muted)}button{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:9px 16px;font:inherit;cursor:pointer}button:hover,button:focus{border-color:var(--accent)}button:disabled{opacity:.4}.progress{height:3px;background:var(--accent);position:fixed;bottom:0;left:0;transition:width .2s}.actions{display:flex;gap:8px}@keyframes appear{from{opacity:.5;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media(max-width:800px){main{padding:4vh 7vw 140px}.grid{grid-template-columns:1fr}.flow{flex-direction:column}.arrow{transform:rotate(90deg)}footer{flex-wrap:wrap}.slide{min-height:65vh}.agents{grid-template-columns:1fr}table{font-size:15px}th,td{padding:8px}}
+@page{size:A4 landscape;margin:0}
+@media print{body{background:white;color:#162724;font-size:15px}main{padding:0;max-width:none}.slide,.slide.active{display:block;min-height:0;page-break-after:always;padding:14mm;animation:none}.slide h1{font-size:45px}.slide h2{font-size:34px;margin:10px 0 18px}.lead{font-size:21px}.grid{gap:12px;margin:15px 0}.card{padding:16px}.card h3{font-size:19px}.card p{font-size:15px}.card,.note{background:#f0f5ee;border-color:#afc3b7}table{font-size:15px;margin:12px 0}th,td{padding:7px}strong,.eyebrow,.badge,th,a{color:#37570e}.lead,.card p,.small,.note{color:#33463c}footer,.progress{display:none}.flow{display:flex}.slide:last-child{page-break-after:auto}}
+</style>
+</head>
+<body>
+<main>
+<section class="slide active" aria-label="Introduction">
+<div class="eyebrow">VibeFinance · Indian retail investor demo</div>
+<h1>Evidence first.<br>Your context next.</h1>
+<p class="lead">Five parallel agents turn market signals, document passages and portfolio constraints into a recommendation you can inspect.</p>
+<div><span class="badge">Seeded simulation</span><span class="badge">Synthetic company documents</span><span class="badge">No API key required</span></div>
+<p class="small" style="margin-top:30px">Educational/simulated, not investment advice (SEBI-registered advice required).</p>
+</section>
+
+<section class="slide" aria-label="Problem">
+<div class="eyebrow">The problem</div><h2>Plenty of signals.<br>Too little context.</h2>
+<div class="grid">
+<article class="card"><h3>Scattered evidence</h3><p>Price charts, news and company disclosures arrive in separate tools. Their disagreements disappear behind a single score.</p></article>
+<article class="card"><h3>Generic conclusions</h3><p>The same market signal means something different for a retiree with an oversized position and a trader with spare capacity.</p></article>
+<article class="card"><h3>Opaque confidence</h3><p>A confident label is not a probability of profit. People need to see the inputs, policies and missing information.</p></article>
+</div>
+<p class="lead">Our demo makes the decision path visible, including when the evidence is insufficient.</p>
+</section>
+
+<section class="slide" aria-label="Architecture">
+<div class="eyebrow">How it works</div><h2>Independent signals.<br>A shared, auditable contract.</h2>
+<div class="flow">
+<article class="card"><h3>Inputs</h3><p>Seeded OHLCV<br>Synthetic corpus<br>Investor profile</p><p class="small">Ticker-filtered retrieval; exact registered sources.</p></article>
+<span class="arrow" aria-hidden="true">→</span>
+<article class="card" style="flex:1.7"><h3>Five agents in parallel</h3><div class="agents"><span>Momentum</span><span>Volume</span><span>Sentiment</span><span>Filings</span><span>Portfolio risk</span></div><p class="small" style="margin-top:13px">Typed labels, computed strength, evidence, source references and degradation status.</p></article>
+<span class="arrow" aria-hidden="true">→</span>
+<article class="card"><h3>Synthesis</h3><p>Resolve conflicts<br>Apply profile limits<br>Explain the result</p><p class="small">FastAPI + Streamlit; SQLite state.</p></article>
+</div>
+<p class="note">Numbers are computed in Python. Deterministic explanations keep the standard demo offline. Optional retrieval and live-data integrations must report their actual mode.</p>
+</section>
+
+<section class="slide" aria-label="Personalization">
+<div class="eyebrow">The product moment</div><h2>Same market.<br>Different responsibilities.</h2>
+<p class="lead">Open <strong>Compare users</strong> on RELIANCE. The market frame and retrieved documents are identical for all profiles.</p>
+<div class="grid">
+<article class="card"><h3>Meera</h3><p>Conservative, long horizon. An existing position over the single-stock limit triggers an exposure review.</p><p><strong>Concentration overrides optimism.</strong></p></article>
+<article class="card"><h3>Arjun</h3><p>Moderate risk, staged investing. Supportive independent dimensions can justify a measured accumulation label.</p><p><strong>Action follows available capacity.</strong></p></article>
+<article class="card"><h3>Rohan</h3><p>Aggressive, with a history of chasing momentum and panic selling. The result includes a specific behavioral nudge.</p><p><strong>Signals do not erase behavior.</strong></p></article>
+</div>
+<p class="note">These are illustrative seeded personas, not verified real investors. The running dashboard is the authority for current actions after policy changes.</p>
+</section>
+
+<section class="slide" aria-label="Demo walkthrough">
+<div class="eyebrow">Five-minute demonstration</div><h2>Show the reasoning.<br>Then show its limits.</h2>
+<table><thead><tr><th>Time</th><th>Show</th><th>What to point out</th></tr></thead><tbody>
+<tr><td>0:00–0:30</td><td>The problem</td><td>Fragmented evidence and generic advice.</td></tr>
+<tr><td>0:30–1:30</td><td>RELIANCE · Arjun</td><td>Five agents, trace, explanation and source passage.</td></tr>
+<tr><td>1:30–2:30</td><td>Compare users</td><td>Identical input; different portfolio constraints and actions.</td></tr>
+<tr><td>2:30–3:15</td><td>TCS</td><td>Bullish technicals versus cautionary filing; explain the conflict.</td></tr>
+<tr><td>3:15–4:00</td><td>ITC + HDFCBANK</td><td>Sentiment outage and missing filing; honest degradation.</td></tr>
+<tr><td>4:00–4:40</td><td>Metrics</td><td>Measured latency, evaluation sample and baseline results.</td></tr>
+<tr><td>4:40–5:00</td><td>Commercial concept</td><td>Research tools, auditability and the production prerequisites.</td></tr>
+</tbody></table>
+<p class="small">Keep the silent browser recording and real screenshots available as a backup; they are generated by scripts/capture_demo.py.</p>
+</section>
+
+<section class="slide" aria-label="Evidence and evaluation">
+<div class="eyebrow">Evidence, not performance claims</div><h2>Measure the demo.<br>Do not sell it as market edge.</h2>
+<div class="grid">
+<article class="card"><h3>Latency</h3><p>Use the real sequential-versus-parallel benchmark on equal inputs. Thread overhead can exceed gains for tiny deterministic workloads.</p></article>
+<article class="card"><h3>Direction evaluation</h3><p>Read the generated sample size, intervals, baselines and forward returns. Synthetic results do not demonstrate future investment returns.</p></article>
+<article class="card"><h3>Confidence</h3><p>Signal strength, an up-direction probability and confidence in an action are different quantities. Calibration requires a defined outcome.</p></article>
+</div>
+<p class="note">Open the running Metrics tab or generated evaluation report for current values. This deck intentionally contains no frozen accuracy number that could become stale after a code change.</p>
+<p class="small" style="margin-top:18px">Source identity and passage matching provide provenance. Deterministic claim checks cover the supported extraction rules; they are not a general proof of factual truth.</p>
+</section>
+
+<section class="slide" aria-label="Commercial concept">
+<div class="eyebrow">Commercial concept</div><h2>Trust is the product.<br>Research is the service.</h2>
+<div class="grid">
+<article class="card"><h3>Free watchlist</h3><p>Educational signals, source inspection and basic watchlists to make research accessible.</p><span class="badge">Acquisition</span></article>
+<article class="card"><h3>Personalized tier</h3><p>Portfolio context, behavior nudges, what-if analysis and saved research history.</p><span class="badge">Subscription concept</span></article>
+<article class="card"><h3>B2B research API</h3><p>Structured evidence and auditable explanations for fintechs, advisors and wealth platforms.</p><span class="badge">Usage / licensing concept</span></article>
+</div>
+<p class="note">No revenue, customer traction, pricing or regulatory authorization is claimed. Licensed data, privacy controls, authenticated users, independent evaluation and appropriate SEBI compliance precede real-user use.</p>
+</section>
+
+<section class="slide" aria-label="Delivery and remaining limits">
+<div class="eyebrow">What this delivery means</div><h2>A reviewable prototype.<br>A clear next step.</h2>
+<div class="grid">
+<article class="card"><h3>Runnable locally</h3><p>Use <strong>make demo</strong> for the offline application. The container recipe runs the dashboard and its internal API with persistent state.</p></article>
+<article class="card"><h3>Reviewable evidence</h3><p>Inspect tests, the source registry, evaluation report and current progress tracker. A passing test suite does not prove every blueprint requirement.</p></article>
+<article class="card"><h3>Remaining limits</h3><p>Real-market outperformance is unproven. Broad language understanding, licensed feeds, production security and public hosting are separate work.</p></article>
+</div>
+<p class="lead">The current handoff records <strong>what ran</strong>, <strong>what failed</strong> and <strong>what remains unverified</strong>.</p>
+<p class="small">Repository: <a href="https://github.com/Aniruddh2708/AgenticAI">Aniruddh2708/AgenticAI</a>. Workspace edits are not uploaded until committed and pushed.</p>
+</section>
+</main>
+<footer><span>VibeFinance · Educational / simulated</span><span id="count" aria-live="polite"></span><div class="actions"><button id="previous" aria-label="Previous slide">←</button><button id="next" aria-label="Next slide">→</button><button id="print">Print / PDF</button></div></footer>
+<div class="progress" aria-hidden="true"></div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];let active=0;
+function show(index){active=Math.max(0,Math.min(index,slides.length-1));slides.forEach((s,i)=>{s.classList.toggle('active',i===active);s.setAttribute('aria-hidden',i!==active)});document.getElementById('count').textContent=`${active+1} / ${slides.length}`;document.getElementById('previous').disabled=active===0;document.getElementById('next').disabled=active===slides.length-1;document.querySelector('.progress').style.width=`${(active+1)/slides.length*100}%`;history.replaceState(null,'',`#${active+1}`);window.scrollTo(0,0)}
+document.getElementById('previous').onclick=()=>show(active-1);document.getElementById('next').onclick=()=>show(active+1);document.getElementById('print').onclick=()=>window.print();document.addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();show(active+1)}if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();show(active-1)}if(e.key==='Home')show(0);if(e.key==='End')show(slides.length-1)});show((parseInt(location.hash.slice(1),10)||1)-1);
+</script>
+</body>
+</html>

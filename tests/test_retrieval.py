@@ -34,3 +34,11 @@ def test_embedding_failure_uses_bm25(monkeypatch):
     retriever = Retriever(embeddings=True)
     assert retriever.mode == "bm25" and retriever.warning
     assert retriever.retrieve("growth", "RELIANCE.NS")
+
+
+def test_changed_relevance_score_is_not_registered_provenance(retriever):
+    chunk, score = retriever.retrieve("growth", "RELIANCE.NS", 1)[0]
+    citation = chunk.citation(score)
+    changed = citation.model_copy(update={"score": 1 if score != 1 else .5})
+    valid, rejected = validate_citations([changed], {citation.chunk_id: citation})
+    assert valid == [] and rejected == [citation.chunk_id]

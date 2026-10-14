@@ -21,7 +21,7 @@ def main():
     assert any("ACCUMULATE" in s.value for s in app.subheader)
     button(app, "Compare all three profiles").click().run()
     assert_clean(app)
-    labels = {m.label for m in app.metric}
+    labels = {m.label for m in app.metric} | {heading.value for heading in app.subheader}
     assert {"BUY", "REDUCE", "ACCUMULATE"} <= labels
     button(app, "Show source passage").click().run()
     assert_clean(app)

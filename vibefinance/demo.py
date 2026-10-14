@@ -13,6 +13,14 @@ def main():
     root = Path(__file__).resolve().parent.parent
     children = []
     stopping = False
+    api_host = os.getenv("VIBEFINANCE_API_HOST", "127.0.0.1")
+    api_port = int(os.getenv("VIBEFINANCE_API_PORT", "8000"))
+    dashboard_host = os.getenv("VIBEFINANCE_DASHBOARD_HOST", "127.0.0.1")
+    dashboard_port = int(os.getenv("VIBEFINANCE_DASHBOARD_PORT", "8501"))
+    if any(host not in {"127.0.0.1", "localhost", "::1"} for host in (api_host, dashboard_host)) and not os.getenv("VIBEFINANCE_API_TOKEN"):
+        raise RuntimeError("External service binding requires VIBEFINANCE_API_TOKEN for shared-demo access.")
+    api_url = f"http://127.0.0.1:{api_port}"
+    dashboard_url = f"http://127.0.0.1:{dashboard_port}"
 
     def stop(*_):
         nonlocal stopping
@@ -23,24 +31,26 @@ def main():
     try:
         # Fail on occupied ports rather than taking over pre-existing processes.
         import socket
-        for port in (8000, 8501):
+        for host, port in ((api_host, api_port), (dashboard_host, dashboard_port)):
             with socket.socket() as sock:
-                sock.bind(("127.0.0.1", port))
+                sock.bind((host, port))
         children.append(subprocess.Popen([sys.executable, "-m", "uvicorn", "vibefinance.api:app",
-            "--host", "127.0.0.1", "--port", "8000"], cwd=root))
+            "--host", api_host, "--port", str(api_port)], cwd=root))
         children.append(subprocess.Popen([sys.executable, "-m", "streamlit", "run", "vibefinance/dashboard.py",
-            "--server.address", "127.0.0.1", "--server.port", "8501", "--server.headless", "true",
+            "--server.address", dashboard_host, "--server.port", str(dashboard_port), "--server.headless", "true",
             "--browser.gatherUsageStats", "false"], cwd=root,
-            env={**os.environ, "PYTHONPATH": str(root), "VIBEFINANCE_API_URL": "http://127.0.0.1:8000"}))
+            env={**os.environ, "PYTHONPATH": str(root), "VIBEFINANCE_API_URL": api_url}))
         deadline = time.monotonic() + 30
         while time.monotonic() < deadline and not stopping:
             if any(child.poll() is not None for child in children):
                 raise RuntimeError("A service exited during startup")
             try:
-                health = httpx.get("http://127.0.0.1:8000/health", timeout=1)
-                dashboard = httpx.get("http://127.0.0.1:8501/_stcore/health", timeout=1)
-                if health.status_code == dashboard.status_code == 200 and health.json()["corpus_chunks"] > 0:
-                    print("API and dashboard ready on local ports 8000 and 8501.", flush=True)
+                health = httpx.get(api_url + "/health", timeout=1)
+                dashboard = httpx.get(dashboard_url + "/_stcore/health", timeout=1)
+                if health.status_code == dashboard.status_code == 200 and health.json().get("status") in {"ok", "degraded"}:
+                    print(f"API and dashboard ready on ports {api_port} and {dashboard_port}.", flush=True)
+                    if health.json()["status"] == "degraded":
+                        print("Running with degraded retrieval/storage; inspect API health and analysis warnings.", flush=True)
                     break
             except httpx.HTTPError:
                 pass

@@ -1,0 +1,13 @@
+**
+!Dockerfile
+!requirements.lock
+!vibefinance/
+!vibefinance/**
+!docs/
+!docs/**
+**/__pycache__/
+**/*.pyc
+**/.env
+**/*.sqlite*
+**/*.db
+**/demo-assets/
