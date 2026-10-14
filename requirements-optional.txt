@@ -1,0 +1,4 @@
+# Only needed for opt-in live data / local embedding retrieval.
+yfinance>=0.2.54,<1
+chromadb>=1.0,<2
+sentence-transformers>=4,<6

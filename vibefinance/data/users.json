@@ -1,0 +1,5 @@
+[
+  {"user_id":"meera","name":"Meera · retiree, 62","risk_tolerance":"conservative","horizon_months":36,"holdings":{"ITC.NS":0.45,"RELIANCE.NS":0.22,"HDFCBANK.NS":0.10},"max_single_stock_pct":0.15,"behavior":{"panic_sell_count":3,"avg_hold_days":300,"chases_momentum":false}},
+  {"user_id":"arjun","name":"Arjun · salaried SIP investor, 32","risk_tolerance":"moderate","horizon_months":60,"holdings":{"ITC.NS":0.15,"RELIANCE.NS":0.10,"TCS.NS":0.15,"HDFCBANK.NS":0.15},"max_single_stock_pct":0.25,"behavior":{"panic_sell_count":0,"avg_hold_days":180,"chases_momentum":false}},
+  {"user_id":"rohan","name":"Rohan · trader, 24","risk_tolerance":"aggressive","horizon_months":6,"holdings":{"RELIANCE.NS":0.05,"INFY.NS":0.20,"TCS.NS":0.10},"max_single_stock_pct":0.35,"behavior":{"panic_sell_count":2,"avg_hold_days":12,"chases_momentum":true}}
+]

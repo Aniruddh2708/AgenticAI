@@ -1,0 +1,2 @@
+{"source_id": "RELIANCE_transcript_FY26_demo", "ticker": "RELIANCE.NS", "doc_type": "transcript", "date": "2026-09-25", "title": "RELIANCE \u2014 Quarterly management transcript [SYNTHETIC]"}
+Synthetic scenario: revenue growth of 12%, profit growth of 9%, and improved cash conversion. Management describes strong demand and supportive capacity expansion. This is fabricated educational content, not an actual company statement.

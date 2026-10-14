@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vibefinance"
+version = "0.1.0"
+description = "Offline, cited investment intelligence demonstration for Indian retail investors"
+requires-python = ">=3.11"
+dynamic = ["dependencies"]
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[tool.setuptools.packages.find]
+include = ["vibefinance*"]
+
+[tool.setuptools.package-data]
+vibefinance = ["data/users.json", "data/corpus/*.md"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
