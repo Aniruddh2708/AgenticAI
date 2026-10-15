@@ -1,5 +1,15 @@
 # VibeFinance continuation handoff — 15 October 2026
 
+## Latest instruction: public hackathon access
+
+The owner now requests password-free Render access. Follow
+[PUBLIC_HACKATHON.md](PUBLIC_HACKATHON.md) and [RENDER.md](RENDER.md); instructions
+below to preserve the password gate are historical. Keep the existing secret
+intact, bypass it only for public demo mode, and use the separate public sample
+database. Managed accounts stay authenticated. Do not merge the independent
+forecast-development candidate as part of this focused release. No Supabase
+project exists per the latest owner reply; no hosted account setup is claimed.
+
 ## Latest zero-cost accounts, data review and prospective operations
 
 Implementation is pushed as `f7a2358` on

@@ -1,5 +1,11 @@
 # Blueprint compliance — updated 15 October 2026
 
+Latest owner request: remove the shared password for hackathon visitors. The
+isolated [public-demo change](PUBLIC_HACKATHON.md) makes Render's demo public and
+keeps previous private SQLite data separate. Managed account sign-in remains
+enforced. Earlier password-preservation requirements below are historical;
+hosted release identity and public acceptance require fresh verification.
+
 Current zero-cost continuation: [FREE_PRODUCTION_STATUS.md](FREE_PRODUCTION_STATUS.md).
 Free account/storage/recovery implementation and actual two-date NSE source review
 are complete within their tested scope; real free-project activation, full F1

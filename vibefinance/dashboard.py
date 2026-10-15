@@ -18,7 +18,7 @@ from vibefinance.data.market_sim import generate_market
 from vibefinance.deployment import release_revision
 from vibefinance.auth import (
     AuthenticationError, AuthConfigurationError, AuthSession, AuthSettings,
-    SupabaseAuth, dashboard_authorization, verified_dashboard_identity,
+    SupabaseAuth, dashboard_authorization, verified_dashboard_identity, public_demo_enabled,
 )
 
 API = os.getenv("VIBEFINANCE_API_URL", "http://127.0.0.1:8000").rstrip("/")
@@ -34,7 +34,7 @@ def call(method, path, **kwargs):
         require_oidc_login(settings)
         headers["Authorization"] = dashboard_authorization(
             st.user, settings, method=method.upper(), path=unquote(path))
-    elif token := os.getenv("VIBEFINANCE_API_TOKEN"):
+    elif not public_demo_enabled() and (token := os.getenv("VIBEFINANCE_API_TOKEN")):
         headers["Authorization"] = "Bearer " + token
     response = httpx.request(method, API + path, timeout=60, headers=headers, **kwargs)
     response.raise_for_status()
@@ -230,6 +230,11 @@ def require_demo_login(*, controls=True):
         return
     if st.session_state.get("individual_account") or st.session_state.get("individual_session"):
         clear_account_state()
+    if public_demo_enabled():
+        st.session_state.pop("demo_authentication", None)
+        st.session_state.pop("demo_login_secret", None)
+        st.caption("Public hackathon demo · Profiles and saved analyses are shared. Use sample data only.")
+        return
     token = os.getenv("VIBEFINANCE_API_TOKEN")
     if not token:
         return

@@ -126,6 +126,34 @@ def test_package_launcher_bounds_readiness_and_cleans_up_children(monkeypatch):
     assert 120.0 <= clock["now"] < 121.0
     assert clock["ready_at"] is None
     assert len(children) == 2 and all(child.terminated for child in children)
+
+
+@pytest.mark.parametrize("public_flag", [None, "1"])
+def test_public_render_launcher_allows_external_binding_without_token(monkeypatch, public_flag):
+    _, children = _launcher_stubs(monkeypatch, ready_after=0)
+    monkeypatch.setenv("RENDER", "true")
+    monkeypatch.setenv("VIBEFINANCE_AUTH_MODE", "demo")
+    monkeypatch.setenv("VIBEFINANCE_DASHBOARD_HOST", "0.0.0.0")
+    monkeypatch.delenv("VIBEFINANCE_API_TOKEN", raising=False)
+    if public_flag is None:
+        monkeypatch.delenv("VIBEFINANCE_PUBLIC_DEMO", raising=False)
+    else:
+        monkeypatch.setenv("VIBEFINANCE_PUBLIC_DEMO", public_flag)
+    demo.main()
+    assert len(children) == 2 and all(child.terminated for child in children)
+
+
+def test_protected_external_demo_still_requires_token(monkeypatch):
+    _, children = _launcher_stubs(monkeypatch, ready_after=0)
+    monkeypatch.setenv("VIBEFINANCE_AUTH_MODE", "demo")
+    monkeypatch.setenv("VIBEFINANCE_PUBLIC_DEMO", "0")
+    monkeypatch.setenv("VIBEFINANCE_DASHBOARD_HOST", "0.0.0.0")
+    monkeypatch.delenv("VIBEFINANCE_API_TOKEN", raising=False)
+    with pytest.raises(RuntimeError, match="External service binding requires"):
+        demo.main()
+    assert not children
+
+
 def test_root_compatibility_entrypoints_use_active_package():
     import demo as legacy_demo
     import orchestrator as legacy_orchestrator

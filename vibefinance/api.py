@@ -15,10 +15,10 @@ from pathlib import Path
 from pydantic import BaseModel, Field
 
 from vibefinance.agents.base import UserProfile
-from vibefinance.auth import AuthenticationError, AuthSettings, OIDCVerifier
+from vibefinance.auth import AuthenticationError, AuthSettings, OIDCVerifier, public_demo_enabled
 from vibefinance.profiles.production_store import (StorageUnavailableError, create_production_store,
     initialize_production_storage, production_storage_health)
-from vibefinance.config import ROOT, TICKERS
+from vibefinance.config import ROOT, STATE_DIR, TICKERS
 from vibefinance.evaluation.backtest import backtest
 from vibefinance.evaluation.forecast_report import load_forecast_report
 from vibefinance.deployment import release_revision
@@ -53,6 +53,13 @@ def create_app(db_path=None):
     @asynccontextmanager
     async def lifespan(app):
         app.state.auth_settings = AuthSettings.from_env()
+        app.state.public_demo = public_demo_enabled()
+        # Publishing a previously protected demo must never publish its saved
+        # profiles/history. Seed a separate database; preserve the original file.
+        app.state.demo_db_path = db_path
+        if app.state.public_demo:
+            original = Path(db_path) if db_path is not None else STATE_DIR / "vibefinance.sqlite3"
+            app.state.demo_db_path = original.with_name("public-demo-" + original.name)
         app.state.verifier = None
         app.state.storage_error = None
         app.state.store = None
@@ -63,7 +70,7 @@ def create_app(db_path=None):
             app.state.verifier = OIDCVerifier(app.state.auth_settings)
         else:
             try:
-                app.state.store = Store(db_path)
+                app.state.store = Store(app.state.demo_db_path)
             except (sqlite3.Error, OSError, ValueError) as exc:
                 app.state.storage_error = f"Storage initialization unavailable ({type(exc).__name__}); using disclosed read-only seed profiles rather than saved custom profiles."
             app.state.seed_profiles = {p.user_id: p for p in
@@ -79,8 +86,8 @@ def create_app(db_path=None):
 
     app = FastAPI(title="VibeFinance", version="0.2.0", lifespan=lifespan)
     # The supplied terminal-style HTML is the offline demo's primary frontend.
-    # Static assets never require internet or share a user's data. Stateful
-    # endpoints retain all existing authentication and storage protections.
+    # Static assets never require internet or share a user's data. Public demo
+    # endpoints use separate sample-data storage; managed accounts stay private.
     web_dir = Path(__file__).resolve().parent / "web"
     app.mount("/assets", StaticFiles(directory=web_dir), name="dashboard-assets")
 
@@ -101,8 +108,8 @@ def create_app(db_path=None):
         if settings is None:
             return JSONResponse(status_code=503, content={"detail": "Application startup is incomplete."})
         if request.url.path not in {"/health", "/", "/dashboard", "/_stcore/health"} and not request.url.path.startswith("/assets/"):
-            # Only non-sensitive web shell assets are public. API data endpoints
-            # are still protected by demo bearer token or managed account auth.
+            # Public sample-data demos need no token. Managed account data always
+            # requires a verified identity, even if a public-demo flag is present.
             authorization = request.headers.get("Authorization", "")
             if settings.mode != "demo":
                 try:
@@ -113,7 +120,7 @@ def create_app(db_path=None):
                     return JSONResponse(status_code=401,
                         content={"detail": "A valid individual sign-in is required."},
                         headers={"WWW-Authenticate": "Bearer"})
-            elif token := os.getenv("VIBEFINANCE_API_TOKEN", ""):
+            elif not app.state.public_demo and (token := os.getenv("VIBEFINANCE_API_TOKEN", "")):
                 if not hmac.compare_digest(authorization.encode("utf-8"), ("Bearer " + token).encode("utf-8")):
                     return JSONResponse(status_code=401, content={"detail": "A valid demo access token is required."})
         started = time.perf_counter()
@@ -141,7 +148,7 @@ def create_app(db_path=None):
         if app.state.store is None:
             # A restored disk or repaired path can be retried without changing secrets.
             try:
-                app.state.store = Store(db_path)
+                app.state.store = Store(app.state.demo_db_path)
                 app.state.storage_error = None
             except (sqlite3.Error, OSError, ValueError):
                 raise HTTPException(503, "Persistent storage is unavailable. Analysis can use disclosed seed profiles, but changes and history cannot be saved.")
@@ -201,7 +208,8 @@ def create_app(db_path=None):
         return {"status": "degraded" if app.state.storage_error or app.state.retriever.warning else "ok",
                 "profiles": len(current_profiles), "storage_available": app.state.storage_error is None,
                 "corpus_chunks": len(app.state.retriever.chunks), "retrieval_mode": app.state.retriever.mode,
-                "default_data_mode": "simulated", "authentication_enabled": bool(os.getenv("VIBEFINANCE_API_TOKEN")),
+                "default_data_mode": "simulated", "public_demo": app.state.public_demo,
+                "authentication_enabled": not app.state.public_demo and bool(os.getenv("VIBEFINANCE_API_TOKEN")),
                 "revision": release_revision()}
 
     @app.get("/profiles")

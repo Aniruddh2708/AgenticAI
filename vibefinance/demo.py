@@ -9,7 +9,7 @@ from pathlib import Path
 import httpx
 
 from vibefinance.deployment import dashboard_binding, release_revision
-from vibefinance.auth import auth_mode
+from vibefinance.auth import auth_mode, public_demo_enabled
 from vibefinance.production_startup import (validate_production_configuration,
     prepare_oidc_secrets, cleanup_oidc_secrets)
 
@@ -27,8 +27,9 @@ def main():
     managed_accounts = auth_mode() != "demo"
     if managed_accounts:
         validate_production_configuration()
-    if not managed_accounts and any(host not in {"127.0.0.1", "localhost", "::1"} for host in (api_host, dashboard_host)) and not os.getenv("VIBEFINANCE_API_TOKEN"):
-        raise RuntimeError("External service binding requires VIBEFINANCE_API_TOKEN for shared-demo access.")
+    public_demo = public_demo_enabled()
+    if not managed_accounts and not public_demo and any(host not in {"127.0.0.1", "localhost", "::1"} for host in (api_host, dashboard_host)) and not os.getenv("VIBEFINANCE_API_TOKEN"):
+        raise RuntimeError("External service binding requires VIBEFINANCE_API_TOKEN or VIBEFINANCE_PUBLIC_DEMO=1 for public sample-data access.")
     oidc_secrets = None
     api_url = f"http://127.0.0.1:{api_port}"
     dashboard_url = f"http://127.0.0.1:{dashboard_port}"

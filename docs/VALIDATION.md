@@ -1,5 +1,10 @@
 # Current free-account candidate — 15 October 2026
 
+Latest task: [public hackathon access](PUBLIC_HACKATHON.md). Its tests and release
+scope are recorded separately; the counts and protected Render observations below
+are historical. The new public mode does not establish managed-account hosted
+acceptance or any forecasting improvement.
+
 The latest work starts at `459669b` and is delivered on
 `codex/free-accounts-and-data-verification` for review, preserving the existing
 Render demo. It implements the zero-budget Supabase/PostgreSQL route; no real

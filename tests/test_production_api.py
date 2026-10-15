@@ -53,7 +53,10 @@ def individual_api(monkeypatch):
         client.close()
 
 
-def test_managed_routes_reject_demo_token_forged_account_and_expired_identity(individual_api, monkeypatch, tmp_path):
+@pytest.mark.parametrize("public_flag", ["0", "1"])
+def test_managed_routes_reject_demo_token_forged_account_and_expired_identity(individual_api, monkeypatch, tmp_path, public_flag):
+    monkeypatch.setenv("RENDER", "true")
+    monkeypatch.setenv("VIBEFINANCE_PUBLIC_DEMO", public_flag)
     monkeypatch.setattr(api, "initialize_production_storage", lambda: None)
     monkeypatch.setattr(api, "production_storage_health", lambda: False)
     monkeypatch.setattr(api, "Store", lambda *a, **k: pytest.fail("Managed startup must never seed a demo store"))

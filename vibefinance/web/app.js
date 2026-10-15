@@ -413,6 +413,7 @@
     try {
       await loadProfiles();
       const health = await request('/health');
+      $('public-demo-notice').hidden = !health.public_demo;
       $('footer-version').textContent = health.revision ? `Revision ${health.revision.slice(0, 8)}` : 'Local research build';
       if (health.status !== 'ok') alertMessage('Backend reports degraded operation; analysis will disclose limitations.', 'info');
       await runAudit();

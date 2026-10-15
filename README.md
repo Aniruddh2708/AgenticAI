@@ -144,6 +144,7 @@ or certainty that a portfolio rule is appropriate.
 | VIBEFINANCE_STATE_DIR | SQLite and optional Chroma state; default `.runtime` |
 | VIBEFINANCE_API_URL | Dashboard API destination; launcher derives it automatically |
 | VIBEFINANCE_API_TOKEN | Optional shared demo password/Bearer token; never commit values |
+| VIBEFINANCE_PUBLIC_DEMO | `1` opens a public sample-data demo; `0` restores protected demo access. Defaults to public on Render in demo mode |
 | VIBEFINANCE_API_HOST / VIBEFINANCE_API_PORT | Default 127.0.0.1 / 8000 |
 | VIBEFINANCE_DASHBOARD_HOST / VIBEFINANCE_DASHBOARD_PORT | Default 127.0.0.1 / 8501 |
 | VIBEFINANCE_EMBEDDINGS | Set 1 for opt-in local MiniLM + BM25 retrieval |
@@ -151,10 +152,13 @@ or certainty that a portfolio rule is appropriate.
 | VIBEFINANCE_CORPUS_PATH | Optional corpus directory override; invalid/missing documents degrade explicitly |
 | VIBEFINANCE_FORECAST_REPORT | Saved research report override; local default `VIBEFINANCE_STATE_DIR/forecast/report.json`, Render default tracked corrected summary |
 
-External bindings require the shared access token. The API checks Bearer access and
-the dashboard asks for the same token. This is shared demonstration access, not
-individual accounts, authorization isolation or a production privacy system.
-Keep real investor information out of a shared demo.
+The Render hackathon demo opens directly without a password. Public mode uses a
+separate `public-demo-vibefinance.sqlite3` database so existing private demo data
+stays private. Profiles and saved analyses in public mode are shared; use sample
+data only. Other external bindings require a shared access token or explicit
+`VIBEFINANCE_PUBLIC_DEMO=1`. Setting `VIBEFINANCE_PUBLIC_DEMO=0` restores the
+existing token gate and original database. Managed OIDC/Supabase accounts always
+require individual sign-in. See [Render instructions](docs/RENDER.md).
 
 Holdings are fractions, e.g. 0.45 means 45%; unallocated weight is cash. Invalid or
 overallocated profiles are rejected. Seed initialization preserves edits/deletions.

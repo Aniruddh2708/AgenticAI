@@ -1,0 +1,50 @@
+{
+  "recorded_at": "2026-10-15T15:52:36.846438+00:00",
+  "branch": "codex/public-hackathon-demo",
+  "base_commit": "ed7a5f4602fa2b241847b366f91e2ff2229500eb",
+  "authorization": "Owner requested password-free Render hackathon access.",
+  "tests": {
+    "passed": 778,
+    "skipped": 14,
+    "duration_seconds": 41.5,
+    "command": "VIBEFINANCE_EMBEDDINGS=0 VIBEFINANCE_STATE_DIR=\"$PWD/.runtime/public-demo-tests\" .venv/bin/python -m pytest -q --junitxml=.runtime/public-hackathon-tests.xml",
+    "skips": "Existing disposable PostgreSQL integration fixtures; not executed in this run."
+  },
+  "native": {
+    "scope": "local real launcher, Render-style environment; not hosted acceptance",
+    "password_required": false,
+    "existing_token_retained": true,
+    "profiles": 3,
+    "analysis_action": "REDUCE",
+    "saved": true,
+    "citation_verified": true,
+    "history_verified": true,
+    "both_ports_public_demo": true
+  },
+  "browser": {
+    "scope": "local Chromium and real Render-style launcher; not hosted acceptance",
+    "password_prompt": false,
+    "unauthorized_responses": 0,
+    "javascript_errors": 0,
+    "public_notice_visible": true,
+    "seed_profiles": 3,
+    "default_action": "ACCUMULATE",
+    "concentrated_investor_action": "REDUCE",
+    "history_visible": true
+  },
+  "private_state_preservation": "Original SQLite SHA-256 unchanged after public writes/retry; protected mode can still access original profiles and sessions.",
+  "managed_auth": "Signed managed-route checks run with public flag 0 and 1; anonymous, forged and expired identities remain rejected.",
+  "hosted": {
+    "verified": false,
+    "reason": "Managed outbound proxy denies live Render host; no Render API credential bound. Git push alone is not release acceptance."
+  },
+  "scope": "No paid resources, provider settings, dependencies, forecasting artifacts or portfolio policies changed.",
+  "source_sha256": {
+    "vibefinance/auth.py": "5d218bf18bba638363e2de97e2bf9fab5b7487dfc08a4a69c09f4f51b5e1c042",
+    "vibefinance/api.py": "a69f10ac288b9026f3fb95cd6db505e87dfbb60f15a37a75b8a840a6c3c2a603",
+    "vibefinance/demo.py": "7e778a00965cfe2c5912ce7f1ca834e7dda1886e8f8bdaad84b9da8143cb482f",
+    "vibefinance/dashboard.py": "4996fd2aa1f5cd17308dd5a7b0667ac32cfd8e1562cb23d0b6f90865af8c587d",
+    "vibefinance/web/app.js": "21e3895a8cef1d29a879c1a606f25da0ae509e65406032c24501a1b763e48a43",
+    "vibefinance/web/index.html": "324cb295ea51f855bb523de211938167d9df150db0992be0066375d4a93bd000"
+  }
+}

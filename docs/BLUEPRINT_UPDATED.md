@@ -1,5 +1,10 @@
 # VibeFinance — verified blueprint and remaining work
 
+Latest owner instruction: [public hackathon access](PUBLIC_HACKATHON.md) replaces
+the earlier shared-password requirement for the Render demo. Public sample data
+uses separate storage; managed account authentication and research limitations
+remain in force. Historical release observations below are not new acceptance.
+
 Updated: **15 October 2026 (Asia/Calcutta)**. Reviewed repository:
 `Aniruddh2708/AgenticAI`. The initial audit used main at `2ce7719`;
 the latest zero-cost continuation starts at `459669b` and is delivered on review

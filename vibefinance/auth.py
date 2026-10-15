@@ -1,6 +1,6 @@
 """Opt-in individual identity; no trust in email, user IDs or unverified JWT claims.
 
-Demo mode deliberately keeps the existing shared-demo boundary. OIDC mode uses
+Demo mode supports a public hackathon or protected shared demo. OIDC mode uses
 RS256 access tokens for API clients, or a separate short-lived assertion issued
 by the trusted Streamlit server after its native OIDC login.
 """
@@ -35,6 +35,23 @@ def auth_mode(environ=None):
     if value not in {"demo", "oidc", "supabase"}:
         raise AuthConfigurationError("VIBEFINANCE_AUTH_MODE must be demo, oidc or supabase.")
     return value
+
+
+def public_demo_enabled(environ=None):
+    """Render's sample-data demo is public; individual accounts always require auth.
+
+    An explicit 0 restores the protected demo, without rotating its existing token.
+    Other hosts require an explicit 1 to expose their demo without a token.
+    """
+    values = os.environ if environ is None else environ
+    if auth_mode(values) != "demo":
+        return False
+    value = values.get("VIBEFINANCE_PUBLIC_DEMO")
+    if value is None:
+        return values.get("RENDER", "").lower() == "true"
+    if value not in {"0", "1"}:
+        raise AuthConfigurationError("VIBEFINANCE_PUBLIC_DEMO must be 0 or 1.")
+    return value == "1"
 
 
 def _https_url(value):
