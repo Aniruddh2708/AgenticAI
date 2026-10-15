@@ -1,0 +1,80 @@
+{
+  "recorded_at": "2026-10-15T16:14:51.060245+00:00",
+  "deployed_main_commit": "3808a192e94fe10641b425b5b8ca3159ad0305dd",
+  "url": "https://vibefinance.onrender.com",
+  "release_identity_verified": true,
+  "deployment_action": "No new deployment triggered. The hosted site was already serving the exact latest main commit when checked.",
+  "render_control": {
+    "configured_binding_ready": true,
+    "request": "GET /v1/services?name=vibefinance&limit=20",
+    "http_status": 401,
+    "manual_deployment_triggered": false,
+    "credential_values_recorded": false
+  },
+  "public_endpoints": {
+    "checked_at": "2026-10-15T16:12:07.569783+00:00",
+    "checks": {
+      "/": {
+        "status": 200,
+        "html_dashboard": true
+      },
+      "/profiles": {
+        "status": 200,
+        "count": 3
+      },
+      "/assets/app.js": {
+        "status": 200,
+        "has_public_notice": true
+      },
+      "/evaluation/forecast": {
+        "status": 200,
+        "model_readiness": "research_only",
+        "analysis_status": "Exploratory correction derived from already inspected saved predictions; no refit, new radii or row changes"
+      }
+    }
+  },
+  "live_api": {
+    "checked_at": "2026-10-15T16:13:33.321247+00:00",
+    "url": "https://vibefinance.onrender.com",
+    "expected_revision": "3808a192e94fe10641b425b5b8ca3159ad0305dd",
+    "credentials_used": false,
+    "tls_verified": true,
+    "analysis_session_writes": 1,
+    "analysis_session_write_acknowledged": true,
+    "health": {
+      "status": "ok",
+      "revision": "3808a192e94fe10641b425b5b8ca3159ad0305dd",
+      "public_demo": true,
+      "authentication_enabled": false,
+      "storage_available": true
+    },
+    "analysis_status": 200,
+    "session_id": "550ecaa4a3594ca195a7a84740f4f93c",
+    "persistence": "saved",
+    "action": "REDUCE",
+    "decision_basis": "portfolio_policy",
+    "citation_passage_verified": true,
+    "history_verified": true,
+    "saved_session_verified": true,
+    "agent_count": 5,
+    "verified": true
+  },
+  "browser": {
+    "scope": "Actual hosted Render site using Chromium through the configured proxy, with certificate verification enabled",
+    "url": "https://vibefinance.onrender.com",
+    "expected_revision": "3808a192e94fe10641b425b5b8ca3159ad0305dd",
+    "credentials_used": false,
+    "analysis_session_write_acknowledged": true,
+    "verified": false,
+    "checked_at": "2026-10-15T16:13:04.410Z",
+    "error_type": "Error",
+    "browser_error_code": "ERR_CERT_AUTHORITY_INVALID"
+  },
+  "limitations": [
+    "Native Chromium hosted rendering was blocked by ERR_CERT_AUTHORITY_INVALID for the managed proxy CA; TLS checks were not disabled.",
+    "No managed-account, cross-account, restart-persistence or recovery acceptance was performed.",
+    "No private original SQLite file could be independently inspected on Render.",
+    "Render API control remains unauthorized despite the configured binding; no secret was requested in chat."
+  ],
+  "scope": "Public demo acceptance only. One analysis session was saved by the direct API check; no personal account, paid resource or service configuration was changed."
+}

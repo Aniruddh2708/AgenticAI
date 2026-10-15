@@ -68,3 +68,31 @@ The documentation-only delivery update retains identical application hashes.
 Live health verification currently fails at the managed outbound proxy, and no
 Render deployment credential is configured. No live password-free claim is made.
 See [RENDER.md](RENDER.md) for exact deploy and acceptance checks.
+
+## Subsequent hosted verification — 15 October 2026
+
+The owner subsequently configured the Render API binding and enabled the required
+network destinations. The exact latest main commit
+`3808a192e94fe10641b425b5b8ca3159ad0305dd` was already serving at
+<https://vibefinance.onrender.com>; no further deployment was needed or triggered.
+Public health returned `ok`, that full revision, `public_demo: true`,
+`authentication_enabled: false` and available storage. This supersedes the
+earlier outbound-policy blocker for public HTTP verification above.
+
+Actual hosted HTTPS checks, with certificate verification enabled and no account
+credentials or Authorization header, passed HTML/assets, three profiles and the
+research-only historical summary. One direct `POST /analyze` saved a shared demo
+session. Its five-agent result retained Meera's required `REDUCE` portfolio-policy
+decision; the saved session, exact citation passage and history were retrieved.
+These are public-demo checks, not managed-account or restart acceptance.
+
+The supplied Render API binding returned **401 Unauthorized** on service listing,
+so authenticated deployment control is still unavailable. Chromium's hosted check
+failed with `ERR_CERT_AUTHORITY_INVALID` for the environment's managed proxy CA;
+verification was not disabled and no hosted browser success is claimed. Local
+Chromium success remains the separate earlier result.
+
+See [dated hosted evidence](assets/public-hackathon-hosted-verification-2026-10-15.json).
+The evidence-only follow-up stays on the feature branch; deployed main remains
+`3808a19`. Service settings, private password, research artifacts and plan were
+not changed. No paid resource was created.
