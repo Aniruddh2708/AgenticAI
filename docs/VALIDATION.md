@@ -7,7 +7,7 @@ remain unchanged. Neither spent market experiment was rerun or tuned.
 
 | Current check | Actual result |
 |---|---|
-| Complete suite `make test` | **410 passed**, one existing Starlette/AnyIO deprecation warning; final run 23.88 seconds |
+| Complete suite `make test` | **418 passed**, one existing Starlette/AnyIO deprecation warning; final run 26.12 seconds |
 | Transcript tone | Dated news/transcript queries, complete quoted sentences, overlap/mirror deduplication, canonical citation scores, future exclusion, partial-input/outage behavior and forged-classification rejection passed |
 | Portfolio/demos | Existing seeded profile actions, conflict/outage/missing-filing paths and concentration-before-missing-evidence guards passed unchanged |
 | Default UI transparency | Real-API AppTest and actual Chromium show evidence strength, decision basis, full reasoning/evidence/trace in both modes; explicit probability disclaimers retained |
@@ -22,18 +22,18 @@ remain unchanged. Neither spent market experiment was rerun or tuned.
 | Container | Verified offline-wheel build, pinned base; 19 actual Render-style runtime/browser/restart/packaged-backup checks passed |
 | Exact image parity | Rebuilt final image matches all 42 packaged Python files and corrected report; quick port10000/health/BM25/auth/UID/helper/import checks passed; owned containers/volumes removed |
 | Current visual delivery | 16 actual screenshots, 120.9-second recording from 341 Chromium frames, zero observed page errors; original assets preserved |
-| Public Render before release | Reusable TLS-verified checker passed health200, password-type gate and prior revision `2ce77198feb5` without credentials |
+| Public Render implementation release | Reusable TLS-verified checker passed health200, password-type gate and revision `48ff67da9318` without credentials; final corrective push needs its own revision check |
 | Protected hosted acceptance | **Not run**: existing demo credential is not available/requested; local equivalent passed; optional operator checker explicitly acknowledges login's saved session |
-| CI | Pinned Linux/Windows GitHub Actions workflow added; no remote success or actual Windows run inferred from the local suite |
+| CI | First implementation run was rejected before jobs: job-level `runner.temp` is invalid. Moved the state-directory expression into step environments; corrected remote jobs must be observed before claiming Linux/Windows success |
 
 Final locally built verification image:
-`sha256:661e3247d6831317d38de50ddc8190c479bd7ede14df316aadd4b3fed3599823`.
+`sha256:76d07d7d9fd0ebeb03e535f78eb5ede9589a8778171adb1379683a02762272a8`.
 Nineteen web/browser/recovery checks first ran on the preceding local image;
 only the offline prospective module changed afterward. The final image was rebuilt,
 all 42 Python files/report matched, and quick runtime/helper checks passed. Later
 Markdown/capture changes do not alter these implementation hashes. Images were
 not published to a registry. Local evidence is under
-`.runtime/remaining-priorities/{native-acceptance,docker-verification,docker-verification-final}.json`.
+`.runtime/remaining-priorities/{native-acceptance,docker-verification,docker-verification-final,docker-verification-dated-source}.json`.
 The [current capture manifest](assets/demo-current/manifest.json) is tracked.
 
 Two official NSE domains were saved to a new configuration draft, preserving
@@ -42,7 +42,12 @@ publication before applying. No source-rights approval or data validity is
 implied by opening access. A protected hosted check remains separate from public
 release verification, and new release verification follows the pushed commit.
 `api.github.com` was added to the same draft after `gh run list` was denied;
-CI status is therefore unverified here rather than inferred from the workflow.
+Canonical GitHub HTML did reveal the
+[first run's workflow-validation failure](https://github.com/Aniruddh2708/AgenticAI/actions/runs/38692171843).
+No tests ran in that run. The correction is included in this follow-up; no remote
+success or Windows pass is inferred. The independently verified implementation
+deployment is recorded in
+[public implementation evidence](assets/render-implementation-verification.json).
 
 # Earlier blueprint review and access — 15 October 2026
 

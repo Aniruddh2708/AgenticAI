@@ -376,3 +376,46 @@ def test_cli_missing_local_input_reports_unavailable(prepared, tmp_path, monkeyp
     assert exit_info.value.code == 2
     error = capsys.readouterr().err
     assert "Prospective workflow unavailable:" in error and "Traceback" not in error
+
+
+def test_dated_snapshot_urls_on_approved_https_origin_are_accepted_and_preserved(prepared, tmp_path, monkeypatch):
+    directory, _, _, _, frozen = prepared
+    clock(monkeypatch, "2026-10-16")
+    batch = fixture_batch(tmp_path, pd.bdate_range("2026-09-01", "2026-10-16"))
+    for role, hostname in (("source", "primaryfixture"), ("reference", "referencefixture")):
+        batch["reconciliation"]["sources"][role]["source_url"] = (
+            f"https://{hostname}.example.org:443/snapshots/2026-10-16/export.csv?version=2")
+    forecast = p.record_forecast(directory, batch, tmp_path)
+    assert forecast["reconciliation"]["sources"] == batch["reconciliation"]["sources"]
+    assert p.load_registration(directory)["reconciliation"] == frozen["reconciliation"]
+    outcome = matured(tmp_path, batch)
+    for role, hostname in (("source", "primaryfixture"), ("reference", "referencefixture")):
+        outcome["reconciliation"]["sources"][role]["source_url"] = (
+            f"https://{hostname}.example.org/snapshots/{outcome['sessions'][-1]['date']}/export.csv?version=3")
+    clock(monkeypatch, outcome["sessions"][-1]["date"])
+    event = p.record_outcome(directory, forecast["origin"], outcome, tmp_path)
+    assert event["reconciliation"]["sources"] == outcome["reconciliation"]["sources"]
+    assert p.events(directory)[0] == forecast
+
+
+@pytest.mark.parametrize("change", ["host", "port", "userinfo", "provider", "method", "license_url", "lineage_url"])
+def test_snapshot_url_allowance_does_not_change_approved_source_contract(prepared, tmp_path, monkeypatch, change):
+    directory, _, _, _, _ = prepared
+    clock(monkeypatch, "2026-10-16")
+    batch = fixture_batch(tmp_path, pd.bdate_range("2026-09-01", "2026-10-16"))
+    source = batch["reconciliation"]["sources"]["source"]
+    if change == "host":
+        source["source_url"] = "https://other.example.org/snapshots/2026-10-16.csv"
+    elif change == "port":
+        source["source_url"] = "https://primaryfixture.example.org:8443/snapshots/2026-10-16.csv"
+    elif change == "userinfo":
+        source["source_url"] = "https://username:password@primaryfixture.example.org/snapshot.csv"
+    elif change == "provider":
+        source["provider"] = "Another operator"
+    elif change == "method":
+        source["adjustment_method"] = "Another adjustment method"
+    else:
+        source[change] = "https://primaryfixture.example.org/changed-evidence"
+    with pytest.raises(ValueError):
+        p.record_forecast(directory, batch, tmp_path)
+    assert p.events(directory) == []

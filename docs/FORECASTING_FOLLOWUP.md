@@ -256,7 +256,7 @@ and pushed as `e0b67fd`; Render release preparation was pushed as `2ce7719` with
 **305 tests passed** and actual native/container checks. The new
 [updated blueprint](BLUEPRINT_UPDATED.md) supersedes the historical operational
 status; the research results and spent-period labels above remain unchanged.
-The subsequent implementation follow-through passes 410 tests and adds strict
+The subsequent implementation follow-through passes 418 tests and adds strict
 independent-data reconciliation, a baseline-only prospective ledger and recovery
 tools. No real prospective study is registered or new market score claimed;
 independent source verification still blocks it.

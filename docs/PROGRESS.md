@@ -22,12 +22,15 @@ The user has now requested a release to the existing Render service. Startup
 honors Render's assigned port, the corrected research summary ships with the
 release, and a pre-login commit marker identifies the running revision. Native
 Render-style startup and the earlier 305-test suite passed; the follow-through
-now passes **410 tests** plus native/browser/container/recovery checks. See
+now passes **418 tests** plus native/browser/container/recovery checks. See
 [RENDER.md](RENDER.md) and current
 [validation evidence](VALIDATION.md). Public page/health HTTP 200 responses and
-live revision `2ce77198feb5` are now independently verified through normal TLS.
+implementation release `48ff67da9318` are independently verified through normal TLS.
 Authenticated hosted behavior remains unverified; the Render API credential is
 skipped/unavailable in this task.
+The first GitHub CI run failed workflow validation before jobs; the state-directory
+expression is corrected into step environments. Actual corrected remote job
+results remain to be checked.
 
 | Phase / requirement | Status | Evidence / limit |
 |---|---|---|

@@ -28,10 +28,10 @@ were retained; the research admission gate failed. The revised intervals have
 uncertainty, wider bounds and no demonstrated improvement in overall interval
 quality. They do not validate personalized investment recommendations.
 
-Before this follow-through, the Render-compatible release was committed and pushed
-as `2ce7719`. Its public revision and HTTP 200/`ok` health were independently
-verified. That dated evidence is preserved; verify the subsequent release commit
-separately. Protected hosted workflows were not independently tested.
+Implementation release `48ff67d` is publicly verified on Render: matching revision,
+HTTP 200/`ok` health and the enabled password gate, with normal TLS and no
+credentials. Its dated evidence is preserved; final corrective pushes require a
+new revision check. Protected hosted workflows were not independently tested.
 
 Status meanings below:
 
@@ -60,9 +60,10 @@ Status meanings below:
   silent browser recording, including reasoning, trace, transcript tone and saved
   research, were produced. Original assets remain intact. This is not a narrated
   five-minute rehearsal.
-- **Verification:** 410 application tests passed, with one existing upstream warning;
+- **Verification:** 418 application tests passed, with one existing upstream warning;
   actual native/browser/container and recovery checks passed. A pinned Linux/Windows
-  CI workflow is included; its remote results must be checked separately.
+  CI workflow is included. Its first run failed workflow validation before jobs;
+  the context placement is corrected, but remote results must be checked separately.
 
 See [data verification](DATA_VERIFICATION.md),
 [prospective workflow](PROSPECTIVE_EVALUATION.md), [operations](OPERATIONS.md) and
@@ -259,9 +260,9 @@ history and sufficient matured future outcomes; do not invent a completion date.
 ## 7. Current release and validation record
 
 - Terminal and Git access work. Checkout was clean on `main` at `2ce7719`; remote
-  `main` was rechecked and matches. Forecasting work is in `e0b67fd`; Render support
-  is in `2ce7719`.
-- Latest application validation: **410 tests passed**, with one existing upstream
+  `main` was rechecked. Forecasting work is in `e0b67fd`; Render support
+  is in `2ce7719`; implementation follow-through was pushed as `48ff67d`.
+- Latest application validation: **418 tests passed**, with one existing upstream
   Starlette/AnyIO deprecation warning. No spent forecasting evaluation was rerun.
 - Actual isolated native Render-style launch passed assigned port, authentication,
   release reporting, corrected research report and five-agent analysis.
@@ -270,7 +271,7 @@ history and sufficient matured future outcomes; do not invent a completion date.
   portfolio safeguards, rendered report and exact-session persistence across
   restart passed. The standard online build's earlier workspace-container DNS
   failure is separate from these successful offline-build checks.
-- Follow-through image `sha256:661e3247d6831317d38de50ddc8190c479bd7ede14df316aadd4b3fed3599823`
+- Follow-through image `sha256:76d07d7d9fd0ebeb03e535f78eb5ede9589a8778171adb1379683a02762272a8`
   matches all 42 packaged Python files and the corrected report. Nineteen actual
   web/browser/backup/restart checks passed; after the offline prospective module
   finalized, the exact image was rebuilt and parity/health/helper checks passed.
@@ -298,6 +299,15 @@ history and sufficient matured future outcomes; do not invent a completion date.
   No hosted private API or authenticated workflow was tested; Render control-plane
   deployment metadata was not read. No new deploy was triggered by this review.
 - No private demo password was requested. Do not supply it in chat.
+- Implementation release `48ff67d` subsequently passed the reusable public checker:
+  health200/ok, password-type gate and matching `48ff67da9318` revision using normal
+  TLS, without credentials. See the
+  [implementation release evidence](assets/render-implementation-verification.json).
+  A final corrective push still needs its own revision check.
+- The [first CI run](https://github.com/Aniruddh2708/AgenticAI/actions/runs/38692171843)
+  failed workflow validation before jobs because `runner.temp` was in job-level
+  `env`. Its expression is now in step environments; actual corrected Linux and
+  Windows runs still require verification. The failed run measured no test result.
 
 Use [Render instructions](RENDER.md), [validation history](VALIDATION.md) and
 [handoff](HANDOFF_FOR_CLAUDE.md). The sanitized

@@ -186,7 +186,13 @@ never a new adjusted numerator divided by a frozen older-vintage denominator.
 The immutable issuance event remains unchanged; the outcome separately stores
 its origin and target snapshots, both vintage dates and origin adjustment factors.
 Changed origin prices without a changed adjustment vintage are rejected. All
-source declaration metadata besides the explicitly dated vintage remains fixed.
+provider/effective lineage, adjustment method, price basis, currency, rights and
+license/lineage-evidence declarations remain fixed. Dated or versioned
+`source_url` path/query values may change **within the same approved HTTPS origin
+(host and effective port)**; credentials in URL user information, a new host or
+port, changed evidence declarations, or changed provider/method are rejected.
+Each full snapshot URL remains in its sealed batch report, so permitting dated
+exports does not discard the actual artifact location or its verified hashes.
 
 For example, a two-for-one split can restate an issuance price of 100 to an
 outcome-vintage origin of 50. A target of 50 means 0% total return, not -50%. A

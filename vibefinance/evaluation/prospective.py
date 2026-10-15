@@ -9,6 +9,7 @@ from datetime import date, datetime, timezone
 import hashlib
 import json
 from pathlib import Path
+from urllib.parse import urlparse
 from zoneinfo import ZoneInfo
 
 import numpy as np
@@ -120,9 +121,18 @@ def _reconciliation(report, securities, start, end, artifact_root):
 
 
 def _source_identity(report):
-    # All reviewed declaration metadata is fixed except its explicitly dated adjustment vintage.
-    return {role: {key: value for key, value in report["sources"][role].items()
-                   if key != "adjustment_as_of"} for role in ("source", "reference")}
+    # Dated/versioned exports may change path/query on the approved HTTPS origin.
+    # Full snapshot URLs remain in the sealed report; all other declarations stay fixed.
+    identities = {}
+    for role in ("source", "reference"):
+        identity = {key: value for key, value in report["sources"][role].items()
+                    if key != "adjustment_as_of"}
+        url = urlparse(identity["source_url"])
+        if url.scheme != "https" or not url.hostname or url.username or url.password:
+            raise ValueError("Snapshot URLs require an approved HTTPS origin without user information")
+        identity["source_url"] = {"origin": (url.scheme, url.hostname, url.port or 443), "fragment": url.fragment}
+        identities[role] = identity
+    return identities
 
 
 def _vintage(report):

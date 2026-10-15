@@ -30,22 +30,30 @@ New operator/research tools:
   Local recovery passed; durable/private hosted storage and off-service backups
   are not configured by this tool.
 
-Final verification: **410 tests passed**, one existing upstream warning; extended
+Final verification: **418 tests passed**, one existing upstream warning; extended
 rendered checks and actual native/API/browser/backup recovery passed. Nineteen
 Render-style container checks passed; final cached image parity covers all 42
 Python files and report. Final image digest and evidence are in VALIDATION.md.
 Sixteen current screenshots and a 120.9-second real silent browser recording
 were added under `docs/assets/demo-current/`; original captures remain intact.
-The pinned Linux/Windows CI workflow still needs actual remote-result evidence.
+The first pinned Linux/Windows CI run failed workflow validation before jobs:
+`runner.temp` was unavailable in job-level `env`. This follow-up moves that value
+into the relevant steps. Verify actual corrected jobs; no remote Windows pass is
+established by the local suite.
 
 Preserve both spent research reports, original hashes, simulations and guards.
 The source data is not independently validated and no predictive model is admitted.
 NSE hosts were added to a saved environment draft; review/save/publish is needed
 to apply them. Once access changes, retry the already-spent official source and
 continue genuine evidence review; do not invent a passed attestation. Verify the
-new pushed release marker separately from the prior verified `2ce77198feb5`.
+new pushed release marker separately. Implementation commit `48ff67d` was publicly
+verified on Render: health200/ok, enabled password gate and matching revision,
+with normal TLS and no credentials. Its evidence is in
+`docs/assets/render-implementation-verification.json`; final corrective pushes
+need their own revision checks.
 The same draft includes `api.github.com` after `gh run list` was denied; inspect
-actual remote CI results once access applies. No replacement GitHub token is needed
+actual remote CI results once access applies (canonical GitHub HTML already
+revealed the first workflow error). No replacement GitHub token is needed
 merely because the host policy denied a request.
 See the updated blueprint for remaining research, rehearsal and production work.
 

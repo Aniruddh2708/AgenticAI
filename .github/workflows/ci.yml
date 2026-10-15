@@ -23,7 +23,6 @@ jobs:
         os: [ubuntu-latest, windows-latest]
     env:
       VIBEFINANCE_EMBEDDINGS: "0"
-      VIBEFINANCE_STATE_DIR: ${{ runner.temp }}/vibefinance-ci
     steps:
       - name: Check out source
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
@@ -38,6 +37,10 @@ jobs:
       - name: Install locked packages
         run: python -m pip install --require-hashes -r requirements.lock
       - name: Run application tests
+        env:
+          VIBEFINANCE_STATE_DIR: ${{ runner.temp }}/vibefinance-ci
         run: python -m pytest -q
       - name: Exercise rendered dashboard with isolated API
+        env:
+          VIBEFINANCE_STATE_DIR: ${{ runner.temp }}/vibefinance-ci
         run: python scripts/check_dashboard_extended.py
