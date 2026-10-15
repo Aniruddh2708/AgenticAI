@@ -1,0 +1,20 @@
+{
+  "checked_at": "2026-10-15T03:37:06.546140+00:00",
+  "checked_at_ist": "2026-10-15 09:07:06 IST",
+  "url": "https://vibefinance.onrender.com",
+  "application_commit": "2ce77198feb549d5e811d220d7c7c10e24c01283",
+  "public_revision": "2ce77198feb5",
+  "revision_source": "Caption received from public Streamlit websocket before login",
+  "health_endpoint": "/_stcore/health",
+  "health_status": 200,
+  "health_body": "ok",
+  "tls_verified": true,
+  "proxy_and_ca": "Inherited environment proxy and trusted CA; certificate verification retained",
+  "credentials_used": false,
+  "deployment_triggered_by_review": false,
+  "limitations": [
+    "Protected hosted workflows were not tested.",
+    "Render control-plane deployment metadata was not read.",
+    "Public marker confirms the displayed revision; it is not a security attestation."
+  ]
+}

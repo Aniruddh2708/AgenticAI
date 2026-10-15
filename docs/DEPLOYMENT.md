@@ -5,6 +5,12 @@ See [RENDER.md](RENDER.md) for updating that existing service and checking its
 deployed commit without its private demo password. Older container verification
 below remains historical evidence; it does not establish the current live release.
 
+The implementation follow-through has current native/container evidence in
+[VALIDATION.md](VALIDATION.md), refreshed [visual backup](assets/demo-current/manifest.json),
+and [public acceptance/state recovery tools](OPERATIONS.md). Both Docker recipes
+include `scripts/backup_state.py`; source reconciliation/prospective CLIs are
+checkout-side research workflows and are not startup tasks on the free-tier app.
+
 The dashboard is a local, synthetic research demo. The source repository is not a
 hosted application. The project includes a container recipe; this does not create a
 public website or a hosting account.

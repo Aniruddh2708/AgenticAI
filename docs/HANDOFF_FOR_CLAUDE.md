@@ -1,6 +1,74 @@
 # VibeFinance continuation handoff — 15 October 2026
 
-## Latest Render release preparation
+## Latest implementation follow-through
+
+The user requested work on the remaining priorities. Starting main was
+`2ce7719`; the prior uncommitted blueprint/docs were preserved. B1/B2 are now
+implemented: dated, deduplicated transcript/news sentiment; source type/date and
+canonical citation scores; heuristic strength and full reasoning/evidence/trace
+in both modes; authenticated forecast fragment keeps Metrics selected. All
+original seeded profile actions and portfolio safeguards remain intact.
+
+New operator/research tools:
+
+- `scripts/reconcile_prices.py` and `docs/DATA_VERIFICATION.md`: strict local
+  independent-source/calendar/action audit, no fills or silent repair. Another
+  Yahoo mirror is not independent proof. Real NSE access returned proxy 403.
+- `scripts/prospective.py` and `docs/PROSPECTIVE_EVALUATION.md`: register, forecast,
+  missed, outcome and descriptive score stages. Real registration is blocked
+  until genuine passed F1 evidence and rights/calendar/actions/universe review
+  exist. Deterministic cadence, full cohort accounting and same-vintage outcome
+  ratios preserve issuance evidence and avoid split/dividend scale errors.
+  Local hashes do not establish source truth or trusted timestamps; independently
+  archive/witness records. No new market study or score exists.
+- `scripts/check_hosted.py` and `docs/OPERATIONS.md`: public verified-TLS
+  health/revision/gate checks; protected mode accepts only a caller-supplied env
+  token and acknowledges its automatic analysis-session write. Do not request
+  the private existing demo password.
+- `scripts/backup_state.py`: online SQLite backup/restore to new paths, integrity,
+  committed WAL and no-overwrite protection. Packaged in both Docker recipes.
+  Local recovery passed; durable/private hosted storage and off-service backups
+  are not configured by this tool.
+
+Final verification: **410 tests passed**, one existing upstream warning; extended
+rendered checks and actual native/API/browser/backup recovery passed. Nineteen
+Render-style container checks passed; final cached image parity covers all 42
+Python files and report. Final image digest and evidence are in VALIDATION.md.
+Sixteen current screenshots and a 120.9-second real silent browser recording
+were added under `docs/assets/demo-current/`; original captures remain intact.
+The pinned Linux/Windows CI workflow still needs actual remote-result evidence.
+
+Preserve both spent research reports, original hashes, simulations and guards.
+The source data is not independently validated and no predictive model is admitted.
+NSE hosts were added to a saved environment draft; review/save/publish is needed
+to apply them. Once access changes, retry the already-spent official source and
+continue genuine evidence review; do not invent a passed attestation. Verify the
+new pushed release marker separately from the prior verified `2ce77198feb5`.
+The same draft includes `api.github.com` after `gh run list` was denied; inspect
+actual remote CI results once access applies. No replacement GitHub token is needed
+merely because the host policy denied a request.
+See the updated blueprint for remaining research, rehearsal and production work.
+
+## Earlier blueprint review
+
+Read [BLUEPRINT_UPDATED.md](BLUEPRINT_UPDATED.md) for the verified nine-phase
+status, original requirement gaps, unresolved issue register and ordered plan.
+The original upload still matches `BLUEPRINT.md` exactly. The checkout and
+GitHub main were verified clean/matching at `2ce7719` before this documentation
+pass. Application checks below are recorded evidence, not new research runs.
+
+Current runtime observations show the Render host policy is enforced, public
+page/health requests return HTTP 200 (`ok`), and the optional `RENDER_API_KEY`
+binding is skipped. The earlier network-draft blocker below is historical.
+Chromium's public revision check first failed on proxy CA trust; TLS verification
+was retained. A subsequent public Streamlit websocket connection with inherited
+proxy/CA trust verified `Deployed revision: 2ce77198feb5`, matching the pushed
+release. Authenticated hosted behavior remains unverified. See
+`docs/assets/render-release-verification.json` for the public evidence record.
+No private demo password was requested. Latest application suite remains 305
+passed; no frozen/spent experiment was rerun for this documentation review.
+
+## Earlier Render release preparation
 
 The user subsequently authorized committing, pushing and updating the existing
 Render service. Forecasting work was committed and pushed as `e0b67fd`; the
@@ -23,15 +91,15 @@ port/health, authentication, BM25, rendered audit, safeguards and persistence
 across restart checks. Original evidence hashes remain unchanged. See VALIDATION.md
 for details and the limits of live deployment evidence.
 
-Live deployment is not verified: this task has no `RENDER_API_KEY`, and its proxy
-denied Render/API requests with HTTP 403. The cloud environment draft now lists
-the required domains and secure API-key binding, but still needs user review and
-publication before it applies. Do not request the private demo password. Use
-the existing service's Manual Deploy action or securely configured API access;
-verify the exact deployed SHA rather than assuming a Git push or restart deployed
-new code. Preserve the existing service, plan, access token and storage setup.
+The initial release attempt lacked ready Render API access and had proxy HTTP
+403. The current runtime allows the hosts but still reports the optional key
+skipped. Public health and revision `2ce77198feb5` are now verified; authenticated
+hosted features are not established. No extra deploy is needed for this release.
+For future releases, use the existing service's Manual Deploy action or securely
+configured API access and verify the actual revision. Do not request the private
+demo password. Preserve the existing service, plan, access token and storage setup.
 
-## Latest uncertainty investigation
+## Recorded uncertainty investigation
 
 Read [FORECASTING_FOLLOWUP.md](FORECASTING_FOLLOWUP.md) first. Original 2019–2020
 artifacts and their summary hashes remain unchanged; that period is spent.

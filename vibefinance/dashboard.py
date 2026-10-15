@@ -145,8 +145,9 @@ def render_profile_form(profile, profiles):
 
 def signal_table(session, beginner=False):
     readable = {"BULLISH": "Price trend is positive", "BEARISH": "Price trend is negative",
-                "NEUTRAL": "No clear direction", "POSITIVE": "News language is positive",
-                "NEGATIVE": "News language is negative", "SUPPORTIVE": "Filings have supportive facts",
+                "NEUTRAL": "No clear direction", "POSITIVE": "Available text tone is positive",
+                "NEGATIVE": "Available text tone is negative", "MIXED": "No clear text tone",
+                "SUPPORTIVE": "Filings have supportive facts",
                 "CAUTIONARY": "Filings contain risks", "SPIKE_UP": "Trading participation increased",
                 "DIVERGENCE": "Price and participation disagree", "RISK_LOW": "Lower portfolio risk",
                 "RISK_MED": "Review portfolio exposure", "RISK_HIGH": "Portfolio limits need attention",
@@ -211,7 +212,10 @@ def render_sources(session, beginner=False):
                     st.caption("Full document unavailable; the exact source snapshot is displayed above.")
 
 
+@st.fragment
 def render_forecast_audit():
+    """Load the report without rerunning the page and resetting its selected tab."""
+    require_demo_login()
     if st.button("Load real-history forecast audit"):
         report = request_or_error("GET", "/evaluation/forecast", "load the saved real-history forecast audit")
         if report is not None:
@@ -421,9 +425,11 @@ def main():
         st.subheader(f"{ticker.removesuffix('.NS')} · {rec['action']}")
         st.write(readable[rec["action"]] if beginner else " ".join(rec["personalization_notes"][:2]))
     with right:
-        if not beginner:
-            st.metric("Signal confidence", f"{rec['confidence']:.0%}")
-        st.caption("Recommendation confidence is heuristic signal strength, not a calibrated probability of profit.")
+        st.metric("Evidence strength", f"{100 * rec['confidence']:.0f}/100")
+        st.caption("Heuristic market evidence score; not a calibrated probability of profit or of a correct action.")
+        basis = {"market_evidence": "market evidence", "portfolio_policy": "portfolio safeguards",
+                 "incomplete_evidence": "incomplete evidence", "conflict_resolution": "conflicting evidence"}
+        st.caption("Decision basis: " + basis.get(rec.get("decision_basis"), "review the reasoning below") + ".")
     tabs = st.tabs(["Analysis", "Sources", "Portfolio & watchlist", "Compare users", "Metrics", "History"])
     with tabs[0]:
         signal_table(session, beginner)
@@ -464,19 +470,25 @@ def main():
                 if any(a["status"] != "ok" for a in rec["agent_outputs"]):
                     st.write("Some evidence is unavailable or degraded. The warning above explains which input failed.")
             else:
-                for step in rec["reasoning_chain"]:
-                    st.write(step)
+                for note in rec["personalization_notes"]:
+                    st.write(note)
+        with st.expander("Full numbered reasoning"):
+            st.caption("These are the recorded deterministic rules and evidence summaries, not a forecast of returns.")
+            for step in rec["reasoning_chain"]:
+                st.write(step)
         if rec["conflicts"]:
             st.subheader("Agent disagreement")
             for conflict in rec["conflicts"]:
                 st.warning("The price signal opposes the filing or news assessment. Review both sources." if beginner else conflict)
-        if not beginner:
-            with st.expander("Agent evidence and latency"):
-                for agent in rec["agent_outputs"]:
-                    st.markdown(f"**{agent['dimension'].title()} · {agent['label']} · {agent['latency_ms']:.2f} ms**")
-                    for bullet in agent["evidence"]:
-                        st.write("• " + bullet)
-            st.subheader("Pipeline trace")
+        with st.expander("Agent evidence and latency"):
+            st.caption("Agent scores describe heuristic evidence strength. Timings are measured for this analysis; neither scores nor timings establish predictive accuracy.")
+            for agent in rec["agent_outputs"]:
+                st.markdown(f"**{agent['dimension'].title()} · {agent['label']}**")
+                st.caption(f"Evidence strength {100 * agent['confidence']:.1f}/100 · {agent['status']} · {agent['latency_ms']:.2f} ms")
+                for bullet in agent["evidence"]:
+                    st.write("• " + bullet)
+        with st.expander("Pipeline trace"):
+            st.caption("Recorded processing steps and source checks; source identity does not independently verify a company claim.")
             for index, step in enumerate(session["trace"], 1):
                 st.write(f"{index}. **{step['step']}** — {step['detail']}")
     with tabs[1]:

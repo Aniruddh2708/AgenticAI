@@ -82,18 +82,29 @@ async def analyze(ticker, profile, *, store=None, retriever=None, sentiment_outa
             warnings.append(f"{','.join(sorted(types))} retrieval unavailable ({type(exc).__name__}); claims withheld.")
             return []
 
-    filings, news = await asyncio.gather(
+    filings, news, transcripts = await asyncio.gather(
         retrieve("growth profit guidance risk decline weak cut attrition supportive", {"transcript", "results", "disclosure", "risk"}, 4)
         if not missing_filing else asyncio.sleep(0, result=[]),
-        retrieve("growth profit weak guidance", {"news"}, 3))
+        retrieve("growth profit weak guidance", {"news"}, 3),
+        retrieve("growth profit guidance strong weak demand attrition", {"transcript"}, 3)
+        if not missing_filing else asyncio.sleep(0, result=[]))
     if getattr(retriever, "warning", None):
         warnings.append(retriever.warning)
     retrieval_mode = getattr(retriever, "mode", "unavailable")
-    trace.append({"step": "Retrieval", "detail": f"{retrieval_mode}: {len(filings)} filing / {len(news)} news chunks; ticker/type/date filters applied."})
-    allowed = {c.chunk_id: c for c in [market_cite, profile_cite] + [c.citation(s) for c, s in filings + news]}
+    trace.append({"step": "Retrieval", "detail": f"{retrieval_mode}: {len(filings)} filing / {len(news)} news / {len(transcripts)} transcript chunks; ticker/type/date filters applied. Shared passages are not independent corroboration."})
+    # A transcript may be retrieved for both financial facts and tone. Use the
+    # same canonical citation/score in both agents and one source-registry row.
+    retrieved = {}
+    for chunk, score in filings + news + transcripts:
+        retrieved.setdefault(chunk.chunk_id, (chunk, score))
+    filings = [retrieved[chunk.chunk_id] for chunk, _ in filings]
+    news = [retrieved[chunk.chunk_id] for chunk, _ in news]
+    transcripts = [retrieved[chunk.chunk_id] for chunk, _ in transcripts]
+    allowed = {c.chunk_id: c for c in [market_cite, profile_cite] + [c.citation(s) for c, s in retrieved.values()]}
     functions = {"momentum": lambda: momentum_agent.analyze(ticker, frame, market_cite),
         "volume": lambda: volume_agent.analyze(ticker, frame, market_cite),
-        "sentiment": lambda: sentiment_agent.analyze(ticker, news, sentiment_outage or ticker == "ITC.NS"),
+        "sentiment": lambda: sentiment_agent.analyze(ticker, news, sentiment_outage or ticker == "ITC.NS",
+            transcripts=transcripts, as_of=as_of),
         "filings": lambda: filings_agent.analyze(ticker, filings),
         "risk": lambda: risk_agent.analyze(ticker, profile, profile_cite)}
     canonical_functions = dict(functions)
@@ -180,8 +191,11 @@ async def analyze(ticker, profile, *, store=None, retriever=None, sentiment_outa
         "claim_support_coverage": supported_total / claim_total if claim_total else None,
         "citation_coverage": supported_total / claim_total if claim_total else None})
     trace.append({"step": "Personalized synthesis", "detail": f"{rec.action}; {len(rec.conflicts)} conflicts; {rec.confidence_kind} {rec.confidence:.1%}; basis {rec.decision_basis}."})
-    source_docs = {c.chunk_id: getattr(c, "document_text", c.text) or c.text for c, _ in filings + news}
-    sources = [{**citation.model_dump(), "document_text": source_docs.get(citation.chunk_id, citation.excerpt)} for citation in allowed.values()]
+    source_docs = {c.chunk_id: getattr(c, "document_text", c.text) or c.text for c, _ in retrieved.values()}
+    source_types = {c.chunk_id: c.doc_type for c, _ in retrieved.values()}
+    source_types.update({market_cite.chunk_id: "market", profile_cite.chunk_id: "profile"})
+    sources = [{**citation.model_dump(), "doc_type": source_types[citation.chunk_id],
+        "document_text": source_docs.get(citation.chunk_id, citation.excerpt)} for citation in allowed.values()]
     market_rows = json.loads(frame.to_json(orient="records", date_format="iso")) if stats else []
     metrics["total_latency_ms"] = (time.perf_counter() - start) * 1000
     session = {"session_id": uuid.uuid4().hex, "recommendation": rec.model_dump(), "metrics": metrics,

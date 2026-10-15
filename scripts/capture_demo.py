@@ -18,6 +18,8 @@ def main():
     parser.add_argument("--chromium", default=shutil.which("chromium"))
     parser.add_argument("--duration", type=float, default=120,
                         help="Minimum silent video duration in seconds; 0 for a quick check.")
+    parser.add_argument("--include-forecast-audit", action="store_true",
+                        help="Capture an available saved research report; set VIBEFINANCE_FORECAST_REPORT on the app first.")
     parser.add_argument("--overwrite", action="store_true",
                         help="Permit updating an existing capture directory.")
     args = parser.parse_args()
@@ -115,6 +117,17 @@ def main():
 
         ready()
         capture("01-analysis", "Default RELIANCE analysis, disclosed synthetic inputs")
+        for label, filename, purpose in (
+                ("Full numbered reasoning", "01-reasoning", "Beginner-accessible numbered deterministic reasoning"),
+                ("Pipeline trace", "01-trace", "Actual processing trace and shared-source disclosure")):
+            explanation = page.locator('[data-testid="stExpander"] summary').filter(has_text=label).first
+            explanation.click()
+            details = explanation.locator("xpath=ancestor::details[1]")
+            capture(filename, purpose, focus=details)
+        evidence = page.locator('[data-testid="stExpander"] summary').filter(has_text="Agent evidence and latency").first
+        evidence.click()
+        capture("01-transcript-tone", "Quoted news/transcript sentiment evidence and measured agent strength",
+                focus=page.get_by_text("Sentiment · POSITIVE", exact=True).first)
         tab("Sources")
         # Closed details exclude their buttons from the accessibility tree. Open
         # an actual filing first, then request and verify its highlighted passage.
@@ -140,8 +153,8 @@ def main():
         tab("Compare users")
         page.get_by_role("button", name="Compare all three profiles", exact=True).click()
         ready()
-        # The genuine beginner view hides numerical context. Switch explicitly
-        # before recording the profile constraints and quantitative evidence.
+        # Both modes show evidence strength and the full reasoning/trace.
+        # Analyst mode adds quantitative portfolio and evaluation panels.
         beginner = page.get_by_role("checkbox", name="Plain-language mode", exact=True)
         if beginner.count() and beginner.is_checked():
             # Streamlit's toggle uses a hidden input; click its visible label.
@@ -149,6 +162,13 @@ def main():
             ready()
         capture("04-comparison", "Three profiles using identical market and document inputs")
         tab("Metrics")
+        if args.include_forecast_audit:
+            page.get_by_role("button", name="Load real-history forecast audit", exact=True).click()
+            audit_heading = page.get_by_role("heading", name="Real-history price forecasting research", exact=True)
+            audit_heading.wait_for(timeout=60000)
+            page.get_by_text("Model readiness: research only.", exact=False).wait_for(timeout=60000)
+            assert page.get_by_role("tab", name="Metrics", exact=True).get_attribute("aria-selected") == "true"
+            capture("05-forecast-audit", "Saved spent/exploratory real-history research and failed acceptance; no model promotion", focus=audit_heading)
         evaluation_heading = page.get_by_role("heading", name="Walk-forward technical direction evaluation", exact=True)
         if evaluation_heading.count():
             evaluation_heading.scroll_into_view_if_needed()

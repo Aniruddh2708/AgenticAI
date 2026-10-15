@@ -1,5 +1,22 @@
 # Actual demo assets
 
+The [public release verification](render-release-verification.json) records
+healthy Render responses and the expected public revision `2ce77198feb5` on
+15 October 2026. It used no credentials; protected hosted workflows were not
+tested. This is separate from the earlier demo captures below.
+
+The [current capture set](demo-current/manifest.json) adds sixteen actual
+screenshots and a [120.9-second silent recording](demo-current/dashboard-backup.mp4)
+of this implementation follow-through. It includes
+[numbered reasoning](demo-current/01-reasoning.png),
+[the pipeline trace](demo-current/01-trace.png),
+[transcript tone](demo-current/01-transcript-tone.png) and
+[the saved research audit](demo-current/05-forecast-audit.png).
+The recording contains 341 real browser frames and zero observed JavaScript
+errors. Its manifest records the source hashes and uncommitted local capture
+state; it is not a claim that those screens were captured on Render. Original
+captures below remain preserved. Neither recording is narrated rehearsal.
+
 These files were generated from the running application using seeded simulated
 market data and fabricated company documents. They are real browser captures, not
 mocked screenshots. No real investor data or credentials appear in them.
@@ -28,6 +45,6 @@ technical direction scores do not establish investment outperformance or calibra
 recommendation success.
 
 Regenerate with [`../../scripts/capture_demo.py`](../../scripts/capture_demo.py);
-see [`../DEPLOYMENT.md`](../DEPLOYMENT.md) for runtime prerequisites. These files
-will only appear in GitHub after the corresponding repository changes are committed
-and pushed. An internal workspace path is not a public download URL.
+see [`../DEPLOYMENT.md`](../DEPLOYMENT.md) for runtime prerequisites. These assets
+are tracked and were included in the pushed forecasting commit `e0b67fd`.
+An internal workspace path is not a public download URL.

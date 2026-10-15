@@ -18,6 +18,7 @@ RUN python -m pip install --no-cache-dir --require-hashes -r requirements.lock \
 
 COPY --chown=vibefinance:vibefinance vibefinance ./vibefinance
 COPY --chown=vibefinance:vibefinance docs ./docs
+COPY --chown=vibefinance:vibefinance scripts/backup_state.py ./scripts/backup_state.py
 USER vibefinance
 EXPOSE 8501
 HEALTHCHECK --interval=30s --timeout=5s --start-period=40s --retries=3 \

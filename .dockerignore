@@ -5,6 +5,8 @@
 !vibefinance/**
 !docs/
 !docs/**
+!scripts/
+!scripts/backup_state.py
 **/__pycache__/
 **/*.pyc
 **/.env

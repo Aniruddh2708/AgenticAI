@@ -63,7 +63,14 @@ Deployment API control needs a securely supplied `RENDER_API_KEY` usable at
 the environment network policy. The API key is separate from the private demo
 password; never send either in chat or commit them.
 
-If those bindings are unavailable, the code can be prepared, tested and pushed,
-but API deployment and live-release verification must not be claimed complete.
-Manual deployment through the existing Render dashboard remains available to
-the service owner.
+Without the API-key binding, API deployment control is unavailable. Public health
+and the pre-login revision can still be verified independently when that host is
+allowed, without a demo password or Render API key. If the public host is blocked,
+leave live verification pending; a push or health response alone is not proof of
+release identity. Manual deployment through the existing Render dashboard remains
+available to the service owner when a release is actually needed.
+
+On 15 October 2026, public health returned 200/`ok` and a TLS-verified public
+Streamlit connection showed `Deployed revision: 2ce77198feb5`, matching the pushed
+release. This resolves the earlier unknown revision; protected hosted workflows
+were not checked. See [evidence](assets/render-release-verification.json).

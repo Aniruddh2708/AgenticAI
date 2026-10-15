@@ -3,6 +3,11 @@
 Read the original [BLUEPRINT.md](BLUEPRINT.md) alongside actual tests and
 [VALIDATION.md](VALIDATION.md). A phase being implemented does not certify every
 stretch requirement or production capability.
+The [updated blueprint](BLUEPRINT_UPDATED.md) is the detailed completion audit,
+issue register and ordered plan, reviewed against application commit `2ce7719`.
+The implementation follow-through adds transcript tone, visible explanations,
+reconciliation/prospective tools and safe recovery; these are described below.
+They do not establish new forecasting performance or independent source approval.
 
 The current forecasting audit and complete implemented research plan are in
 [FORECASTING_AUDIT.md](FORECASTING_AUDIT.md). The trained return candidate did not
@@ -16,9 +21,13 @@ score comparisons prevent a stronger improvement claim; both periods are spent.
 The user has now requested a release to the existing Render service. Startup
 honors Render's assigned port, the corrected research summary ships with the
 release, and a pre-login commit marker identifies the running revision. Native
-Render-style startup and 305 tests passed; see [RENDER.md](RENDER.md) and current
-[validation evidence](VALIDATION.md). Live deployment remains unverified because
-Render API credentials and working network access are unavailable in this task.
+Render-style startup and the earlier 305-test suite passed; the follow-through
+now passes **410 tests** plus native/browser/container/recovery checks. See
+[RENDER.md](RENDER.md) and current
+[validation evidence](VALIDATION.md). Public page/health HTTP 200 responses and
+live revision `2ce77198feb5` are now independently verified through normal TLS.
+Authenticated hosted behavior remains unverified; the Render API credential is
+skipped/unavailable in this task.
 
 | Phase / requirement | Status | Evidence / limit |
 |---|---|---|
@@ -36,17 +45,23 @@ Render API credentials and working network access are unavailable in this task.
 | Full-agent point-in-time replay | Implemented and measured | 90 profile decisions/30 market windows; synthetic policy checks, not strategy profitability |
 | Real dated return forecasting | Implemented and evaluated; research gate failed | Hash-pinned 2010–2020 data; chronological train/validation/calibration/test; 80 held-out windows, no established learned edge |
 | Historical price full-agent replay | Implemented and evaluated | Genuine dated prices, three synthetic profiles, historical text withheld; constraint checks, no action accuracy/P&L |
-| Forecast audit dashboard/API | Implemented and tested | Reads saved summary only; no auto-training, model promotion or portfolio action changes |
+| Forecast audit dashboard/API | Implemented and tested | Reads saved summary only; authenticated fragment keeps Metrics selected; no auto-training or model promotion |
 | Uncertainty calibration and stability selection | Implemented; research-only | Per-security causal scales, 24 calibration dates, finite rank checks, shared spent-period ledger; point baselines retained |
 | Fresh follow-up and exploratory reporting | Evaluated and labelled | Same-row baseline/width/score comparisons; partial origins excluded from joint coverage; source calendar gap disclosed |
 | Active startup paths | Corrected and tested | 60-second initialization, 120-second readiness; root compatibility wrappers prevent duplicate drift |
 | Measured sequential/parallel benchmark | Implemented | Identical warmed inputs/output verification; no artificial delays |
-| Dashboard | Implemented and exercised | Profile forms, cache refresh, failures, real session chart, source highlighting, beginner/analyst views |
+| Dashboard | Implemented and exercised | Evidence strength and expandable reasoning/evidence/trace in both modes; profiles, cache refresh, failures and source highlighting |
+| Transcript sentiment | Implemented and tested | Dated transcript/news inputs, complete exact quotations, deduplication, partial-source/outage disclosure; finite lexicon only |
+| Independent-data verification tooling | Implemented and tested; real verification blocked | Source/reference lineage, adjustment vintage, calendar/actions, exact rows and no repair; official NSE request denied, no independent data obtained |
+| Prospective observation workflow | Implemented and tested; not registered | Frozen baselines/schedule, missed/missing cohorts, same-vintage returns, causal records and sparse-support withholding; requires genuine passed data review |
+| SQLite recovery | Implemented and locally exercised | Online WAL-consistent backup, atomic no-overwrite files, exact-state restore; no durable hosted storage configured |
+| CI | Workflow added with pinned actions | Linux/Windows tests and rendered smoke; remote results are not implied by local checks |
 | Watchlist/history/decisions | Implemented | Profile-dependent alerts; no broker execution or holdings mutation |
 | Presentation | Implemented | HTML deck and generated presentation PDF; no guaranteed judging outcome |
 | Backup capture | Actual 119.3-second video and twelve screenshots verified | Silent recorded browser views are not a narrated five-minute rehearsal |
+| Updated UI capture | New actual screenshot/video set | Includes reasoning, trace, transcript tone and saved research audit; original assets preserved; still silent automation |
 | Docker deployment | Implemented and locally verified | Non-root/shared gate/private API/persistent volume; offline wheels build used |
-| Public hosted application | BM25 Render deployment reported working by user | https://vibefinance.onrender.com; not logged into or redeployed in this pass |
+| Public hosted application | Public health/page and live revision `2ce77198feb5` independently verified | Authenticated hosted behavior remains unverified; no private password requested |
 | Live Yahoo success | Blocked/unverified | Observed fc.yahoo.com HTTP403; simulation fallback verified |
 | Optional LLM narration | Not implemented | Deterministic explanation remains the offline behavior |
 | Real filings, licensed news, real-history strategy validation | Not implemented | Fictional documents are explicitly disclosed |
@@ -86,5 +101,6 @@ Native macOS execution and restoration into a fresh published cloud task are unv
 
 The original implementation and this corrective pass belong to the same authorized
 GitHub repository. Inspect its Git history for the delivered commit. Environment
-setup, startup and required network additions were saved as a draft; they do not
-publish or apply themselves. Fresh-task restoration remains unverified.
+setup and startup instructions were saved through the configuration workflow.
+The latest runtime now confirms the Render host policy is enforced, while the
+optional API-key binding is skipped. Fresh-task restoration remains unverified.

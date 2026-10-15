@@ -64,9 +64,10 @@ def main():
                 with patch("httpx.request", side_effect=api.request):
                     app = AppTest.from_file(str(root / "vibefinance/dashboard.py"), default_timeout=60).run()
                     assert_clean(app)
-                    assert not any(metric.label == "Signal confidence" for metric in app.metric)
-                    assert not any(expander.label == "Agent evidence and latency" for expander in app.expander)
-                    assert not any(item.value == "Pipeline trace" for item in app.subheader)
+                    assert any(metric.label == "Evidence strength" and metric.value.endswith("/100") for metric in app.metric)
+                    for label in ("Full numbered reasoning", "Agent evidence and latency", "Pipeline trace"):
+                        assert any(expander.label == label for expander in app.expander)
+                    assert not any(item.value == "Walk-forward technical direction evaluation" for item in app.subheader)
 
                     # Existing profile edits invalidate analysis and re-run against saved data.
                     before = sum(path == "/analyze" for _, path, _ in api.calls)
@@ -102,11 +103,12 @@ def main():
                     assert_clean(app)
                     assert client.get("/profiles/dashboard_test").status_code == 200
 
-                    # Analyst-only evidence appears only when the user requests it.
+                    # Analyst mode adds technical evaluation; core evidence is available in both views.
                     widget(app.toggle, "Plain-language mode").set_value(False).run()
                     assert_clean(app)
-                    assert any(metric.label == "Signal confidence" for metric in app.metric)
+                    assert any(metric.label == "Evidence strength" for metric in app.metric)
                     assert any(expander.label == "Agent evidence and latency" for expander in app.expander)
+                    assert any(item.value == "Walk-forward technical direction evaluation" for item in app.subheader)
                     widget(app.button, "Run point-in-time policy replay").click().run()
                     assert_clean(app)
                     assert any(subheader.value == "Full-agent synthetic policy replay" for subheader in app.subheader)

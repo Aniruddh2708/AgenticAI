@@ -239,7 +239,8 @@ widths, scores and their eight-quarter intervals remain unchanged.
   refuse another purported fresh evaluation. `scripts/forecast_followup_exploratory.py`
   derives the correction from saved rows, without refitting or rescoring a model.
 - Local report review can set `VIBEFINANCE_FORECAST_REPORT` to the corrected
-  exploratory file. Default artifact location and Render configuration are unchanged.
+  exploratory file. Later release commit `2ce7719` makes Render default to the
+  tracked corrected summary; explicit overrides and the local default remain.
 
 Safeguards, original simulations, dependency lockfiles and portfolio actions stay
 intact. The model remains research-only with a failed admission check. Independent
@@ -247,8 +248,15 @@ data/calendar verification, more time regimes and another predeclared future
 replication would be needed before stronger claims. This pass does not select a
 new winner from the now-spent 2024–2025 results or establish deployment readiness.
 
-Final verification: **296 tests passed**, one existing upstream deprecation warning.
+Research-stage verification: **296 tests passed**, one existing upstream deprecation warning.
 API smoke, both dashboard scripts and an actual API/rendered dashboard load of
 the corrected exploratory report passed in isolated state. Reconnection preserved
-files and the original result hashes. Changes remain local and uncommitted;
-Render and its private access settings were not changed.
+files and the original result hashes. These changes were subsequently committed
+and pushed as `e0b67fd`; Render release preparation was pushed as `2ce7719` with
+**305 tests passed** and actual native/container checks. The new
+[updated blueprint](BLUEPRINT_UPDATED.md) supersedes the historical operational
+status; the research results and spent-period labels above remain unchanged.
+The subsequent implementation follow-through passes 410 tests and adds strict
+independent-data reconciliation, a baseline-only prospective ledger and recovery
+tools. No real prospective study is registered or new market score claimed;
+independent source verification still blocks it.

@@ -1,0 +1,103 @@
+{
+  "dashboard_url": "http://127.0.0.1:18551",
+  "screenshots": [
+    {
+      "file": "01-analysis.png",
+      "tab": "Analysis",
+      "purpose": "Default RELIANCE analysis, disclosed synthetic inputs"
+    },
+    {
+      "file": "01-reasoning.png",
+      "tab": "Analysis",
+      "purpose": "Beginner-accessible numbered deterministic reasoning"
+    },
+    {
+      "file": "01-trace.png",
+      "tab": "Analysis",
+      "purpose": "Actual processing trace and shared-source disclosure"
+    },
+    {
+      "file": "01-transcript-tone.png",
+      "tab": "Analysis",
+      "purpose": "Quoted news/transcript sentiment evidence and measured agent strength"
+    },
+    {
+      "file": "02-sources.png",
+      "tab": "Sources",
+      "purpose": "Exact synthetic source document with its cited passage visibly highlighted"
+    },
+    {
+      "file": "03-portfolio.png",
+      "tab": "Portfolio & watchlist",
+      "purpose": "Cash-aware allocation and illustrative portfolio what-if"
+    },
+    {
+      "file": "04-comparison.png",
+      "tab": "Compare users",
+      "purpose": "Three profiles using identical market and document inputs"
+    },
+    {
+      "file": "05-forecast-audit.png",
+      "tab": "Metrics",
+      "purpose": "Saved spent/exploratory real-history research and failed acceptance; no model promotion"
+    },
+    {
+      "file": "05-evaluation.png",
+      "tab": "Metrics",
+      "purpose": "Actual synthetic sample, baseline comparison and uncertainty disclosure"
+    },
+    {
+      "file": "05-calibration.png",
+      "tab": "Metrics",
+      "purpose": "Actual defined-outcome calibration chart; action strength is not profit probability"
+    },
+    {
+      "file": "05-metrics.png",
+      "tab": "Metrics",
+      "purpose": "Measured latency and honestly scoped synthetic evaluation"
+    },
+    {
+      "file": "06-history.png",
+      "tab": "History",
+      "purpose": "Recorded analysis sessions, without creating user decisions"
+    },
+    {
+      "file": "07-profile.png",
+      "tab": "History",
+      "purpose": "Sidebar profile form; no edits submitted"
+    },
+    {
+      "file": "08-conflict.png",
+      "tab": "Analysis",
+      "purpose": "Bullish momentum opposed by cautionary synthetic filing"
+    },
+    {
+      "file": "09-outage.png",
+      "tab": "Analysis",
+      "purpose": "Seeded sentiment outage with degraded analysis"
+    },
+    {
+      "file": "10-missing-filing.png",
+      "tab": "Analysis",
+      "purpose": "Missing-document disclosure without fabricated fundamentals"
+    }
+  ],
+  "mp4": "dashboard-backup.mp4",
+  "capture_method": "Chromium CDP screencast + system FFmpeg",
+  "recorded_browser_frames": 341,
+  "elapsed_seconds": 127.72,
+  "browser_errors": [],
+  "disclosure": "Real browser capture of a synthetic-data demo; silent automation, no narration.",
+  "assembled_at_utc": "2026-10-15T06:06:34.966413+00:00",
+  "application_base_commit": "2ce77198feb549d5e811d220d7c7c10e24c01283",
+  "uncommitted_application_changes": true,
+  "previous_capture_preserved_at": "docs/assets/demo/",
+  "source_sha256": {
+    "vibefinance/dashboard.py": "f126597dcf280d073adc2b298d533e38cef0f9b71687077d261e014497109a46",
+    "vibefinance/orchestrator.py": "250ce732e441ba1030eda72204c5f2bc9a19dba4bac8ed51834cbbffdfecd9fa",
+    "vibefinance/agents/sentiment_agent.py": "7977537eddeb159faa67151c279d628e19c61e802b6f4be14a26bb79cb52b830",
+    "docs/assets/forecast-followup-summary.json": "c460db66ae1664cb0d58311a1c9aede2611dca358b835a763a6038bf309240e3",
+    "scripts/capture_demo.py": "bb67c1e58645f17e144503ee090ddb79ac7c57557b9a130622f9486ba76095cd"
+  },
+  "recording_duration_seconds": 120.9
+}

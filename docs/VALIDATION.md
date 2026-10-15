@@ -1,4 +1,79 @@
-# Current Render release validation — 15 October 2026
+# Remaining-priorities implementation — 15 October 2026
+
+The implementation started at `2ce7719` on main, preserving the previous
+uncommitted documentation. The original blueprint, simulations, dependency
+locks, seed profiles, frozen manifests/protocols and recorded research summaries
+remain unchanged. Neither spent market experiment was rerun or tuned.
+
+| Current check | Actual result |
+|---|---|
+| Complete suite `make test` | **410 passed**, one existing Starlette/AnyIO deprecation warning; final run 23.88 seconds |
+| Transcript tone | Dated news/transcript queries, complete quoted sentences, overlap/mirror deduplication, canonical citation scores, future exclusion, partial-input/outage behavior and forged-classification rejection passed |
+| Portfolio/demos | Existing seeded profile actions, conflict/outage/missing-filing paths and concentration-before-missing-evidence guards passed unchanged |
+| Default UI transparency | Real-API AppTest and actual Chromium show evidence strength, decision basis, full reasoning/evidence/trace in both modes; explicit probability disclaimers retained |
+| Saved-report fragment | Actual protected local browser loaded/reloaded corrected audit while Metrics stayed selected; fragment checks authentication |
+| Reconciliation tooling | Strict metadata, basis/vintage, lineage, dates, prices, calendar/actions, hash/path confinement and no repairs; actual F1 report binds prospective fixture rows/calendar and rejects changed inputs |
+| Real independent data | **Not validated**: official NSE spent-date request returned proxy 403; no independent exchange export obtained |
+| Prospective workflow | Registration freeze, actual F1 gate, deterministic cadence, missed/missing cohort reporting, same-origin baselines, mature targets, same-vintage split/dividend arithmetic, path/lineage checks and sparse-support withholding passed on explicit fixtures |
+| Real prospective study | **Not registered**; no new market observations, evaluation scores or model admission |
+| Recovery | Online committed-WAL backup, exact profile/session/decision restoration, invalid-source cleanup, no-overwrite races and platform handling passed; actual running native state restored to a new path |
+| Native acceptance | Real isolated launcher, shared token, protected API/report, full API smoke and backup/restore passed; owned launcher stopped |
+| Extended rendered checks | `scripts/check_dashboard_extended.py` passed profile/cache/input/source/login/storage-failure interactions |
+| Container | Verified offline-wheel build, pinned base; 19 actual Render-style runtime/browser/restart/packaged-backup checks passed |
+| Exact image parity | Rebuilt final image matches all 42 packaged Python files and corrected report; quick port10000/health/BM25/auth/UID/helper/import checks passed; owned containers/volumes removed |
+| Current visual delivery | 16 actual screenshots, 120.9-second recording from 341 Chromium frames, zero observed page errors; original assets preserved |
+| Public Render before release | Reusable TLS-verified checker passed health200, password-type gate and prior revision `2ce77198feb5` without credentials |
+| Protected hosted acceptance | **Not run**: existing demo credential is not available/requested; local equivalent passed; optional operator checker explicitly acknowledges login's saved session |
+| CI | Pinned Linux/Windows GitHub Actions workflow added; no remote success or actual Windows run inferred from the local suite |
+
+Final locally built verification image:
+`sha256:661e3247d6831317d38de50ddc8190c479bd7ede14df316aadd4b3fed3599823`.
+Nineteen web/browser/recovery checks first ran on the preceding local image;
+only the offline prospective module changed afterward. The final image was rebuilt,
+all 42 Python files/report matched, and quick runtime/helper checks passed. Later
+Markdown/capture changes do not alter these implementation hashes. Images were
+not published to a registry. Local evidence is under
+`.runtime/remaining-priorities/{native-acceptance,docker-verification,docker-verification-final}.json`.
+The [current capture manifest](assets/demo-current/manifest.json) is tracked.
+
+Two official NSE domains were saved to a new configuration draft, preserving
+Render access and package presets. They require environment review/save and
+publication before applying. No source-rights approval or data validity is
+implied by opening access. A protected hosted check remains separate from public
+release verification, and new release verification follows the pushed commit.
+`api.github.com` was added to the same draft after `gh run list` was denied;
+CI status is therefore unverified here rather than inferred from the workflow.
+
+# Earlier blueprint review and access — 15 October 2026
+
+The [updated blueprint](BLUEPRINT_UPDATED.md) compares the unchanged original
+upload, actual code/tests and recorded evidence at `2ce7719`. Local main and
+GitHub main match; the initial checkout was clean. No application code or frozen
+forecast artifacts were changed, and no spent experiment was rerun. The last
+complete application suite remains **305 passed**, not a new test run here.
+
+New read-only evidence supersedes the older access blocker below:
+
+- Runtime observations are current; Render host policy is enforced.
+- Optional `RENDER_API_KEY` binding is skipped, so API deployment control is not ready.
+- Public homepage and `/_stcore/health` returned HTTP 200, with health body `ok`,
+  after the first health request timed out.
+- Chromium's exact public revision check failed with
+  `ERR_CERT_AUTHORITY_INVALID` for proxy CA trust. TLS verification was retained.
+  A subsequent public Streamlit websocket connection with inherited proxy/CA
+  trust and verified TLS returned `Deployed revision: 2ce77198feb5`, matching
+  the pushed release, at 09:07:06 IST on 15 October 2026.
+- Authenticated hosted behavior and Render control-plane deployment metadata were
+  not checked. The public check needed neither the demo password nor a Render key.
+
+Public evidence: [render-release-verification.json](assets/render-release-verification.json).
+Local transport detail: `.runtime/blueprint-review/public-release.json`.
+Documentation review also found the news-only sentiment input and beginner-mode
+visibility differences described in the updated blueprint. The original document
+hash and research summaries remain unchanged. Native macOS/fresh restoration,
+live Yahoo and independent cloud MiniLM success were not newly established.
+
+# Recorded Render release validation — 15 October 2026
 
 The user authorized updating the existing Render service after the forecasting
 work was committed and pushed as `e0b67fd`. This section records release

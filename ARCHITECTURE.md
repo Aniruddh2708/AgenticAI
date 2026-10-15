@@ -52,7 +52,7 @@ Retriever initialization has a 60-second default timeout; the demo launcher has 
 |---|---|---|
 | Momentum | Wilder-style RSI14, EMA12/26 MACD, SMA20/50, 20-session return | Absolute normalized trend score; neutral uses distance from directional threshold |
 | Volume | Latest z-score against previous 30 sessions; 5-session volume ratio and price divergence | tanh anomaly strength; normal confidence is distance from anomaly threshold |
-| Sentiment | Finite financial phrases and same-clause negation in news | Normalized signed lexical evidence; does not model arbitrary language |
+| Sentiment | Finite financial phrases and same-clause negation in news/transcripts; exact complete sentences deduplicated across chunks/mirrors | Normalized signed lexical evidence; partial channels disclosed, not independent corroboration or arbitrary-language understanding |
 | Filings | Extracts supported financial facts and guidance/risk flags, with source quotations | Combined deterministic fact/tone strength; not a trained fundamentals forecast |
 | Risk | Portfolio position, normalized equity HHI, equity sector exposure, cash allocation | Separation from disclosed policy thresholds; not probability of losses |
 
@@ -79,6 +79,13 @@ passages can be highlighted in the original document.
 BM25: k1=1.5, b=.75, IDF=log(1+(N-df+.5)/(df+.5)); relevance=score/(score+1).
 Ticker, document type and optional as_of date filters apply before ranking.
 HDFCBANK intentionally has news but no filing.
+
+News and transcript-tone queries are separate from the filings query. Shared
+chunks have one canonical citation/score in the registry and retain document
+type/date. The sentiment agent scores only complete supported quotations once;
+unsupported chunk-boundary sentence fragments are withheld. Missing one channel
+uses the other with degradation; an outage withholds both. Reusing a transcript
+for tone and financial facts does not create independent predictive evidence.
 
 Optional local CPU MiniLM plus Chroma ranks are fused with reciprocal rank fusion.
 The model revision is pinned. A model/corpus fingerprint isolates indexes; only
@@ -160,15 +167,20 @@ excludes HTTP and persistence. Unknown unexpected bugs are not a promise of immu
 to every possible process or infrastructure failure.
 
 Profile forms preserve behavior and validate weights; cached analyses include
-profile signatures. Dashboard API failures become actionable messages. Beginner
-mode hides analyst evidence/strength numbers, while actual source transparency
-remains available. Sources show an escaped original-document view with exact spans.
+profile signatures. Dashboard API failures become actionable messages. Both modes
+show an evidence-strength score and expandable numbered reasoning, agent evidence
+and pipeline trace; analyst mode adds quantitative panels. Sources show an escaped
+original-document view with exact spans. The saved forecast audit uses an
+authenticated Streamlit fragment, preserving the active Metrics tab on loading.
 
 VIBEFINANCE_API_TOKEN provides shared Bearer/password access. External launcher
 bindings require it. This is not per-user accounts or privacy isolation. The
 Docker setup runs non-root, keeps API loopback-only, and persists SQLite on /data.
 The user reports a BM25 deployment on Render's free tier at
-https://vibefinance.onrender.com; this cloud audit has not independently checked it.
+https://vibefinance.onrender.com. The latest blueprint review independently
+received public page/health HTTP 200 responses and the expected public revision
+`2ce77198feb5` through a TLS-verified Streamlit connection. Authenticated hosted
+behavior remains unverified. See docs/BLUEPRINT_UPDATED.md.
 
 ## Evaluation and timing
 
@@ -233,8 +245,9 @@ untouched period. The acceptance check is a research gate, not automatic admissi
 to recommendation logic or investment suitability.
 
 `GET /evaluation/forecast` reads the saved artifact selected by
-`VIBEFINANCE_FORECAST_REPORT`, defaulting to
-`VIBEFINANCE_STATE_DIR/forecast/report.json`. It retains the API's shared-access
+`VIBEFINANCE_FORECAST_REPORT`. Without an explicit override, local runs default to
+`VIBEFINANCE_STATE_DIR/forecast/report.json`; Render defaults to the tracked
+`docs/assets/forecast-followup-summary.json`. It retains the API's shared-access
 protection, validates the summary schema, excludes row-level records, and returns
 an explicit unavailable status for absent or unreadable reports. It downloads
 nothing, trains nothing and forces `model_readiness=research_only`. The dashboard
@@ -246,6 +259,47 @@ decisions. Concentration precedence, cash/sector guards and missing-evidence
 behavior remain intact. The five surviving tickers, retrospective vendor
 adjustments and limited historical regime coverage constrain interpretation.
 See [FORECASTING_AUDIT.md](docs/FORECASTING_AUDIT.md) for results and remaining work.
+
+## Independent-data review and prospective observations
+
+`data/reconciliation.py` audits authorized local source/reference exports with
+declared lineage, currency, price basis/vintage, calendar and corporate actions.
+It checks exact-row identity, differences and session gaps without repairs.
+Another Yahoo mirror is rejected as independent evidence. A scoped numerical
+pass is not certification of provider authenticity, source rights or the universe.
+
+`evaluation/prospective.py` freezes a separate baseline-only registration before
+future origins. It requires reconciled prices/calendar/action artifacts and a
+genuine operator review; current real inputs do not pass these prerequisites.
+It issues prior/mean, half/zero and always-up/zero on the same deterministic
+30-session cadence, records issuance failures and requires matured complete
+session targets. Issuance evidence stays immutable while outcomes use origin
+and target from one newly reconciled adjustment vintage, avoiding mixed-scale
+dividend/split returns. Missing matured outcomes and missed origins withhold
+uncertainty, as do insufficient origins, quarters or predeclared regimes.
+
+Reports remain descriptive monitoring, with predeclared criteria exposed for
+fixed-endpoint independent final review. There is no new predictive model,
+automatic selection or portfolio promotion. Local hashes/clock do not establish
+trusted timing or prevent malicious rewriting/truncation; external witnesses
+and actual timestamped provider evidence are required. Session close timestamps
+are operator/provider attestations, not authenticated by a date-only calendar.
+Both old evaluation periods and their artifacts remain unchanged and spent.
+
+## Operational checks and recovery
+
+`scripts/check_hosted.py` checks public health, revision and password-type gate
+with verified TLS/proxy trust. Optional protected browser login accepts only a
+caller-supplied environment token and acknowledges its automatic session write.
+The private existing demo password is neither requested nor discovered.
+
+`scripts/backup_state.py` uses SQLite online backup, integrity/schema checks and
+exclusive atomic publication to a new file. It includes committed WAL state;
+it never swaps the live database. Both Docker recipes include this helper.
+POSIX mode is 0600; Windows requires a private inherited directory ACL. Local
+restore checks do not configure encrypted off-service backups or durable hosting.
+Pinned GitHub Actions run Linux/Windows checks; actual remote results are distinct
+from local validation. See docs/OPERATIONS.md for concrete commands and limits.
 
 ## Remaining limits
 

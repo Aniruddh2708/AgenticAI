@@ -63,9 +63,10 @@ reproduce the original seeds.
 The dashboard supports profile creation/editing, watchlist scans, source-document
 highlighting, risk/portfolio what-if, profile comparison, technical evaluation,
 full-agent policy replay, measured timing and persistent decisions/history.
-Plain-language mode hides expert indicators and confidence numbers; analyst mode
-exposes formulas, evidence and evaluation definitions. What-if trades never alter
-holdings or place orders.
+Both modes show heuristic evidence strength and expandable full reasoning, agent
+evidence and processing trace. Analyst mode adds expert indicators and quantitative
+evaluation panels. Sentiment uses dated news and transcript quotations, with repeated
+passages counted once. What-if trades never alter holdings or place orders.
 
 ## What the evidence checks mean
 
@@ -92,7 +93,7 @@ or certainty that a portfolio rule is appropriate.
 | VIBEFINANCE_EMBEDDINGS | Set 1 for opt-in local MiniLM + BM25 retrieval |
 | VIBEFINANCE_EMBEDDING_MODEL_PATH | Optional local verified model directory |
 | VIBEFINANCE_CORPUS_PATH | Optional corpus directory override; invalid/missing documents degrade explicitly |
-| VIBEFINANCE_FORECAST_REPORT | Saved historical research report; default `VIBEFINANCE_STATE_DIR/forecast/report.json` |
+| VIBEFINANCE_FORECAST_REPORT | Saved research report override; local default `VIBEFINANCE_STATE_DIR/forecast/report.json`, Render default tracked corrected summary |
 
 External bindings require the shared access token. The API checks Bearer access and
 the dashboard asks for the same token. This is shared demonstration access, not
@@ -189,7 +190,8 @@ Model parameters and selection are frozen before testing. Existing selection or
 report artifacts are protected from overwrite; a reported holdout cannot become
 a tuning set while retaining its test status.
 
-The default report is `.runtime/forecast/report.json`. The Metrics tab's
+The local default report is `.runtime/forecast/report.json`; Render defaults to
+the tracked `docs/assets/forecast-followup-summary.json`. The Metrics tab's
 **Load real-history forecast audit** button reads its summary through
 `GET /evaluation/forecast`; `VIBEFINANCE_FORECAST_REPORT` can select another report.
 Application startup and this endpoint do not download data or train models.
@@ -250,5 +252,26 @@ Open [PRESENTATION.html](docs/PRESENTATION.html) for the deck and
 verification are listed in [VALIDATION.md](docs/VALIDATION.md).
 
 [ARCHITECTURE.md](ARCHITECTURE.md) describes the implemented rules;
+[BLUEPRINT_UPDATED.md](docs/BLUEPRINT_UPDATED.md) records verified completion,
+remaining issues and the prioritized action plan against the preserved original;
 [PROGRESS.md](docs/PROGRESS.md) maps the blueprint to current completion;
 [HANDOFF_FOR_CLAUDE.md](docs/HANDOFF_FOR_CLAUDE.md) is the honest continuation prompt.
+
+## Data verification, future evaluation and operations
+
+- [Independent-data reconciliation](docs/DATA_VERIFICATION.md): validate authorized
+  local price/calendar/action exports without repairs or synthetic fallback.
+  A numerical pass still needs genuine provider, rights and universe review.
+- [Prospective evaluation](docs/PROSPECTIVE_EVALUATION.md): register first, issue
+  fixed baselines on a deterministic schedule, retain missed origins and compare
+  matured same-date outcomes. Real registration is blocked until independent
+  evidence passes; no new market score is claimed.
+- [Hosted acceptance and SQLite recovery](docs/OPERATIONS.md): public release/gate
+  checks without a demo password, optional authorized protected checks, and
+  consistent backup/restore to new paths. Durable hosting remains a separate task.
+- [Current UI evidence](docs/assets/demo-current/manifest.json): actual screenshots
+  and a silent browser recording; original captures remain preserved.
+
+The GitHub Actions workflow runs hash-locked tests and rendered dashboard checks
+on Linux and Windows. Remote execution must be checked separately; adding the
+workflow alone does not establish a passing Windows run.

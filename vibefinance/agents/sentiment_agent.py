@@ -1,24 +1,69 @@
+from datetime import date, datetime
+
 from vibefinance.agents.base import AgentOutput, EvidenceClaim
-from vibefinance.analysis.text import tone, tone_cues
+from vibefinance.analysis.text import sentences, tone, tone_cues
 
 
-def analyze(ticker, retrieved, outage=False):
-    if outage or not retrieved:
+def analyze(ticker, retrieved, outage=False, *, transcripts=None, as_of=None):
+    """Finite lexical tone from news and management transcripts, not a forecast.
+
+    Score only the exact, quoted sentences that survive source/date filtering.
+    Repeated passages (including chunk overlap and a repeated transcript result)
+    count once. The two source channels may describe the same events and are not
+    independent corroboration of future returns.
+    """
+    if outage:
         return AgentOutput(agent="sentiment_agent", ticker=ticker, dimension="sentiment", label="MIXED",
             confidence=0, evidence=[], status="degraded", degraded_reason="Sentiment feed unavailable; no sentiment claims emitted.")
-    pos, neg, score = tone(" ".join(c.text for c, _ in retrieved))
-    label = "POSITIVE" if score > .15 else "NEGATIVE" if score < -.15 else "MIXED"
+
+    if isinstance(as_of, datetime):
+        cutoff = as_of.date()
+    elif isinstance(as_of, str):
+        cutoff = date.fromisoformat(as_of)
+        if cutoff.isoformat() != as_of:
+            raise ValueError("as_of must use YYYY-MM-DD")
+    else:
+        cutoff = as_of
+    if cutoff is not None and not isinstance(cutoff, date):
+        raise ValueError("as_of must be a date or YYYY-MM-DD")
+
     claims = []
     citations = []
-    for chunk, relevance in retrieved:
-        passages = dict.fromkeys(c.sentence for c in tone_cues(chunk.text))
-        if passages:
-            citations.append(chunk.citation(relevance))
-        for i, passage in enumerate(passages):
+    seen_passages, seen_chunks, available_types = set(), set(), set()
+    for chunk, relevance in list(retrieved or []) + list(transcripts or []):
+        if chunk.ticker != ticker or chunk.doc_type not in {"news", "transcript"}:
+            continue
+        try:
+            available = date.fromisoformat(chunk.date)
+            if available.isoformat() != chunk.date or (cutoff is not None and available > cutoff):
+                continue
+        except (TypeError, ValueError):
+            continue
+        available_types.add(chunk.doc_type)
+        if chunk.chunk_id in seen_chunks:
+            continue
+        seen_chunks.add(chunk.chunk_id)
+        # A chunk that starts/ends mid-sentence must not add a second truncated
+        # version of a sentence already represented by an overlapping chunk.
+        complete = set(sentences(chunk.document_text)) if chunk.document_text else None
+        for i, passage in enumerate(dict.fromkeys(c.sentence for c in tone_cues(chunk.text))):
+            key = " ".join(passage.split()).casefold()
+            if key in seen_passages or (complete is not None and passage not in complete):
+                continue
+            seen_passages.add(key)
             claims.append(EvidenceClaim(claim_id=f"sentiment:{chunk.chunk_id}:{i}", text=passage,
                 citation_ids=[chunk.chunk_id], method="quotation"))
+            if not citations or citations[-1].chunk_id != chunk.chunk_id:
+                citations.append(chunk.citation(relevance))
+    pos, neg, score = tone(" ".join(claim.text for claim in claims))
+    label = "POSITIVE" if score > .15 else "NEGATIVE" if score < -.15 else "MIXED"
+    reason = None
+    if not claims:
+        reason = "No supported tone phrases found in available news or transcripts; no sentiment claims emitted."
+    elif available_types != {"news", "transcript"}:
+        missing = "news" if "news" not in available_types else "transcript"
+        reason = f"No {missing} input available; sentiment uses the other source channel only."
     return AgentOutput(agent="sentiment_agent", ticker=ticker, dimension="sentiment", label=label,
         confidence=(abs(score) if label != "MIXED" else 1/(pos + neg + 1)) if claims else 0,
         evidence=[claim.text for claim in claims], citations=citations, claims=claims,
-        status="ok" if claims else "degraded",
-        degraded_reason=None if claims else "No supported tone phrases found in the retrieved news.")
+        status="degraded" if reason else "ok", degraded_reason=reason)
