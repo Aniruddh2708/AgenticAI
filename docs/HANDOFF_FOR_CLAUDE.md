@@ -38,8 +38,11 @@ Sixteen current screenshots and a 120.9-second real silent browser recording
 were added under `docs/assets/demo-current/`; original captures remain intact.
 The first pinned Linux/Windows CI run failed workflow validation before jobs:
 `runner.temp` was unavailable in job-level `env`. This follow-up moves that value
-into the relevant steps. Verify actual corrected jobs; no remote Windows pass is
-established by the local suite.
+into the relevant steps. Ubuntu then passed at `c7ee70e`; Windows failed during
+locked installation, before tests. Its detailed logs were private. Local Windows
+marker resolution independently found pytest's missing Colorama dependency;
+the new hashed CI supplement adds it without modifying `requirements.lock`.
+Verify actual corrected jobs; no Windows pass is established by the local suite.
 
 Preserve both spent research reports, original hashes, simulations and guards.
 The source data is not independently validated and no predictive model is admitted.
@@ -47,7 +50,7 @@ NSE hosts were added to a saved environment draft; review/save/publish is needed
 to apply them. Once access changes, retry the already-spent official source and
 continue genuine evidence review; do not invent a passed attestation. Verify the
 new pushed release marker separately. Implementation commit `48ff67d` was publicly
-verified on Render: health200/ok, enabled password gate and matching revision,
+verified on Render, followed by `c7ee70e`: health200/ok, enabled password gate and matching revision,
 with normal TLS and no credentials. Its evidence is in
 `docs/assets/render-implementation-verification.json`; final corrective pushes
 need their own revision checks.

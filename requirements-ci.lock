@@ -1,0 +1,6 @@
+# CI adds pytest's Windows-only dependency to the unchanged application lock.
+# Colorama's universal wheel was downloaded through the trusted package index;
+# keep hash checking enabled on both runners.
+-r requirements.lock
+colorama==0.4.6 ; sys_platform == "win32" \
+    --hash=sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6

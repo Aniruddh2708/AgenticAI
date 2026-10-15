@@ -33,9 +33,11 @@ jobs:
         with:
           python-version: "3.11"
           cache: pip
-          cache-dependency-path: requirements.lock
+          cache-dependency-path: |
+            requirements.lock
+            requirements-ci.lock
       - name: Install locked packages
-        run: python -m pip install --require-hashes -r requirements.lock
+        run: python -m pip install --require-hashes -r requirements-ci.lock
       - name: Run application tests
         env:
           VIBEFINANCE_STATE_DIR: ${{ runner.temp }}/vibefinance-ci

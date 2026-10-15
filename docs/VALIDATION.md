@@ -22,9 +22,9 @@ remain unchanged. Neither spent market experiment was rerun or tuned.
 | Container | Verified offline-wheel build, pinned base; 19 actual Render-style runtime/browser/restart/packaged-backup checks passed |
 | Exact image parity | Rebuilt final image matches all 42 packaged Python files and corrected report; quick port10000/health/BM25/auth/UID/helper/import checks passed; owned containers/volumes removed |
 | Current visual delivery | 16 actual screenshots, 120.9-second recording from 341 Chromium frames, zero observed page errors; original assets preserved |
-| Public Render implementation release | Reusable TLS-verified checker passed health200, password-type gate and revision `48ff67da9318` without credentials; final corrective push needs its own revision check |
+| Public Render implementation release | Reusable TLS-verified checker passed health200, password-type gate and latest checked revision `c7ee70e651e0` without credentials; later corrective pushes need their own revision check |
 | Protected hosted acceptance | **Not run**: existing demo credential is not available/requested; local equivalent passed; optional operator checker explicitly acknowledges login's saved session |
-| CI | First implementation run was rejected before jobs: job-level `runner.temp` is invalid. Moved the state-directory expression into step environments; corrected remote jobs must be observed before claiming Linux/Windows success |
+| CI | Context fix accepted: Ubuntu passed on `c7ee70e`; Windows stopped at dependency installation, before tests. Local Windows-marker resolution identifies missing pytest dependency Colorama; a hashed CI-only supplement fixes that gap without changing the application lock. Its actual Windows outcome must be observed |
 
 Final locally built verification image:
 `sha256:76d07d7d9fd0ebeb03e535f78eb5ede9589a8778171adb1379683a02762272a8`.
@@ -44,8 +44,14 @@ release verification, and new release verification follows the pushed commit.
 `api.github.com` was added to the same draft after `gh run list` was denied;
 Canonical GitHub HTML did reveal the
 [first run's workflow-validation failure](https://github.com/Aniruddh2708/AgenticAI/actions/runs/38692171843).
-No tests ran in that run. The correction is included in this follow-up; no remote
-success or Windows pass is inferred. The independently verified implementation
+No tests ran in that first run. After correction,
+[Ubuntu passed](https://github.com/Aniruddh2708/AgenticAI/actions/runs/38692879991/job/116282620307)
+and [Windows stopped during installation](https://github.com/Aniruddh2708/AgenticAI/actions/runs/38692879991/job/116282619945).
+Detailed Windows logs require sign-in, so its exact pip error is not claimed.
+Independent marker resolution of all installed core metadata found pytest's
+unlisted Windows-only `colorama` dependency. `requirements-ci.lock` now includes
+the unchanged core lock plus the pinned, hashed universal Colorama wheel. No
+Windows pass is inferred before the corrected runner completes. The verified implementation
 deployment is recorded in
 [public implementation evidence](assets/render-implementation-verification.json).
 

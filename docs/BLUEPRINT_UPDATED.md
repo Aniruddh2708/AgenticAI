@@ -28,7 +28,7 @@ were retained; the research admission gate failed. The revised intervals have
 uncertainty, wider bounds and no demonstrated improvement in overall interval
 quality. They do not validate personalized investment recommendations.
 
-Implementation release `48ff67d` is publicly verified on Render: matching revision,
+Implementation releases `48ff67d` and `c7ee70e` are publicly verified on Render: matching revision,
 HTTP 200/`ok` health and the enabled password gate, with normal TLS and no
 credentials. Its dated evidence is preserved; final corrective pushes require a
 new revision check. Protected hosted workflows were not independently tested.
@@ -307,7 +307,12 @@ history and sufficient matured future outcomes; do not invent a completion date.
 - The [first CI run](https://github.com/Aniruddh2708/AgenticAI/actions/runs/38692171843)
   failed workflow validation before jobs because `runner.temp` was in job-level
   `env`. Its expression is now in step environments; actual corrected Linux and
-  Windows runs still require verification. The failed run measured no test result.
+  Windows jobs were then accepted. Ubuntu passed at `c7ee70e`; Windows stopped
+  during dependency installation before tests. Independent Windows-marker
+  resolution found pytest's absent Colorama dependency; a hashed CI supplement
+  adds it without changing the application lock. Detailed Windows logs were
+  private; verify the next actual run rather than assuming the dependency fix
+  establishes Windows success. The first invalid run measured no test result.
 
 Use [Render instructions](RENDER.md), [validation history](VALIDATION.md) and
 [handoff](HANDOFF_FOR_CLAUDE.md). The sanitized

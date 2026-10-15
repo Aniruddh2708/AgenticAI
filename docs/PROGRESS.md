@@ -25,12 +25,13 @@ Render-style startup and the earlier 305-test suite passed; the follow-through
 now passes **418 tests** plus native/browser/container/recovery checks. See
 [RENDER.md](RENDER.md) and current
 [validation evidence](VALIDATION.md). Public page/health HTTP 200 responses and
-implementation release `48ff67da9318` are independently verified through normal TLS.
+implementation revisions `48ff67da9318` and `c7ee70e651e0` are independently verified through normal TLS.
 Authenticated hosted behavior remains unverified; the Render API credential is
 skipped/unavailable in this task.
 The first GitHub CI run failed workflow validation before jobs; the state-directory
-expression is corrected into step environments. Actual corrected remote job
-results remain to be checked.
+expression is corrected into step environments. Ubuntu then passed on `c7ee70e`;
+Windows stopped at installation. A hashed CI-only supplement adds pytest's
+missing Windows Colorama dependency; its actual runner result remains to be checked.
 
 | Phase / requirement | Status | Evidence / limit |
 |---|---|---|
