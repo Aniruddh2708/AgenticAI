@@ -56,8 +56,14 @@ switched to Meera and displayed `REDUCE`, and loaded saved history. There were
 zero password dialogs, HTTP 401 responses or JavaScript exceptions. The shared
 demo notice was visible. This is local browser evidence, not hosted acceptance.
 See [machine-readable evidence](assets/public-hackathon-verification.json),
-including hashes of the verified application files. The branch enables the
-existing Linux/Windows/PostgreSQL CI workflow; local results are not CI results.
+including hashes of the verified application files.
+
+Actual [GitHub CI](https://github.com/Aniruddh2708/AgenticAI/actions/runs/38764176489)
+passed all three jobs at implementation commit
+`05760c390c0fc1ad71dabae663866aba12f2284e`: Linux, Windows and disposable TLS
+PostgreSQL. The canonical public job pages independently show `succeeded`;
+remote test counts were not exposed. See [CI evidence](assets/public-hackathon-ci.json).
+The documentation-only delivery update retains identical application hashes.
 
 Live health verification currently fails at the managed outbound proxy, and no
 Render deployment credential is configured. No live password-free claim is made.
