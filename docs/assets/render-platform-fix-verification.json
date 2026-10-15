@@ -1,0 +1,19 @@
+{
+  "checked_at_utc": "2026-10-15T06:48:02.612255+00:00",
+  "url": "https://vibefinance.onrender.com",
+  "expected_revision": "19ed8e55a996fe10c0b9e6250e81ced21abedb1d",
+  "protected_check": "not requested",
+  "public": {
+    "url": "https://vibefinance.onrender.com",
+    "expected_revision": "19ed8e55a996fe10c0b9e6250e81ced21abedb1d",
+    "credentials_used": false,
+    "tls_verified": true,
+    "login_gate_visible": true,
+    "health_status": 200,
+    "health_ok": true,
+    "visible_revision": "19ed8e55a996",
+    "revision_matches": true,
+    "ok": true
+  },
+  "ok": true
+}

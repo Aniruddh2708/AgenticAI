@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "checked_at_utc": "2026-10-15T06:50:22Z",
+  "repository": "Aniruddh2708/AgenticAI",
+  "ref": "refs/heads/main",
+  "application_commit": "19ed8e55a996fe10c0b9e6250e81ced21abedb1d",
+  "evidence_source": "Canonical public GitHub run summaries, job pages and commit checks",
+  "run": {
+    "id": 38694432124,
+    "url": "https://github.com/Aniruddh2708/AgenticAI/actions/runs/38694432124",
+    "workflow": "Application checks",
+    "status": "success",
+    "observed_status_text": "Success",
+    "completed_jobs": 2,
+    "duration": "3m 16s",
+    "duration_seconds": 196
+  },
+  "jobs": [
+    {
+      "name": "Python 3.11 on ubuntu-latest",
+      "platform": "ubuntu-latest",
+      "url": "https://github.com/Aniruddh2708/AgenticAI/actions/runs/38694432124/job/116287578006",
+      "status": "success",
+      "observed_status_text": "succeeded",
+      "duration": "1m 18s",
+      "duration_seconds": 78,
+      "mandatory_application_tests": "succeeded",
+      "mandatory_extended_dashboard_check": "succeeded",
+      "observed_test_counts": null
+    },
+    {
+      "name": "Python 3.11 on windows-latest",
+      "platform": "windows-latest",
+      "url": "https://github.com/Aniruddh2708/AgenticAI/actions/runs/38694432124/job/116287577691",
+      "status": "success",
+      "observed_status_text": "succeeded",
+      "duration": "3m 12s",
+      "duration_seconds": 192,
+      "mandatory_application_tests": "succeeded",
+      "mandatory_extended_dashboard_check": "succeeded",
+      "observed_test_counts": null
+    }
+  ],
+  "mandatory_check_evidence": {
+    "basis": "Both jobs succeeded under the committed workflow. These steps have no skip condition or continue-on-error setting; pytest failure remains a failed job.",
+    "workflow_path": ".github/workflows/ci.yml",
+    "application_test_command": "python -m pytest -q --junitxml=pytest-results.xml",
+    "extended_dashboard_command": "python scripts/check_dashboard_extended.py",
+    "assertions_or_test_selection_reduced": false
+  },
+  "platform_skip_declarations": [
+    {
+      "test_node": "tests/test_backup_state.py::test_final_durability_failure_is_reported_without_destroying_published_copy",
+      "declared_condition": "os.name != 'posix'",
+      "reason": "Directory fsync is a POSIX durability check",
+      "evidence": "Committed test source; this is a declaration, not an observed per-test CI outcome",
+      "observed_skip_count": null
+    }
+  ],
+  "earlier_failed_runs": [
+    {
+      "commit": "48ff67da931876567fba81a70a054acbded3afe2",
+      "url": "https://github.com/Aniruddh2708/AgenticAI/actions/runs/38692171843",
+      "status": "failure",
+      "substantiated_scope": "Workflow validation failed before test jobs ran: runner.temp was used in job-level env, where the runner context was unrecognized.",
+      "observed_location": ".github/workflows/ci.yml:26",
+      "test_jobs_ran": false
+    },
+    {
+      "commit": "c7ee70e651e02addd61219520c038a36ad50b300",
+      "url": "https://github.com/Aniruddh2708/AgenticAI/actions/runs/38692879991",
+      "status": "failure",
+      "failed_job_url": "https://github.com/Aniruddh2708/AgenticAI/actions/runs/38692879991/job/116282619945",
+      "failed_job": "Python 3.11 on windows-latest",
+      "failed_step": "Install locked packages",
+      "observed_exit_code": 1,
+      "substantiated_scope": "Windows dependency installation failed; application tests were not reached.",
+      "specific_package_error_observed": false
+    },
+    {
+      "commit": "fe6a1b3dbb65b02cf79f5cb61aad2dcd72a23f58",
+      "url": "https://github.com/Aniruddh2708/AgenticAI/actions/runs/38693381349",
+      "status": "failure",
+      "failed_job_url": "https://github.com/Aniruddh2708/AgenticAI/actions/runs/38693381349/job/116284227148",
+      "failed_job": "Python 3.11 on windows-latest",
+      "failed_step": "Run application tests",
+      "observed_exit_code": 1,
+      "substantiated_scope": "Windows progressed past installation and failed application tests. Individual failures were not exposed by this run's public annotations."
+    },
+    {
+      "commit": "062c4ab40a3976fdfdc32bf220037cd04de2c1c2",
+      "url": "https://github.com/Aniruddh2708/AgenticAI/actions/runs/38693989526",
+      "status": "failure",
+      "failed_job_url": "https://github.com/Aniruddh2708/AgenticAI/actions/runs/38693989526/job/116286185487",
+      "failed_job": "Python 3.11 on windows-latest",
+      "failed_step": "Run application tests",
+      "observed_exit_code": 1,
+      "substantiated_scope": "Public sanitized diagnostics identified five failed test cases.",
+      "observed_failed_cases": [
+        {
+          "node": "tests.test_backup_state::test_backup_and_restore_actual_profiles_sessions_and_decisions",
+          "exception_type": "OSError"
+        },
+        {
+          "node": "tests.test_backup_state::test_destination_race_does_not_overwrite_winner",
+          "exception_type": "OSError"
+        },
+        {
+          "node": "tests.test_backup_state::test_online_backup_includes_wal_and_consistent_concurrent_transaction",
+          "exception_type": "OSError"
+        },
+        {
+          "node": "tests.test_backup_state::test_non_posix_copy_does_not_require_fchmod_or_directory_fsync",
+          "exception_type": "OSError"
+        },
+        {
+          "node": "tests.test_startup_contract::test_cold_analysis_does_not_apply_agent_deadline_to_initialization",
+          "exception_type": null,
+          "observed_type_label": "unknown exception type"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Per-job test totals, individual passing assertions and exact skip counts were not exposed in the observed public pages.",
+    "The separately recorded local 418-test result is not a measured Windows CI count and is not substituted here.",
+    "Earlier dependency-install failure details were not observed; no exact historical pip error is claimed.",
+    "Remaining final-run annotations were action Node.js deprecation warnings and a hosted Ubuntu-image migration notice, not failed tests.",
+    "CI success does not verify protected hosted workflows, production storage recovery, or forecasting performance."
+  ]
+}

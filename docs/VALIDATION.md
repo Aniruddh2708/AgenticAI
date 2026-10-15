@@ -7,7 +7,7 @@ remain unchanged. Neither spent market experiment was rerun or tuned.
 
 | Current check | Actual result |
 |---|---|
-| Complete suite `make test` | **418 passed**, one existing Starlette/AnyIO deprecation warning; final run 26.12 seconds |
+| Complete suite `make test` | **418 passed**, one existing Starlette/AnyIO deprecation warning; final run 26.22 seconds |
 | Transcript tone | Dated news/transcript queries, complete quoted sentences, overlap/mirror deduplication, canonical citation scores, future exclusion, partial-input/outage behavior and forged-classification rejection passed |
 | Portfolio/demos | Existing seeded profile actions, conflict/outage/missing-filing paths and concentration-before-missing-evidence guards passed unchanged |
 | Default UI transparency | Real-API AppTest and actual Chromium show evidence strength, decision basis, full reasoning/evidence/trace in both modes; explicit probability disclaimers retained |
@@ -22,18 +22,21 @@ remain unchanged. Neither spent market experiment was rerun or tuned.
 | Container | Verified offline-wheel build, pinned base; 19 actual Render-style runtime/browser/restart/packaged-backup checks passed |
 | Exact image parity | Rebuilt final image matches all 42 packaged Python files and corrected report; quick port10000/health/BM25/auth/UID/helper/import checks passed; owned containers/volumes removed |
 | Current visual delivery | 16 actual screenshots, 120.9-second recording from 341 Chromium frames, zero observed page errors; original assets preserved |
-| Public Render implementation release | Reusable TLS-verified checker passed health200, password-type gate and latest checked revision `c7ee70e651e0` without credentials; later corrective pushes need their own revision check |
+| Public Render implementation release | Reusable TLS-verified checker passed health200, password-type gate and latest checked revision `19ed8e55a996` without credentials; later corrective pushes need their own revision check |
 | Protected hosted acceptance | **Not run**: existing demo credential is not available/requested; local equivalent passed; optional operator checker explicitly acknowledges login's saved session |
-| CI | Context fix accepted: Ubuntu passed on `c7ee70e`; Windows stopped at dependency installation, before tests. Local Windows-marker resolution identifies missing pytest dependency Colorama; a hashed CI-only supplement fixes that gap without changing the application lock. Its actual Windows outcome must be observed |
+| CI | Actual Ubuntu and Windows jobs passed application tests and extended dashboard checks at `19ed8e5`; no Windows test count inferred from private logs |
 
 Final locally built verification image:
-`sha256:76d07d7d9fd0ebeb03e535f78eb5ede9589a8778171adb1379683a02762272a8`.
+`sha256:aea8608a39c51c51f0e64f0af12e183e03367747de3ef696a40b1bdb839296ca`.
 Nineteen web/browser/recovery checks first ran on the preceding local image;
-only the offline prospective module changed afterward. The final image was rebuilt,
-all 42 Python files/report matched, and quick runtime/helper checks passed. Later
+the offline prospective module and packaged backup helper changed afterward.
+The final image matches all 42 Python files/report. Actual packaged backup and
+restore preserved all four tables, a customized profile, session and decision;
+permissions, no-overwrite and writable-flush checks passed, alongside quick
+Render-mode health/authentication/BM25 and portfolio-guard checks. Later
 Markdown/capture changes do not alter these implementation hashes. Images were
 not published to a registry. Local evidence is under
-`.runtime/remaining-priorities/{native-acceptance,docker-verification,docker-verification-final,docker-verification-dated-source}.json`.
+`.runtime/remaining-priorities/{native-acceptance,docker-verification,docker-verification-final,docker-verification-dated-source,docker-verification-windows-backup}.json`.
 The [current capture manifest](assets/demo-current/manifest.json) is tracked.
 
 Two official NSE domains were saved to a new configuration draft, preserving
@@ -42,18 +45,29 @@ publication before applying. No source-rights approval or data validity is
 implied by opening access. A protected hosted check remains separate from public
 release verification, and new release verification follows the pushed commit.
 `api.github.com` was added to the same draft after `gh run list` was denied;
-Canonical GitHub HTML did reveal the
-[first run's workflow-validation failure](https://github.com/Aniruddh2708/AgenticAI/actions/runs/38692171843).
-No tests ran in that first run. After correction,
-[Ubuntu passed](https://github.com/Aniruddh2708/AgenticAI/actions/runs/38692879991/job/116282620307)
-and [Windows stopped during installation](https://github.com/Aniruddh2708/AgenticAI/actions/runs/38692879991/job/116282619945).
-Detailed Windows logs require sign-in, so its exact pip error is not claimed.
-Independent marker resolution of all installed core metadata found pytest's
-unlisted Windows-only `colorama` dependency. `requirements-ci.lock` now includes
-the unchanged core lock plus the pinned, hashed universal Colorama wheel. No
-Windows pass is inferred before the corrected runner completes. The verified implementation
-deployment is recorded in
-[public implementation evidence](assets/render-implementation-verification.json).
+Canonical GitHub HTML verified the
+[complete green Linux/Windows run](https://github.com/Aniruddh2708/AgenticAI/actions/runs/38694432124)
+for `19ed8e55a996fe10c0b9e6250e81ced21abedb1d`: Ubuntu 1m18s, Windows 3m12s.
+Both mandatory pytest and extended-dashboard steps passed. Full remote logs and
+exact remote test counts were not exposed; do not substitute the local 418 count
+for a Windows count. One POSIX directory-fsync test is explicitly platform-scoped.
+The [CI evidence record](assets/ci-remaining-priorities-verification.json) preserves
+actual outcomes, including earlier failures.
+
+The run closed three substantiated issues: invalid job-level `runner.temp`,
+pytest's missing Windows Colorama dependency, and backup flushes using a
+read-only handle. The unchanged application lock is supplemented by the hashed
+Windows-only CI pin. Backups now flush a writable handle without changing data;
+its zero-byte-write regression fails with the old handle. The startup regression
+test now asserts the requested 60-second initialization and 10 ms agent budgets
+directly, instead of depending on real 10 ms OS scheduling. A mutation check
+confirmed that a regressed 10 ms initialization budget fails that assertion.
+Production budgets, simulations and portfolio safeguards were not relaxed.
+
+The [public platform-fix deployment evidence](assets/render-platform-fix-verification.json)
+verifies the same application commit on Render with TLS, health200/ok and the
+password gate, without credentials. A subsequent documentation-only push needs
+its own revision check; it changes no application, workflow or dependency files.
 
 # Earlier blueprint review and access — 15 October 2026
 

@@ -25,13 +25,14 @@ Render-style startup and the earlier 305-test suite passed; the follow-through
 now passes **418 tests** plus native/browser/container/recovery checks. See
 [RENDER.md](RENDER.md) and current
 [validation evidence](VALIDATION.md). Public page/health HTTP 200 responses and
-implementation revisions `48ff67da9318` and `c7ee70e651e0` are independently verified through normal TLS.
+implementation revision `19ed8e55a996` are independently verified through normal TLS.
 Authenticated hosted behavior remains unverified; the Render API credential is
 skipped/unavailable in this task.
-The first GitHub CI run failed workflow validation before jobs; the state-directory
-expression is corrected into step environments. Ubuntu then passed on `c7ee70e`;
-Windows stopped at installation. A hashed CI-only supplement adds pytest's
-missing Windows Colorama dependency; its actual runner result remains to be checked.
+Actual Linux and Windows CI now pass the complete application suite and extended
+dashboard checks at `19ed8e5`. Earlier workflow-context, missing Windows dependency
+and writable-backup-flush defects are fixed. The startup contract test verifies
+requested budgets without depending on 10 ms OS scheduling; production limits
+are unchanged. See the current validation record for exact evidence and scope.
 
 | Phase / requirement | Status | Evidence / limit |
 |---|---|---|
@@ -59,7 +60,7 @@ missing Windows Colorama dependency; its actual runner result remains to be chec
 | Independent-data verification tooling | Implemented and tested; real verification blocked | Source/reference lineage, adjustment vintage, calendar/actions, exact rows and no repair; official NSE request denied, no independent data obtained |
 | Prospective observation workflow | Implemented and tested; not registered | Frozen baselines/schedule, missed/missing cohorts, same-vintage returns, causal records and sparse-support withholding; requires genuine passed data review |
 | SQLite recovery | Implemented and locally exercised | Online WAL-consistent backup, atomic no-overwrite files, exact-state restore; no durable hosted storage configured |
-| CI | Workflow added with pinned actions | Linux/Windows tests and rendered smoke; remote results are not implied by local checks |
+| CI | Actual Linux/Windows run passed with pinned actions | Application tests and extended rendered checks passed at `19ed8e5`; exact Windows test count not inferred |
 | Watchlist/history/decisions | Implemented | Profile-dependent alerts; no broker execution or holdings mutation |
 | Presentation | Implemented | HTML deck and generated presentation PDF; no guaranteed judging outcome |
 | Backup capture | Actual 119.3-second video and twelve screenshots verified | Silent recorded browser views are not a narrated five-minute rehearsal |

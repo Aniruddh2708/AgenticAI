@@ -36,27 +36,29 @@ Render-style container checks passed; final cached image parity covers all 42
 Python files and report. Final image digest and evidence are in VALIDATION.md.
 Sixteen current screenshots and a 120.9-second real silent browser recording
 were added under `docs/assets/demo-current/`; original captures remain intact.
-The first pinned Linux/Windows CI run failed workflow validation before jobs:
-`runner.temp` was unavailable in job-level `env`. This follow-up moves that value
-into the relevant steps. Ubuntu then passed at `c7ee70e`; Windows failed during
-locked installation, before tests. Its detailed logs were private. Local Windows
-marker resolution independently found pytest's missing Colorama dependency;
-the new hashed CI supplement adds it without modifying `requirements.lock`.
-Verify actual corrected jobs; no Windows pass is established by the local suite.
+Actual Linux **and Windows CI are green** for `19ed8e5`, including pytest and
+extended dashboard checks. See `docs/assets/ci-remaining-priorities-verification.json`
+and [the successful run](https://github.com/Aniruddh2708/AgenticAI/actions/runs/38694432124).
+Earlier CI failures exposed invalid workflow context placement, a missing
+Windows-only pytest dependency and a read-only backup flush handle. All were
+corrected without changing the application lock or weakening portfolio checks.
+The startup test now records exact requested budgets rather than relying on
+10 ms timer scheduling; an explicit bad-budget mutation still fails it.
+No exact Windows test count is inferred from inaccessible full logs.
 
 Preserve both spent research reports, original hashes, simulations and guards.
 The source data is not independently validated and no predictive model is admitted.
 NSE hosts were added to a saved environment draft; review/save/publish is needed
 to apply them. Once access changes, retry the already-spent official source and
-continue genuine evidence review; do not invent a passed attestation. Verify the
-new pushed release marker separately. Implementation commit `48ff67d` was publicly
-verified on Render, followed by `c7ee70e`: health200/ok, enabled password gate and matching revision,
-with normal TLS and no credentials. Its evidence is in
-`docs/assets/render-implementation-verification.json`; final corrective pushes
-need their own revision checks.
+continue genuine evidence review; do not invent a passed attestation.
+Application commit `19ed8e5` is independently verified on Render: health200/ok,
+enabled password gate and matching revision, normal TLS, no credentials. See
+`docs/assets/render-platform-fix-verification.json`; earlier release records remain
+preserved. A final documentation-only push needs its own marker check and does
+not alter the tested application, workflow or locks.
 The same draft includes `api.github.com` after `gh run list` was denied; inspect
-actual remote CI results once access applies (canonical GitHub HTML already
-revealed the first workflow error). No replacement GitHub token is needed
+full authenticated CI logs once access applies. Canonical GitHub HTML already
+proved the final green job outcomes. No replacement GitHub token is needed
 merely because the host policy denied a request.
 See the updated blueprint for remaining research, rehearsal and production work.
 

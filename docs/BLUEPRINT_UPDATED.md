@@ -28,7 +28,7 @@ were retained; the research admission gate failed. The revised intervals have
 uncertainty, wider bounds and no demonstrated improvement in overall interval
 quality. They do not validate personalized investment recommendations.
 
-Implementation releases `48ff67d` and `c7ee70e` are publicly verified on Render: matching revision,
+Application commit `19ed8e5` is publicly verified on Render: matching revision,
 HTTP 200/`ok` health and the enabled password gate, with normal TLS and no
 credentials. Its dated evidence is preserved; final corrective pushes require a
 new revision check. Protected hosted workflows were not independently tested.
@@ -62,8 +62,8 @@ Status meanings below:
   five-minute rehearsal.
 - **Verification:** 418 application tests passed, with one existing upstream warning;
   actual native/browser/container and recovery checks passed. A pinned Linux/Windows
-  CI workflow is included. Its first run failed workflow validation before jobs;
-  the context placement is corrected, but remote results must be checked separately.
+  CI workflow now has an actual green Ubuntu/Windows run at `19ed8e5`, including
+  application tests and extended rendered checks. Earlier real failures are recorded.
 
 See [data verification](DATA_VERIFICATION.md),
 [prospective workflow](PROSPECTIVE_EVALUATION.md), [operations](OPERATIONS.md) and
@@ -216,7 +216,7 @@ Detailed evidence: [initial audit](FORECASTING_AUDIT.md),
 | F5 / research | No demonstrated learned forecast advantage | Retain baselines; investigate richer signals only with point-in-time provenance and bounded candidate search | Replicated predeclared improvement over the best fair baseline; otherwise baseline remains the result |
 | F6 / separate effectiveness study | Five-agent action usefulness/profitability unvalidated | Acquire authentic historical documents; define strategy, timing, costs, slippage, revaluation and portfolio benchmarks | Prospective or defensibly fresh strategy validation supports a specific benefit claim; policy checks alone do not qualify |
 | B3 / demo delivery | Current visual backup ready; narrated rehearsal unverified | Rehearse the five-minute script twice using current UI and honest results | Timed narrated run-throughs confirmed; silent automation is not called rehearsal |
-| E1 / reliability | Hard thread termination, fresh cloud/macOS and remote CI results unverified | Inspect new Linux/Windows CI outcomes; validate restoration/target platforms; add hard worker isolation if required | Relevant lifecycle/platform evidence passes; a workflow file alone is not a passing remote run |
+| E1 / reliability | Hard thread termination and fresh macOS acceptance remain unverified; Linux/Windows CI now passes | Validate required remaining target platforms; add hard worker isolation if required | Relevant lifecycle/platform evidence passes; Linux/Windows tests and rendered checks already have a successful remote run |
 | P1 / production scope | Tested recovery tool exists; shared account and ephemeral storage remain | Configure private durable storage, encrypted off-service backups/retention and individual authorization against product requirements | Real recovery/security/isolation requirements verified; no silent plan or credential changes |
 | P2 / production scope | Authentic document ingestion/live feed/licensing and regulatory readiness incomplete | Add authorized ingestion with publication dates and provenance; verify feeds and use rights; review intended product claims | Real-world inputs/rights and security/regulatory requirements match intended use |
 | O1 / optional | LLM narration and continuous notifications absent | Implement only if still desired after core verification | Narration cannot alter numeric decisions/citations; notification lifecycle and consent are defined |
@@ -227,10 +227,10 @@ for showing the disclosed offline hackathon demo.
 
 ## 6. Plan of action, in order
 
-1. **Release and verify this follow-through.** The preceding `2ce77198feb5` release
-   was publicly verified. Push the checked follow-through, observe the existing
-   service's deployment and compare its public marker with that release commit.
-   Then an authorized viewer can verify protected analysis/report workflows.
+1. **Complete protected hosted acceptance.** Application commit `19ed8e5` has a
+   matching public Render revision, healthy startup and enabled gate; its Linux
+   and Windows CI jobs pass. Verify later release markers separately. An authorized
+   viewer can now verify protected analysis/report workflows.
    Do not create another service,
    rotate the private token, reset profiles or buy a different plan for a release.
 2. **Rehearse the completed demo.** Transcript tone and explanation visibility
@@ -271,10 +271,11 @@ history and sufficient matured future outcomes; do not invent a completion date.
   portfolio safeguards, rendered report and exact-session persistence across
   restart passed. The standard online build's earlier workspace-container DNS
   failure is separate from these successful offline-build checks.
-- Follow-through image `sha256:76d07d7d9fd0ebeb03e535f78eb5ede9589a8778171adb1379683a02762272a8`
+- Follow-through image `sha256:aea8608a39c51c51f0e64f0af12e183e03367747de3ef696a40b1bdb839296ca`
   matches all 42 packaged Python files and the corrected report. Nineteen actual
-  web/browser/backup/restart checks passed; after the offline prospective module
-  finalized, the exact image was rebuilt and parity/health/helper checks passed.
+  web/browser/backup/restart checks passed. After final prospective/helper fixes,
+  exact image parity, health/authentication/BM25 and actual packaged backup/restore
+  checks passed again; all web/browser sources remained unchanged.
 - The current native launch passed authenticated report, API smoke and live-state
   backup/restore. Sixteen screenshots and 120.9 seconds of real browser recording
   were generated from 341 frames with zero observed JavaScript errors.
@@ -304,15 +305,17 @@ history and sufficient matured future outcomes; do not invent a completion date.
   TLS, without credentials. See the
   [implementation release evidence](assets/render-implementation-verification.json).
   A final corrective push still needs its own revision check.
-- The [first CI run](https://github.com/Aniruddh2708/AgenticAI/actions/runs/38692171843)
-  failed workflow validation before jobs because `runner.temp` was in job-level
-  `env`. Its expression is now in step environments; actual corrected Linux and
-  Windows jobs were then accepted. Ubuntu passed at `c7ee70e`; Windows stopped
-  during dependency installation before tests. Independent Windows-marker
-  resolution found pytest's absent Colorama dependency; a hashed CI supplement
-  adds it without changing the application lock. Detailed Windows logs were
-  private; verify the next actual run rather than assuming the dependency fix
-  establishes Windows success. The first invalid run measured no test result.
+- Application fix `19ed8e5` passed public Render verification and
+  [actual Ubuntu/Windows CI](https://github.com/Aniruddh2708/AgenticAI/actions/runs/38694432124),
+  including application tests and extended dashboard checks. Public deployment
+  evidence is [recorded separately](assets/render-platform-fix-verification.json),
+  with [sanitized CI evidence](assets/ci-remaining-priorities-verification.json).
+- Earlier CI runs found invalid workflow context placement, missing Windows
+  Colorama and read-only backup flushes. These are fixed. The startup test now
+  checks requested budgets directly; a deliberately regressed initialization
+  budget still fails. Production deadlines and safeguards are unchanged.
+- A later documentation-only push changes no tested application, workflow or
+  dependency file; compare its final public marker separately.
 
 Use [Render instructions](RENDER.md), [validation history](VALIDATION.md) and
 [handoff](HANDOFF_FOR_CLAUDE.md). The sanitized

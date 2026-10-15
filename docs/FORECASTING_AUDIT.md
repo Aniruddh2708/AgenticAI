@@ -5,6 +5,16 @@ for the prior-selection diagnosis, uncertainty fixes, once-only 2024–2025
 evaluation and labelled exploratory joint-coverage correction. Both evaluation
 periods are now spent. The original results below remain a historical record.
 
+**Implementation follow-through:** independent-source reconciliation and a
+baseline-only prospective ledger now enforce exact verified rows, complete
+cohorts, missed origins and same-vintage corporate-action returns. See
+[DATA_VERIFICATION.md](DATA_VERIFICATION.md),
+[PROSPECTIVE_EVALUATION.md](PROSPECTIVE_EVALUATION.md) and the
+[updated blueprint](BLUEPRINT_UPDATED.md). Genuine source approval and real
+registration remain blocked; no new market score or trained-model advantage is
+claimed. Application tests, recovery and hosted release evidence are in
+[VALIDATION.md](VALIDATION.md); they do not establish predictive validity.
+
 The application is a cited, personalized research demo. Its five-agent action is
 a deterministic portfolio policy, not a trained price forecaster. This pass adds
 a reproducible historical forecasting experiment and rejects promotion when it

@@ -23,6 +23,17 @@ and installs the complete `requirements.lock` with required artifact hashes.
 It works with a writable checkout on macOS or Linux; the cloud instance was tested
 on Linux/Python 3.11.17. A native macOS run has not been independently tested.
 
+For Windows PowerShell with Python 3.11 installed:
+
+```powershell
+py -3.11 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install --require-hashes -r requirements-ci.lock
+.\.venv\Scripts\python.exe -m vibefinance.demo
+```
+
+The CI supplement retains the application lock and pins pytest's Windows-only
+Colorama dependency. No activation or shell policy change is needed.
+
 The launcher starts the API on local port 8000 and Streamlit on local port 8501.
 Use your browser or supported port forwarding. The onboarding UI does not supply
 web previews. Ctrl-C stops only the launcher's children; occupied ports are refused.
@@ -272,6 +283,7 @@ remaining issues and the prioritized action plan against the preserved original;
 - [Current UI evidence](docs/assets/demo-current/manifest.json): actual screenshots
   and a silent browser recording; original captures remain preserved.
 
-The GitHub Actions workflow runs hash-locked tests and rendered dashboard checks
-on Linux and Windows. Remote execution must be checked separately; adding the
-workflow alone does not establish a passing Windows run.
+The pinned GitHub Actions workflow passed application tests and extended rendered
+dashboard checks on Linux and Windows at `19ed8e5`. See
+[the successful run](https://github.com/Aniruddh2708/AgenticAI/actions/runs/38694432124)
+and [validation](docs/VALIDATION.md); native macOS acceptance remains unverified.
