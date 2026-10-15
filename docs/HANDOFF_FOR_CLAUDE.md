@@ -2,6 +2,18 @@
 
 ## Latest zero-cost accounts, data review and prospective operations
 
+Implementation is pushed as `f7a2358` on
+`codex/free-accounts-and-data-verification`. Keep main/Render on `459669b` until
+the free-provider configuration and existing-state export are reviewed. The
+latest public checker confirmed health 200, verified TLS, matching main revision
+and enabled demo gate without credentials. Local checks passed **760 tests**
+plus **121 real TLS PostgreSQL checks** and extended rendered interactions.
+Actual [Linux, Windows and PostgreSQL CI](assets/ci-free-production-verification.json)
+passed for that implementation commit; remote test counts were not exposed.
+The [current evidence](assets/free-production-verification.json) distinguishes
+fixture checks from unperformed hosted acceptance. A GitHub compare link is in
+the delivery status; API authentication returned 401, so no draft PR is claimed.
+
 Continue from [FREE_PRODUCTION_STATUS.md](FREE_PRODUCTION_STATUS.md). The user
 requires zero spending and is creating a free Supabase project; no project URL,
 real account credential or production database configuration has been supplied.

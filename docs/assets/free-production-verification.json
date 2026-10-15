@@ -167,5 +167,12 @@
   "remote_render_changed": false,
   "paid_resources_created": false,
   "hosted_acceptance": "pending actual free project, secure settings, confirmed accounts and recovery drill",
-  "new_revision_ci": "pending push; historical Windows results are not substituted"
+  "new_revision_ci": {
+    "implementation_sha": "f7a2358a071f230b813123127fc49ddde47829f0",
+    "ubuntu": "success",
+    "windows": "success",
+    "postgresql_17": "success",
+    "evidence": "ci-free-production-verification.json",
+    "remote_test_counts": "not exposed; not inferred"
+  }
 }

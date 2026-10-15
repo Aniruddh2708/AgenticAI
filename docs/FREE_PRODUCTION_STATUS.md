@@ -4,6 +4,21 @@ Updated 15 October 2026, Asia/Calcutta. Work started from clean `main` at
 `459669b`. The user requires **zero spending**. No paid service, database, disk,
 subscription, account purchase or live production migration was performed.
 
+Implementation commit: `f7a2358a071f230b813123127fc49ddde47829f0`, pushed to
+[`codex/free-accounts-and-data-verification`](https://github.com/Aniruddh2708/AgenticAI/tree/codex/free-accounts-and-data-verification).
+[Review the changes against main](https://github.com/Aniruddh2708/AgenticAI/compare/main...codex/free-accounts-and-data-verification).
+Main remains `459669b`; the public Render checker independently confirmed that
+revision, healthy responses and the enabled demo gate with verified TLS and no
+credentials. See [preservation evidence](assets/render-free-candidate-preservation.json).
+GitHub's API credential returned HTTP 401, so no draft PR was created; native Git
+push and the public review link work. No credential replacement is needed to
+review the branch.
+
+Checks passed locally: **760 application tests**, **121 TLS PostgreSQL checks**,
+extended dashboard and production/core-only demo containers. Actual
+[Linux, Windows and PostgreSQL CI](https://github.com/Aniruddh2708/AgenticAI/actions/runs/38714395220)
+also passed for implementation `f7a2358`; remote test counts were not inferred.
+
 The candidate uses the existing free Render service and an owner-created
 **Supabase Free** project. Current provider quotas and plan eligibility must be
 checked in their dashboards. The implementation does not promise unlimited

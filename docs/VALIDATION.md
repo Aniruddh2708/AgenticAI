@@ -7,6 +7,13 @@ project, paid resource, production migration or live account acceptance is claim
 See [FREE_PRODUCTION_STATUS.md](FREE_PRODUCTION_STATUS.md) for activation steps
 and [the machine-readable evidence](assets/free-production-verification.json).
 
+Implementation `f7a2358` is pushed. Native Git confirmed identical local/remote
+branch heads and unchanged main at `459669b`. The public Render checker returned
+health 200/`ok`, the matching `459669b5fb88` marker and enabled password gate with
+normal verified TLS and no credentials. See
+[current Render preservation evidence](assets/render-free-candidate-preservation.json).
+This is a check of the existing demo, not deployment or account acceptance.
+
 | Current check | Actual result and scope |
 |---|---|
 | Final `make test` | **760 passed, 14 skipped**, 38.70 seconds, Linux Python 3.11; Starlette/AnyIO and optional Authlib deprecation warnings |
@@ -25,7 +32,7 @@ and [the machine-readable evidence](assets/free-production-verification.json).
 | Protected hosted checker | 23 mode/credential/empty-account/sanitization tests passed; real Supabase/Render protected acceptance pending actual secure account settings |
 | Manual backup workflow | Nine offline success/failure guard checks passed; manual-only, authenticated ciphertext, 10 MiB cap, one-day artifact. Not dispatched; quota review and live recovery pending |
 | Research preservation | Original blueprint, five frozen artifact hashes, corrected follow-up summary, source/simulations/seeds and portfolio/forecasting modules unchanged; no spent experiment rerun |
-| New revision CI | Workflow now checks this review branch on Linux/Windows plus real PostgreSQL. Actual remote results are recorded separately after push; earlier green runs are historical |
+| New implementation CI | All three real jobs passed at `f7a2358`: Ubuntu, Windows and TLS PostgreSQL 17. Public canonical GitHub pages establish outcomes; exact remote test counts were not exposed |
 
 Final production image:
 `sha256:a1ec5bbc4b4018f74bac4b660e510117642f6dc0e349fc17b60918bcb4dbd7b1`.
@@ -49,6 +56,12 @@ or publish the configuration; review/save/publish in environment settings is
 required for future-task activation. No domain or secret for an unknown Supabase
 project was invented. Actual free-project setup, secure credentials, confirmed
 accounts, two-account hosted acceptance and off-service recovery remain open.
+
+The [successful implementation CI run](https://github.com/Aniruddh2708/AgenticAI/actions/runs/38714395220)
+is preserved in [the current CI record](assets/ci-free-production-verification.json).
+Later evidence-only documentation commits do not change the tested source,
+locks, workflows or container parity. No Windows count is inferred from the
+local Linux result.
 
 # Earlier remaining-priorities implementation — 15 October 2026
 
