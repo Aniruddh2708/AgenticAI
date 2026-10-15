@@ -51,11 +51,20 @@ def main():
             oidc_secrets = prepare_oidc_secrets()
         children.append(subprocess.Popen([sys.executable, "-m", "uvicorn", "vibefinance.api:app",
             "--host", api_host, "--port", str(api_port)], cwd=root))
-        dashboard_command = [sys.executable, "-m", "streamlit", "run", "vibefinance/dashboard.py",
-            "--server.address", dashboard_host, "--server.port", str(dashboard_port), "--server.headless", "true",
-            "--browser.gatherUsageStats", "false"]
-        if oidc_secrets is not None:
-            dashboard_command.extend(["--secrets.files", str(oidc_secrets)])
+        if managed_accounts:
+            # Existing OAuth/individual-account UI must not be silently replaced
+            # with an unauthenticated browser shell. Keep it until the HTML UI
+            # has a fully verified managed-auth flow.
+            dashboard_command = [sys.executable, "-m", "streamlit", "run", "vibefinance/dashboard.py",
+                "--server.address", dashboard_host, "--server.port", str(dashboard_port),
+                "--server.headless", "true", "--browser.gatherUsageStats", "false"]
+            if oidc_secrets is not None:
+                dashboard_command.extend(["--secrets.files", str(oidc_secrets)])
+        else:
+            # Same-origin API + HTML/CSS/JS on the public dashboard port.
+            # The second local API port remains for existing automation.
+            dashboard_command = [sys.executable, "-m", "uvicorn", "vibefinance.api:app",
+                "--host", dashboard_host, "--port", str(dashboard_port)]
         children.append(subprocess.Popen(dashboard_command, cwd=root,
             env={**os.environ, "PYTHONPATH": str(root), "VIBEFINANCE_API_URL": api_url}))
         deadline = time.monotonic() + SERVICE_READINESS_TIMEOUT_SECONDS

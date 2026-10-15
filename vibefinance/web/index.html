@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>VibeFinance XAI | Investment Intelligence Terminal</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <script src="/assets/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#workspace">Skip to analysis</a>
+  <header class="terminal-header">
+    <div class="topbar">
+      <div class="brand"><span class="brand-mark">V</span><span class="brand-name">VIBEFINANCE</span><span class="edition">XAI INTELLIGENCE</span></div>
+      <div class="target-box"><span class="pulse"></span><span class="mono accent" id="target-symbol">TARGET: RELIANCE</span><span class="target-caption">NSE · Offline Research Audit</span></div>
+      <nav class="top-nav" aria-label="Dashboard tabs">
+        <button class="nav-tab selected" data-tab="overview"><span class="glyph">▦</span> Overview</button>
+        <button class="nav-tab" data-tab="reasoning"><span class="glyph">◇</span> Reasoning Tree</button>
+        <button class="nav-tab" data-tab="sources"><span class="glyph">▤</span> Audit Trail</button>
+        <button class="nav-tab" data-tab="models"><span class="glyph">⚙</span> Model Specs</button>
+        <button class="nav-tab" data-tab="compare"><span class="glyph">⇄</span> Compare</button>
+        <button class="nav-tab" data-tab="metrics"><span class="glyph">▥</span> Metrics</button>
+      </nav>
+      <div class="search-wrap"><span aria-hidden="true">⌕</span><input id="global-search" type="search" placeholder="Search sourced claims..." aria-label="Search citations and claims"><kbd>⌘K</kbd></div>
+      <button class="subtle-button" id="toggle-settings" aria-expanded="false" aria-controls="settings-panel">⚑ Scenarios</button>
+      <button class="primary-button" id="run-analysis">＋ Run Audit</button>
+    </div>
+    <div class="ticker-tape" aria-live="polite">
+      <span class="tape-segment"><span class="pulse"></span><span class="muted uppercase">THESIS RECOMMENDATION:</span><span class="pill" id="ticker-action">Awaiting data</span></span>
+      <span class="tape-divider">│</span><span class="tape-segment"><span class="accent">✧</span><span class="muted uppercase">EVIDENCE STRENGTH:</span><b class="accent mono" id="ticker-strength">—</b><small>Not a profit probability</small></span>
+      <span class="tape-divider">│</span><span class="tape-segment"><span class="cyan">▣</span><span class="muted uppercase">GROUNDED SOURCES:</span><b class="mono" id="ticker-citations">—</b></span>
+      <span class="tape-divider">│</span><span class="tape-segment"><span class="muted uppercase">CLAIM SUPPORT:</span><b class="mono" id="ticker-coverage">—</b></span>
+      <span class="tape-divider">│</span><span class="tape-segment"><span class="muted uppercase">DATA:</span><b class="mono cyan" id="ticker-mode">SIMULATED</b></span>
+      <span class="tape-divider">│</span><span class="tape-segment"><span class="muted uppercase">RUN TIME:</span><b class="mono" id="ticker-time">—</b></span>
+    </div>
+  </header>
+  <main id="workspace" class="workspace">
+    <div id="settings-panel" class="settings-panel" hidden>
+      <div class="field"><label for="user-select">Investor profile</label><select id="user-select"><option value="arjun">Loading profiles…</option></select></div>
+      <div class="field"><label for="ticker-select">NSE ticker</label><select id="ticker-select"><option value="RELIANCE.NS">RELIANCE.NS</option><option value="TCS.NS">TCS.NS</option><option value="INFY.NS">INFY.NS</option><option value="HDFCBANK.NS">HDFCBANK.NS</option><option value="ITC.NS">ITC.NS</option></select></div>
+      <label class="switch-label"><input type="checkbox" id="outage-toggle"> Simulate sentiment feed outage</label>
+      <label class="switch-label"><input type="checkbox" id="filing-toggle"> Missing filing for ticker</label>
+      <div class="switch-description">Simulated prices and synthetic disclosures. Toggle outages to test graceful degradation.</div>
+      <button id="apply-settings" class="primary-button">Apply & Run</button>
+    </div>
+    <div id="alert-region" role="alert" aria-live="assertive"></div>
+    <section id="view-overview" class="view active-view" aria-label="Overview">
+      <div class="main-grid">
+        <div class="left-stack">
+          <section class="panel" aria-labelledby="pipeline-heading"><div class="panel-heading"><h2 id="pipeline-heading"><span class="accent">♧</span> Active Investment Thesis Pipeline</h2><span class="status-chip" id="pipeline-status">Awaiting analysis</span></div>
+            <div class="panel-content pipeline-content">
+              <div class="pipeline-goal"><span>Goal: <strong id="pipeline-goal">Build a personalized, cited NSE investment thesis</strong></span><span class="mono cyan" id="pipeline-start">Ready</span></div>
+              <div class="pipeline-stages"><div class="stage" id="stage-ingest"><span class="stage-index">1. DATA & THESIS</span><strong>Market & profile ingest</strong><small id="stage-ingest-text">Awaiting market input</small></div><div class="stage" id="stage-agents"><span class="stage-index">2. EVIDENCE & AGENTS</span><strong>5 independent analysts</strong><small id="stage-agents-text">Awaiting concurrent execution</small></div><div class="stage" id="stage-synthesis"><span class="stage-index">3. SAFETY & SYNTHESIS</span><strong>Claim guard & risk policy</strong><small id="stage-synthesis-text">Awaiting personalized decision</small></div></div>
+            </div>
+          </section>
+          <section class="panel"><div class="panel-heading"><h2><span class="cyan">◉</span> Active Financial Analyst Swarm <span class="count-tag">5 total</span></h2><span class="header-note" id="agent-summary">No agent outputs yet</span></div>
+            <div class="scroll-x"><table class="analyst-table"><thead><tr><th>ANALYST AGENT & ROLE</th><th>COMPUTATION</th><th>STATUS</th><th>STRENGTH</th><th>LATENCY</th><th>ACTION</th></tr></thead><tbody id="agents-body"><tr><td colspan="6" class="empty-row">Run an audit to see real typed agent outputs.</td></tr></tbody></table></div>
+          </section>
+        </div>
+        <div class="right-stack"><section class="panel feed-panel"><div class="panel-heading"><h2><span class="pulse"></span> Live Explainable AI (XAI) Audit & Reasoning Feed</h2><span class="header-note mono">Verified lineage</span></div>
+          <div class="feed-body"><div class="guard-banner"><span class="cyan">⬡</span><span>Evidence guard: only supported claims and retrieved sources reach recommendations.</span><span class="guard-chip">GUARDED</span></div><div id="trace-feed" class="trace-feed"><div class="empty-state">Waiting for a market analysis. Click <b>Run Audit</b> to begin.</div></div></div>
+          <form id="query-form" class="query-bar"><input id="query-input" placeholder="Find a claim, document, or audit step..." aria-label="Search current audit" maxlength="160"><button type="submit" class="primary-button">Search ↗</button></form>
+        </section></div>
+      </div>
+      <div class="secondary-grid">
+        <section class="panel"><div class="panel-heading"><h2><span class="accent">◆</span> Personalized Decision</h2><span class="header-note" id="recommendation-basis">Awaiting synthesis</span></div>
+          <div class="panel-content"><div class="decision-line"><div><div class="eyebrow">PROPOSED ACTION</div><div id="decision-action" class="decision-action">—</div></div><div class="confidence-block"><span class="eyebrow">MARKET EVIDENCE STRENGTH</span><strong id="decision-confidence" class="mono">—</strong><div class="meter"><div id="confidence-fill"></div></div></div></div><p id="decision-explanation" class="muted">Evidence strength is uncalibrated and is not a probability of investment success.</p><div id="decision-notes" class="note-stack"></div><div id="decision-conflicts" class="note-stack"></div><div class="button-row"><button type="button" class="subtle-button" data-decision="follow">Record: Follow</button><button type="button" class="subtle-button" data-decision="watch">Record: Watch</button><button type="button" class="subtle-button" data-decision="skip">Record: Skip</button></div><p class="footnote" id="decision-saving"></p></div>
+        </section>
+        <section class="panel"><div class="panel-heading"><h2><span class="cyan">▧</span> Market Price & Portfolio</h2><span class="header-note" id="market-source">Seeded OHLCV</span></div><div class="panel-content"><div id="price-chart" class="price-chart" aria-label="Chart showing prices from the analysis" role="img"></div><div id="portfolio-bars" class="portfolio-bars"></div><div class="portfolio-metrics" id="portfolio-metrics"></div></div></section>
+      </div>
+      <div class="panel sources-preview"><div class="panel-heading"><h2><span class="cyan">▣</span> Verified Source Passages</h2><button data-tab="sources" class="link-button">Open full audit trail →</button></div><div id="overview-sources" class="source-grid panel-content"></div></div>
+    </section>
+    <section id="view-reasoning" class="view" aria-label="Reasoning Tree"><div class="panel"><div class="panel-heading"><h2>Reasoning Tree · Source-Backed Evidence</h2><span class="header-note">Numbers computed in Python</span></div><div class="panel-content"><div id="reasoning-chain" class="step-list"></div><h3>Per-agent evidence</h3><div id="reasoning-agents" class="agent-cards"></div></div></div></section>
+    <section id="view-sources" class="view" aria-label="Audit Trail"><div class="panel"><div class="panel-heading"><h2>Audit Trail · Claim & Citation Inspector</h2><span class="header-note" id="source-count">0 sources</span></div><div class="panel-content"><div class="info-strip">These documents are synthetic demonstration material, not actual NSE, SEBI, or corporate disclosures. Market/profile snapshots are separately labelled.</div><div id="source-list" class="source-list"></div><h3>Processing trace</h3><div id="audit-steps" class="step-list"></div></div></div></section>
+    <section id="view-models" class="view" aria-label="Model Specs"><div class="two-grid"><section class="panel"><div class="panel-heading"><h2>Agent Model Specifications</h2></div><div class="panel-content"><p class="muted">Five concurrent rule-based Python analyzers; no paid foundation-model inference, no uncited invented figures.</p><div id="model-specs" class="agent-cards"></div></div></section><section class="panel"><div class="panel-heading"><h2>Scenario & Portfolio Controls</h2></div><div class="panel-content"><p class="muted">To change investor or ticker, open <b>Scenarios</b> in the header. The existing backend persists portfolio profiles; edits here use the documented /profiles contract.</p><div id="profile-detail"></div><button id="edit-profile" class="subtle-button">Edit profile</button><div id="profile-editor" hidden></div><h3>Saved audit history</h3><div id="history-list" class="step-list"></div><button id="load-history" class="subtle-button">Refresh history</button><h3>Personalized Watchlist Scan</h3><p class="muted">Scan all five seeded NSE tickers and flag actions relevant to the selected investor. No orders are placed.</p><button id="scan-watchlist" class="primary-button">Scan Watchlist</button><div id="watchlist-results" class="step-list" style="margin-top:12px"></div></div></section></div></section>
+    <section id="view-compare" class="view" aria-label="Compare Users"><section class="panel"><div class="panel-heading"><h2>Same Market Input, Three Risk Profiles</h2><button id="run-compare" class="primary-button">⇄ Compare All Investors</button></div><div class="panel-content"><p class="muted">All three recommendations are computed from the same ticker and market frame. Portfolio-policy overrides and behavioral nudges are shown separately from market evidence.</p><div id="compare-results" class="compare-grid"><div class="empty-state">Click Compare All Investors to demonstrate personalized outputs.</div></div></div></section></section>
+    <section id="view-metrics" class="view" aria-label="Metrics"><div class="panel"><div class="panel-heading"><h2>Session Telemetry & Evaluation</h2><button id="load-evaluation" class="subtle-button">Load evaluation</button></div><div class="panel-content"><div id="metric-cards" class="metric-grid"></div><div class="two-grid"><div><h3>Agent latency (measured)</h3><div id="latency-bars"></div></div><div><h3>Evaluation on independent simulated history</h3><div id="evaluation-results" class="empty-state">Load evaluation to view computed backtest data and baseline comparisons.</div></div></div></div></div></section>
+    <div class="app-disclaimer">Educational/simulated, not investment advice (SEBI-registered advice required). Source documents are synthetic. Evidence strength is not a calibrated prediction of returns.</div>
+  </main>
+  <footer class="footer"><span><span class="pulse"></span> <span id="footer-health">VibeFinance · Offline-first</span></span><span>5 specialized analysts · Deterministic numbers · <span id="footer-version">Local research build</span></span></footer>
+  <dialog id="source-dialog" class="source-dialog" aria-labelledby="dialog-title"><div class="dialog-heading"><h2 id="dialog-title">Source passage</h2><button id="close-source" class="subtle-button" aria-label="Close passage">✕</button></div><div id="dialog-body" class="dialog-body"></div></dialog>
+</body>
+</html>

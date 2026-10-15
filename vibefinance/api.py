@@ -9,7 +9,9 @@ from contextlib import asynccontextmanager
 from typing import Literal
 
 from fastapi import FastAPI, HTTPException, Query, Request
-from fastapi.responses import JSONResponse
+from fastapi.responses import FileResponse, JSONResponse, PlainTextResponse
+from fastapi.staticfiles import StaticFiles
+from pathlib import Path
 from pydantic import BaseModel, Field
 
 from vibefinance.agents.base import UserProfile
@@ -76,13 +78,31 @@ def create_app(db_path=None):
                 app.state.verifier.close()
 
     app = FastAPI(title="VibeFinance", version="0.2.0", lifespan=lifespan)
+    # The supplied terminal-style HTML is the offline demo's primary frontend.
+    # Static assets never require internet or share a user's data. Stateful
+    # endpoints retain all existing authentication and storage protections.
+    web_dir = Path(__file__).resolve().parent / "web"
+    app.mount("/assets", StaticFiles(directory=web_dir), name="dashboard-assets")
+
+    @app.get("/", include_in_schema=False)
+    @app.get("/dashboard", include_in_schema=False)
+    def web_dashboard():
+        return FileResponse(web_dir / "index.html", headers={"Cache-Control": "no-store"})
+
+    @app.get("/_stcore/health", include_in_schema=False)
+    def dashboard_compatibility_health():
+        # Container health checks support both the legacy Streamlit deployment
+        # and the new same-origin FastAPI dashboard during the transition.
+        return PlainTextResponse("ok")
 
     @app.middleware("http")
     async def access_and_timing(request, call_next):
         settings = getattr(app.state, "auth_settings", None)
         if settings is None:
             return JSONResponse(status_code=503, content={"detail": "Application startup is incomplete."})
-        if request.url.path != "/health":
+        if request.url.path not in {"/health", "/", "/dashboard", "/_stcore/health"} and not request.url.path.startswith("/assets/"):
+            # Only non-sensitive web shell assets are public. API data endpoints
+            # are still protected by demo bearer token or managed account auth.
             authorization = request.headers.get("Authorization", "")
             if settings.mode != "demo":
                 try:
