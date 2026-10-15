@@ -1,0 +1,24 @@
+{
+  "model": "sentence-transformers/all-MiniLM-L6-v2",
+  "revision": "c9745ed1d9f207416be6d2e6f8de32d1f16199bf",
+  "real_model_verified": false,
+  "package_versions": {
+    "torch": "2.7.1+cpu",
+    "chromadb": "1.0.20",
+    "sentence-transformers": "5.1.0",
+    "transformers": "4.57.1"
+  },
+  "download_attempted": false,
+  "real_chroma_store_with_fixture_vectors_verified": true,
+  "model_provisioning": "Unavailable (LocalEntryNotFoundError); local-only fallback checked.",
+  "mode": "bm25",
+  "warnings": [
+    "Local embeddings unavailable (OSError); BM25 fallback active."
+  ],
+  "result_ids": [
+    "RELIANCE_risk_FY26_demo:0",
+    "RELIANCE_results_FY26_demo:0",
+    "RELIANCE_transcript_FY26_demo:0"
+  ],
+  "fallback_returned_results": true
+}

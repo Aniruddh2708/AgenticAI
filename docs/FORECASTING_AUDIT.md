@@ -1,3 +1,15 @@
+# Latest development evidence — 15 October 2026
+
+See [bounded development v2](FORECAST_DEVELOPMENT_V2.md) for the new 18-feature,
+six-candidate experiment and identical-row baseline/calibration results. It uses
+2014–2017 development folds and separately reuses inspected 2021–2023 calibration;
+both spent evaluations remain excluded from selection. Learned point gains fail
+the dependence-aware, multiplicity-adjusted screen. No fresh result or predictive
+advantage is claimed; original results below remain unchanged. The original
+prospective baseline protocol is not replaced by this exploratory selection.
+
+---
+
 # Forecasting audit and implementation — 14 October 2026
 
 **Latest independent-source evidence, 15 October:** two official NSE spent-date

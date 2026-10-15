@@ -1,3 +1,32 @@
+# Latest progress — 15 October 2026
+
+The current feature branch is `codex/credible-forecast-development`, from verified
+main `ed7a5f4`; the earlier branch/Render markers below are historical.
+[Development v2](FORECAST_DEVELOPMENT_V2.md) records the implemented bounded model
+study, causal feature/temporal controls, identical-row baseline comparisons,
+calibration and failed admission. No fresh outcome or learned advantage is claimed.
+
+Versioned data-quality evidence and [authentic source ingestion/retrieval](AUTHENTIC_RETRIEVAL.md)
+are implemented. Source types, availability timestamps and exact spans now survive
+citations/storage. An immutable indicator snapshot removes repeated arithmetic;
+measured local workloads retain equivalent decisions/evidence and improve latency.
+The research panel explicitly shows historical data age, baselines and no admission.
+
+New local evidence: **794 application passes**, **121 disposable TLS PostgreSQL
+passes**, API smoke, both dashboard checks and real Chromium checks. See the newest
+[validation](VALIDATION.md) for exact scope and remaining checks. Original blueprint,
+simulations, seeds, core locks and frozen studies/results are preserved.
+
+Still blocked or unproven: full independent data/rights review; authentic corpus
+and real relevance judgments; MiniLM weights/runtime host access; fresh prospective
+outcomes; live Supabase accounts/storage/recovery and protected hosted acceptance.
+The owner confirms no Supabase project exists; authenticated provisioning access is
+not available here. No paid resource was created. Render configuration is unchanged.
+
+Earlier records follow, with their original dates and historical scope.
+
+---
+
 # Blueprint compliance — updated 15 October 2026
 
 Current zero-cost continuation: [FREE_PRODUCTION_STATUS.md](FREE_PRODUCTION_STATUS.md).

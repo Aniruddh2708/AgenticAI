@@ -14,6 +14,17 @@ live acceptance are required before switching the existing shared demo.
 
 > Educational/simulated, not investment advice (SEBI-registered advice required).
 
+## Current development candidate
+
+[Bounded forecasting development v2](docs/FORECAST_DEVELOPMENT_V2.md) adds causal
+features, regularized/robust/boosted candidates, identical-date baselines and
+uncertainty reports. No learned model earned admission; no new holdout or
+predictive advantage is claimed. Metrics → Historical forecasting research shows
+the saved historical report separately from simulated demo recommendations.
+[Authentic text ingestion/retrieval](docs/AUTHENTIC_RETRIEVAL.md) preserves source
+identity, availability timestamps and exact spans; real-corpus/neural acceptance
+still needs the documented prerequisites. Existing portfolio safeguards remain.
+
 ## New primary dashboard
 
 The main demo frontend now uses the **user-supplied terminal HTML layout**,

@@ -1,3 +1,34 @@
+# Current continuation — 15 October 2026
+
+The latest terminal-verified main is `ed7a5f4602fa2b241847b366f91e2ff2229500eb`,
+including the newer HTML dashboard merge. The historical records below predate
+that merge and do not identify today's branch or live Render revision.
+
+Feature branch `codex/credible-forecast-development` adds a bounded six-candidate
+forecasting study, versioned data-quality evidence, causal source ingestion and
+intraday provenance, a research panel, and measured indicator reuse. Read
+[development v2](FORECAST_DEVELOPMENT_V2.md) for exact dates, identical-row metrics,
+uncertainty, commands and failed admission. Baselines remain selected; no fresh
+holdout was scored, and no predictive advantage or policy effectiveness is claimed.
+
+Locally verified: **794 application tests**, **121 real TLS PostgreSQL checks**,
+API smoke, both dashboard scripts and real Chromium research/source interactions.
+See [current validation](VALIDATION.md) for packaging/CI scope. The original
+blueprint, seed data, core locks, spent protocols and old result summaries remain
+byte-identical. The new study does not change the prospective baseline protocol.
+
+The owner now confirms that **no Supabase Free project exists**. No authenticated
+Supabase provisioning connection is available to create it here. Actual provider
+activation and hosted acceptance remain blocked; local fixtures do not establish
+them. The runtime also blocks model/public hosted destinations; required domain
+additions are saved as a draft, not applied access. [Authentic retrieval](AUTHENTIC_RETRIEVAL.md)
+is implemented and fixture-tested, but genuine permitted documents/judgments and
+real MiniLM acceptance remain outstanding. Render service/configuration is unchanged.
+
+The rest of this document is the preserved earlier status record.
+
+---
+
 # VibeFinance — verified blueprint and remaining work
 
 Updated: **15 October 2026 (Asia/Calcutta)**. Reviewed repository:

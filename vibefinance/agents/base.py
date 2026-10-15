@@ -15,6 +15,13 @@ class Citation(BaseModel):
     excerpt: str
     score: float = Field(ge=0, le=1, allow_inf_nan=False)
     date: str = ""
+    source_kind: Literal["synthetic", "authentic", "computed", "unspecified"] = "unspecified"
+    source_url: str = ""
+    source_sha256: str = ""
+    published_at: str = ""
+    available_at: str = ""
+    span_start: int | None = Field(default=None, ge=0)
+    span_end: int | None = Field(default=None, ge=0)
 
 
 class EvidenceClaim(BaseModel):

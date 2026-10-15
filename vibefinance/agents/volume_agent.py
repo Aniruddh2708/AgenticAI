@@ -4,8 +4,8 @@ from vibefinance.agents.base import AgentOutput
 from vibefinance.data.market_sim import indicators
 
 
-def analyze(ticker, frame, citation):
-    x = indicators(frame)
+def analyze(ticker, frame, citation, *, computed_indicators=None):
+    x = indicators(frame) if computed_indicators is None else computed_indicators
     divergence = x["return_1m"] > 0 and x["volume_ratio"] < .8
     spike = abs(x["volume_z"]) > 2
     label = "SPIKE_DOWN" if divergence or (spike and x["return_1m"] < 0) else "SPIKE_UP" if spike else "NORMAL"

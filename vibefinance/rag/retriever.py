@@ -2,7 +2,7 @@ import hashlib
 import math
 import os
 from collections import Counter
-from datetime import date, datetime
+from datetime import date, datetime, time, timezone
 from pathlib import Path
 
 from vibefinance.config import STATE_DIR
@@ -47,7 +47,8 @@ class Retriever:
                 # Content-addressed collections prevent stale/deleted passages
                 # leaking between corpus versions without deleting another
                 # instance's active index. Old indexes may be cleaned separately.
-                corpus = "\n".join("\x1f".join((c.chunk_id, c.ticker, c.doc_type, c.date, c.text))
+                corpus = "\n".join("\x1f".join((c.chunk_id, c.ticker, c.doc_type, c.date, c.text,
+                                    c.source_kind, c.source_url, c.source_sha256, c.published_at, c.available_at))
                                    for c in sorted(self.chunks, key=lambda chunk: chunk.chunk_id))
                 model_identity = str(configured_model) if configured_model else MODEL_NAME + "@" + MODEL_REVISION
                 identity = hashlib.sha256((model_identity + "\n" + corpus).encode()).hexdigest()[:20]
@@ -62,6 +63,8 @@ class Retriever:
                             embeddings=self.encoder.encode([c.text for c in missing]).tolist(),
                             documents=[c.text for c in missing],
                             metadatas=[{"ticker": c.ticker, "doc_type": c.doc_type,
+                                        "source_kind": c.source_kind,
+                                        "available_timestamp": int(datetime.fromisoformat(c.available_at).timestamp()) if c.available_at else 0,
                                         "available_at": date.fromisoformat(c.date).toordinal()}
                                        for c in missing])
                     # Reconcile only this exact corpus's collection, never an
@@ -83,24 +86,44 @@ class Retriever:
         self.mode = "bm25"
 
     def retrieve(self, query: str, ticker: str, k: int = 4, doc_types=None, *,
-                 as_of: date | str | None = None):
+                 as_of: date | str | None = None, source_kinds=None):
         """Retrieve documents available on/before an optional historical cutoff."""
         if isinstance(k, bool) or not isinstance(k, int) or k < 0:
             raise ValueError("k must be a nonnegative integer")
         if k == 0:
             return []
+        instant = None
+        if isinstance(as_of, str) and "T" in as_of:
+            from vibefinance.rag.authentic import timestamp
+            as_of = timestamp(as_of)
         if isinstance(as_of, datetime):
-            cutoff = as_of.date()
+            if as_of.tzinfo is None:
+                raise ValueError("Intraday as_of requires a timezone")
+            instant = as_of.astimezone(timezone.utc)
+            cutoff = instant.date()
         else:
             cutoff = date.fromisoformat(as_of) if isinstance(as_of, str) else as_of
             if isinstance(as_of, str) and cutoff.isoformat() != as_of:
                 raise ValueError("as_of must use YYYY-MM-DD")
         if cutoff is not None and not isinstance(cutoff, date):
             raise ValueError("as_of must be a date or YYYY-MM-DD")
+        # A date alone gives no intraday publication order: authentic documents
+        # released during that day remain withheld until a precise cutoff or
+        # the next day. Synthetic fixture date behavior stays compatible.
+        instant = instant or (datetime.combine(cutoff, time.min, tzinfo=timezone.utc)
+                              if cutoff else datetime.now(timezone.utc))
+        def available(chunk):
+            if chunk.source_kind != "authentic":
+                return cutoff is None or date.fromisoformat(chunk.date) <= cutoff
+            from vibefinance.rag.authentic import timestamp
+            try:
+                return timestamp(chunk.available_at) <= instant
+            except (ValueError, TypeError):
+                return False
         doc_types = set(doc_types) if doc_types is not None else None
         candidates = [c for c in self.chunks if c.ticker == ticker and
                       (doc_types is None or c.doc_type in doc_types) and
-                      (cutoff is None or date.fromisoformat(c.date) <= cutoff)]
+                      (source_kinds is None or c.source_kind in source_kinds) and available(c)]
         if not candidates or not tokens(query):
             return []
         bags = [Counter(tokens(c.text)) for c in candidates]
@@ -123,6 +146,10 @@ class Retriever:
                 filters = [{"ticker": ticker}]
                 if doc_types:
                     filters.append({"doc_type": {"$in": sorted(doc_types)}})
+                if source_kinds:
+                    filters.append({"source_kind": {"$in": sorted(source_kinds)}})
+                if any(c.source_kind == "authentic" for c in self.chunks):
+                    filters.append({"available_timestamp": {"$lte": int(instant.timestamp())}})
                 if cutoff is not None:
                     filters.append({"available_at": {"$lte": cutoff.toordinal()}})
                 where = filters[0] if len(filters) == 1 else {"$and": filters}

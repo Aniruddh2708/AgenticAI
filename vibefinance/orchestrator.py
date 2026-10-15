@@ -17,6 +17,7 @@ from vibefinance.evaluation.metrics import session_metrics
 from vibefinance.profiles.store import Store
 from vibefinance.rag.retriever import Retriever
 from vibefinance.rag.validator import validate_citations, validate_claims
+from types import MappingProxyType
 from vibefinance.synthesis.synthesizer import synthesize
 
 
@@ -65,10 +66,10 @@ async def analyze(ticker, profile, *, store=None, retriever=None, sentiment_outa
         market_text = "Invalid or insufficient market data; no computed market claims."
         warnings.append("Market input invalid; price and volume agents will report failures.")
     market_cite = Citation(source_id=market_id, doc_title=f"{ticker} OHLCV [{mode.upper()}]",
-                          chunk_id=f"{market_id}:snapshot", excerpt=market_text, score=1, date=date)
+                          chunk_id=f"{market_id}:snapshot", excerpt=market_text, score=1, date=date, source_kind="computed")
     profile_id = f"profile:{profile.user_id}"
     profile_cite = Citation(source_id=profile_id, doc_title=f"{profile.name} — profile snapshot",
-        chunk_id=f"{profile_id}:snapshot", excerpt=profile.model_dump_json(), score=1, date="session snapshot")
+        chunk_id=f"{profile_id}:snapshot", excerpt=profile.model_dump_json(), score=1, date="session snapshot", source_kind="computed")
     trace.append({"step": "Market ingest", "detail": f"{mode} · {len(frame)} sessions · {ticker}"})
     # Loading local embedding weights/indexes is cold-start work. Keep its budget
     # independent of the short deadline for each warmed agent/query.
@@ -101,8 +102,12 @@ async def analyze(ticker, profile, *, store=None, retriever=None, sentiment_outa
     news = [retrieved[chunk.chunk_id] for chunk, _ in news]
     transcripts = [retrieved[chunk.chunk_id] for chunk, _ in transcripts]
     allowed = {c.chunk_id: c for c in [market_cite, profile_cite] + [c.citation(s) for c, s in retrieved.values()]}
-    functions = {"momentum": lambda: momentum_agent.analyze(ticker, frame, market_cite),
-        "volume": lambda: volume_agent.analyze(ticker, frame, market_cite),
+    # Reuse the validated market computation, not an agent-produced answer.
+    # Canonical claim checks still regenerate labels/evidence independently;
+    # scalar snapshot values are immutable and cannot be changed by an agent.
+    indicator_snapshot = MappingProxyType(dict(stats)) if stats else None
+    functions = {"momentum": lambda: momentum_agent.analyze(ticker, frame, market_cite, computed_indicators=indicator_snapshot),
+        "volume": lambda: volume_agent.analyze(ticker, frame, market_cite, computed_indicators=indicator_snapshot),
         "sentiment": lambda: sentiment_agent.analyze(ticker, news, sentiment_outage or ticker == "ITC.NS",
             transcripts=transcripts, as_of=as_of),
         "filings": lambda: filings_agent.analyze(ticker, filings),

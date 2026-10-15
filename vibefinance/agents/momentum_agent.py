@@ -4,8 +4,10 @@ from vibefinance.agents.base import AgentOutput
 from vibefinance.data.market_sim import indicators
 
 
-def analyze(ticker, frame, citation):
-    x = indicators(frame)
+def analyze(ticker, frame, citation, *, computed_indicators=None):
+    # The orchestrator supplies its independently computed immutable snapshot.
+    # Direct callers retain validation/computation from their own market frame.
+    x = indicators(frame) if computed_indicators is None else computed_indicators
     score = float(np.tanh(x["return_1m"] * 12) * .45
                   + np.tanh((x["dma20"]/x["dma50"] - 1) * 30) * .35
                   + np.tanh(x["macd_hist_pct"] * 500) * .15

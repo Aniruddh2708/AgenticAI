@@ -1,3 +1,42 @@
+# Development v2 validation — 15 October 2026
+
+Started from clean main `ed7a5f4602fa2b241847b366f91e2ff2229500eb`, with working
+terminal and remote Git access. Changes are on `codex/credible-forecast-development`.
+See [research evidence](FORECAST_DEVELOPMENT_V2.md) and
+[ingestion/retrieval scope](AUTHENTIC_RETRIEVAL.md). Earlier counts/release markers
+below remain historical and are not current verification.
+
+| New check | Actual result / limit |
+|---|---|
+| Application suite | **794 passed, 14 skipped, 2 upstream deprecation warnings**, Linux CPython 3.11.17, 44.10 s; all 14 skips require real disposable databases |
+| Disposable PostgreSQL | **121 passed**, verified TLS PostgreSQL 17 with restricted roles; 10.35 s. Includes account isolation, signed-identity fixtures, restart durability, encrypted recovery and forced RLS; not live Supabase |
+| Final research reporting | **13 targeted tests passed**, plus actual hash-pinned development reproduction after preserving calibration rows; no spent evaluation rerun |
+| API smoke | Passed personalized actions, conflict/outage/missing filing, safeguards, exact sources, supported claims, persistence and synthetic evaluation on isolated running state |
+| Dashboard scripts | Both `check_dashboard.py` and `check_dashboard_extended.py` passed with the actual local API/isolated test state |
+| Real Chromium | Analysis, saved historical research, baseline/coverage/no-admission/staleness disclosures and exact source highlight passed; no observed page errors. An initial automation selector matched two buttons; the corrected unique selector passed without app changes |
+| Temporal/mathematical controls | Exact 30-row target, future mutation and price-unit invariance, missing peer exclusion, training-only transforms, finite calibration, matured residual updates, complete joint denominator, baseline arithmetic and multiplicity screens passed |
+| Ingestion/provenance | Generated format fixtures verify no-overwrite import, byte/hash/span preservation, explicit rights/identity declarations, intraday availability, tampering refusal and missing relevance judgments. No authentic corpus acceptance claimed |
+| Neural packages | Separate Linux CPU hash lock installed; all 120 optional packages compatible; core 60 packages compatible. Core/auth/storage locks remain unchanged |
+| Real Chroma | Actual persisted query using explicitly labelled fixture vectors passed; does not establish neural semantics |
+| MiniLM | Local-only checker exits **2**: no model weights; fallback mode BM25, `real_model_verified=false`. Runtime HTTPS to Hugging Face is blocked; no verification disabled |
+| Local performance | Five declared warmed workloads, seven repeats/mode, alternating order and identical-output checks; immutable snapshot reduces redundant indicator arithmetic. See versioned timings; no hosted-throughput claim |
+| Preserved evidence | Fifteen original specification/protocol/summary/lock/seed files checked byte-identical to base. Raw archive files remain hash-identical; old frozen forecast modules, artifacts and studies are not rewritten |
+| Hosted Supabase/Render | **Not run**. Owner confirms no Supabase project exists; no authenticated provisioning connection or real confirmed operator account. Current runtime blocks public hosted requests. No existing Render configuration/service change |
+| Remote CI | Not yet claimed for this branch; historical successful CI below does not validate the new revision |
+
+Full current-run JUnit/logs, browser screenshot, profiling and complete model/
+calibration rows are retained under ignored `.runtime/`. Tracked versioned summaries
+include reproducible identities. Tests validate implementation, not predictive value.
+The development selection retains baselines and admission is false. No new market
+outcome, genuine prospective registration, source permission, off-service hosted
+recovery, project creation or deployment is inferred from local test success.
+
+Container and final branch-delivery evidence will be recorded separately against
+the tested implementation revision. Original deployment Dockerfiles and Render
+configuration are unchanged.
+
+---
+
 # Current free-account candidate — 15 October 2026
 
 The latest work starts at `459669b` and is delivered on

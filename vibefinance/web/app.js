@@ -194,7 +194,7 @@
       const item = node('span'); item.append(node('span', '', `${label}: `), node('strong', '', value)); metrics.append(item);
     });
   }
-  function sourceIdentity(src) { return `${src.doc_title || src.source_id} [${src.date || 'snapshot'}]`; }
+  function sourceIdentity(src) { return `${src.doc_title || src.source_id} [${src.date || 'snapshot'} · ${src.source_kind || 'unspecified'}]`; }
   function visibleSources() {
     const sessionSources = state.session?.sources || [];
     const allowed = new Set((state.session?.recommendation?.citations || []).map(c => c.chunk_id));
@@ -218,10 +218,16 @@
     const body = wipe($('dialog-body'));
     appendText(body, 'p', 'mono cyan', `Source ID: ${src.source_id}  |  Chunk: ${src.chunk_id}  |  Relevance: ${pct(src.score)}`);
     appendText(body, 'h3', '', `Type: ${src.doc_type || 'unknown'} · source as-of ${src.date || 'not supplied'}`);
+    if (src.source_kind === 'authentic') {
+      appendText(body, 'p', 'footnote', `Operator-supplied source; identity and rights require review. Published: ${src.published_at}; available: ${src.available_at}. SHA-256: ${src.source_sha256}`);
+      if (String(src.source_url).startsWith('https://')) { const link = node('a', '', 'Original source'); link.href = src.source_url; link.target = '_blank'; link.rel = 'noopener noreferrer'; body.append(link); }
+    }
     const passage = src.document_text || src.excerpt || '';
     const block = node('div', 'source-document');
     // Only exact excerpts are highlighted. Never mark text as verified if no match exists.
-    const anchor = String(src.excerpt || '').trim(); const idx = anchor.length ? passage.indexOf(anchor) : -1;
+    const anchor = String(src.excerpt || '').trim();
+    const exactSpan = Number.isInteger(src.span_start) && Number.isInteger(src.span_end) && passage.slice(src.span_start, src.span_end) === src.excerpt;
+    const idx = exactSpan ? src.span_start : (anchor.length ? passage.indexOf(anchor) : -1);
     if (idx >= 0) { block.append(document.createTextNode(passage.slice(0, idx)), node('mark', 'highlight', passage.slice(idx, idx + anchor.length)), document.createTextNode(passage.slice(idx + anchor.length))); }
     else { block.append(document.createTextNode(passage)); appendText(body, 'p', 'footnote', 'Exact highlight unavailable for this shortened source excerpt. Full retrieved passage shown without a fabricated match.'); }
     body.append(block); dialog.showModal();
@@ -277,6 +283,29 @@
       renderCalibration(results, ev.calibration || []);
       for (const b of ev.calibration || []) appendText(results, 'p', 'footnote', `${b.bucket}: ${b.count} samples · predicted up ${pct(b.mean_probability_up)} · actual up ${pct(b.realized_up_rate)}`);
     } catch (error) { results.textContent = `Evaluation unavailable: ${error.message}`; }
+  }
+  async function loadForecastDevelopment() {
+    const results = $('forecast-development-results');
+    results.textContent = 'Loading historical research…';
+    try {
+      const report = await request('/evaluation/forecast/development');
+      wipe(results);
+      if (!report.available) { results.textContent = report.reason; return; }
+      results.append(node('p', 'note warning', 'Development results only. No new holdout or predictive advantage established. Portfolio actions use the existing safeguards.'));
+      results.append(node('p', 'footnote', `Model ${report.model_id.slice(0, 12)} · as of ${report.as_of} · ${report.age_calendar_days} calendar days old · horizon: 30 observed vendor rows. Not a current market forecast.`));
+      const summary = node('div', 'evaluation-summary');
+      const dev = report.development;
+      [['Development Brier', num(dev.probability_metrics[report.probability_model].brier, 4)],
+       ['50% baseline Brier', num(dev.probability_metrics.constant_half.brier, 4)],
+       ['Return MAE', pct(dev.return_metrics[report.return_model].mae_return)],
+       ['Zero-return MAE', pct(dev.return_metrics.zero.mae_return)],
+       ['Shared origin dates', String(dev.shared_origins)],
+       ['Learned model admitted', 'No']].forEach(([key, value]) => summary.append(metricCard(key, value, 'Exploratory chronological development')));
+      results.append(summary, node('p', 'footnote', `Selected probability: ${report.probability_model}; return: ${report.return_model}. ${report.admission.reason}`));
+      for (const [name, interval] of Object.entries(report.prequential_intervals.methods || {})) {
+        results.append(node('p', 'footnote', `${name}: marginal coverage ${pct(interval.coverage)}, width ${pct(interval.mean_width)}, interval score ${pct(interval.interval_score)}; simultaneous coverage ${pct(interval.simultaneous_coverage.coverage)} across ${interval.simultaneous_coverage.complete_origins} complete origins. Development estimates only.`));
+      }
+    } catch (error) { results.textContent = `Research unavailable: ${error.message}`; }
   }
   function renderCalibration(parent, buckets) {
     // A reliability curve for the *separately evaluated direction classifier*.
@@ -403,6 +432,7 @@
     $('source-dialog').addEventListener('click', e => { if (e.target === $('source-dialog')) $('source-dialog').close(); });
     $('run-compare').addEventListener('click', compareUsers);
     $('load-evaluation').addEventListener('click', loadEvaluation);
+    $('load-forecast-development').addEventListener('click', loadForecastDevelopment);
     $('edit-profile').addEventListener('click', editProfile);
     $('load-history').addEventListener('click', loadHistory);
     $('scan-watchlist').addEventListener('click', scanWatchlist);
