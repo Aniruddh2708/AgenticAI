@@ -16,6 +16,10 @@ api:
 	$(PYTHON) -m uvicorn vibefinance.api:app --host 127.0.0.1 --port 8000
 
 dashboard:
+	$(PYTHON) -m uvicorn vibefinance.api:app --host 127.0.0.1 --port 8501
+
+# Legacy dashboard retained only for managed-account authentication compatibility.
+legacy-dashboard:
 	PYTHONPATH=$(CURDIR) $(PYTHON) -m streamlit run vibefinance/dashboard.py --server.address 127.0.0.1 --server.headless true --browser.gatherUsageStats false
 
 test:

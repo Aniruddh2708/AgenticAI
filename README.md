@@ -14,6 +14,21 @@ live acceptance are required before switching the existing shared demo.
 
 > Educational/simulated, not investment advice (SEBI-registered advice required).
 
+## New primary dashboard
+
+The main demo frontend now uses the **user-supplied terminal HTML layout**,
+implemented as local `vibefinance/web/` files. See
+[DASHBOARD_INTEGRATION.md](DASHBOARD_INTEGRATION.md) for detailed mapping,
+limitations and tests. All numeric claims come from the unchanged backend.
+
+**Quick local launch (after installing Python 3.11+ dependencies):**
+
+```sh
+python -m pip install -r requirements.txt
+python -m vibefinance.demo
+# Open http://127.0.0.1:8501/
+```
+
 ## Run locally
 
 Install Python 3.11+ tooling and uv. From the repository root:
@@ -39,11 +54,34 @@ py -3.11 -m venv .venv
 The CI supplement retains the application lock and pins pytest's Windows-only
 Colorama dependency. No activation or shell policy change is needed.
 
-The launcher starts the API on local port 8000 and Streamlit on local port 8501.
-Use your browser or supported port forwarding. The onboarding UI does not supply
-web previews. Ctrl-C stops only the launcher's children; occupied ports are refused.
-Retriever initialization allows 60 seconds; the launcher allows 120 seconds for
-service readiness. These limits are active in the package implementation.
+The launcher starts the API on local port 8000 and the **new HTML/CSS/JavaScript
+terminal dashboard** on **http://127.0.0.1:8501/**. The dashboard is served by a
+second FastAPI instance on port 8501, so same-origin browser requests need no
+CDN, CORS configuration, external font, JavaScript framework, or LLM API.
+This is the main frontend for the **offline demo**. `make dashboard` also serves
+it directly on port 8501. Both servers use the same persisted SQLite store.
+
+The supplied dashboard reference originally contained fictional NVDA/SEC figures
+(87% verified, 42 sources, a cost tally and named foundation models). Those
+figures were deliberately **not** copied into the running terminal: all signal
+strengths, actions, citation counts, timings, portfolio metrics, charts, and
+backtest statistics now come from VibeFinance's existing Python API. The UI
+retains the compact dark terminal layout and source-inspection workflow, with
+an NSE-specific name and evidence wording. Files: `vibefinance/web/index.html`,
+`styles.css`, `app.js`, `favicon.svg`.
+
+**Managed-account compatibility:** Authenticated OIDC/Supabase deployments still
+start the existing Streamlit dashboard until the new HTML client has an audited
+managed-user sign-in and account-isolation flow. No authentication protections
+were bypassed. The old `vibefinance/dashboard.py` remains available via
+`make legacy-dashboard` (start `make api` separately). Shared demo bearer-token
+mode is supported in the new UI using a session-memory-only prompt; there is no
+localStorage token persistence. Do not treat this terminal frontend as a
+completed replacement for managed-account production sign-in.
+
+Ctrl-C stops only the launcher's children; occupied ports are refused. Retriever
+initialization allows 60 seconds; launcher readiness allows 120 seconds.
+
 
 ## Validate and evaluate
 
@@ -76,13 +114,15 @@ sources, failed requests, unsaved results and shared-token login. See
 Edited profiles can change these outputs. Do not reset a user's edits merely to
 reproduce the original seeds.
 
-The dashboard supports profile creation/editing, watchlist scans, source-document
-highlighting, risk/portfolio what-if, profile comparison, technical evaluation,
-full-agent policy replay, measured timing and persistent decisions/history.
-Both modes show heuristic evidence strength and expandable full reasoning, agent
-evidence and processing trace. Analyst mode adds expert indicators and quantitative
-evaluation panels. Sentiment uses dated news and transcript quotations, with repeated
-passages counted once. What-if trades never alter holdings or place orders.
+The new web terminal supports viewing/editing profiles, highlighting source
+passages, risk/portfolio what-if, profile comparison, computed technical evaluation,
+measured agent timing and persistent decisions/history. The existing Python API
+also supports watchlist scans, historical policy replay, and more advanced
+research; these specialized workflows remain accessible through the legacy
+Streamlit client/API and are not claimed as new web-terminal controls. All five
+agent evidence streams and the full reasoning chain are inspectable. Sentiment
+uses dated news and transcript excerpts, and repeated passages are counted once.
+What-if trades never alter holdings or place orders.
 
 ## What the evidence checks mean
 

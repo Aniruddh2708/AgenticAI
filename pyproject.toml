@@ -16,7 +16,7 @@ dependencies = {file = ["requirements.txt"]}
 include = ["vibefinance*"]
 
 [tool.setuptools.package-data]
-vibefinance = ["data/users.json", "data/corpus/*.md"]
+vibefinance = ["data/users.json", "data/corpus/*.md", "web/*.html", "web/*.css", "web/*.js", "web/*.svg"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
