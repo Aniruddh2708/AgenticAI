@@ -77,7 +77,9 @@ def copy_state(source: Path | str, destination: Path | str) -> Path:
             with closing(sqlite3.connect(temporary)) as copied:
                 original.backup(copied, pages=64, sleep=0.01)
                 _validate(copied)
-        with temporary.open("rb") as completed:
+        # Windows _commit/FlushFileBuffers requires a writable handle. SQLite
+        # connections are closed; reopening for update does not alter contents.
+        with temporary.open("r+b") as completed:
             os.fsync(completed.fileno())
         os.link(temporary, destination)  # Atomic; fails if another writer wins.
         _sync_directory(destination.parent)

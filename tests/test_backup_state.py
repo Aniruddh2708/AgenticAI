@@ -138,6 +138,9 @@ def test_non_posix_copy_does_not_require_fchmod_or_directory_fsync(tmp_path, mon
     def regular_file_fsync(fd):
         import stat
         assert stat.S_ISREG(os.fstat(fd).st_mode)
+        # Windows FlushFileBuffers/_commit requires write access. A zero-byte
+        # write verifies that contract without changing the database contents.
+        assert os.write(fd, b"") == 0
         real_fsync(fd)
 
     monkeypatch.setattr(os, "fsync", regular_file_fsync)

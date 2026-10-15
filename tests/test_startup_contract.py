@@ -27,7 +27,15 @@ def test_retriever_default_initialization_budget_is_sixty_seconds(monkeypatch, r
 
 def test_cold_analysis_does_not_apply_agent_deadline_to_initialization(monkeypatch, store, retriever):
     real_constructor = engine.Retriever
+    real_wait_for = asyncio.wait_for
     initialization_calls = []
+    requested_budgets = []
+
+    async def observe_wait_for(awaitable, timeout):
+        requested_budgets.append(timeout)
+        # Verify the requested contract directly. A real 10 ms deadline depends
+        # on OS timer granularity and CI scheduling, unrelated to initialization.
+        return await real_wait_for(awaitable, 5)
 
     def cold_constructor(*args, **kwargs):
         if args or kwargs:
@@ -38,8 +46,12 @@ def test_cold_analysis_does_not_apply_agent_deadline_to_initialization(monkeypat
         return retriever
 
     monkeypatch.setattr(engine, "Retriever", cold_constructor)
+    monkeypatch.setattr(engine.asyncio, "wait_for", observe_wait_for)
     session = asyncio.run(engine.analyze("RELIANCE.NS", store.profile("arjun"),
         frame=generate_market("RELIANCE.NS"), timeout=.01, persist=False))
+    assert requested_budgets[0] == 60.0
+    assert len(requested_budgets) > 1
+    assert all(budget == .01 for budget in requested_budgets[1:])
     assert initialization_calls == [True]
     assert any(source["source_id"].endswith("_demo") for source in session["sources"])
     assert not any("initialization unavailable" in warning for warning in session["warnings"])
