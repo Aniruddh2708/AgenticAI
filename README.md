@@ -7,6 +7,11 @@ checked against registered sources, and portfolio policies govern the final acti
 **Default prices are seeded simulations; all 21 company documents are synthetic.**
 Optional live prices do not make synthetic filings authentic.
 
+A zero-cost personal-account candidate now supports Supabase Auth and isolated
+PostgreSQL storage. See [current completion status](docs/FREE_PRODUCTION_STATUS.md)
+and [free deployment](docs/PRODUCTION_DEPLOYMENT.md). Provider configuration and
+live acceptance are required before switching the existing shared demo.
+
 > Educational/simulated, not investment advice (SEBI-registered advice required).
 
 ## Run locally

@@ -1,8 +1,10 @@
 # Hosted acceptance and state recovery
 
-These tools verify an existing release and recover a local SQLite snapshot. They
-do not deploy code, change Render's service plan or token, reset a running
-database, or promote forecasting research. Keep the existing demo gate enabled.
+These tools verify an existing release and recover a local SQLite snapshot.
+The new Supabase candidate also has protected acceptance and encrypted
+PostgreSQL recovery tooling. They do not deploy code, change Render's service
+plan or token, reset a running database, or promote forecasting research.
+Keep the existing login gate enabled.
 See [Render configuration](RENDER.md) and [the updated blueprint](BLUEPRINT_UPDATED.md).
 
 ## Check the hosted release without credentials
@@ -77,6 +79,39 @@ check opens Metrics and the saved research report, verifies its research-only
 label, and does not save a decision, edit an investor, scan a watchlist, download
 prices or retrain anything. A passed public check does not imply these private
 workflows passed. Failure JSON contains only sanitized exception types.
+
+## Personal-account hosted acceptance
+
+The zero-cost account candidate is described in
+[FREE_PRODUCTION_STATUS.md](FREE_PRODUCTION_STATUS.md). It has not been activated
+on the existing Render service. For a released Supabase candidate, add
+`--login-kind supabase` to the public command; the checker requires Email and
+password-type Password fields instead of the shared demo gate.
+
+Protected acceptance reads an existing confirmed operator account from secure
+environment bindings. Pass variable names only:
+
+```sh
+python scripts/check_hosted.py \
+  --url https://vibefinance.onrender.com \
+  --expected-revision "$(git rev-parse HEAD)" \
+  --login-kind supabase \
+  --account-email-env CHECK_HOSTED_EMAIL \
+  --account-password-env CHECK_HOSTED_PASSWORD \
+  --allow-protected-session-write
+```
+
+The owner must create a profile before this check. Empty accounts return
+`operator_profile_required: true`; the checker never creates one. Signing in
+with an existing profile saves an analysis session, hence the explicit write
+flag. Do not combine personal-account flags with `--protected-token-env`.
+The checker validates credential names and presence before network access and
+retains no browser trace, screenshot, page contents or raw exception messages.
+Local fixture success does not establish live provider acceptance.
+
+Managed account data uses [PRODUCTION_RECOVERY.md](PRODUCTION_RECOVERY.md),
+including authenticated encrypted exports and a manual one-day ciphertext-only
+artifact workflow. SQLite instructions below apply to the shared demo.
 
 ## Back up committed SQLite state
 

@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "kind": "scoped_independent_source_quality_review",
+  "status": "partial_evidence_not_f1_approved",
+  "spent_dates_only": true,
+  "no_fresh_outcomes_acquired": true,
+  "no_model_or_score_changes": true,
+  "official_artifacts": [
+    {
+      "date": "2020-12-31",
+      "provider_format": "legacy",
+      "source_url": "https://nsearchives.nseindia.com/content/historical/EQUITIES/2020/DEC/cm31DEC2020bhav.csv.zip",
+      "source_zip_sha256": "913177f995de74ace4fe2fe527481a6d7b85ef65231af306e8230301d3fe1d66",
+      "csv_sha256": "96faaaf4ac32e03fcaec7347790d79f271b2ce0fb7431f57a51beee8b25828c0",
+      "source_rows": 2017,
+      "scope_securities": [
+        "RELIANCE.NS",
+        "TCS.NS",
+        "INFY.NS",
+        "HDFCBANK.NS",
+        "ITC.NS"
+      ],
+      "acquired_at_utc": "2026-10-15T09:07:53.211694+00:00",
+      "price_basis": "raw",
+      "origin_evidence": "official_https"
+    },
+    {
+      "date": "2025-03-18",
+      "provider_format": "udiff",
+      "source_url": "https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20250318_F_0000.csv.zip",
+      "source_zip_sha256": "e311ccec13a8a0c800fa7edbfbebcb706cb344f518113c7736d1ab563437a12d",
+      "csv_sha256": "86adfb93e65c97917f12a7255a3b8458388b7042d73cb7df8f78a8939ef15f30",
+      "source_rows": 3043,
+      "scope_securities": [
+        "RELIANCE.NS",
+        "TCS.NS",
+        "INFY.NS",
+        "HDFCBANK.NS",
+        "ITC.NS"
+      ],
+      "acquired_at_utc": "2026-10-15T09:08:38.401486+00:00",
+      "price_basis": "raw",
+      "origin_evidence": "official_https"
+    }
+  ],
+  "findings": [
+    {
+      "code": "vendor_stale_placeholder_confirmed",
+      "date": "2025-03-18",
+      "securities": [
+        "RELIANCE.NS",
+        "TCS.NS",
+        "INFY.NS",
+        "HDFCBANK.NS"
+      ],
+      "statement": "Official NSE shows positive volume and nonflat OHLC; the pinned Yahoo archive has zero volume and flat OHLC equal to the prior close."
+    },
+    {
+      "code": "same_date_numeric_agreement",
+      "date": "2020-12-31",
+      "securities": [
+        "TCS.NS",
+        "INFY.NS"
+      ],
+      "statement": "TCS OHLC and volume match; INFY OHLC matches within floating-point rounding and volume matches exactly. One date does not certify the entire series or its adjustment basis."
+    },
+    {
+      "code": "corporate_action_basis_unreconciled",
+      "date": "2020-12-31",
+      "securities": [
+        "RELIANCE.NS",
+        "HDFCBANK.NS",
+        "ITC.NS"
+      ],
+      "approximate_yahoo_to_official_ohlc_ratios": [
+        0.4615,
+        0.5,
+        0.962915
+      ]
+    }
+  ],
+  "rights_evidence": [
+    {
+      "url": "https://www.nseindia.com/static/nse-copyright",
+      "http_status": 200,
+      "sha256": "9caa884afbb008f3d56f6377503c06b31189b7fd49d42bac4b697bb5dad99af1",
+      "retrieved_at_utc": "2026-10-15T09:09:46.335912+00:00",
+      "rights_approved": false
+    },
+    {
+      "url": "https://www.nseindia.com/static/nse-terms-of-use",
+      "http_status": 200,
+      "sha256": "ace927220d46b3cbe68711fd18d45626ecbc5a8da063cbd0c2c16ba5b78aac6a",
+      "retrieved_at_utc": "2026-10-15T09:10:16.788924+00:00",
+      "rights_approved": false
+    }
+  ],
+  "rights_limitation": "Public copyright permits narrow personal, noncommercial and educational downloads subject to conditions. Terms restrict automated collection, alteration, distribution and simulation. Full pipeline permission was not inferred; further data requests stopped.",
+  "remaining": [
+    "Complete independently sourced price history",
+    "Complete official calendar and special-session close evidence",
+    "Paired corporate actions covering the full scope",
+    "Equivalent verified adjustment method and vintage",
+    "Source authenticity, rights, point-in-time universe and operator review",
+    "Preregistration and matured fresh outcomes"
+  ]
+}

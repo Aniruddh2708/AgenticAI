@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "checked_at_utc": "2026-10-15T09:39:44.438647+00:00",
+  "command": ".runtime/operations-tools/bin/python scripts/check_hosted.py --url https://vibefinance.onrender.com --expected-revision 459669b5fb8815869c6161b00d7a4b079511f091 --timeout 120",
+  "url": "https://vibefinance.onrender.com",
+  "expected_revision": "459669b5fb8815869c6161b00d7a4b079511f091",
+  "visible_revision": "459669b5fb88",
+  "health_status": 200,
+  "health_ok": true,
+  "tls_verified": true,
+  "login_kind": "demo",
+  "login_gate_visible": true,
+  "revision_matches": true,
+  "credentials_used": false,
+  "protected_check": "not requested",
+  "remote_render_changed": false,
+  "new_account_candidate_deployed": false,
+  "ok": true
+}

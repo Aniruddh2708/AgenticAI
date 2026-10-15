@@ -1,0 +1,35 @@
+# Opt-in production candidate. The existing demo Dockerfile is unchanged.
+# No accounts, database, identity provider or paid resources are provisioned.
+FROM python:3.11.14-slim-bookworm@sha256:65a93d69fa75478d554f4ad27c85c1e69fa184956261b4301ebaf6dbb0a3543d
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    VIBEFINANCE_AUTH_MODE=supabase \
+    VIBEFINANCE_EMBEDDINGS=0 \
+    VIBEFINANCE_STATE_DIR=/data \
+    VIBEFINANCE_API_HOST=127.0.0.1 \
+    VIBEFINANCE_API_PORT=8000 \
+    PGSSLROOTCERT=/etc/ssl/certs/ca-certificates.crt \
+    VIBEFINANCE_DASHBOARD_HOST=0.0.0.0 \
+    VIBEFINANCE_RUNTIME_SECRETS_DIR=/run/vibefinance/oidc
+
+WORKDIR /app
+COPY requirements.lock requirements-auth.lock requirements-production.lock ./
+RUN python -m pip install --no-cache-dir --require-hashes \
+        -r requirements.lock -r requirements-auth.lock -r requirements-production.lock \
+    && groupadd --gid 10001 vibefinance \
+    && useradd --uid 10001 --gid 10001 --create-home vibefinance \
+    && mkdir -p /data /run/vibefinance \
+    && chown vibefinance:vibefinance /data /run/vibefinance \
+    && chmod 0700 /run/vibefinance
+
+ENV PYTHONPATH=/app
+COPY --chown=vibefinance:vibefinance vibefinance ./vibefinance
+COPY --chown=vibefinance:vibefinance docs ./docs
+COPY --chown=vibefinance:vibefinance scripts/backup_production.py scripts/bootstrap_production_role.py scripts/migrate_production.py ./scripts/
+USER vibefinance
+EXPOSE 8501
+HEALTHCHECK --interval=30s --timeout=5s --start-period=40s --retries=3 \
+    CMD python -c "import urllib.request; from vibefinance.deployment import dashboard_binding; urllib.request.urlopen('http://127.0.0.1:'+str(dashboard_binding()[1])+'/_stcore/health',timeout=3)"
+CMD ["python", "-m", "vibefinance.demo"]

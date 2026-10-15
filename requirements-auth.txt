@@ -1,0 +1,4 @@
+# Optional managed OIDC identity. The offline/demo lock stays unchanged.
+PyJWT[crypto]==2.15.1
+cryptography==50.0.2
+Authlib==1.9.1

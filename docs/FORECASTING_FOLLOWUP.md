@@ -260,3 +260,17 @@ The subsequent implementation follow-through passes 418 tests and adds strict
 independent-data reconciliation, a baseline-only prospective ledger and recovery
 tools. No real prospective study is registered or new market score claimed;
 independent source verification still blocks it.
+
+
+## Later independent source check
+
+Official NSE raw files for 2020-12-31 and 2025-03-18 were acquired after network
+access changed. The latter independently confirms that four zero-volume, flat
+vendor rows occurred despite actual trading. This strengthens the source-quality
+finding above without changing the saved predictions, denominators or scores.
+Three older corporate-action price-basis differences remain unresolved. Complete
+adjusted history, calendar/actions and authorized use still require review;
+automated collection rights are not inferred from public download access. See
+[actual evidence](assets/independent-source-review.json) and
+[current delivery status](FREE_PRODUCTION_STATUS.md). Both evaluated periods
+remain spent. No new market evaluation or learned advantage is claimed.

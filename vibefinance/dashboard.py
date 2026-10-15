@@ -4,7 +4,8 @@ import html
 import json
 import math
 import os
-from urllib.parse import quote
+import time
+from urllib.parse import quote, unquote
 
 import httpx
 import pandas as pd
@@ -15,13 +16,25 @@ import streamlit as st
 from vibefinance.config import DISCLAIMER, TICKERS
 from vibefinance.data.market_sim import generate_market
 from vibefinance.deployment import release_revision
+from vibefinance.auth import (
+    AuthenticationError, AuthConfigurationError, AuthSession, AuthSettings,
+    SupabaseAuth, dashboard_authorization, verified_dashboard_identity,
+)
 
 API = os.getenv("VIBEFINANCE_API_URL", "http://127.0.0.1:8000").rstrip("/")
 
 
 def call(method, path, **kwargs):
     headers = dict(kwargs.pop("headers", {}))
-    if token := os.getenv("VIBEFINANCE_API_TOKEN"):
+    settings = AuthSettings.from_env()
+    if settings.mode == "supabase":
+        session = require_account_login(settings)
+        headers["Authorization"] = "Bearer " + session.access_token
+    elif settings.mode == "oidc":
+        require_oidc_login(settings)
+        headers["Authorization"] = dashboard_authorization(
+            st.user, settings, method=method.upper(), path=unquote(path))
+    elif token := os.getenv("VIBEFINANCE_API_TOKEN"):
         headers["Authorization"] = "Bearer " + token
     response = httpx.request(method, API + path, timeout=60, headers=headers, **kwargs)
     response.raise_for_status()
@@ -41,6 +54,10 @@ def request_or_error(method, path, purpose, **kwargs):
                 detail = " " + body["detail"][:300]
         except (ValueError, TypeError):
             pass
+        if status in {401, 403} and AuthSettings.from_env().mode != "demo":
+            clear_account_state()
+            st.session_state.account_notice = "Your sign-in could not be authorized. Sign in again."
+            st.rerun()
         advice = (" Configure the same VIBEFINANCE_API_TOKEN for the API and dashboard."
                   if status in {401, 403} else " Check the API logs, correct the input or restore storage, then retry.")
         st.error(f"Could not {purpose} (HTTP {status}).{detail}{advice}")
@@ -62,8 +79,157 @@ def clear_profile_results():
         st.session_state.pop(key, None)
 
 
-def require_demo_login():
-    """Protect a remotely exposed demo using its configured shared credential."""
+def clear_account_state():
+    """Forget every account's results, form values and credentials on transition."""
+    for key in list(st.session_state):
+        st.session_state.pop(key, None)
+
+
+@st.cache_resource
+def account_auth_client(settings):
+    """Share only a stateless public-config client and its bounded signing keys."""
+    return SupabaseAuth(settings)
+
+
+def bind_account(principal, session=None):
+    previous = st.session_state.get("individual_account")
+    if previous != principal.account_id:
+        clear_account_state()
+    st.session_state.individual_account = principal.account_id
+    if session is not None:
+        st.session_state.individual_session = session
+    return previous is not None and previous != principal.account_id
+
+
+def submit_account_login(operation):
+    # Callback runs before the next page render. Remove the password before the
+    # provider call, including rejected credentials and provider outages.
+    password = st.session_state.pop("account_password", "")
+    email = st.session_state.get("account_email", "").strip()
+    try:
+        settings = AuthSettings.from_env()
+        if settings.mode != "supabase":
+            raise AuthenticationError("Individual sign-in is unavailable.")
+        client = account_auth_client(settings)
+        session = client.sign_up(email, password) if operation == "sign_up" else client.sign_in(email, password)
+        if session is None:
+            clear_account_state()
+            st.session_state.account_notice = "Check your email for a confirmation link, then return here to sign in. An active account has not been confirmed."
+        else:
+            client.validate_session(session)
+            bind_account(session.principal, session)
+    except Exception:
+        clear_account_state()
+        st.session_state.account_notice = "Sign-in could not be completed. Check your credentials or confirmation email and retry. New accounts need a password of at least 12 characters."
+    finally:
+        password = None
+        st.session_state.pop("account_password", None)
+
+
+def logout_account():
+    """Local logout succeeds even when the identity provider is unavailable."""
+    session = st.session_state.get("individual_session")
+    clear_account_state()
+    try:
+        settings = AuthSettings.from_env()
+        if settings.mode == "supabase" and isinstance(session, AuthSession):
+            account_auth_client(settings).sign_out(session.access_token)
+        elif settings.mode == "oidc":
+            st.logout()
+    except Exception:
+        st.session_state.account_notice = "Signed out of this app. The identity provider could not confirm remote sign-out; close this browser session if using a shared device."
+
+
+def require_account_login(settings, *, controls=False):
+    session = st.session_state.get("individual_session")
+    if session is not None:
+        try:
+            client = account_auth_client(settings)
+            if not isinstance(session, AuthSession):
+                raise AuthenticationError("Sign in again.")
+            if session.expires_at - time.time() <= 30:
+                renewed = client.refresh(session.refresh_token)
+                verified = client.validate_session(renewed)
+                if (verified.account_id != session.principal.account_id
+                        or renewed.expires_at - time.time() <= 30):
+                    raise AuthenticationError("Sign in again.")
+                session, principal = renewed, verified
+            else:
+                principal = client.validate_session(session)
+            if bind_account(principal, session):
+                st.rerun()
+        except Exception:
+            clear_account_state()
+            st.session_state.account_notice = "Your sign-in expired or could not be verified. Sign in again."
+            # Full rerun also removes any old account data outside a fragment.
+            st.rerun()
+        if controls:
+            with st.sidebar:
+                st.caption("Personal account · profiles and history are private to your sign-in.")
+                st.button("Sign out", on_click=logout_account)
+        return session
+    if st.session_state.get("individual_account"):
+        clear_account_state()
+        st.rerun()
+    if notice := st.session_state.pop("account_notice", None):
+        st.info(notice)
+    st.info("Sign in to your personal account. Your investor profiles and history are separate from other accounts.")
+    st.caption("Analysis still uses the disclosed demo market inputs and synthetic company documents. A personal account does not establish forecasting accuracy.")
+    with st.form("account-login", clear_on_submit=True):
+        st.text_input("Email", key="account_email")
+        st.text_input("Password", type="password", key="account_password")
+        st.form_submit_button("Sign in", on_click=submit_account_login, args=("sign_in",))
+        st.form_submit_button("Create free account", on_click=submit_account_login, args=("sign_up",))
+    st.stop()
+
+
+def require_oidc_login(settings, *, controls=False):
+    try:
+        principal = verified_dashboard_identity(st.user, settings)
+    except AuthenticationError:
+        had_account = bool(st.session_state.get("individual_account"))
+        clear_account_state()
+        if had_account:
+            st.rerun()
+        if st.user.get("is_logged_in") is True:
+            st.info("Your sign-in expired or could not be verified. Sign in again.")
+            try:
+                st.logout()
+            except Exception:
+                st.error("Sign-out could not be completed. Close this browser session before signing in again.")
+            st.stop()
+        st.info("Sign in to access your personal investor profiles and history.")
+        if st.button("Sign in with your account"):
+            st.login("oidc")
+        st.stop()
+    if bind_account(principal):
+        st.rerun()
+    if controls:
+        with st.sidebar:
+            st.caption("Personal account · profiles and history are private to your sign-in.")
+            st.button("Sign out", on_click=logout_account)
+    return principal
+
+
+def require_demo_login(*, controls=True):
+    """Retain the demo entry point while failing closed in account modes."""
+    try:
+        settings = AuthSettings.from_env()
+    except AuthConfigurationError:
+        had_account = bool(st.session_state.get("individual_account") or st.session_state.get("individual_session"))
+        clear_account_state()
+        if had_account:
+            st.rerun()
+        st.error("Account configuration is unavailable. Ask the operator to check the authentication settings.")
+        st.stop()
+    if settings.mode == "supabase":
+        require_account_login(settings, controls=controls)
+        return
+    if settings.mode == "oidc":
+        require_oidc_login(settings, controls=controls)
+        return
+    if st.session_state.get("individual_account") or st.session_state.get("individual_session"):
+        clear_account_state()
     token = os.getenv("VIBEFINANCE_API_TOKEN")
     if not token:
         return
@@ -215,7 +381,7 @@ def render_sources(session, beginner=False):
 @st.fragment
 def render_forecast_audit():
     """Load the report without rerunning the page and resetting its selected tab."""
-    require_demo_login()
+    require_demo_login(controls=False)
     if st.button("Load real-history forecast audit"):
         report = request_or_error("GET", "/evaluation/forecast", "load the saved real-history forecast audit")
         if report is not None:
@@ -334,6 +500,9 @@ def render_evaluation(beginner):
             if evaluation.get(key):
                 st.write(key.replace("_", " ").title() + ":", evaluation[key])
         st.caption(evaluation["limitations"])
+    if AuthSettings.from_env().mode != "demo":
+        st.caption("Synthetic policy replay and timing benchmarks run in the offline research environment.")
+        return
     if st.button("Run point-in-time policy replay"):
         replay = request_or_error("GET", "/evaluation/policies", "evaluate the full-agent policy replay")
         if replay is not None:
@@ -375,6 +544,7 @@ def main():
     st.info("Default demo uses seeded simulated prices and synthetic company documents. Optional live prices do not make the fabricated filings real. No LLM or API key is required for the default demo.")
     st.caption(DISCLAIMER)
     require_demo_login()
+    personal = AuthSettings.from_env().mode != "demo"
     profiles = request_or_error("GET", "/profiles", "load investor profiles")
     if profiles is None:
         st.stop()
@@ -430,7 +600,7 @@ def main():
         basis = {"market_evidence": "market evidence", "portfolio_policy": "portfolio safeguards",
                  "incomplete_evidence": "incomplete evidence", "conflict_resolution": "conflicting evidence"}
         st.caption("Decision basis: " + basis.get(rec.get("decision_basis"), "review the reasoning below") + ".")
-    tabs = st.tabs(["Analysis", "Sources", "Portfolio & watchlist", "Compare users", "Metrics", "History"])
+    tabs = st.tabs(["Analysis", "Sources", "Portfolio & watchlist", "Compare my profiles" if personal else "Compare users", "Metrics", "History"])
     with tabs[0]:
         signal_table(session, beginner)
         rows = session.get("market_rows")
@@ -534,9 +704,10 @@ def main():
             if not scan["alerts"]:
                 st.write("No actionable alerts pass this profile's policy and confidence threshold.")
     with tabs[3]:
-        st.caption("All users receive the identical market frame and corpus. Only the profile changes.")
+        st.caption("Your profiles receive the identical market frame and corpus. Only the profile changes." if personal
+                   else "All users receive the identical market frame and corpus. Only the profile changes.")
         compare_key = (ticker, sentiment_outage, missing_filing, live, tuple(sorted(profile_signature(p) for p in profiles)))
-        if st.button("Compare all three profiles"):
+        if st.button("Compare my profiles" if personal else "Compare all three profiles"):
             results = request_or_error("POST", "/compare", "compare investor profiles", json=request)
             if results is not None:
                 st.session_state.comparison, st.session_state.comparison_key = results, compare_key

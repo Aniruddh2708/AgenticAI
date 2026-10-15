@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "implementation_sha": "f7a2358a071f230b813123127fc49ddde47829f0",
+  "branch": "codex/free-accounts-and-data-verification",
+  "observed_at": "2026-10-15T15:12:08.251570+05:30",
+  "verification_source": "https://github.com/Aniruddh2708/AgenticAI/commit/f7a2358a071f230b813123127fc49ddde47829f0/checks",
+  "workflow_run": {
+    "url": "https://github.com/Aniruddh2708/AgenticAI/actions/runs/38714395220",
+    "outcome": "success"
+  },
+  "jobs": [
+    {
+      "name": "Python 3.11 on ubuntu-latest",
+      "url": "https://github.com/Aniruddh2708/AgenticAI/actions/runs/38714395220/job/116353414707",
+      "outcome": "success"
+    },
+    {
+      "name": "Python 3.11 on windows-latest",
+      "url": "https://github.com/Aniruddh2708/AgenticAI/actions/runs/38714395220/job/116353415240",
+      "outcome": "success"
+    },
+    {
+      "name": "Account isolation and recovery on PostgreSQL 17",
+      "url": "https://github.com/Aniruddh2708/AgenticAI/actions/runs/38714395220/job/116353414618",
+      "outcome": "success"
+    }
+  ]
+}

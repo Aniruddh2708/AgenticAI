@@ -1,10 +1,11 @@
 # VibeFinance — verified blueprint and remaining work
 
 Updated: **15 October 2026 (Asia/Calcutta)**. Reviewed repository:
-`Aniruddh2708/AgenticAI`, branch `main`, starting application commit
-`2ce77198feb549d5e811d220d7c7c10e24c01283`.
-The implementation follow-through described below is delivered with this document;
-use its release commit and public revision marker for subsequent deployment checks.
+`Aniruddh2708/AgenticAI`. The initial audit used main at `2ce7719`;
+the latest zero-cost continuation starts at `459669b` and is delivered on review
+branch `codex/free-accounts-and-data-verification`. Render has not been switched
+to the account candidate. Use the release commit and public revision marker
+when a later deployment is deliberately performed.
 
 This is the current status and execution plan. The [original blueprint](BLUEPRINT.md)
 is preserved unchanged. The uploaded original and repository copy were compared
@@ -13,6 +14,35 @@ again and have the same SHA-256:
 Its embedded prompts were treated as specification context, not as new instructions.
 
 ## 1. Where the project stands
+
+### Latest zero-cost continuation
+
+Read [FREE_PRODUCTION_STATUS.md](FREE_PRODUCTION_STATUS.md) for the current
+completion matrix and exact activation steps. The user selected **zero spending**.
+A free Supabase Auth/PostgreSQL candidate now implements individual accounts,
+verified identity, request-scoped storage, forced row security, verified TLS,
+explicit owned-data migration and encrypted recovery. The original demo remains
+supported; live provider configuration and protected hosted acceptance are pending.
+The owner is creating the free project. No paid resource or production migration
+has been performed.
+
+Final local checks: **760 tests passed**, with 14 real-database cases run
+separately in the **121-passing PostgreSQL TLS suite**. Extended dashboard and
+both production/core-only demo container checks passed within their documented
+fixture scope. These results do not substitute for live provider acceptance.
+
+Two actual official NSE daily files were acquired after the allowlist applied.
+They confirm four stale vendor rows on 18 March 2025; three older price-basis
+factors remain unresolved. Full F1 remains unapproved because complete adjusted
+history, calendar/actions and authorized use have not been established. Actual
+terms restrict automated collection. Neither spent evaluation was repaired,
+rerun or relabelled fresh. The operational prospective runner is implemented,
+but no real registration, issuance or matured new outcome exists.
+
+See [current validation](VALIDATION.md), [authentication](PRODUCTION_AUTH.md),
+[storage](PRODUCTION_STORAGE.md), [deployment](PRODUCTION_DEPLOYMENT.md),
+[recovery](PRODUCTION_RECOVERY.md) and [cycle operations](PROSPECTIVE_OPERATIONS.md).
+Earlier dated implementation/release evidence below remains historical.
 
 The **offline hackathon MVP is substantially implemented**: five concurrent agents,
 cited explanations, personalized portfolio policies, failure handling, persistence,
@@ -49,8 +79,9 @@ Status meanings below:
 - **B2 closed:** both display modes expose evidence strength, full reasoning, agent
   evidence and the trace. The authenticated research fragment keeps Metrics selected.
 - **F1 tooling ready:** strict independent-source/calendar/action reconciliation
-  and exact-row fingerprints are implemented. Real independent data review remains
-  blocked; an official NSE request was denied and no exchange export was obtained.
+  and exact-row fingerprints are implemented. Two official raw samples now
+  provide partial independent evidence; full adjusted-history/calendar/action
+  and rights review remains incomplete. The earlier network denial is resolved.
 - **F2 workflow ready:** baseline-only registration, deterministic issuance,
   missed/missing cohort accounting and same-vintage corporate-action returns are
   implemented. No real study is registered and no new market score is available.
@@ -73,7 +104,7 @@ See [data verification](DATA_VERIFICATION.md),
 
 | Original phase | Status | What is done | Remaining qualification |
 |---|---|---|---|
-| 1. Contracts, config, profiles | Implemented/verified | Pydantic contracts; finite fields and validated behavior/weights; SQLite profile CRUD; three seed users | Shared demo access, not individual accounts or privacy isolation |
+| 1. Contracts, config, profiles | Implemented/verified for demo; personal-account candidate tested | Original SQLite/demo profiles plus opt-in verified accounts and isolated PostgreSQL | Live free Supabase configuration and hosted two-account acceptance pending |
 | 2. Simulated market and indicators | Implemented/verified | Seeded OHLCV for five tickers; RSI/MACD/moving averages, returns and volume features; explicit optional-live fallback | Synthetic scenarios are demonstrations; independently verified live data remains unestablished |
 | 3. Signal agents and parallel orchestration | Implemented/verified | Five typed agents; `asyncio.gather`; real execution-overlap regression; deduplicated news/transcript tone; derived strength and timing | Finite language rules; timed-out threads may continue |
 | 4. Corpus, retrieval and filings | Implemented for synthetic MVP; hybrid partly reported | 21 synthetic documents; BM25; optional MiniLM/Chroma; ticker/type/date filtering; exact source highlighting and claim checks | User reports real local hybrid success; authentic filings/news and independent cloud MiniLM reproduction remain absent |
@@ -209,15 +240,15 @@ Detailed evidence: [initial audit](FORECASTING_AUDIT.md),
 | ID / priority | Unresolved issue | Required action | Complete when |
 |---|---|---|---|
 | R1 / release sign-off | Public checker passes; protected hosted workflows remain unchecked | Run the supplied protected acceptance tool only with legitimate existing access; login automatically saves one session | Hosted analysis/report preserve safeguards and research-only/spent labels; no private password requested in chat |
-| F1 / before new confirmatory study | Verification tooling is ready; independently authorized evidence is missing | Apply saved NSE network additions, obtain authorized exports/calendar/actions, run reconciliation and genuine rights/universe review | Full-scope machine checks and independent review pass; no fabricated fills or same-lineage mirrors |
-| F2 / before new confirmatory study | Prospective workflow ready; both old periods spent; no real registration | Supply genuine passed F1 evidence/review, set a future start and externally witness the frozen registration | Registration precedes deterministic origins; complete cohorts and matured outcomes meet the declared study design |
+| F1 / before new confirmatory study | Two official raw samples confirm a vendor defect; full independent approval remains missing | Obtain authorized complete adjusted exports/calendar/actions, reconcile basis/vintage and complete genuine rights/universe review | Full-scope machine checks and independent review pass; no fabricated fills or same-lineage mirrors |
+| F2 / before new confirmatory study | Core ledger and idempotent operations runner ready; both old periods spent; no real registration | Supply genuine passed F1 evidence/review, set a future start and externally witness the frozen registration | Registration precedes deterministic origins; complete cohorts and matured outcomes meet the declared study design |
 | F3 / research | Too few independent regimes/origins and only five surviving stocks | Expand authorized point-in-time data with justified sample planning; preserve temporal dependence | Predeclared adequacy criteria and clustered uncertainty support the intended claim; more stock rows alone are insufficient |
 | F4 / research | Empirical future coverage/width trade-off remains unknown | Use the implemented complete-session/cohort/vintage rules and declared baseline intervals; further method work belongs in new development protocols | Adequate fresh same-row coverage/width/score evidence meets predeclared tolerances; no spent-period winner selection |
 | F5 / research | No demonstrated learned forecast advantage | Retain baselines; investigate richer signals only with point-in-time provenance and bounded candidate search | Replicated predeclared improvement over the best fair baseline; otherwise baseline remains the result |
 | F6 / separate effectiveness study | Five-agent action usefulness/profitability unvalidated | Acquire authentic historical documents; define strategy, timing, costs, slippage, revaluation and portfolio benchmarks | Prospective or defensibly fresh strategy validation supports a specific benefit claim; policy checks alone do not qualify |
 | B3 / demo delivery | Current visual backup ready; narrated rehearsal unverified | Rehearse the five-minute script twice using current UI and honest results | Timed narrated run-throughs confirmed; silent automation is not called rehearsal |
 | E1 / reliability | Hard thread termination and fresh macOS acceptance remain unverified; Linux/Windows CI now passes | Validate required remaining target platforms; add hard worker isolation if required | Relevant lifecycle/platform evidence passes; Linux/Windows tests and rendered checks already have a successful remote run |
-| P1 / production scope | Tested recovery tool exists; shared account and ephemeral storage remain | Configure private durable storage, encrypted off-service backups/retention and individual authorization against product requirements | Real recovery/security/isolation requirements verified; no silent plan or credential changes |
+| P1 / production scope | Free managed accounts, isolated PostgreSQL and encrypted recovery candidate passes local checks | Complete owner-created Supabase Free setup, safe legacy-state export, secure Render settings and actual hosted two-account/recovery acceptance | Real recovery/security/isolation requirements verified; no silent plan or credential changes |
 | P2 / production scope | Authentic document ingestion/live feed/licensing and regulatory readiness incomplete | Add authorized ingestion with publication dates and provenance; verify feeds and use rights; review intended product claims | Real-world inputs/rights and security/regulatory requirements match intended use |
 | O1 / optional | LLM narration and continuous notifications absent | Implement only if still desired after core verification | Narration cannot alter numeric decisions/citations; notification lifecycle and consent are defined |
 
@@ -257,7 +288,7 @@ There is no defensible promise that more complex models will improve these score
 Dates for fresh forecasting results depend on data rights, independently usable
 history and sufficient matured future outcomes; do not invent a completion date.
 
-## 7. Current release and validation record
+## 7. Earlier release and validation record
 
 - Terminal and Git access work. Checkout was clean on `main` at `2ce7719`; remote
   `main` was rechecked. Forecasting work is in `e0b67fd`; Render support
