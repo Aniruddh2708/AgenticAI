@@ -31,9 +31,22 @@ The development selection retains baselines and admission is false. No new marke
 outcome, genuine prospective registration, source permission, off-service hosted
 recovery, project creation or deployment is inferred from local test success.
 
-Container and final branch-delivery evidence will be recorded separately against
-the tested implementation revision. Original deployment Dockerfiles and Render
-configuration are unchanged.
+The [local container receipt](assets/container-development-v2.json) verifies
+image `sha256:4af8420cb2100b4a9914e90dcd29c6bc740cf5a8ecc2a412a3ddc682a45a6abd`, all **50 packaged Python files**, UID 10001,
+assigned port, temporary authentication gate, BM25, the packaged historical report,
+concentration priority and exact-session persistence after restart, against
+implementation `e09878900ee739ade9f18320feba5dd50a020ba1`. The checker rediscovered an
+ephemeral Docker host port after restart; two earlier harness attempts are preserved
+as failed/interrupted logs and were not application/storage failures. Owned containers
+and volumes were removed. Image not published; production/provider acceptance remains
+unperformed. Original deployment Dockerfiles and Render settings are unchanged.
+
+Reproduce this core-only container with the existing supported offline build after
+hash-verifying wheel downloads, then run `scripts/check_development_container.py
+--output .runtime/container-check-NEW.json`. The new checker refuses remote daemons
+and image pulls, uses a fresh gate credential only in process environment, verifies
+actual packaged hashes separately from the supplied revision marker, and removes only
+its own test resources. See [combined sanitized evidence](assets/development-v2-verification.json).
 
 ---
 

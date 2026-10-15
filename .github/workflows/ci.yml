@@ -2,7 +2,7 @@ name: Application checks
 
 on:
   push:
-    branches: [main, codex/free-accounts-and-data-verification]
+    branches: [main, codex/free-accounts-and-data-verification, codex/credible-forecast-development]
   pull_request:
 
 permissions:

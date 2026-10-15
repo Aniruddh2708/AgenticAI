@@ -1,0 +1,18 @@
+{
+  "kind": "local_candidate_container",
+  "created_at_utc": "2026-10-15T15:15:39.066964+00:00",
+  "source_revision": "e09878900ee739ade9f18320feba5dd50a020ba1",
+  "scope": "local core-only demo; not hosted/provider acceptance",
+  "image_id": "sha256:4af8420cb2100b4a9914e90dcd29c6bc740cf5a8ecc2a412a3ddc682a45a6abd",
+  "python_files_verified": 50,
+  "ok": true,
+  "checks": [
+    "assigned port, exact supplied revision, BM25 and storage health",
+    "HTML shell and protected API",
+    "packaged historical report, no fresh evaluation or model promotion",
+    "concentration priority despite missing evidence; saved session",
+    "UID 10001 and exact packaged Python source hashes",
+    "exact-session SQLite persistence across container restart"
+  ],
+  "hosted_acceptance": false
+}
