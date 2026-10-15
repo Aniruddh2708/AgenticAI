@@ -91,7 +91,10 @@ store/query with explicitly labelled fixture vectors passed. **Real MiniLM
 inference did not run**: the runtime blocks huggingface.co, and no local weights
 exist. The local-only check returned exit 2, real_model_verified false, and an
 explicit BM25 fallback. [Observed evidence](assets/retrieval-development-v2.json)
-records the distinction. Required Hugging Face domains were saved to the cloud
+records the distinction. The actual Chroma backend also passed [the new metadata
+filters and reopen checks](assets/retrieval-metadata-v2.json) using an explicitly
+substituted fixture encoder; this remains separate from neural semantics.
+Required Hugging Face domains were saved to the cloud
 configuration draft; a saved draft does not apply runtime access. Do not use
 randomly initialized weights, another revision or fixture vectors as a success.
 

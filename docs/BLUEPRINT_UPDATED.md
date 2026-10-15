@@ -1,3 +1,9 @@
+Latest delivery: [draft PR #3](https://github.com/Aniruddh2708/AgenticAI/pull/3).
+Corrective implementation `9d2bb0b` passed actual Linux, Windows and PostgreSQL CI;
+see [final evidence](assets/development-v2-final-verification.json). The initial
+Windows CRLF regression is fixed with the original assertion preserved. Remaining
+provider/data/neural/prospective limitations still apply.
+
 # Current continuation — 15 October 2026
 
 The latest terminal-verified main is `ed7a5f4602fa2b241847b366f91e2ff2229500eb`,

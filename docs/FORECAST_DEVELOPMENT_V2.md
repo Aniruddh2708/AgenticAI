@@ -208,7 +208,6 @@ From the existing checkout, with Python 3.11.17 and the saved environment setup:
 .venv/bin/python scripts/develop_forecast.py run --run-dir .runtime/forecast-development/reproduction-NEW
 .venv/bin/python -m pytest -q
 .venv/bin/python scripts/check_production_storage.py
-.venv/bin/python scripts/check_development_container.py --output .runtime/container-check-NEW.json
 .venv/bin/python scripts/benchmark_workloads.py --repeats 7 --output .runtime/performance-NEW.json
 VIBEFINANCE_EMBEDDINGS=0 .venv/bin/python -m vibefinance.demo
 .venv/bin/python scripts/smoke.py
