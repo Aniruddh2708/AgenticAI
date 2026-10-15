@@ -1,5 +1,10 @@
 # Deployment and demo delivery
 
+The user reports a working BM25 deployment at https://vibefinance.onrender.com.
+See [RENDER.md](RENDER.md) for updating that existing service and checking its
+deployed commit without its private demo password. Older container verification
+below remains historical evidence; it does not establish the current live release.
+
 The dashboard is a local, synthetic research demo. The source repository is not a
 hosted application. The project includes a container recipe; this does not create a
 public website or a hosting account.
@@ -82,8 +87,9 @@ the image has been built, start the existing image without a network rebuild:
 docker compose -f deploy/compose.yaml up -d --no-build
 ```
 
-No public provider was provisioned by this work. A public URL remains dependent on
-your selected service/account, hosting credentials and deployment authorization.
+The earlier container pass did not provision a public provider. The later
+user-reported Render service is updated through its existing account; current
+deployment status requires independent verification as described above.
 
 ## Optional Yahoo integration check
 

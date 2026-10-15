@@ -2,10 +2,9 @@
 
 import json
 import math
-import os
-from pathlib import Path
 
 from vibefinance.config import STATE_DIR
+from vibefinance.deployment import forecast_report_path
 
 
 _PUBLIC_FIELDS = (
@@ -114,7 +113,7 @@ def load_forecast_report():
     endpoint only reads an artifact: it cannot train a model, fetch market data,
     change portfolio policies, or promote a research model into recommendations.
     """
-    path = Path(os.getenv("VIBEFINANCE_FORECAST_REPORT", str(STATE_DIR / "forecast/report.json")))
+    path = forecast_report_path(STATE_DIR)
     try:
         if path.stat().st_size > _MAX_REPORT_BYTES:
             return _unavailable("invalid_report")

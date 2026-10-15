@@ -232,6 +232,11 @@ independent price and complete exchange-calendar verification remain limitations
 
 ## Deployment, presentation and handoff
 
+For the existing Render service, see [RENDER.md](docs/RENDER.md). Render startup
+uses its assigned port, serves the committed corrected research report, and
+shows the deployed commit before demo login. Existing explicit configuration and
+the shared password are preserved. No research training runs during deployment.
+
 See [DEPLOYMENT.md](docs/DEPLOYMENT.md) for the container, persistent volume, shared
 access gate and platform requirements. A Docker image was built through a verified
 offline wheel path in a previous cloud run because Docker build networking failed.

@@ -14,6 +14,7 @@ import streamlit as st
 
 from vibefinance.config import DISCLAIMER, TICKERS
 from vibefinance.data.market_sim import generate_market
+from vibefinance.deployment import release_revision
 
 API = os.getenv("VIBEFINANCE_API_URL", "http://127.0.0.1:8000").rstrip("/")
 
@@ -364,6 +365,8 @@ def render_evaluation(beginner):
 def main():
     st.set_page_config(page_title="VibeFinance", page_icon="📈", layout="wide")
     st.title("VibeFinance")
+    if revision := release_revision():
+        st.caption(f"Deployed revision: {revision[:12]}")
     st.caption("Explainable market intelligence · Indian retail investor demo")
     st.info("Default demo uses seeded simulated prices and synthetic company documents. Optional live prices do not make the fabricated filings real. No LLM or API key is required for the default demo.")
     st.caption(DISCLAIMER)

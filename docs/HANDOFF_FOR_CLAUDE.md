@@ -1,5 +1,36 @@
 # VibeFinance continuation handoff — 15 October 2026
 
+## Latest Render release preparation
+
+The user subsequently authorized committing, pushing and updating the existing
+Render service. Forecasting work was committed and pushed as `e0b67fd`; the
+earlier instruction to leave Render unchanged pending review is historical.
+See [RENDER.md](RENDER.md) for the existing-service release procedure.
+
+The release changes honor Render's assigned `PORT`, retain explicit overrides,
+and load the tracked corrected research summary on Render without workstation
+`.runtime` files. Native builds pin Python 3.11.17; both Docker recipes retain
+the pinned base and hash-verified requirements. A public commit marker appears
+before the demo login gate and in startup logs. The API stays private by default;
+the shared access token, BM25 settings and portfolio safeguards are preserved.
+No trained forecasting model is promoted and no experiment is rerun.
+
+Verification: **305 tests passed**, with one existing upstream warning. An actual
+isolated native launch with Render-style settings passed assigned-port readiness,
+revision reporting, API authentication, the bundled 80-row corrected report and
+five-agent analysis. An actual non-root Render-style Docker container also passed
+port/health, authentication, BM25, rendered audit, safeguards and persistence
+across restart checks. Original evidence hashes remain unchanged. See VALIDATION.md
+for details and the limits of live deployment evidence.
+
+Live deployment is not verified: this task has no `RENDER_API_KEY`, and its proxy
+denied Render/API requests with HTTP 403. The cloud environment draft now lists
+the required domains and secure API-key binding, but still needs user review and
+publication before it applies. Do not request the private demo password. Use
+the existing service's Manual Deploy action or securely configured API access;
+verify the exact deployed SHA rather than assuming a Git push or restart deployed
+new code. Preserve the existing service, plan, access token and storage setup.
+
 ## Latest uncertainty investigation
 
 Read [FORECASTING_FOLLOWUP.md](FORECASTING_FOLLOWUP.md) first. Original 2019–2020
@@ -52,13 +83,13 @@ matching `code_snapshot/`, start ledger, and corrected
 `docs/assets/forecast-followup-summary.json`. `scripts/forecast_followup.py`
 prepares then tests a fixed experiment; existing runs refuse another fresh score.
 `scripts/forecast_followup_exploratory.py` derives joint corrections without refit.
-For local review only, set `VIBEFINANCE_FORECAST_REPORT` to the corrected file;
-default app configuration and Render have not changed. The API/UI label reported
+For local review, set `VIBEFINANCE_FORECAST_REPORT` to the corrected file;
+Render now defaults to its tracked derived summary. The API/UI label reported
 periods spent and expose coverage, width, interval score and denominator caveats.
 
-Safeguards, simulations and lockfiles remain unchanged. All code remains local
-and uncommitted. No deployment is authorized until the final changes and
-limitations are reviewed; leave Render and its private password unchanged.
+Safeguards, simulations and lockfiles remain unchanged. This forecasting work
+was committed and pushed as `e0b67fd`. The user's later Render update request
+authorizes releasing the reviewed changes; preserve its private password.
 See VALIDATION.md for the latest complete and functional check counts.
 
 Latest actual verification: 296 tests passed, API smoke and both dashboard checks
@@ -81,8 +112,8 @@ the user's current request controls scope.
 Terminal and Git access worked in this cloud task. Starting HEAD was
 `161d4f42760919c1732102b98fe9da4010d0f102`, matching remote main; the checkout was
 clean. The local `work` branch was switched to tracking `main`, without reset or
-worktree. Forecasting changes are local and uncommitted; do not automatically
-commit, push or deploy. Verify HEAD/branch/status again and preserve user edits.
+worktree. Forecasting changes were subsequently committed and pushed at the
+user's request. Verify HEAD/branch/status again and preserve user edits.
 If terminal access fails, report that before claiming inspection or modification.
 
 The startup commit had added root-level duplicate implementations, while the
@@ -209,5 +240,6 @@ A price holdout or constraint replay does not validate it.
 Still incomplete: authentic filings/licensed news, optional LLM narration, calibrated
 personalized effectiveness, allocation/correlation optimization, individual accounts,
 privacy isolation, continuous monitoring, hard worker termination and fresh published
-cloud restoration. Container/native platform checks from the older pass were not
-repeated for these changes. See VALIDATION.md for actual current test evidence.
+cloud restoration. Latest native Render-style and container checks are recorded
+above; they do not establish live deployment, MiniLM or macOS success.
+See VALIDATION.md for actual current test evidence.

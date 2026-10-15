@@ -1,4 +1,36 @@
-# Current follow-up validation — 15 October 2026
+# Current Render release validation — 15 October 2026
+
+The user authorized updating the existing Render service after the forecasting
+work was committed and pushed as `e0b67fd`. This section records release
+preparation; it does not claim that the public service runs the new commit.
+
+| Latest release check | Actual result |
+|---|---|
+| Terminal/repository | Working at `/workspace/AgenticAI`, main; clean starting HEAD `e0b67fd` matched origin/main |
+| Complete suite `make test` | **305 passed**, one existing Starlette/AnyIO deprecation warning |
+| Render startup regressions | Assigned `PORT`, public dashboard binding, explicit overrides, invalid-port rejection, pre-login revision marker and valid health revision passed |
+| Packaged forecast report | Render loads the tracked corrected summary; missing explicit overrides stay unavailable; no automatic training/download or model promotion |
+| Actual native Render-style launch | Assigned port 18531, isolated state, API authentication, release marker, corrected 80-row report and five-agent analysis passed |
+| Standard Docker build | Pinned base fetched, but package installation blocked by this workspace's build-container DNS; no TLS/hash verification bypassed |
+| Verified offline-wheel Docker build | Succeeded with all 52 hash-pinned core dependencies and the pinned base |
+| Actual Render-style container | UID 10001, assigned `PORT=10000`/Docker healthcheck, loopback API authentication, 21 BM25 chunks, corrected report, five agents and concentration-first REDUCE with missing filings passed |
+| Container browser/restart | Chromium login gate, public test-injected revision, rendered audit with spent/exploratory labels and exact saved session across restart passed; owned containers/volumes removed |
+| Original forecasting evidence | All five original artifact/summary hashes unchanged; spent evaluations were not rerun |
+| Live Render control/verification | **Blocked/unverified**: no `RENDER_API_KEY`; Render/API requests denied by cloud proxy HTTP 403 |
+
+The built image is `sha256:581759f7f93cf6a5e1612db7d72321a1f80c6a7ea3eead3360d6dfb6a27d6679`;
+later release documentation edits do not change runtime code or forecast artifacts.
+Local machine-readable evidence is `.runtime/render-setup/docker-verification.json`.
+Only owned isolated local services/state were used. The existing Render service's
+password, plan and storage were not changed. A push may trigger its existing
+auto-deploy policy; exact live revision still needs Render deployment evidence
+and the public pre-login revision marker. See [RENDER.md](RENDER.md).
+
+The cloud environment draft now lists `api.render.com`,
+`vibefinance.onrender.com` and a secure `RENDER_API_KEY` binding. It has been saved
+for review, not published/applied. No private demo password was requested.
+
+# Follow-up research validation — 15 October 2026
 
 The original 2019–2020 and once-only 2024–2025 forecast reports are preserved.
 Both periods are spent. The corrected joint-denominator view is explicitly
@@ -17,7 +49,7 @@ exploratory, derived from identical saved predictions, radii and rows.
 | Running API smoke | Passed in isolated state on owned alternate ports; safeguards, claims, source matching, persistence and demo scenarios intact |
 | Dashboard scripts | `check_dashboard.py` and `check_dashboard_extended.py` passed |
 | Actual exploratory report via API/dashboard | Loaded 80 marginal rows, 10 complete origins, 12 partial exclusions; correction/spent status visible; no model promotion |
-| Deployment/dependencies | Render, simulation, synthesis safeguards and lockfiles unchanged; no push or deployment |
+| Deployment/dependencies at that research stage | Render, simulation, synthesis safeguards and lockfiles unchanged; later commit/push and release preparation recorded above |
 
 The primary interval has approximate shared-quarter 95% coverage interval
 84.70–98.46%. Its 27.36 pp full width and 34.15 pp interval score exceed the

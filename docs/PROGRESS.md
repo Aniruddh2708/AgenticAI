@@ -13,6 +13,13 @@ fixes unsupported quantiles and joint denominators, and records 91.25% marginal
 coverage on a separately frozen 2024–2025 period. Wider intervals and uncertain
 score comparisons prevent a stronger improvement claim; both periods are spent.
 
+The user has now requested a release to the existing Render service. Startup
+honors Render's assigned port, the corrected research summary ships with the
+release, and a pre-login commit marker identifies the running revision. Native
+Render-style startup and 305 tests passed; see [RENDER.md](RENDER.md) and current
+[validation evidence](VALIDATION.md). Live deployment remains unverified because
+Render API credentials and working network access are unavailable in this task.
+
 | Phase / requirement | Status | Evidence / limit |
 |---|---|---|
 | Contracts, profiles, configuration | Implemented | Compatible original fields; additive claims, decision basis and policy identifiers |

@@ -16,6 +16,7 @@ from vibefinance.agents.base import UserProfile
 from vibefinance.config import ROOT, TICKERS
 from vibefinance.evaluation.backtest import backtest
 from vibefinance.evaluation.forecast_report import load_forecast_report
+from vibefinance.deployment import release_revision
 from vibefinance.orchestrator import analyze, compare_users, prepare_retriever
 from vibefinance.profiles.store import Store
 
@@ -122,7 +123,8 @@ def create_app(db_path=None):
         return {"status": "degraded" if app.state.storage_error or app.state.retriever.warning else "ok",
                 "profiles": len(current_profiles), "storage_available": app.state.storage_error is None,
                 "corpus_chunks": len(app.state.retriever.chunks), "retrieval_mode": app.state.retriever.mode,
-                "default_data_mode": "simulated", "authentication_enabled": bool(os.getenv("VIBEFINANCE_API_TOKEN"))}
+                "default_data_mode": "simulated", "authentication_enabled": bool(os.getenv("VIBEFINANCE_API_TOKEN")),
+                "revision": release_revision()}
 
     @app.get("/profiles")
     def profiles():

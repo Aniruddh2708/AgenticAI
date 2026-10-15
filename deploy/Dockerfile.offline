@@ -8,8 +8,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     VIBEFINANCE_STATE_DIR=/data \
     VIBEFINANCE_API_HOST=127.0.0.1 \
     VIBEFINANCE_API_PORT=8000 \
-    VIBEFINANCE_DASHBOARD_HOST=0.0.0.0 \
-    VIBEFINANCE_DASHBOARD_PORT=8501
+    VIBEFINANCE_DASHBOARD_HOST=0.0.0.0
 
 WORKDIR /app
 COPY requirements.lock ./requirements.lock
@@ -24,5 +23,5 @@ COPY --chown=vibefinance:vibefinance docs ./docs
 USER vibefinance
 EXPOSE 8501
 HEALTHCHECK --interval=30s --timeout=5s --start-period=40s --retries=3 \
-    CMD python -c "import os,urllib.request; urllib.request.urlopen('http://127.0.0.1:'+os.getenv('VIBEFINANCE_DASHBOARD_PORT','8501')+'/_stcore/health',timeout=3)"
+    CMD python -c "import urllib.request; from vibefinance.deployment import dashboard_binding; urllib.request.urlopen('http://127.0.0.1:'+str(dashboard_binding()[1])+'/_stcore/health',timeout=3)"
 CMD ["python", "-m", "vibefinance.demo"]

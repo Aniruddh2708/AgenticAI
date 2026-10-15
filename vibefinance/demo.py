@@ -8,6 +8,8 @@ from pathlib import Path
 
 import httpx
 
+from vibefinance.deployment import dashboard_binding, release_revision
+
 
 SERVICE_READINESS_TIMEOUT_SECONDS = 120.0
 
@@ -18,12 +20,13 @@ def main():
     stopping = False
     api_host = os.getenv("VIBEFINANCE_API_HOST", "127.0.0.1")
     api_port = int(os.getenv("VIBEFINANCE_API_PORT", "8000"))
-    dashboard_host = os.getenv("VIBEFINANCE_DASHBOARD_HOST", "127.0.0.1")
-    dashboard_port = int(os.getenv("VIBEFINANCE_DASHBOARD_PORT", "8501"))
+    dashboard_host, dashboard_port = dashboard_binding()
     if any(host not in {"127.0.0.1", "localhost", "::1"} for host in (api_host, dashboard_host)) and not os.getenv("VIBEFINANCE_API_TOKEN"):
         raise RuntimeError("External service binding requires VIBEFINANCE_API_TOKEN for shared-demo access.")
     api_url = f"http://127.0.0.1:{api_port}"
     dashboard_url = f"http://127.0.0.1:{dashboard_port}"
+    if revision := release_revision():
+        print(f"Starting VibeFinance revision {revision}", flush=True)
 
     def stop(*_):
         nonlocal stopping
