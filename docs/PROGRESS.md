@@ -1,13 +1,19 @@
 # Blueprint compliance — updated 15 October 2026
 
+Current zero-cost continuation: [FREE_PRODUCTION_STATUS.md](FREE_PRODUCTION_STATUS.md).
+Free account/storage/recovery implementation and actual two-date NSE source review
+are complete within their tested scope; real free-project activation, full F1
+approval, new matured outcomes and protected hosted acceptance remain pending.
+The earlier implementation and release evidence below is dated history.
+
 Read the original [BLUEPRINT.md](BLUEPRINT.md) alongside actual tests and
 [VALIDATION.md](VALIDATION.md). A phase being implemented does not certify every
 stretch requirement or production capability.
 The [updated blueprint](BLUEPRINT_UPDATED.md) is the detailed completion audit,
-issue register and ordered plan, reviewed against application commit `2ce7719`.
-The implementation follow-through adds transcript tone, visible explanations,
-reconciliation/prospective tools and safe recovery; these are described below.
-They do not establish new forecasting performance or independent source approval.
+issue register and ordered plan. The initial audit used `2ce7719`; the latest
+zero-cost work started at `459669b` and adds managed accounts, isolated storage,
+encrypted recovery, two-date source checks and prospective operations. These
+changes do not establish new forecasting performance or full source approval.
 
 The current forecasting audit and complete implemented research plan are in
 [FORECASTING_AUDIT.md](FORECASTING_AUDIT.md). The trained return candidate did not
@@ -18,7 +24,7 @@ fixes unsupported quantiles and joint denominators, and records 91.25% marginal
 coverage on a separately frozen 2024–2025 period. Wider intervals and uncertain
 score comparisons prevent a stronger improvement claim; both periods are spent.
 
-The user has now requested a release to the existing Render service. Startup
+Earlier release history: the user requested a release to the existing Render service. Startup
 honors Render's assigned port, the corrected research summary ships with the
 release, and a pre-login commit marker identifies the running revision. Native
 Render-style startup and the earlier 305-test suite passed; the follow-through
@@ -57,9 +63,9 @@ are unchanged. See the current validation record for exact evidence and scope.
 | Measured sequential/parallel benchmark | Implemented | Identical warmed inputs/output verification; no artificial delays |
 | Dashboard | Implemented and exercised | Evidence strength and expandable reasoning/evidence/trace in both modes; profiles, cache refresh, failures and source highlighting |
 | Transcript sentiment | Implemented and tested | Dated transcript/news inputs, complete exact quotations, deduplication, partial-source/outage disclosure; finite lexicon only |
-| Independent-data verification tooling | Implemented and tested; real verification blocked | Source/reference lineage, adjustment vintage, calendar/actions, exact rows and no repair; official NSE request denied, no independent data obtained |
+| Independent-data verification | Tooling tested; two real raw samples reviewed; full approval incomplete | Official NSE confirms four stale vendor rows; complete adjusted history/calendar/actions/rights remain missing |
 | Prospective observation workflow | Implemented and tested; not registered | Frozen baselines/schedule, missed/missing cohorts, same-vintage returns, causal records and sparse-support withholding; requires genuine passed data review |
-| SQLite recovery | Implemented and locally exercised | Online WAL-consistent backup, atomic no-overwrite files, exact-state restore; no durable hosted storage configured |
+| SQLite and PostgreSQL recovery | Implemented and locally exercised | Online WAL-consistent demo backups; encrypted account-data backups and empty-application PostgreSQL restore; live off-service retention/recovery remains pending |
 | CI | Actual Linux/Windows run passed with pinned actions | Application tests and extended rendered checks passed at `19ed8e5`; exact Windows test count not inferred |
 | Watchlist/history/decisions | Implemented | Profile-dependent alerts; no broker execution or holdings mutation |
 | Presentation | Implemented | HTML deck and generated presentation PDF; no guaranteed judging outcome |
@@ -70,7 +76,8 @@ are unchanged. See the current validation record for exact evidence and scope.
 | Live Yahoo success | Blocked/unverified | Observed fc.yahoo.com HTTP403; simulation fallback verified |
 | Optional LLM narration | Not implemented | Deterministic explanation remains the offline behavior |
 | Real filings, licensed news, real-history strategy validation | Not implemented | Fictional documents are explicitly disclosed |
-| Individual accounts/privacy isolation/regulatory approval | Not implemented | Shared demo token only; production requirements remain |
+| Individual accounts and private storage | Implemented and locally tested; not activated | Supabase-managed identity, forced PostgreSQL row security, isolated routes/caches and verified TLS; real free-project setup and two-account hosted acceptance pending |
+| Regulatory approval | Not established | Application tests and managed accounts do not establish suitability or regulatory approval |
 
 ## Confirmed earlier problems resolved
 
@@ -101,7 +108,9 @@ MAE did not beat the mean baseline and 90% intervals covered only 78.75%.
 User-reported real local neural retrieval and BM25 Render hosting supersede the
 older global blocker claims. This cloud task did not reproduce MiniLM or access
 the private demo. Live Yahoo access remains unverified here; the historical
-archive is a documented third-party snapshot, licensed for noncommercial research.
+archive is a documented third-party snapshot. Complete independent basis,
+calendar/actions and source-rights approval remain missing despite two official
+raw-date samples; see the current source review before making licensing claims.
 Native macOS execution and restoration into a fresh published cloud task are unverified.
 
 The original implementation and this corrective pass belong to the same authorized

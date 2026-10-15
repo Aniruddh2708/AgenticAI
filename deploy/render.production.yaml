@@ -1,0 +1,26 @@
+# REVIEWABLE ZERO-COST CANDIDATE ONLY. Nothing applies this file automatically.
+# Render free web service + separately operator-created Supabase free project.
+# No database stanza, persistent disk, paid plan or paid resource creation.
+# Confirm both providers' current free limits before manually creating anything.
+services:
+  - type: web
+    name: vibefinance-production-candidate
+    runtime: docker
+    plan: free
+    dockerfilePath: ./deploy/Dockerfile.production
+    dockerContext: .
+    autoDeploy: false
+    healthCheckPath: /_stcore/health
+    envVars:
+      - key: VIBEFINANCE_AUTH_MODE
+        value: supabase
+      - key: VIBEFINANCE_EMBEDDINGS
+        value: "0"
+      - key: VIBEFINANCE_SUPABASE_URL
+        sync: false
+      - key: VIBEFINANCE_SUPABASE_PUBLISHABLE_KEY
+        sync: false
+      - key: VIBEFINANCE_DATABASE_URL
+        sync: false
+      - key: VIBEFINANCE_PUBLIC_URL
+        sync: false

@@ -1,11 +1,18 @@
 # Independent historical-data reconciliation
 
-The F1 verification tool is implemented. **The historical data itself is not yet
-independently validated.** A normal TLS/proxy request to the official NSE archive
-for the already-spent date 31 December 2020 failed with `ProxyError: 403 Forbidden`
-on 15 October 2026. No exchange data was obtained, no credentials were requested,
-and no uninspected evaluation outcomes were downloaded. Opening network access
-would permit a request; it would not establish source rights or accuracy.
+The F1 verification tool is implemented. **Complete historical data is not yet
+independently approved.** The earlier proxy denial is resolved: normal verified
+HTTPS requests acquired official NSE daily files for 31 December 2020 and
+18 March 2025. The latter independently confirms four zero-volume, flat-price
+vendor placeholders despite actual trading. The older file also exposes
+unreconciled corporate-action basis differences for three securities.
+
+See [actual acquisition findings](DATA_ACQUISITION.md) and the
+[source evidence record](assets/independent-source-review.json). Two raw daily
+files are partial source evidence, not a full adjusted-history/calendar/actions
+approval. Official terms restrict automated collection; no production-feed grant
+is inferred. Automated fetching now requires scoped permission-review evidence
+before HTTP. No new evaluation outcomes were acquired or frozen scores rerun.
 
 The existing pinned Yahoo/yfinance archive remains research-only. A second
 GitHub/Yahoo mirror does not provide independent provider evidence. Its license
@@ -250,6 +257,6 @@ The prospective workflow can bind its supplied sessions to these exact hashes.
 
 An operator must separately approve source authenticity, rights, calendar/action
 coverage and the universe; the reconciliation tool does not emit a
-`reviewed_approved` attestation. Current absence of real independent evidence keeps
-that gate closed. Unit fixtures test the machinery only and are never described
+`reviewed_approved` attestation. Incomplete independently reviewed full-scope evidence keeps
+that gate closed; the two actual raw samples do not satisfy it. Unit fixtures test the machinery only and are never described
 as verified market observations or new forecasting evidence.

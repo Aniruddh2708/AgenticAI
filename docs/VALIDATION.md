@@ -1,4 +1,56 @@
-# Remaining-priorities implementation — 15 October 2026
+# Current free-account candidate — 15 October 2026
+
+The latest work starts at `459669b` and is delivered on
+`codex/free-accounts-and-data-verification` for review, preserving the existing
+Render demo. It implements the zero-budget Supabase/PostgreSQL route; no real
+project, paid resource, production migration or live account acceptance is claimed.
+See [FREE_PRODUCTION_STATUS.md](FREE_PRODUCTION_STATUS.md) for activation steps
+and [the machine-readable evidence](assets/free-production-verification.json).
+
+| Current check | Actual result and scope |
+|---|---|
+| Final `make test` | **760 passed, 14 skipped**, 38.70 seconds, Linux Python 3.11; Starlette/AnyIO and optional Authlib deprecation warnings |
+| Real PostgreSQL checks | **121 passed**, 7.82 seconds, disposable PostgreSQL 17 with TLS `verify-full`; includes all 14 normal-suite database skips |
+| Isolation and guards | Genuine asymmetric signed JWT fixtures; two accounts sharing IDs cannot cross profile/session/decision/source boundaries; forced row security, public-role denial, restart persistence, no SQLite fallback and concentration-first REDUCE passed |
+| Account UI | Real Streamlit AppTest checks sign-in/confirmation, refresh/expiry, logout, account changes, cache clearing and empty-account profile creation against explicit local fixtures; not live provider acceptance |
+| Operator commands | Bootstrap, migration and encrypted-backup subprocesses work with isolated import paths from outside the checkout; help/invalid/missing configuration fail safely before database access |
+| Recovery | Actual TLS PostgreSQL all-account encrypted backup and empty-application restore preserve provider schemas, table ownership, sequences and restricted runtime writes; no live hosted recovery drill |
+| Extended dashboard | `VIBEFINANCE_AUTH_MODE=demo VIBEFINANCE_EMBEDDINGS=0 .venv/bin/python scripts/check_dashboard_extended.py` passed |
+| Production container | Non-root UID 10001, private API, BM25 21 chunks, actual PostgreSQL TLS, wrong-CA rejection, restart durability and browser account-login gate passed on owned local fixtures; no real provider credential submitted |
+| Final production image | Exact parity for all **48 Python files and three locks**; all three packaged operator helps pass from `/tmp` with `PYTHONPATH` removed |
+| Original demo image | All **52 core dependencies**, optional auth/database modules absent, imports/startup/private API/browser gate/three profiles/five agents/SQLite persistence and portfolio safeguard passed |
+| Dependency check | Separately hash-locked optional install and `uv pip check` passed for 60 installed packages; original core/live/RAG locks unchanged |
+| Independent-source evidence | Two real official NSE files reviewed; four stale vendor rows on 18 March 2025 confirmed. Three older corporate-action basis differences remain unresolved. Full F1 is unapproved |
+| Prospective operations | Intent-before-write, partial recovery, idempotency, witnessed-registration and complete-cohort readiness checked on fixtures; no genuine registration, issuance or new market outcome |
+| Protected hosted checker | 23 mode/credential/empty-account/sanitization tests passed; real Supabase/Render protected acceptance pending actual secure account settings |
+| Manual backup workflow | Nine offline success/failure guard checks passed; manual-only, authenticated ciphertext, 10 MiB cap, one-day artifact. Not dispatched; quota review and live recovery pending |
+| Research preservation | Original blueprint, five frozen artifact hashes, corrected follow-up summary, source/simulations/seeds and portfolio/forecasting modules unchanged; no spent experiment rerun |
+| New revision CI | Workflow now checks this review branch on Linux/Windows plus real PostgreSQL. Actual remote results are recorded separately after push; earlier green runs are historical |
+
+Final production image:
+`sha256:a1ec5bbc4b4018f74bac4b660e510117642f6dc0e349fc17b60918bcb4dbd7b1`.
+The real TLS/browser/restart run used
+`sha256:40b4e67285aa75133e06ed7ab2777a0870158d8da6b74225a2257b44997e364e`;
+only three administrative script imports/parser changed afterward. Web modules
+and dependencies are byte-identical; final packaging and isolated operator
+checks cover those script changes. The original core-only demo image is
+`sha256:cb3b13b97efda392fad7092f87fa472eeaa72c11d45902b4fc9ef9d74b60d92d`.
+Images were not published. All owned test containers/networks were removed.
+
+Normal HTTPS/proxy/CA trust was retained for source requests. Actual official
+copyright/terms review did not establish full automated-pipeline rights;
+further requests stopped and acquisition now requires scoped permission evidence.
+Two daily raw files do not validate adjusted multiyear history, calendars,
+corporate actions or the selected universe. **Predictive advantage is unproven.**
+
+The cloud install/start instructions were saved as a configuration draft,
+including optional hashed packages and these limitations. Saving does not apply
+or publish the configuration; review/save/publish in environment settings is
+required for future-task activation. No domain or secret for an unknown Supabase
+project was invented. Actual free-project setup, secure credentials, confirmed
+accounts, two-account hosted acceptance and off-service recovery remain open.
+
+# Earlier remaining-priorities implementation — 15 October 2026
 
 The implementation started at `2ce7719` on main, preserving the previous
 uncommitted documentation. The original blueprint, simulations, dependency

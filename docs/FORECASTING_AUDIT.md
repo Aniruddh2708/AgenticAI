@@ -1,5 +1,14 @@
 # Forecasting audit and implementation — 14 October 2026
 
+**Latest independent-source evidence, 15 October:** two official NSE spent-date
+files now confirm four vendor stale placeholders on 18 March 2025. Three
+securities still have unresolved corporate-action price-basis differences on
+31 December 2020. This is partial source-quality evidence, not full F1 approval.
+No frozen inputs or scores were changed. See
+[the source review](assets/independent-source-review.json) and
+[current delivery status](FREE_PRODUCTION_STATUS.md) for remaining data,
+registration, live account and protected hosted checks.
+
 **Follow-up, 15 October:** see [FORECASTING_FOLLOWUP.md](FORECASTING_FOLLOWUP.md)
 for the prior-selection diagnosis, uncertainty fixes, once-only 2024–2025
 evaluation and labelled exploratory joint-coverage correction. Both evaluation

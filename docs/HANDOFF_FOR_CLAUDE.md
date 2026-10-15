@@ -1,6 +1,45 @@
 # VibeFinance continuation handoff — 15 October 2026
 
-## Latest implementation follow-through
+## Latest zero-cost accounts, data review and prospective operations
+
+Continue from [FREE_PRODUCTION_STATUS.md](FREE_PRODUCTION_STATUS.md). The user
+requires zero spending and is creating a free Supabase project; no project URL,
+real account credential or production database configuration has been supplied.
+The candidate targets the existing free Render service, not a paid database or
+disk. Keep the working shared demo and its private password intact until the
+free candidate, state export and provider settings are ready.
+
+Implemented opt-in Supabase managed sign-in with ES256/RS256 verification,
+server-only sessions, bounded refresh and cache clearing across accounts. The API
+binds every profile/session/history/decision/source operation to a verified
+issuer/subject account; production never falls back to shared demo profiles or
+SQLite. PostgreSQL adds forced row security, ownership foreign keys, restricted
+role bootstrap and verified TLS. Encrypted backup/empty-application restore
+preserves provider schemas and app ownership; provider Auth is not in the backup.
+Original dependency locks, simulations, profiles and frozen research are intact.
+
+The runtime NSE policy now works. Official raw files for 2020-12-31 and 2025-03-18
+were actually acquired. Four stale Yahoo rows on the latter date are independently
+confirmed, and three older price-basis differences remain unresolved. Read
+[DATA_ACQUISITION.md](DATA_ACQUISITION.md) and
+[the sanitized evidence](assets/independent-source-review.json). Full adjusted
+history, independent calendar/actions and genuine rights/universe review still
+block F1. Official terms restrict automated collection; no further requests were
+made after review. Fetching requires a scoped permission artifact before HTTP.
+
+The new `scripts/run_prospective_cycle.py` adds readiness, exact input snapshots,
+pre-write intents, partial-progress recovery and idempotent operations. No real
+study is registered and no new market outcome/score exists. Do not backdate or
+invent the 30 verified future sessions; preserve both spent evaluations.
+
+Current tests, image evidence and their limits are in [VALIDATION.md](VALIDATION.md).
+The protected checker supports `--login-kind supabase`, secure credential
+variable names and explicit acknowledgement of an analysis-session write. It
+refuses an empty account; it never auto-creates profiles. Live acceptance is still
+pending legitimate test-account access. Read the free activation checklist and
+current provider limits before changing the existing service.
+
+## Earlier implementation follow-through
 
 The user requested work on the remaining priorities. Starting main was
 `2ce7719`; the prior uncommitted blueprint/docs were preserved. B1/B2 are now

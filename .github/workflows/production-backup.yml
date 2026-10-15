@@ -1,0 +1,99 @@
+name: Manual encrypted application backup
+
+on:
+  workflow_dispatch:
+    inputs:
+      zero_cost_and_secrets_reviewed:
+        description: I reviewed this revision, the private backup secrets and current GitHub free quotas; I will download the encrypted artifact within one day.
+        required: true
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production-application-backup
+  cancel-in-progress: false
+
+jobs:
+  backup:
+    if: ${{ inputs.zero_cost_and_secrets_reviewed == true }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PGSSLROOTCERT: /etc/ssl/certs/ca-certificates.crt
+      VIBEFINANCE_EMBEDDINGS: "0"
+    steps:
+      - name: Check out the reviewed source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Select Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.11"
+      - name: Install hash-locked application and recovery packages
+        run: python -m pip install --require-hashes -r requirements.lock -r requirements-auth.lock -r requirements-production.lock
+      - name: Encrypt and authenticate the application snapshot
+        env:
+          VIBEFINANCE_BACKUP_DATABASE_URL: ${{ secrets.VIBEFINANCE_BACKUP_DATABASE_URL }}
+          VIBEFINANCE_BACKUP_KEY: ${{ secrets.VIBEFINANCE_BACKUP_KEY }}
+        shell: python
+        run: |
+          import os
+          from pathlib import Path
+          import stat
+          import subprocess
+          import sys
+
+          required = ("VIBEFINANCE_BACKUP_DATABASE_URL", "VIBEFINANCE_BACKUP_KEY")
+          if any(not os.environ.get(name) for name in required):
+              raise SystemExit("Backup secrets are not configured; no database connection or upload was attempted.")
+
+          os.umask(0o077)
+          directory = Path(os.environ["RUNNER_TEMP"]) / "vf-production-backup"
+          destination = directory / "backup.vfenc"
+          try:
+              directory.mkdir(mode=0o700, exist_ok=False)
+              command = [sys.executable, "scripts/backup_production.py"]
+              backup = subprocess.run(command + [
+                  "backup", "--database-url-env", "VIBEFINANCE_BACKUP_DATABASE_URL",
+                  "--key-env", "VIBEFINANCE_BACKUP_KEY", "--destination", str(destination),
+              ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=False)
+              if backup.returncode != 0:
+                  raise ValueError
+              metadata = destination.lstat()
+              if (not stat.S_ISREG(metadata.st_mode)
+                      or not 0 < metadata.st_size <= 10 * 1024 * 1024
+                      or stat.S_IMODE(metadata.st_mode) != 0o600):
+                  raise ValueError
+              verified = subprocess.run(command + [
+                  "verify", "--key-env", "VIBEFINANCE_BACKUP_KEY", "--source", str(destination),
+              ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=False)
+              if verified.returncode != 0:
+                  raise ValueError
+          except Exception:
+              destination.unlink(missing_ok=True)
+              raise SystemExit("Encrypted backup failed or exceeded the 10 MiB upload limit; no artifact will be uploaded. Private diagnostics were withheld.") from None
+          print("Encrypted application backup authenticated; ready for its one-day artifact upload.")
+      - name: Upload only the encrypted snapshot
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # verified official v4 tag
+        with:
+          name: vibefinance-encrypted-backup-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/vf-production-backup/backup.vfenc
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 1
+          include-hidden-files: false
+      - name: Remove the runner copy
+        if: ${{ always() }}
+        shell: python
+        run: |
+          import os
+          from pathlib import Path
+
+          directory = Path(os.environ["RUNNER_TEMP"]) / "vf-production-backup"
+          (directory / "backup.vfenc").unlink(missing_ok=True)
+          if directory.exists():
+              directory.rmdir()

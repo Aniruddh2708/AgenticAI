@@ -1,8 +1,9 @@
-"""Verify a hosted release without disclosing or requesting its demo password.
+"""Verify a hosted release without disclosing or requesting its credentials.
 
 Default checks are public health, public revision and the demo login gate.
-An explicitly enabled protected browser check reads a caller-supplied token
-from an environment variable. Login currently creates one analysis session.
+Supabase mode checks its personal-account gate instead. An explicitly enabled
+protected browser check reads caller-supplied credentials from named environment
+variables. Login with an existing profile creates one analysis session.
 Optional tooling is described in docs/OPERATIONS.md; app locks are unchanged.
 """
 import argparse
@@ -63,15 +64,18 @@ def _proxy_options(url):
     return options
 
 
-def check_public(url, expected_revision, timeout=120):
+def check_public(url, expected_revision, timeout=120, login_kind="demo"):
     """Read only the unauthenticated Streamlit protocol; retain no page contents."""
+    if login_kind not in {"demo", "supabase"}:
+        raise ValueError("Unsupported login kind")
     import websocket  # Optional operator tooling, not an application dependency.
     from streamlit.proto.BackMsg_pb2 import BackMsg
     from streamlit.proto.ForwardMsg_pb2 import ForwardMsg
     from streamlit.proto.TextInput_pb2 import TextInput
 
-    result = {"url": url, "expected_revision": expected_revision, "credentials_used": False,
+    result = {"url": url, "expected_revision": expected_revision, "login_kind": login_kind, "credentials_used": False,
               "tls_verified": url.startswith("https://"), "login_gate_visible": False}
+    account_fields = set()
     deadline = time.monotonic() + timeout
     with httpx.Client(verify=_ssl_context(), trust_env=True, timeout=min(timeout, 15)) as client:
         while True:
@@ -118,8 +122,14 @@ def check_public(url, expected_revision, timeout=120):
                         result["visible_revision"] = match.group(1)
                 if element.HasField("text_input"):
                     field = element.text_input
-                    if field.label == "Demo access token" and field.type == TextInput.PASSWORD:
+                    if login_kind == "demo" and field.label == "Demo access token" and field.type == TextInput.PASSWORD:
                         result["login_gate_visible"] = True
+                    elif login_kind == "supabase":
+                        if field.label == "Email" and field.type == TextInput.DEFAULT:
+                            account_fields.add("email")
+                        elif field.label == "Password" and field.type == TextInput.PASSWORD:
+                            account_fields.add("password")
+                        result["login_gate_visible"] = account_fields == {"email", "password"}
                 if element.HasField("exception"):
                     result["application_exception"] = True
             if forward.HasField("script_finished"):
@@ -133,13 +143,15 @@ def check_public(url, expected_revision, timeout=120):
     return result
 
 
-def check_protected_browser(url, token, timeout, executable=None):
+def check_protected_browser(url, token, timeout, executable=None, *, login_kind="demo", email=None):
     """Opt-in browser acceptance. Never retain screenshots, traces or page text.
 
     The dashboard automatically POSTs /analyze after login, saving a session.
     This function must only be called after the explicit write acknowledgement.
     It does not edit profiles, record decisions, or scan watchlists.
     """
+    if login_kind not in {"demo", "supabase"} or not token or (login_kind == "supabase" and not email):
+        raise ValueError("Protected credentials are unavailable")
     from playwright.sync_api import sync_playwright
 
     options = {"headless": True}
@@ -157,13 +169,25 @@ def check_protected_browser(url, token, timeout, executable=None):
             page = browser.new_page(ignore_https_errors=False)
             page.set_default_timeout(timeout * 1000)
             page.goto(url, wait_until="domcontentloaded")
-            page.get_by_label("Demo access token", exact=True).fill(token)
-            page.get_by_role("button", name="Open protected demo", exact=True).click()
-            page.get_by_role("button", name="Run analysis", exact=True).wait_for(state="visible")
+            if login_kind == "supabase":
+                page.get_by_label("Email", exact=True).fill(email)
+                page.get_by_label("Password", exact=True).fill(token)
+                page.get_by_role("button", name="Sign in", exact=True).click()
+                page.get_by_role("button", name="Sign out", exact=True).wait_for(state="visible")
+            else:
+                page.get_by_label("Demo access token", exact=True).fill(token)
+                page.get_by_role("button", name="Open protected demo", exact=True).click()
+            analysis = page.get_by_role("button", name="Run analysis", exact=True)
+            analysis.wait_for(state="visible")
+            if login_kind == "supabase" and analysis.is_disabled():
+                return {"ok": False, "login_kind": login_kind, "protected_login_verified": True,
+                        "operator_profile_required": True, "saved_report_loaded": False,
+                        "initial_analysis_session_write_acknowledged": True, "credentials_used": True}
             page.get_by_role("tab", name="Metrics", exact=True).click()
             page.get_by_role("button", name="Load real-history forecast audit", exact=True).click()
             page.get_by_text("Model readiness: research only.", exact=False).wait_for(state="visible")
-            return {"ok": True, "saved_report_loaded": True, "research_only_visible": True,
+            return {"ok": True, "login_kind": login_kind, "protected_login_verified": True,
+                    "operator_profile_required": False, "saved_report_loaded": True, "research_only_visible": True,
                     "initial_analysis_session_write_acknowledged": True, "credentials_used": True}
         finally:
             browser.close()
@@ -174,32 +198,52 @@ def main():
     parser.add_argument("--url", type=_base_url, default="https://vibefinance.onrender.com")
     parser.add_argument("--expected-revision", required=True, type=_revision)
     parser.add_argument("--timeout", type=int, default=120, help="Cold-start/check budget in seconds (1–300).")
+    parser.add_argument("--login-kind", choices=("demo", "supabase"), default="demo",
+                        help="Expected public login gate and optional protected sign-in type.")
     parser.add_argument("--protected-token-env", metavar="VARIABLE_NAME",
                         help="Opt in to a protected check using only a caller-supplied environment variable.")
+    parser.add_argument("--account-email-env", metavar="VARIABLE_NAME",
+                        help="Supabase protected check: caller-supplied account email environment variable name.")
+    parser.add_argument("--account-password-env", metavar="VARIABLE_NAME",
+                        help="Supabase protected check: caller-supplied account password environment variable name.")
     parser.add_argument("--allow-protected-session-write", action="store_true",
                         help="Acknowledge that dashboard login automatically analyzes and saves one session.")
     parser.add_argument("--browser-executable", help="Optional Chromium executable for protected checks.")
     args = parser.parse_args()
     if not 1 <= args.timeout <= 300:
         parser.error("--timeout must be between 1 and 300 seconds")
-    if args.protected_token_env:
+    account_requested = bool(args.account_email_env or args.account_password_env)
+    protected_requested = bool(args.protected_token_env or account_requested)
+    if args.login_kind == "demo" and account_requested:
+        parser.error("Account environment flags require --login-kind supabase and cannot be combined with demo credentials.")
+    if args.login_kind == "supabase" and args.protected_token_env:
+        parser.error("--protected-token-env is only for demo login; use the two account environment flags for Supabase.")
+    if account_requested and not (args.account_email_env and args.account_password_env):
+        parser.error("Protected Supabase login requires both --account-email-env and --account-password-env.")
+    if protected_requested:
         if not args.allow_protected_session_write:
             parser.error("Protected login writes an analysis session: require --allow-protected-session-write on an authorized test target.")
-        if not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", args.protected_token_env):
-            parser.error("--protected-token-env must name an environment variable")
-        if not os.getenv(args.protected_token_env):
-            parser.error("The caller-supplied token environment variable is empty or unavailable.")
+        names = (args.account_email_env, args.account_password_env) if account_requested else (args.protected_token_env,)
+        if any(not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", name) for name in names):
+            parser.error("Credential flags must name environment variables, not contain credential values.")
+        if len(set(names)) != len(names):
+            parser.error("Account email and password must use separate environment variables.")
+        if any(not os.getenv(name) for name in names):
+            parser.error("A caller-supplied credential environment variable is empty or unavailable.")
     elif args.allow_protected_session_write:
-        parser.error("--allow-protected-session-write requires --protected-token-env")
+        parser.error("--allow-protected-session-write requires the protected login environment flags")
     result = {"checked_at_utc": datetime.now(timezone.utc).isoformat(), "url": args.url,
-              "expected_revision": args.expected_revision, "protected_check": "not requested"}
+              "expected_revision": args.expected_revision, "login_kind": args.login_kind,
+              "protected_check": "not requested"}
     try:
-        result["public"] = check_public(args.url, args.expected_revision, args.timeout)
-        if args.protected_token_env and result["public"]["ok"]:
+        result["public"] = check_public(args.url, args.expected_revision, args.timeout, args.login_kind)
+        if protected_requested and result["public"]["ok"]:
+            credential_name = args.account_password_env if account_requested else args.protected_token_env
             result["protected_check"] = check_protected_browser(
-                args.url, os.environ[args.protected_token_env], args.timeout, args.browser_executable)
+                args.url, os.environ[credential_name], args.timeout, args.browser_executable,
+                login_kind=args.login_kind, email=os.environ[args.account_email_env] if account_requested else None)
         result["ok"] = result["public"]["ok"] and (
-            not args.protected_token_env or isinstance(result["protected_check"], dict) and result["protected_check"]["ok"])
+            not protected_requested or isinstance(result["protected_check"], dict) and result["protected_check"]["ok"])
     except Exception as exc:
         # Exceptions and browser diagnostics may contain URLs/credentials; emit
         # only the type, never raw errors, proxy configuration or page contents.
