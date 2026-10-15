@@ -52,6 +52,12 @@ all previously inspected periods **before** this run:
 | Spent evaluations excluded from fitting/selection/calibration labels | 2019–2020 and 2024–2025 |
 | New evaluation | None; no uninspected historical period is asserted |
 
+The full pinned Parquets also contain dates outside this scope, including 2026
+and older pre-2010 data; they have been parsed during earlier/current loading.
+No remaining historical period is asserted to be genuinely uninspected. This
+study crops before feature/label construction; future confirmation requires a
+separate reviewed inventory and registration, not a different date range alone.
+
 The main target remains **30 positive-volume vendor observations**, adjusted
 close-to-close return after observing the origin close; positive-return probability
 is a separate target. It is not guaranteed to equal 30 complete exchange sessions,
@@ -208,6 +214,26 @@ VIBEFINANCE_EMBEDDINGS=0 .venv/bin/python -m vibefinance.demo
 .venv/bin/python scripts/smoke.py
 .venv/bin/python scripts/check_dashboard_extended.py
 ```
+
+For the local core-only container check, prepare verified wheels and use the
+unchanged repository offline recipe (no Render change):
+
+```bash
+export UV_CACHE_DIR="$PWD/.runtime/uv-cache"
+export UV_PYTHON_INSTALL_DIR="$PWD/.runtime/python"
+uv run --no-project --python .venv/bin/python --with pip python -m pip download \
+  --only-binary=:all: --require-hashes -r requirements.lock --dest .runtime/wheelhouse
+mkdir -p .runtime/docker-build
+DOCKER_CONFIG="$PWD/.runtime/docker-build" docker --host=unix:///var/run/docker.sock build \
+  --build-context verified_wheels=.runtime/wheelhouse -f deploy/Dockerfile.offline \
+  -t vibefinance:development-v2 .
+.venv/bin/python scripts/check_development_container.py --output .runtime/container-check-NEW.json
+```
+
+The checker uses an already-built local image, verifies source hashes separately
+from the supplied release marker, and cleans only its own container/volume. On
+this daemon ephemeral published ports change after restart, so the checker
+rediscovers the port before validating persisted state. No image was published.
 
 The run command exclusively creates its directory and freezes protocol/code
 hashes before fitting. It produces registration, quality, full predictions and

@@ -11,7 +11,7 @@ intraday provenance, a research panel, and measured indicator reuse. Read
 uncertainty, commands and failed admission. Baselines remain selected; no fresh
 holdout was scored, and no predictive advantage or policy effectiveness is claimed.
 
-Locally verified: **794 application tests**, **121 real TLS PostgreSQL checks**,
+Locally verified: **795 application tests**, **121 real TLS PostgreSQL checks**,
 API smoke, both dashboard scripts and real Chromium research/source interactions.
 See [current validation](VALIDATION.md) for packaging/CI scope. The original
 blueprint, seed data, core locks, spent protocols and old result summaries remain

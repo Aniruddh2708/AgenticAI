@@ -41,8 +41,9 @@ VIBEFINANCE_CORPUS_PATH="$PWD/.runtime/authentic-corpus-v1" \
 `/authorized-text/manifest.json` is a placeholder for actual supplied evidence,
 not a file that exists in this checkout. All inputs validate before output is
 created; existing output directories are refused. A write interruption can leave
-an incomplete output, which must be preserved and inspected. Original body
-bytes, including CRLF and repeated whitespace, survive; chunk offsets are Unicode
+an incomplete output, which must be preserved and inspected. Authentic original body
+bytes, including CRLF and repeated whitespace, survive; legacy synthetic files
+retain their original universal-newline contract across platforms; chunk offsets are Unicode
 character spans into the original decoded text. Imported artifact and manifest
 hashes are in `import.json`. No synthetic default document is replaced.
 

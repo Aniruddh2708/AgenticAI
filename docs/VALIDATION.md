@@ -8,7 +8,7 @@ below remain historical and are not current verification.
 
 | New check | Actual result / limit |
 |---|---|
-| Application suite | **794 passed, 14 skipped, 2 upstream deprecation warnings**, Linux CPython 3.11.17, 44.10 s; all 14 skips require real disposable databases |
+| Application suite | **795 passed, 14 skipped, 2 upstream deprecation warnings**, Linux CPython 3.11.17, 38.96 s; all 14 skips require real disposable databases |
 | Disposable PostgreSQL | **121 passed**, verified TLS PostgreSQL 17 with restricted roles; 10.35 s. Includes account isolation, signed-identity fixtures, restart durability, encrypted recovery and forced RLS; not live Supabase |
 | Final research reporting | **13 targeted tests passed**, plus actual hash-pinned development reproduction after preserving calibration rows; no spent evaluation rerun |
 | API smoke | Passed personalized actions, conflict/outage/missing filing, safeguards, exact sources, supported claims, persistence and synthetic evaluation on isolated running state |
@@ -22,7 +22,15 @@ below remain historical and are not current verification.
 | Local performance | Five declared warmed workloads, seven repeats/mode, alternating order and identical-output checks; immutable snapshot reduces redundant indicator arithmetic. See versioned timings; no hosted-throughput claim |
 | Preserved evidence | Fifteen original specification/protocol/summary/lock/seed files checked byte-identical to base. Raw archive files remain hash-identical; old frozen forecast modules, artifacts and studies are not rewritten |
 | Hosted Supabase/Render | **Not run**. Owner confirms no Supabase project exists; no authenticated provisioning connection or real confirmed operator account. Current runtime blocks public hosted requests. No existing Render configuration/service change |
-| Remote CI | Not yet claimed for this branch; historical successful CI below does not validate the new revision |
+| Remote CI | First candidate run passed Ubuntu/PostgreSQL and failed Windows on synthetic CRLF compatibility; original assertion retained and a source fix/regression added. Final rerun required; see preserved initial failure evidence |
+
+The [initial Windows failure](assets/ci-development-v2-initial-failure.json) is
+preserved. Raw-byte ingestion changed the legacy synthetic universal-newline
+contract on Windows; synthetic documents now keep that LF contract, while authentic
+imports preserve original CRLF/hash/span evidence. The existing test was not
+weakened. A new explicit CRLF regression reproduces the problem on Linux.
+This correction does not change any market-data, model, calibration or evaluation
+artifact. Remote reruns must pass before claiming cross-platform acceptance.
 
 Full current-run JUnit/logs, browser screenshot, profiling and complete model/
 calibration rows are retained under ignored `.runtime/`. Tracked versioned summaries

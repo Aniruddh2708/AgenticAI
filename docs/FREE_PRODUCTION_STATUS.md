@@ -9,7 +9,7 @@ from the **121-passing new local TLS PostgreSQL run**.
 Current feature work is on `codex/credible-forecast-development`, based on main
 `ed7a5f4`. [Development v2](FORECAST_DEVELOPMENT_V2.md) adds actual bounded model
 development and versioned data/uncertainty evidence; baselines remain selected and
-predictive advantage remains unproven. The local application suite now passes 794
+predictive advantage remains unproven. The local application suite now passes 795
 tests. [Retrieval work](AUTHENTIC_RETRIEVAL.md) is implemented, with real neural and
 authentic-corpus acceptance still blocked by the stated prerequisites.
 

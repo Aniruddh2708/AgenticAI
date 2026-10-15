@@ -20,7 +20,7 @@ or issued as a current market forecast. Both old evaluations remain spent and
 excluded from model selection. Full raw/prediction artifacts are ignored; tracked
 versioned summaries include their identities. Preserve every older result.
 
-Current checks: 794 application passes (14 opt-in database skips), 121 real TLS
+Current checks: 795 application passes (14 opt-in database skips), 121 real TLS
 PostgreSQL passes, API/dashboard checks and actual Chromium source/research view.
 The test fixtures are not real Supabase accounts, authentic filings or neural
 retrieval evidence. See validation for container and remote CI evidence.

@@ -85,6 +85,11 @@ def ingest(path: Path | None = None, size: int = 120, overlap: int = 20,
             if kind not in {"synthetic", "authentic"}:
                 raise ValueError("Unknown source kind")
             metadata["source_kind"] = kind
+            if kind == "synthetic":
+                # Preserve the legacy text-loader contract across Windows
+                # checkouts. Authentic imports below retain original bytes and
+                # character offsets, including CRLF, for hash/span provenance.
+                body = body.replace("\r\n", "\n").replace("\r", "\n")
             if kind == "authentic":
                 from vibefinance.rag.authentic import https_url, timestamp
                 if hashlib.sha256(body.encode()).hexdigest() != raw_metadata.get("source_sha256"):

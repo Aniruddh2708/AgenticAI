@@ -119,3 +119,13 @@ def test_sentiment_rechecks_actual_intraday_availability_even_for_supplied_chunk
     assert not future.claims and future.confidence == 0
     available = sentiment_agent.analyze("TCS.NS", [(chunk, 1.)], as_of="2020-01-01T15:00:00Z")
     assert available.claims and available.citations[0].source_kind == "authentic"
+
+
+def test_legacy_synthetic_crlf_retains_original_universal_newline_contract(tmp_path):
+    header = {"source_id": "legacy_fixture", "ticker": "TCS.NS", "doc_type": "results",
+              "date": "2020-01-01", "title": "Synthetic fixture"}
+    (tmp_path/"legacy.md").write_bytes(json.dumps(header).encode()+b"\r\nFirst line.\r\nRevenue growth.\r\n")
+    chunks = ingest(tmp_path)
+    assert chunks[0].document_text == "First line.\nRevenue growth.\n"
+    assert chunks[0].source_kind == "synthetic"
+    assert chunks[0].document_text[chunks[0].span_start:chunks[0].span_end] == chunks[0].text

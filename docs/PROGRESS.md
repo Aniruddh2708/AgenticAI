@@ -12,7 +12,7 @@ citations/storage. An immutable indicator snapshot removes repeated arithmetic;
 measured local workloads retain equivalent decisions/evidence and improve latency.
 The research panel explicitly shows historical data age, baselines and no admission.
 
-New local evidence: **794 application passes**, **121 disposable TLS PostgreSQL
+New local evidence: **795 application passes**, **121 disposable TLS PostgreSQL
 passes**, API smoke, both dashboard checks and real Chromium checks. See the newest
 [validation](VALIDATION.md) for exact scope and remaining checks. Original blueprint,
 simulations, seeds, core locks and frozen studies/results are preserved.
