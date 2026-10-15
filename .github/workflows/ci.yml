@@ -41,7 +41,53 @@ jobs:
       - name: Run application tests
         env:
           VIBEFINANCE_STATE_DIR: ${{ runner.temp }}/vibefinance-ci
-        run: python -m pytest -q
+        run: python -m pytest -q --junitxml=pytest-results.xml
+      - name: Publish sanitized test diagnostics
+        if: ${{ always() }}
+        shell: python
+        run: |
+          import builtins
+          from pathlib import Path
+          import re
+          import xml.etree.ElementTree as ET
+
+          report = Path("pytest-results.xml")
+          known_exceptions = {
+              name for name, value in vars(builtins).items()
+              if isinstance(value, type) and issubclass(value, BaseException)
+          }
+
+          def safe_name(value):
+              # Parameter IDs may contain fixture values. Report code names only.
+              value = value.split("[", 1)[0]
+              if re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z_][A-Za-z0-9_]*)*", value):
+                  return value[:240]
+              return "unknown"
+
+          def exception_type(problem):
+              # Never print messages, assertions, values, traceback or captured output.
+              for attribute in ("type", "message"):
+                  value = problem.get(attribute, "").strip()
+                  match = re.match(r"^(?:[A-Za-z_]\w*\.)*([A-Za-z_]\w*)(?=:|$)", value)
+                  if match and match.group(1) in known_exceptions:
+                      return match.group(1)
+              return "unknown exception type"
+
+          try:
+              cases = list(ET.parse(report).getroot().iter("testcase"))
+          except (OSError, ET.ParseError):
+              print("::notice::JUnit diagnostics unavailable; inspect the original failed step.")
+          else:
+              failed = skipped = 0
+              for case in cases:
+                  problems = [child for child in case if child.tag in {"failure", "error"}]
+                  if problems:
+                      failed += 1
+                      node = safe_name(case.get("classname", "")) + "::" + safe_name(case.get("name", ""))
+                      print("::error title=Failed test::" + node + "; " + exception_type(problems[0]))
+                  elif case.find("skipped") is not None:
+                      skipped += 1
+              print(f"JUnit cases: total={len(cases)}, passed={len(cases)-failed-skipped}, failed={failed}, skipped={skipped}")
       - name: Exercise rendered dashboard with isolated API
         env:
           VIBEFINANCE_STATE_DIR: ${{ runner.temp }}/vibefinance-ci
