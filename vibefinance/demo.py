@@ -9,6 +9,9 @@ from pathlib import Path
 import httpx
 
 
+SERVICE_READINESS_TIMEOUT_SECONDS = 120.0
+
+
 def main():
     root = Path(__file__).resolve().parent.parent
     children = []
@@ -40,7 +43,7 @@ def main():
             "--server.address", dashboard_host, "--server.port", str(dashboard_port), "--server.headless", "true",
             "--browser.gatherUsageStats", "false"], cwd=root,
             env={**os.environ, "PYTHONPATH": str(root), "VIBEFINANCE_API_URL": api_url}))
-        deadline = time.monotonic() + 30
+        deadline = time.monotonic() + SERVICE_READINESS_TIMEOUT_SECONDS
         while time.monotonic() < deadline and not stopping:
             if any(child.poll() is not None for child in children):
                 raise RuntimeError("A service exited during startup")

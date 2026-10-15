@@ -1,186 +1,213 @@
-# Continuation prompt for Claude
+# VibeFinance continuation handoff — 15 October 2026
 
-Copy the following prompt into Claude and give it access to the repository. This is
-an implementation/evidence handoff, not a claim that every blueprint feature works.
+## Latest uncertainty investigation
 
-```text
-You are continuing VibeFinance, an educational investment-intelligence hackathon MVP.
+Read [FORECASTING_FOLLOWUP.md](FORECASTING_FOLLOWUP.md) first. Original 2019–2020
+artifacts and their summary hashes remain unchanged; that period is spent.
+The once-only 2024–2025 evaluation is now spent too. Do not relabel either as
+uninspected or tune them for a new confirmatory claim.
 
-Repository: https://github.com/Aniruddh2708/AgenticAI
-Branch: main
-Original blueprint: docs/BLUEPRINT.md
-Current compliance: docs/PROGRESS.md
-Actual verification results: docs/VALIDATION.md
-Architecture/rules: ARCHITECTURE.md
-Run/install: README.md
-Integration blockers: docs/INTEGRATIONS.md
-Deployment: docs/DEPLOYMENT.md
+Prior won original validation Brier (0.242951 vs logistic 0.244043–0.246863).
+Year rankings changed and uncertainty spans no gain. Ridge's tiny validation
+MAE improvement was unsupported. New `forecast_selection.py` therefore selects
+prior probability and historical mean, refitting matured 2010–2020 development
+labels. The spent old period enters this fit explicitly as development.
 
-Inspect actual code and Git history before edits. If you cannot access the repo,
-ask me to attach its GitHub ZIP. Do not reconstruct it blindly or claim tests you
-have not run. Preserve user changes, data and backward-compatible contract fields.
+Old coverage failed mainly in 2020 (57.14%, vs 95.56% in 2019), with wider tails
+and misses in both directions. Forty 2018 calibration rows represent only eight
+shared dates. Rank 37 of 40 was correct; the generic rank-clamping bug for
+unattainable coverage was fixed separately and did not cause the old result.
 
-GOAL AND CURRENT STATUS
+Revised protocol: 2021–2023 calibration, 24 non-overlapping residuals per security
+(120 rows / 24 dates). Causal widths use max(past 20/60-row volatility)*sqrt(30)
+with a development-only fifth-percentile floor; finite per-security residual
+ranks never silently clamp. Primary security-volatility-scaled intervals and
+pooled/security absolute/joint alternatives were fixed before evaluation. Each
+baseline uses identical calibration/evaluation rows. A shared evaluation-start
+ledger marks a period spent even if interrupted or moved to another run directory.
 
-The offline demo is built and the major defects from the first review were corrected.
-It uses Python 3.11, FastAPI, Streamlit/Plotly, SQLite, five typed concurrent agents,
-seeded OHLCV and 21 explicitly synthetic documents. No LLM runs and no runtime model
-or API key is required for the core demonstration. Read the actual validation report
-for final test counts, artifacts and limitations rather than inferring 100% completion.
+Fresh-period point results: prior Brier 0.246316 vs constant-half 0.25, with paired
+95% difference interval spanning zero. Mean return MAE 5.4825 pp vs zero return
+5.3371 pp, also uncertain; balanced accuracy 50%. No feature edge established.
+Primary marginal coverage 73/80 = 91.25%, approximate 95% interval 84.70–98.46%,
+full width 27.36 pp and interval score 34.15 pp. Same-row frozen legacy coverage
+86.25%, width 23.82 pp, score 29.85 pp; refreshed pooled absolute 87.50%/24.05/
+29.84 pp; security absolute 93.75%/26.65/31.38 pp. Coverage gains are uncertain,
+and the scaled method has wider bounds and worse interval score. Do not declare
+it universally better or replace it post-test with the highest-scoring comparator.
 
-WORK COMPLETED IN THE CORRECTIVE PASS
+A reporting bug counted partial security groups as simultaneous five-security
+coverage. Four stale zero-volume rows on 2025-03-18, while ITC traded, shifted
+vendor calendars. Correction from saved predictions gives primary joint 6/10
+= 60% and joint-method 9/10 = 90%, across only ten complete origins/five quarters;
+twelve partial origins are excluded. Marginal coverage and all predictions,
+radii and test rows are unchanged. This correction is explicitly exploratory.
+The target is 30 observed positive-volume vendor rows; complete exchange calendars
+and independent provider verification remain unestablished. Do not impute or
+realign these inspected rows to improve scores.
 
-Final checks: 130 core tests passed, plus functional API smoke checks, both rendered
-dashboard interaction checks and seven real container checks. The launcher also
-started successfully with an entirely unavailable corpus and returned a disclosed
-degraded analysis. See VALIDATION.md for scope and actual delivered assets.
+Current artifacts: frozen `.runtime/forecast-followup/fresh/{selection,report}.json`,
+matching `code_snapshot/`, start ledger, and corrected
+`.runtime/forecast-followup/exploratory-report.json`. Reviewable derived summary:
+`docs/assets/forecast-followup-summary.json`. `scripts/forecast_followup.py`
+prepares then tests a fixed experiment; existing runs refuse another fresh score.
+`scripts/forecast_followup_exploratory.py` derives joint corrections without refit.
+For local review only, set `VIBEFINANCE_FORECAST_REPORT` to the corrected file;
+default app configuration and Render have not changed. The API/UI label reported
+periods spent and expose coverage, width, interval score and denominator caveats.
 
-1. Portfolio policy:
-   - Excessive stock concentration triggers REDUCE before missing-evidence checks.
-   - An all-cash portfolio no longer receives high equity risk merely from total HHI of 1.
-   - Total HHI, normalized equity HHI, cash and sector exposure are distinct metrics.
-   - Entry policies check stock/sector limits, high equity concentration, available
-     cash, short-horizon volatility and corroboration for momentum-chasing profiles.
-   - decision_basis/confidence_kind/policy_rules distinguish policies from market
-     evidence strength. Original recommendation fields are retained.
+Safeguards, simulations and lockfiles remain unchanged. All code remains local
+and uncommitted. No deployment is authorized until the final changes and
+limitations are reviewed; leave Render and its private password unchanged.
+See VALIDATION.md for the latest complete and functional check counts.
 
-2. Robustness and persistence:
-   - Ingest and retrieval failures are bounded and disclosed, not allowed to bypass
-     all agent protection. Bad corpus files are skipped with explicit warnings.
-   - Failed agents are UNKNOWN/0 with no claims.
-   - Sessions include the final trace and save atomically in one SQLite transaction.
-   - A storage error returns a usable but explicitly unsaved result with inline
-     sources; decision writes are disabled. It never silently switches databases.
-   - Unavailable stored profiles use disclosed read-only seeds; customized profiles
-     are not represented as recovered. Storage-only routes return 503.
+Latest actual verification: 296 tests passed, API smoke and both dashboard checks
+passed, and the running API/rendered dashboard loaded the corrected exploratory
+report with its spent status and complete/partial-group counts. One upstream
+deprecation warning remains. Original artifacts and fresh recorded predictions
+were hash-checked after reconnection. See the detailed validation report before
+assuming optional integrations or deployment were retested.
 
-3. Financial analysis and evidence:
-   - Deterministic same-clause negation handles no growth, not strong, absent and
-     resolved litigation, plus regression-tested financial phrases.
-   - Filings extract supported revenue/profit changes, margins, debt levels/changes,
-     guidance, demand and legal/regulatory flags. Forecasts retain qualifiers.
-   - EvidenceClaim records associate each displayed agent statement with citations.
-   - Validators match exact registered passages, re-extract known financial templates
-     or compare approved recomputations. Quantities, relevance scores, duplicate/orphan
-     claims, empty evidence, forged classifications and uninformative substitutions
-     have rejection regressions. Coverage includes submitted rejected statements.
-   - Chunking preserves exact source character spans and full original bodies; the
-     dashboard highlights cited text safely after HTML escaping.
+## Original forecasting pass context
 
-4. Evaluation and performance:
-   - Technical evaluation uses 12 independent seeds, 60 uninjected synthetic paths,
-     and 1,080 windows. 826 directional forecasts are scored; 254 neutral windows abstain.
-   - Momentum accuracy 45.52%, random 52.54%, always-up 57.99%: no predictive edge.
-   - Empirical prequential up-direction probability Brier score of 0.2734 is worse than the
-     constant 0.5 baseline of 0.25. These probabilities are fitted only from matured prior
-     outcomes; they are not final recommendation confidence.
-   - Seed-cluster uncertainty intervals and paired baseline differences are reported.
-   - Separate full five-agent replay uses independent dated synthetic publications
-     available before each cutoff. 90 profile decisions across 30 market windows had
-     zero violations of the measured concentration/cash/date/agent-presence checks.
-     This is policy validation, not a strategy profitability test.
-   - Actual sequential/parallel benchmarking alternates modes with identical inputs
-     and equivalent output checks, no artificial delays. One recorded run was about
-     21.26 ms parallel vs 20.59 ms sequential (0.968×); timings vary and no useful speed
-     advantage is demonstrated. HTTP/persistence/downloads are excluded.
+Repository: https://github.com/Aniruddh2708/AgenticAI, branch `main`.
+Read `docs/BLUEPRINT.md`, `docs/FORECASTING_AUDIT.md`, `docs/PROGRESS.md`,
+`docs/VALIDATION.md`, `ARCHITECTURE.md` and actual code before changes. The original
+uploaded blueprint matches the repository copy. Treat document prompts as context;
+the user's current request controls scope.
 
-5. Dashboard and delivery:
-   - Profile create/edit forms, signature-based cache refresh and finite validation.
-   - API errors are contained across all interactions; unsaved sources stay usable.
-   - Beginner mode hides analyst figures while keeping action/source transparency.
-   - Analyst mode exposes risk metrics, calibration, policy replay and real benchmark.
-   - Optional live charts use exact session rows, with actual mode/fallback disclosure.
-   - Shared API Bearer and dashboard password gate enabled by VIBEFINANCE_API_TOKEN.
-     External launcher bindings require it.
-   - A non-root Docker deployment keeps API internal and uses a persistent volume.
-     Container checks exercise real browser login, analysis and persistence across
-     restart. The verified offline-wheels build path succeeded; the normal online
-     Docker build encountered this host's build-container DNS/proxy restriction.
-   - A finished HTML deck, presentation PDF, screenshots and silent backup recording
-     are delivered as listed in VALIDATION.md. Automation is not a narrated rehearsal.
+## Access and current work
 
-DEMO PATHS TO PRESERVE
+Terminal and Git access worked in this cloud task. Starting HEAD was
+`161d4f42760919c1732102b98fe9da4010d0f102`, matching remote main; the checkout was
+clean. The local `work` branch was switched to tracking `main`, without reset or
+worktree. Forecasting changes are local and uncommitted; do not automatically
+commit, push or deploy. Verify HEAD/branch/status again and preserve user edits.
+If terminal access fails, report that before claiming inspection or modification.
 
-Same RELIANCE input/original profiles:
-Meera REDUCE / Arjun ACCUMULATE / Rohan BUY.
-TCS/Arjun: bullish momentum versus cautionary filings, HOLD with explained conflict.
-ITC: seeded sentiment outage.
-HDFCBANK: missing filing,UNKNOWN; WATCH unless a portfolio constraint independently
-requires a rebalance.
-INFY: rising price/falling volume divergence warning.
-Meera/ITC with missing filing: 45% position versus 15% limit still REDUCE.
-Do not invent data, weaken tests or reset intentional profile edits for these demos.
+The startup commit had added root-level duplicate implementations, while the
+active package still used short timeouts. The package now uses 60 seconds for
+retriever initialization and 120 seconds for service readiness. Cold retrieval
+initialization is independent of agent deadlines. Root `demo.py` and
+`orchestrator.py` delegate to the package so both entrypoints stay consistent.
 
-EXACT REMAINING GAPS — DO NOT CLAIM THESE ARE DONE
+## Current deployment and retrieval evidence
 
-A. Successful real MiniLM hybrid retrieval is UNVERIFIED/BLOCKED.
-   Chroma+CPU packages are installed separately; real Chroma persistence/query/filtering
-   worked with explicitly labeled fixture vectors. That is not MiniLM evidence.
-   huggingface.co returnedHTTPS CONNECT 403, including out-of-sandbox checking, and no
-   model weights were obtained. CoreBM25 and optional-failure fallback work.
-   Network domains were saved as an environment draft; saving does not apply access.
-   After access changes, run the pinned model integration script and report actual
-   success/failure and redirected hosts. Never disable TLS or artifact checks.
+The user reports that real local MiniLM + BM25 retrieval worked with 21 chunks
+and remained hybrid after an analysis, with all 130 then-existing tests passing
+on Windows after their startup changes. The user also reports a working BM25
+Render service at https://vibefinance.onrender.com. These are newer evidence than
+the old cloud model-download/hosting blockers. This pass did not reproduce local
+MiniLM, log into Render, request its private demo password or deploy changes.
+Default documents remain synthetic regardless of retrieval backend or deployment.
 
-B. Successful liveYahoo data is UNVERIFIED/BLOCKED.
-   fc.yahoo.com returned CONNECT 403; the strict check exited 1 and validated seeded
-   fallback. Query1/query2 finance hosts were declared as required but not reached
-   during that run. No missing credential was inferred from this network failure.
-   Synthetic filings remain fictional even if live prices eventually work.
+## Forecasting diagnosis
 
-C. Public hosting is NOT DEPLOYED.
-   The user explicitly said they have no hosting account. Docker is prepared/tested,
-   not a public website. Choose a provider withWebSockets, persistent disk andTLS
-   only after the user supplies an account/authorization through a secure route.
-   Do not invent a public URL or provision a paid resource unasked.
+The five-agent recommendation is a deterministic policy combining indicator
+votes, lexical/template text interpretation and portfolio constraints. Confidence
+is evidence strength, not probability of profit or correct personalized action.
+The old simulation benchmark measures momentum direction, not all five agents.
+Its independent future increments contain no momentum information, and positive
+drift favors always-up. Sparse label-conditioned up-rate estimates worsen Brier.
+Preserve the honest 45.52% momentum / 52.54% random / 57.99% always-up and 0.2734
+Brier results; do not alter simulations or score masks to manufacture improvement.
 
-D. Optional LLM narration is NOT IMPLEMENTED.
-   Deterministic explanations satisfy offline fallback. If adding narration, preserve
-   all calculated numbers/actions/citations and validate its claims before display.
+## Implemented historical experiment
 
-E. Financial understanding and source support are PARTIAL BY DESIGN.
-   Finite extraction is not full financial accounting or arbitrary language
-   comprehension. Complex/distant negation, sarcasm and broad causal meaning are
-   unsupported. Provenance/template validation does not prove real-world truth or
-   generic semantic entailment. Coverage audits agent evidence statements, not every
-   grammatical clause in the policy explanation. Sentiment uses news; transcript
-   interpretation currently lives in the filings agent.
+- `data/forecast_manifest.json`: five existing NSE tickers, pinned third-party
+  Yahoo archive, actual SHA-256 hashes, adjustment lineage and source license.
+  Loader uses distinct adjusted close, scales OHLC consistently, crops to the
+  predeclared 2010–2020 window, removes nontraded zero-volume placeholders and
+  retains traded Muhurat weekends. Invalid in-window data fails explicitly;
+  research never falls back to simulation.
+- `data/forecast_protocol.json`: train 2010–2015, expanding validation 2016–2017,
+  independent residual calibration 2018, untouched test 2019–2020. Target is
+  adjusted close return / positive-return probability over 30 actual sessions.
+- `vibefinance/evaluation/forecast.py`: ten causal dimensionless features;
+  training-only scaling, modest L2 logistic and ridge grids, prior/constant
+  candidates, purged labels, separate interval calibration, frozen selection,
+  same-row baselines, quarter-block paired intervals and ticker/year breakdowns.
+- `scripts/forecast.py`: explicit download/prepare/test stages. Selection stores
+  coefficients, dataset/implementation fingerprints and runtime versions before
+  test evaluation; exclusive writes preserve frozen/spent runs.
+- `/evaluation/forecast` and analyst dashboard: read saved summaries only. No
+  automatic download, training, action change or model promotion.
+- `scripts/historical_policies.py`: full five-agent replay on historical price
+  prefixes with three explicitly synthetic profiles and an empty text index.
+  Missing authentic historical news/filings are withheld, rather than substituting
+  the current fictional corpus. It checks constraints, not action accuracy/P&L.
 
-F. Personalized investment effectiveness remains UNVALIDATED.
-   Confidence is evidence strength, not calibrated profit/action-success probability.
-   No real dated-filings backtest, transaction simulation, fees, slippage, portfolio
-   revaluation, correlation optimizer or demonstrated trading edge exists.
-   HHI/sector/volatility thresholds are fixed disclosed demo policies. Current HHI
-   guards do not comprehensively evaluate every prospective threshold crossing.
-   Panic-selling and short holding history mainly trigger nudges, not forecasts.
+## Results to preserve honestly
 
-G. Production security/privacy is NOT IMPLEMENTED.
-   Shared access is not individual accounts, tenancy isolation, data-consent controls,
-   comprehensive audit/security review or regulatory approval. Use synthetic demo data.
-   Watchlist alerts are manual scans, not a continuous monitoring/notification service.
-   Threads that exceed waiting timeouts cannot be forcibly killed; hard worker isolation
-   is absent. Unexpected process/infrastructure faults remain possible.
+Validation chose historical prior probability, not the logistic features, and
+ridge penalty 1 for returns. There were 80 validation windows, 40 calibration
+windows and 80 held-out test windows. Test Brier is 0.223067, identical to the
+historical prior baseline. Selected return MAE is 9.3424 percentage points versus
+9.3050 for historical mean and 9.7611 for zero return. The nominal 90% interval
+covered only 78.75%. Original momentum direction hit 54.6875% on 64 non-neutral
+historical windows, versus 68.75% always-up on that exact mask; 16 abstentions.
 
-H. Native macOS execution, a fresh published cloud-task restoration, narrated five-minute
-   rehearsal and production hosting have not been verified. Linux/Python 3.11 and local
-   container/browser paths were tested. The generated backup is silent automation.
+**No learned forecasting edge is established; the admission gate failed.**
+All probability classifiers in that report have 50% balanced accuracy. Better
+Brier than constant 50% reflects class prevalence, not learned feature information.
+The selected return model did not beat the mean baseline. Do not present these
+numbers as improvement over the old synthetic metrics: datasets/targets differ.
 
-NEXT STEPS
+Reviewable evidence: `docs/assets/forecast-summary.json` (includes full-report hash).
+Complete local predictions: `.runtime/forecast/report.json`; frozen model/spec:
+`.runtime/forecast/selection.json`; raw data/source license:
+`.runtime/forecast/data/`; real-price constraint replay:
+`.runtime/forecast/policies.json`. The 2019–2020 holdout is now spent. Do not tune
+after seeing it and label another score on the same dates as untouched.
 
-1. Read the blueprint and validation/compliance reports. Reproduce core readiness:
-   make setup; make test; make demo; make smoke;
-   .venv/bin/python scripts/check_dashboard.py;
-   .venv/bin/python scripts/check_dashboard_extended.py.
-2. Finish real neural/live checks only after meaningful network/model prerequisites
-   change. Use separate optional environments; core-only sync would remove extras.
-3. If asked to improve analytical quality, begin with point-in-time real data and
-   explicit target/uncertainty definitions. Do not tune to make synthetic metrics win.
-4. If asked for deployment, use tested Docker instructions and the chosen host's secure
-   secret/persistent-disk settings. Keep API private and explain shared-access limits.
-5. Update architecture, progress and validation with actual evidence, distinguishing
-   implemented, tested, partial, blocked and not implemented requirements.
+## Preserve core behavior
 
-Do not automatically commit/push future changes without user authorization. Do not
-claim every phase is complete merely because files or functions exist. Finish with
-an honest feature/check table and a concise continuation handoff.
+Concentration above the position limit still forces REDUCE before missing evidence;
+unconcentrated profiles pause at WATCH without fundamentals. Preserve cash/sector/
+equity concentration, short-horizon and momentum-chasing guards, conflict handling,
+evidence/source checks, `confidence_kind="evidence_strength"`, persistence and
+explicit degradation. Keep original synthetic demo paths and intentional profile
+edits. The forecast report is separate from portfolio actions.
+
+## Commands and next research prerequisites
+
+From repository root, use `.venv/bin/python` (Python 3.11) or Make targets:
+
+```sh
+make setup
+make test
+make demo
+make smoke
+.venv/bin/python scripts/check_dashboard.py
+.venv/bin/python scripts/check_dashboard_extended.py
+.venv/bin/python scripts/forecast.py download
+.venv/bin/python scripts/forecast.py prepare
+.venv/bin/python scripts/forecast.py test
+.venv/bin/python scripts/historical_policies.py
 ```
+
+Existing frozen/spent files intentionally refuse overwrite; inspect the artifacts.
+To reproduce methodology elsewhere, preserve the original results and label any
+re-run as reproduction, never as a new untouched test. Choosing another directory
+does not restore holdout independence. Do not sync the core lock into optional
+embedding/live environments. The standard demo requires no credentials.
+
+Direct Yahoo/NSE data access returned proxy 403 here. The historical archive has
+explicit lineage but is not independently audited exchange data; retroactive
+adjustments and incremental vendor merges remain limitations. The source permits
+noncommercial research only; do not deploy its data/model to a commercial service
+without source rights. No archive-derived model was deployed in this pass.
+
+Future forecast changes need a new predeclared untouched period, more regimes,
+audited corporate actions and point-in-time inputs. Do not add/tune features on
+the spent holdout. Historical fundamentals/news must have authentic publication
+availability dates; today's synthetic filings cannot validate historical signals.
+Full personalized-effectiveness research also requires a separate strategy target,
+execution timing, fees/slippage, portfolio revaluation and portfolio baselines.
+A price holdout or constraint replay does not validate it.
+
+Still incomplete: authentic filings/licensed news, optional LLM narration, calibrated
+personalized effectiveness, allocation/correlation optimization, individual accounts,
+privacy isolation, continuous monitoring, hard worker termination and fresh published
+cloud restoration. Container/native platform checks from the older pass were not
+repeated for these changes. See VALIDATION.md for actual current test evidence.

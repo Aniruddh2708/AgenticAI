@@ -15,6 +15,7 @@ from pydantic import BaseModel, Field
 from vibefinance.agents.base import UserProfile
 from vibefinance.config import ROOT, TICKERS
 from vibefinance.evaluation.backtest import backtest
+from vibefinance.evaluation.forecast_report import load_forecast_report
 from vibefinance.orchestrator import analyze, compare_users, prepare_retriever
 from vibefinance.profiles.store import Store
 
@@ -188,6 +189,10 @@ def create_app(db_path=None):
     @app.get("/evaluation")
     def evaluation():
         return backtest()
+
+    @app.get("/evaluation/forecast")
+    def forecast_evaluation():
+        return load_forecast_report()
 
     @app.get("/evaluation/policies")
     async def policies():

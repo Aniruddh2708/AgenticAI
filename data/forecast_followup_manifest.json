@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "study_start": "2010-01-01",
+  "study_end": "2025-12-31",
+  "description": "Predeclared uncertainty follow-up: spent 2019-2020 is development; longer calibration 2021-2023; fresh 2024-2025 evaluated once after freezing.",
+  "archive_repository": "https://github.com/aswinv90/indian-market-historical-data",
+  "archive_commit": "5dffc0832c63d1558930510d081e076929608d82",
+  "retrieved_on": "2026-10-14",
+  "lineage_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/scripts/fetch_all_stocks.py",
+  "documentation_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/README.md",
+  "license_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/LICENSE",
+  "license_artifact": {
+    "url": "https://raw.githubusercontent.com/aswinv90/indian-market-historical-data/5dffc0832c63d1558930510d081e076929608d82/LICENSE",
+    "filename": "SOURCE_LICENSE.txt",
+    "sha256": "16fdabca5e1adbe6ec075e951f4cb08cb660ba6f8661aabfb3412d37d5ada1da"
+  },
+  "license": "Non-commercial research and personal use only; copyright 2026 Aswin V. Commercial use requires the author's explicit written permission.",
+  "commercial_use_permitted": false,
+  "notes": [
+    "Same pinned third-party Yahoo/yfinance artifacts and hashes as the original study; no new provider validation is implied.",
+    "Study inputs crop uniformly to 2010-01-01 through 2025-12-31. Final point-model refit includes matured 2010-2020 data; the spent 2019-2020 test is now development data.",
+    "Initial model validation reuses the exploratory 2016-2017 development folds. Choose feature models only when paired quarter-cluster loss improvements are supported; otherwise keep the best baseline.",
+    "Adjusted return target spans 30 observed positive-volume vendor rows. Exchange calendar completeness is not independently established; older expected Muhurat dates may be absent. Do not describe it as a guaranteed complete 30-session exchange calendar.",
+    "Causal scale uses max(past 20/past 60 row volatility)*sqrt(30), floored at the development-only 5th percentile. Per-security normalized residual ranks use 2021-2023; never use fresh test outcomes for tuning.",
+    "Frozen primary interval is security_vol_scaled. Pooled absolute, per-security absolute and joint date-max standardized alternatives are declared comparators, not candidates selected after test scoring.",
+    "Five stocks are present-day survivors; price-only research cannot validate five-agent personalized actions or authentic historical filings.",
+    "The archive was created September 18, 2026 according to cached repository metadata; the entire 2021-2025 study extension predates the incremental-update boundary. Adjustment vintage and provider authenticity remain limitations.",
+    "Zero-volume holiday placeholders are uniformly excluded, positive-volume weekend observations retained. Cached full raw files include a missing latest-2026 close outside this predeclared window; nothing inside the study is silently imputed.",
+    "Non-commercial research and personal use only; copyright 2026 Aswin V. Commercial use requires the author's explicit written permission."
+  ],
+  "sources": [
+    {
+      "ticker": "RELIANCE.NS",
+      "url": "https://raw.githubusercontent.com/aswinv90/indian-market-historical-data/5dffc0832c63d1558930510d081e076929608d82/data/NSE/RELIANCE_NS.parquet",
+      "sha256": "3b1ca39ce7274ea3227dc5ecfb65478cfa33b1dfc52bb68cb219f70eb34089eb",
+      "filename": "RELIANCE_NS.parquet",
+      "provider": "Yahoo Finance via yfinance; third-party archive",
+      "price_basis": "adjusted",
+      "lineage_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/scripts/fetch_all_stocks.py"
+    },
+    {
+      "ticker": "TCS.NS",
+      "url": "https://raw.githubusercontent.com/aswinv90/indian-market-historical-data/5dffc0832c63d1558930510d081e076929608d82/data/NSE/TCS_NS.parquet",
+      "sha256": "3a6a81d9ff6257ca6eddfafc017de30bae0c8e9fad662c6fd46bb70f1614b7ab",
+      "filename": "TCS_NS.parquet",
+      "provider": "Yahoo Finance via yfinance; third-party archive",
+      "price_basis": "adjusted",
+      "lineage_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/scripts/fetch_all_stocks.py"
+    },
+    {
+      "ticker": "INFY.NS",
+      "url": "https://raw.githubusercontent.com/aswinv90/indian-market-historical-data/5dffc0832c63d1558930510d081e076929608d82/data/NSE/INFY_NS.parquet",
+      "sha256": "9f73af06716697381708bfc99f561a123d23b46613504038b958f09ed2f19cca",
+      "filename": "INFY_NS.parquet",
+      "provider": "Yahoo Finance via yfinance; third-party archive",
+      "price_basis": "adjusted",
+      "lineage_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/scripts/fetch_all_stocks.py"
+    },
+    {
+      "ticker": "HDFCBANK.NS",
+      "url": "https://raw.githubusercontent.com/aswinv90/indian-market-historical-data/5dffc0832c63d1558930510d081e076929608d82/data/NSE/HDFCBANK_NS.parquet",
+      "sha256": "a3b2c359431958167585f8c7eb5a24457b19209686e5dae474dc010bbc3d0e40",
+      "filename": "HDFCBANK_NS.parquet",
+      "provider": "Yahoo Finance via yfinance; third-party archive",
+      "price_basis": "adjusted",
+      "lineage_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/scripts/fetch_all_stocks.py"
+    },
+    {
+      "ticker": "ITC.NS",
+      "url": "https://raw.githubusercontent.com/aswinv90/indian-market-historical-data/5dffc0832c63d1558930510d081e076929608d82/data/NSE/ITC_NS.parquet",
+      "sha256": "af03d6c408ed47d3c2868bef0058ad21d58fda6c6692eae945f31d5fcb0701d9",
+      "filename": "ITC_NS.parquet",
+      "provider": "Yahoo Finance via yfinance; third-party archive",
+      "price_basis": "adjusted",
+      "lineage_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/scripts/fetch_all_stocks.py"
+    }
+  ]
+}

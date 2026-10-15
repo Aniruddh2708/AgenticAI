@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "kind": "historical_policy_constraints",
+  "protocol": {
+    "train_start": "2010-01-01",
+    "train_end": "2015-12-31",
+    "validation_start": "2016-01-01",
+    "validation_end": "2017-12-31",
+    "calibration_start": "2018-01-01",
+    "calibration_end": "2018-12-31",
+    "test_start": "2019-01-01",
+    "test_end": "2020-12-31",
+    "horizon_sessions": 30,
+    "interval_alpha": 0.1
+  },
+  "data": [
+    {
+      "ticker": "RELIANCE.NS",
+      "url": "https://raw.githubusercontent.com/aswinv90/indian-market-historical-data/5dffc0832c63d1558930510d081e076929608d82/data/NSE/RELIANCE_NS.parquet",
+      "sha256": "3b1ca39ce7274ea3227dc5ecfb65478cfa33b1dfc52bb68cb219f70eb34089eb",
+      "filename": "RELIANCE_NS.parquet",
+      "provider": "Yahoo Finance via yfinance; third-party archive",
+      "price_basis": "adjusted",
+      "lineage_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/scripts/fetch_all_stocks.py",
+      "rows": 2711,
+      "date_start": "2010-01-04",
+      "date_end": "2020-12-31",
+      "gaps_over_seven_calendar_days": 0,
+      "source_file_rows": 7728,
+      "study_start": "2010-01-01",
+      "study_end": "2020-12-31",
+      "removed_zero_volume_rows": 2,
+      "source_license": "Non-commercial research and personal use only; copyright 2026 Aswin V. Commercial use requires the author's explicit written permission.",
+      "source_license_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/LICENSE",
+      "commercial_use_permitted": false
+    },
+    {
+      "ticker": "TCS.NS",
+      "url": "https://raw.githubusercontent.com/aswinv90/indian-market-historical-data/5dffc0832c63d1558930510d081e076929608d82/data/NSE/TCS_NS.parquet",
+      "sha256": "3a6a81d9ff6257ca6eddfafc017de30bae0c8e9fad662c6fd46bb70f1614b7ab",
+      "filename": "TCS_NS.parquet",
+      "provider": "Yahoo Finance via yfinance; third-party archive",
+      "price_basis": "adjusted",
+      "lineage_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/scripts/fetch_all_stocks.py",
+      "rows": 2711,
+      "date_start": "2010-01-04",
+      "date_end": "2020-12-31",
+      "gaps_over_seven_calendar_days": 0,
+      "source_file_rows": 6004,
+      "study_start": "2010-01-01",
+      "study_end": "2020-12-31",
+      "removed_zero_volume_rows": 2,
+      "source_license": "Non-commercial research and personal use only; copyright 2026 Aswin V. Commercial use requires the author's explicit written permission.",
+      "source_license_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/LICENSE",
+      "commercial_use_permitted": false
+    },
+    {
+      "ticker": "INFY.NS",
+      "url": "https://raw.githubusercontent.com/aswinv90/indian-market-historical-data/5dffc0832c63d1558930510d081e076929608d82/data/NSE/INFY_NS.parquet",
+      "sha256": "9f73af06716697381708bfc99f561a123d23b46613504038b958f09ed2f19cca",
+      "filename": "INFY_NS.parquet",
+      "provider": "Yahoo Finance via yfinance; third-party archive",
+      "price_basis": "adjusted",
+      "lineage_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/scripts/fetch_all_stocks.py",
+      "rows": 2711,
+      "date_start": "2010-01-04",
+      "date_end": "2020-12-31",
+      "gaps_over_seven_calendar_days": 0,
+      "source_file_rows": 7731,
+      "study_start": "2010-01-01",
+      "study_end": "2020-12-31",
+      "removed_zero_volume_rows": 2,
+      "source_license": "Non-commercial research and personal use only; copyright 2026 Aswin V. Commercial use requires the author's explicit written permission.",
+      "source_license_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/LICENSE",
+      "commercial_use_permitted": false
+    },
+    {
+      "ticker": "HDFCBANK.NS",
+      "url": "https://raw.githubusercontent.com/aswinv90/indian-market-historical-data/5dffc0832c63d1558930510d081e076929608d82/data/NSE/HDFCBANK_NS.parquet",
+      "sha256": "a3b2c359431958167585f8c7eb5a24457b19209686e5dae474dc010bbc3d0e40",
+      "filename": "HDFCBANK_NS.parquet",
+      "provider": "Yahoo Finance via yfinance; third-party archive",
+      "price_basis": "adjusted",
+      "lineage_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/scripts/fetch_all_stocks.py",
+      "rows": 2711,
+      "date_start": "2010-01-04",
+      "date_end": "2020-12-31",
+      "gaps_over_seven_calendar_days": 0,
+      "source_file_rows": 7731,
+      "study_start": "2010-01-01",
+      "study_end": "2020-12-31",
+      "removed_zero_volume_rows": 2,
+      "source_license": "Non-commercial research and personal use only; copyright 2026 Aswin V. Commercial use requires the author's explicit written permission.",
+      "source_license_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/LICENSE",
+      "commercial_use_permitted": false
+    },
+    {
+      "ticker": "ITC.NS",
+      "url": "https://raw.githubusercontent.com/aswinv90/indian-market-historical-data/5dffc0832c63d1558930510d081e076929608d82/data/NSE/ITC_NS.parquet",
+      "sha256": "af03d6c408ed47d3c2868bef0058ad21d58fda6c6692eae945f31d5fcb0701d9",
+      "filename": "ITC_NS.parquet",
+      "provider": "Yahoo Finance via yfinance; third-party archive",
+      "price_basis": "adjusted",
+      "lineage_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/scripts/fetch_all_stocks.py",
+      "rows": 2711,
+      "date_start": "2010-01-04",
+      "date_end": "2020-12-31",
+      "gaps_over_seven_calendar_days": 0,
+      "source_file_rows": 7728,
+      "study_start": "2010-01-01",
+      "study_end": "2020-12-31",
+      "removed_zero_volume_rows": 2,
+      "source_license": "Non-commercial research and personal use only; copyright 2026 Aswin V. Commercial use requires the author's explicit written permission.",
+      "source_license_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/LICENSE",
+      "commercial_use_permitted": false
+    }
+  ],
+  "price_window_count": 80,
+  "profile_decision_count": 240,
+  "profiles_per_price_window": 3,
+  "profile_data": "Three synthetic static profiles; not real investor histories",
+  "text_data": "Authentic historical filings/news unavailable; explicit empty retrieval index",
+  "as_of_start": "2019-01-01",
+  "as_of_end": "2020-10-29",
+  "action_counts": {
+    "REDUCE": 80,
+    "WATCH": 160
+  },
+  "policy_checks": {
+    "all_five_agents_present": {
+      "evaluated": 240,
+      "passed": 240,
+      "violations": 0
+    },
+    "cash_not_equity_high_risk": {
+      "evaluated": 80,
+      "passed": 80,
+      "violations": 0
+    },
+    "concentration_override": {
+      "evaluated": 80,
+      "passed": 80,
+      "violations": 0
+    },
+    "confidence_remains_evidence_strength": {
+      "evaluated": 240,
+      "passed": 240,
+      "violations": 0
+    },
+    "historical_text_evidence_withheld": {
+      "evaluated": 240,
+      "passed": 240,
+      "violations": 0
+    },
+    "market_inputs_available_by_cutoff": {
+      "evaluated": 240,
+      "passed": 240,
+      "violations": 0
+    },
+    "missing_fundamentals_pause_entry": {
+      "evaluated": 160,
+      "passed": 160,
+      "violations": 0
+    },
+    "only_price_and_profile_sources": {
+      "evaluated": 240,
+      "passed": 240,
+      "violations": 0
+    },
+    "persistence_disabled": {
+      "evaluated": 240,
+      "passed": 240,
+      "violations": 0
+    }
+  },
+  "model_readiness": "research_only",
+  "limitations": [
+    "Real dated price snapshots alone do not supply point-in-time fundamentals or news. Today's synthetic documents are never used in this replay.",
+    "Missing fundamentals intentionally cause WATCH for unconcentrated profiles; concentration REDUCE addresses an allocation rule, not predicted price decline.",
+    "Three synthetic profiles share each price window. Profile decisions are correlated policy checks, not independent forecasts or trades.",
+    "No recommendation accuracy, calibrated action-success probability, realized profit, transaction costs, portfolio revaluation or investment effectiveness is measured.",
+    "Static profile and portfolio safeguards are disclosed demo policies. This replay establishes only the listed checks on the declared historical windows.",
+    "The price forecaster does not enter synthesis. This replay cannot promote it or establish full-agent predictive quality."
+  ],
+  "selection_id": "b58951e961db26b4ef935ae79cc96c34b51a46e39cbe86dc76719d88cc2e3e46",
+  "evaluated_at_utc": "2026-10-14T18:48:17.622554+00:00",
+  "implementation_sha256": {
+    "scripts/historical_policies.py": "d2a2df21ef14753f8506f26d4389d1bddd465c84ba6e7dfda6a3f425e4878250",
+    "vibefinance/evaluation/historical_policy.py": "b23da32e49a5bbcb6b3527506cc24e39479c716fc45bf5376456d0eeb2878d13",
+    "vibefinance/orchestrator.py": "1d7dfd31b91a25646aae5da2fd9a098b100f3c42efa0cb7a58b4403b2ebfd0bd",
+    "vibefinance/synthesis/synthesizer.py": "69525d09f65952d3b55ec480e2f22146cca3f7869a120764e0b34f3957241a83",
+    "vibefinance/agents/base.py": "821138f1ebb809706ce6a850192d6c0cc616923a83845fd6faf20cfc7441da9b",
+    "vibefinance/agents/momentum_agent.py": "cba951da69f298aa4ab4c5b955c66c20d0a5e70eb210376342f7a74aa898994f",
+    "vibefinance/agents/volume_agent.py": "fc9b48cbb30054b4b2b591fea0b0ef4d7d247159ab8715c68811afbe3b33b143",
+    "vibefinance/agents/risk_agent.py": "edf9ffb83c8204c0b4f945957a4d70e7a5cac620cae334184221ae4cd5c40f1c"
+  },
+  "full_report_sha256": "1bdaf89b0d353dd548311f5ee6e9c7806e4e016df26da0bbb3c87a0e107c3e0f",
+  "full_report_location": ".runtime/forecast/policies.json"
+}

@@ -1,0 +1,11 @@
+{
+  "development_start": "2010-01-01",
+  "refit_end": "2020-12-31",
+  "calibration_start": "2021-01-01",
+  "calibration_end": "2023-12-31",
+  "test_start": "2024-01-01",
+  "test_end": "2025-12-31",
+  "horizon_sessions": 30,
+  "interval_alpha": 0.1,
+  "scale_floor_quantile": 0.05
+}

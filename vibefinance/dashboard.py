@@ -210,7 +210,93 @@ def render_sources(session, beginner=False):
                     st.caption("Full document unavailable; the exact source snapshot is displayed above.")
 
 
+def render_forecast_audit():
+    if st.button("Load real-history forecast audit"):
+        report = request_or_error("GET", "/evaluation/forecast", "load the saved real-history forecast audit")
+        if report is not None:
+            st.session_state.forecast_audit = report
+    report = st.session_state.get("forecast_audit")
+    if report is None:
+        return
+    st.subheader("Real-history price forecasting research")
+    st.caption("This saved chronological audit measures historical price forecasts. Five-agent recommendation confidence remains a heuristic score; research forecasts are not used to change recommendations or portfolio safeguards.")
+    if report.get("status") != "available":
+        st.info(report.get("message", "No saved real-history forecast audit is available."))
+        return
+    test = report["test"]
+    protocol = report["protocol"]
+    start = test.get("as_of_start", protocol.get("test_start", "unspecified"))
+    end = test.get("as_of_end", protocol.get("test_end", "unspecified"))
+    st.write(f"Recorded evaluation period: {start} to {end} · N = {test['sample_size']}")
+    st.caption("These scores have been reported and inspected. This evaluation period is now spent; further analysis of it is exploratory and must not be used to tune a model for a new confirmatory claim.")
+    if report.get("period_status"):
+        st.caption(report["period_status"])
+    if report.get("analysis_status"):
+        st.caption(report["analysis_status"])
+    if test.get("target_end"):
+        st.write("Final outcome date:", test["target_end"])
+    labels = {"brier": "Brier score", "log_loss": "Log loss", "accuracy": "Direction accuracy",
+              "mae_return": "Return MAE", "rmse_return": "Return RMSE"}
+    rows = [{"Method": method, **{labels[key]: value for key, value in metrics.items() if key in labels}}
+            for method, metrics in test["metrics"].items()]
+    if rows:
+        st.dataframe(rows, hide_index=True)
+        st.caption("Lower Brier score, log loss and return errors are better; higher direction accuracy is better. All methods use identical evaluation dates and outcomes.")
+    interval = test.get("interval", {})
+    coverage = interval.get("coverage", interval.get("observed_coverage"))
+    if coverage is not None:
+        nominal = interval.get("nominal_coverage")
+        st.write("Observed return-interval coverage:", f"{coverage:.2%}")
+        if nominal is not None:
+            st.write("Nominal coverage target:", f"{nominal:.2%}")
+        if test.get("primary_interval_method"):
+            st.write("Predeclared primary interval:", test["primary_interval_method"])
+        if interval.get("mean_width") is not None:
+            st.write("Mean interval width:", f"{100 * interval['mean_width']:.2f} return percentage points")
+        if interval.get("interval_score") is not None:
+            st.write("Interval score:", f"{100 * interval['interval_score']:.2f} return percentage points")
+        st.caption("Nominal coverage is a target, not a guarantee. Wider intervals can increase coverage; lower interval score balances width against missed outcomes. Market regime changes and a small number of independent forecast dates limit these estimates.")
+    interval_rows = []
+    interval_labels = {"coverage": "Observed coverage (%)", "nominal_coverage": "Nominal target (%)",
+                       "mean_width": "Mean width (return pp)", "interval_score": "Interval score (return pp)"}
+    for point_method, methods in test.get("intervals", {}).items():
+        for interval_method, values in methods.items():
+            interval_rows.append({"Point method": point_method, "Interval method": interval_method,
+                                  **{label: 100 * values[key] for key, label in interval_labels.items() if key in values}})
+    if interval_rows:
+        with st.expander("Interval comparisons and uncertainty"):
+            st.dataframe(interval_rows, hide_index=True)
+            st.caption("Comparisons use identical evaluation dates. Follow-up intervals use the same calibration dates for each point predictor; the frozen legacy interval retains its original calibration. Joint intervals target simultaneous coverage across securities and should be assessed separately from marginal intervals.")
+            joint_details = interval.get("simultaneous_coverage_details", {})
+            if joint_details:
+                if joint_details.get("coverage") is not None:
+                    st.write("Primary interval simultaneous security coverage:", f"{joint_details['coverage']:.2%}")
+                st.write("Complete forecast dates:", joint_details.get("complete_forecast_dates", "unspecified"),
+                         "· excluded partial forecast dates:", joint_details.get("excluded_partial_forecast_dates", "unspecified"),
+                         "· calendar quarters:", joint_details.get("calendar_quarters", "unspecified"))
+                st.caption("Simultaneous coverage scores only forecast dates containing every declared security. Partial groups are excluded and counted; these complete dates may represent fewer periods than the marginal evaluation.")
+            st.json({"primary_interval_uncertainty": interval.get("uncertainty", {}),
+                     "primary_interval_simultaneous_coverage": joint_details,
+                     "paired_comparisons": test.get("uncertainty", {})})
+    admission = report["selection"]["admission"]
+    st.write("Research acceptance check:", "passed" if admission["passed"] else "failed", "—", admission["reason"])
+    st.caption("Model readiness: research only. A passed research check does not establish investment performance.")
+    st.write("Selected probability model:", report["selection"].get("probability_model", "unspecified"))
+    st.write("Selected return model:", report["selection"].get("return_model", "unspecified"))
+    for limitation in report["limitations"]:
+        st.caption(limitation)
+    with st.expander("Chronological protocol, provenance and validation"):
+        st.json({key: report[key] for key in (
+            "protocol", "data", "validation", "model_id", "selection_id", "evaluated_at_utc",
+            "runtime", "features", "calibration", "experiment_version", "period_status",
+            "horizon_definition", "development_status", "original_selection_id", "analysis_status",
+            "data_quality", "correction") if key in report})
+    with st.expander("Held-out calibration and uncertainty"):
+        st.json({key: test[key] for key in ("calibration", "uncertainty") if key in test})
+
+
 def render_evaluation(beginner):
+    render_forecast_audit()
     if beginner:
         st.write("Evaluation uses simulated data, so it does not establish investment performance. Recommendation confidence is a heuristic score; it is not a calibrated chance of profit.")
         st.caption("Turn off Plain-language mode to inspect sample sizes, baselines, uncertainty and timing measurements.")

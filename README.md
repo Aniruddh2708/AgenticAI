@@ -26,6 +26,8 @@ on Linux/Python 3.11.17. A native macOS run has not been independently tested.
 The launcher starts the API on local port 8000 and Streamlit on local port 8501.
 Use your browser or supported port forwarding. The onboarding UI does not supply
 web previews. Ctrl-C stops only the launcher's children; occupied ports are refused.
+Retriever initialization allows 60 seconds; the launcher allows 120 seconds for
+service readiness. These limits are active in the package implementation.
 
 ## Validate and evaluate
 
@@ -90,6 +92,7 @@ or certainty that a portfolio rule is appropriate.
 | VIBEFINANCE_EMBEDDINGS | Set 1 for opt-in local MiniLM + BM25 retrieval |
 | VIBEFINANCE_EMBEDDING_MODEL_PATH | Optional local verified model directory |
 | VIBEFINANCE_CORPUS_PATH | Optional corpus directory override; invalid/missing documents degrade explicitly |
+| VIBEFINANCE_FORECAST_REPORT | Saved historical research report; default `VIBEFINANCE_STATE_DIR/forecast/report.json` |
 
 External bindings require the shared access token. The API checks Bearer access and
 the dashboard asks for the same token. This is shared demonstration access, not
@@ -109,10 +112,12 @@ Neural retrieval and Yahoo packages are deliberately separate from the core lock
 
 An isolated CPU embedding environment was installed using
 `requirements-embeddings.txt`; a real Chroma store/query was verified using
-explicitly labeled fixture vectors. **Successful MiniLM retrieval is not verified**:
-model access to huggingface.co was denied with HTTP 403.
+explicitly labeled fixture vectors. A previous cloud run could not download MiniLM
+from huggingface.co (HTTP 403). That was a limitation of that run: the user later
+reported real MiniLM + BM25 retrieval with 21 chunks locally, remaining hybrid after
+an analysis. The local result has not been independently repeated in this cloud run.
 
-After supplying a verified local model or restoring network access, run:
+To verify embeddings in a configured optional environment, run:
 
 ```sh
 HF_HOME="$PWD/.runtime/huggingface" .runtime/embeddings-venv/bin/python scripts/check_embeddings.py --download
@@ -124,8 +129,9 @@ falls back to BM25 with a warning. Exact optional installation commands are in
 [INTEGRATIONS.md](docs/INTEGRATIONS.md). Do not sync the core-only lock into an
 optional environment with make setup; it would remove optional packages.
 
-Yahoo's fc.yahoo.com request was denied with HTTP 403. The optional live-check
-script validates simulation fallback and exits nonzero when live mode is required.
+In the previous cloud run, Yahoo's fc.yahoo.com request was denied with HTTP 403.
+The optional live-check script validates simulation fallback and exits nonzero when
+live mode is required.
 The dashboard can try live prices and charts the exact session rows; failed live
 access is disclosed. No LLM rewriting has been implemented.
 
@@ -147,12 +153,92 @@ windows; it does not simulate a trading strategy or establish profitability.
 Measured sequential/parallel timings may show a slowdown for these small agents.
 Never treat concurrency itself as a promised speedup.
 
+## Historical price forecasting research
+
+The historical research pipeline is separate from the synthetic momentum check
+and the five-agent recommendation. It uses dated prices for the existing five-stock
+universe, with raw Parquet hashes and provenance pinned in
+[`data/forecast_manifest.json`](data/forecast_manifest.json). The source is
+[aswinv90/indian-market-historical-data](https://github.com/aswinv90/indian-market-historical-data),
+a third-party archive of Yahoo Finance history with a noncommercial research-only
+license. This is not an official exchange feed. Zero-volume placeholders are
+excluded by a uniform rule before fitting or scoring; positive-volume weekend
+sessions are retained.
+
+From the repository root, run each stage explicitly:
+
+```sh
+.venv/bin/python scripts/forecast.py download
+.venv/bin/python scripts/forecast.py prepare
+.venv/bin/python scripts/forecast.py test
+.venv/bin/python scripts/historical_policies.py
+```
+
+The fixed protocol uses 2010–2015 initial training, expanding yearly validation
+in 2016–2017, separate residual calibration in 2018, and a 2019–2020 test period
+untouched until the frozen selection is evaluated. Targets are 30-session adjusted
+returns and their up/down direction. Validation, calibration and test outcomes are
+purged at period boundaries and do not overlap within each ticker.
+
+The models use ten features derived only from current and past price/volume:
+L2 logistic regression for direction probabilities and ridge regression for returns.
+Small regularization grids are selected by validation Brier score and return MAE.
+Training-prior, constant 50% and mean/zero forecasts can win selection; always-up
+and momentum forecasts are also reported as fair baselines on the same test rows.
+Model parameters and selection are frozen before testing. Existing selection or
+report artifacts are protected from overwrite; a reported holdout cannot become
+a tuning set while retaining its test status.
+
+The default report is `.runtime/forecast/report.json`. The Metrics tab's
+**Load real-history forecast audit** button reads its summary through
+`GET /evaluation/forecast`; `VIBEFINANCE_FORECAST_REPORT` can select another report.
+Application startup and this endpoint do not download data or train models.
+Missing or invalid artifacts produce an unavailable status without invented scores.
+Reports expose held-out metrics, uncertainty, calibration and a research acceptance
+check, with readiness always marked **research only**. The recorded experiment
+failed that check: validation selected prior probability, and the return model
+did not beat the historical mean baseline. The historical policy script separately
+checks all five agents with real price prefixes and unavailable historical text;
+it does not measure recommendation accuracy or P&L.
+
+The five surviving stocks are a narrow retrospective sample, vendor adjustments
+may be retrospective, and stocks share market shocks. Historical calibration does
+not establish future interval coverage or investment performance. Current price
+forecasts are not attached to decisions. Concentration precedence, cash and sector
+limits, and missing-evidence safeguards remain unchanged. See
+[FORECASTING_AUDIT.md](docs/FORECASTING_AUDIT.md) for the audit, results and remaining
+validation requirements.
+
+The [uncertainty follow-up](docs/FORECASTING_FOLLOWUP.md) diagnoses the original
+selection and undercoverage, retains prior/mean baselines, and uses longer,
+security-specific volatility calibration. Its once-only 2024–2025 evaluation
+reached 91.25% marginal coverage, with wider intervals and uncertain quality gains;
+no predictive edge or deployment promotion was established. Both evaluation
+periods are now spent. Reported joint coverage has a labelled exploratory
+complete-universe correction for stale vendor rows.
+
+```sh
+.venv/bin/python scripts/forecast_followup.py prepare
+.venv/bin/python scripts/forecast_followup.py test
+.venv/bin/python scripts/forecast_followup_exploratory.py
+```
+
+Existing runs and the shared evaluation-start ledger prevent another purported
+fresh score, including after interruption or a different run directory. The
+corrected local view is `.runtime/forecast-followup/exploratory-report.json`; set
+`VIBEFINANCE_FORECAST_REPORT` explicitly to review it. Default app configuration
+and Render remain unchanged. Targets are 30 observed vendor trading rows;
+independent price and complete exchange-calendar verification remain limitations.
+
 ## Deployment, presentation and handoff
 
 See [DEPLOYMENT.md](docs/DEPLOYMENT.md) for the container, persistent volume, shared
 access gate and platform requirements. A Docker image was built through a verified
-offline wheel path because this environment's Docker build networking failed.
-A public provider/account has not been provisioned.
+offline wheel path in a previous cloud run because Docker build networking failed.
+The user reports a working BM25 deployment on Render's free tier at
+[vibefinance.onrender.com](https://vibefinance.onrender.com). That deployment has not
+been independently checked during this cloud audit; its shared access gate remains
+the operator's responsibility.
 
 Open [PRESENTATION.html](docs/PRESENTATION.html) for the deck and
 [DEMO.md](DEMO.md) for the walkthrough. The delivered assets and their actual

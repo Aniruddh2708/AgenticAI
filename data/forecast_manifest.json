@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "study_start": "2010-01-01",
+  "study_end": "2020-12-31",
+  "description": "Fixed five-symbol historical research snapshot selected for coverage and documented adjustment lineage before examining forecast metrics.",
+  "archive_repository": "https://github.com/aswinv90/indian-market-historical-data",
+  "archive_commit": "5dffc0832c63d1558930510d081e076929608d82",
+  "retrieved_on": "2026-10-14",
+  "lineage_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/scripts/fetch_all_stocks.py",
+  "documentation_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/README.md",
+  "license_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/LICENSE",
+  "license_artifact": {
+    "url": "https://raw.githubusercontent.com/aswinv90/indian-market-historical-data/5dffc0832c63d1558930510d081e076929608d82/LICENSE",
+    "filename": "SOURCE_LICENSE.txt",
+    "sha256": "16fdabca5e1adbe6ec075e951f4cb08cb660ba6f8661aabfb3412d37d5ada1da"
+  },
+  "license": "Non-commercial research and personal use only; copyright 2026 Aswin V. Commercial use requires the author's explicit written permission.",
+  "commercial_use_permitted": false,
+  "notes": [
+    "The archive bootstrap calls yfinance.Ticker.history(period='max', auto_adjust=False, actions=True). It preserves distinct Close and Adj Close columns plus split and dividend events. The README describes Adj Close as adjusted for splits and dividends.",
+    "Raw Open/High/Low/Close share Yahoo's split-adjusted price basis and exclude dividend adjustment. The loader must multiply raw OHLC by Adj Close / Close to obtain a common split-and-dividend-adjusted basis; use adjusted closes for targets. This is an adjusted-return research target, not a prediction of a future nominal cash price.",
+    "The archive is a third-party Yahoo Finance snapshot, not independently verified official exchange data. Yahoo, Kaggle and NSE direct requests were blocked by the cloud egress proxy with HTTP 403; normal TLS-verified GitHub downloads succeeded.",
+    "Each symbol has 2713 rows within the predeclared 2010-01-01 through 2020-12-31 study window; the original checksum-pinned files include older and later history. Crop to this window before feature construction. Zero-volume placeholders on 2014-04-24 and 2014-10-15 must be excluded uniformly before computing trading-session horizons. Positive-volume Muhurat weekend sessions on 2019-10-27 and 2020-11-14 must be retained. Exclusions depend on traded volume, not price outcomes.",
+    "TCS has questionable pre-IPO observations in the full vendor history. The predeclared common study starts in 2010 for every symbol; no pre-2010 rows enter features or labels.",
+    "Archive daily updates merge only five recent sessions and may leave older adjustments stale after later corporate actions. The fixed study ends in 2020, before the incremental-update boundary; do not assume that later archive periods are uniformly adjusted without a fresh audit.",
+    "The five symbols are the existing application universe, not a historical index-constituent sample. Results have survivorship and universe-selection limitations and do not generalize to all NSE equities.",
+    "Raw Parquet files are cached under ignored .runtime paths. Do not commit or redistribute the data or use archive-derived models in commercial deployments without the required source rights."
+  ],
+  "sources": [
+    {
+      "ticker": "RELIANCE.NS",
+      "url": "https://raw.githubusercontent.com/aswinv90/indian-market-historical-data/5dffc0832c63d1558930510d081e076929608d82/data/NSE/RELIANCE_NS.parquet",
+      "sha256": "3b1ca39ce7274ea3227dc5ecfb65478cfa33b1dfc52bb68cb219f70eb34089eb",
+      "filename": "RELIANCE_NS.parquet",
+      "provider": "Yahoo Finance via yfinance; third-party archive",
+      "price_basis": "adjusted",
+      "lineage_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/scripts/fetch_all_stocks.py"
+    },
+    {
+      "ticker": "TCS.NS",
+      "url": "https://raw.githubusercontent.com/aswinv90/indian-market-historical-data/5dffc0832c63d1558930510d081e076929608d82/data/NSE/TCS_NS.parquet",
+      "sha256": "3a6a81d9ff6257ca6eddfafc017de30bae0c8e9fad662c6fd46bb70f1614b7ab",
+      "filename": "TCS_NS.parquet",
+      "provider": "Yahoo Finance via yfinance; third-party archive",
+      "price_basis": "adjusted",
+      "lineage_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/scripts/fetch_all_stocks.py"
+    },
+    {
+      "ticker": "INFY.NS",
+      "url": "https://raw.githubusercontent.com/aswinv90/indian-market-historical-data/5dffc0832c63d1558930510d081e076929608d82/data/NSE/INFY_NS.parquet",
+      "sha256": "9f73af06716697381708bfc99f561a123d23b46613504038b958f09ed2f19cca",
+      "filename": "INFY_NS.parquet",
+      "provider": "Yahoo Finance via yfinance; third-party archive",
+      "price_basis": "adjusted",
+      "lineage_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/scripts/fetch_all_stocks.py"
+    },
+    {
+      "ticker": "HDFCBANK.NS",
+      "url": "https://raw.githubusercontent.com/aswinv90/indian-market-historical-data/5dffc0832c63d1558930510d081e076929608d82/data/NSE/HDFCBANK_NS.parquet",
+      "sha256": "a3b2c359431958167585f8c7eb5a24457b19209686e5dae474dc010bbc3d0e40",
+      "filename": "HDFCBANK_NS.parquet",
+      "provider": "Yahoo Finance via yfinance; third-party archive",
+      "price_basis": "adjusted",
+      "lineage_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/scripts/fetch_all_stocks.py"
+    },
+    {
+      "ticker": "ITC.NS",
+      "url": "https://raw.githubusercontent.com/aswinv90/indian-market-historical-data/5dffc0832c63d1558930510d081e076929608d82/data/NSE/ITC_NS.parquet",
+      "sha256": "af03d6c408ed47d3c2868bef0058ad21d58fda6c6692eae945f31d5fcb0701d9",
+      "filename": "ITC_NS.parquet",
+      "provider": "Yahoo Finance via yfinance; third-party archive",
+      "price_basis": "adjusted",
+      "lineage_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/scripts/fetch_all_stocks.py"
+    }
+  ]
+}

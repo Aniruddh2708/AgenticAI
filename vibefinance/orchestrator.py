@@ -20,7 +20,10 @@ from vibefinance.rag.validator import validate_citations, validate_claims
 from vibefinance.synthesis.synthesizer import synthesize
 
 
-async def prepare_retriever(timeout=AGENT_TIMEOUT_SECONDS):
+RETRIEVER_INITIALIZATION_TIMEOUT_SECONDS = 60.0
+
+
+async def prepare_retriever(timeout=RETRIEVER_INITIALIZATION_TIMEOUT_SECONDS):
     try:
         return await asyncio.wait_for(asyncio.to_thread(Retriever), timeout)
     except Exception as exc:
@@ -67,7 +70,9 @@ async def analyze(ticker, profile, *, store=None, retriever=None, sentiment_outa
     profile_cite = Citation(source_id=profile_id, doc_title=f"{profile.name} — profile snapshot",
         chunk_id=f"{profile_id}:snapshot", excerpt=profile.model_dump_json(), score=1, date="session snapshot")
     trace.append({"step": "Market ingest", "detail": f"{mode} · {len(frame)} sessions · {ticker}"})
-    retriever = retriever if retriever is not None else await prepare_retriever(timeout)
+    # Loading local embedding weights/indexes is cold-start work. Keep its budget
+    # independent of the short deadline for each warmed agent/query.
+    retriever = retriever if retriever is not None else await prepare_retriever()
 
     async def retrieve(query, types, k):
         try:

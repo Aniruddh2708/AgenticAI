@@ -1,0 +1,4645 @@
+{
+  "schema_version": 1,
+  "kind": "historical_price_forecast",
+  "experiment_version": 2,
+  "protocol": {
+    "development_start": "2010-01-01",
+    "refit_end": "2020-12-31",
+    "calibration_start": "2021-01-01",
+    "calibration_end": "2023-12-31",
+    "test_start": "2024-01-01",
+    "test_end": "2025-12-31",
+    "horizon_sessions": 30,
+    "interval_alpha": 0.1,
+    "scale_floor_quantile": 0.05
+  },
+  "features": [
+    "return_1",
+    "return_5",
+    "return_20",
+    "return_60",
+    "volatility_20",
+    "volatility_60",
+    "dma_ratio",
+    "rsi",
+    "macd_hist",
+    "volume_ratio"
+  ],
+  "data": [
+    {
+      "ticker": "RELIANCE.NS",
+      "url": "https://raw.githubusercontent.com/aswinv90/indian-market-historical-data/5dffc0832c63d1558930510d081e076929608d82/data/NSE/RELIANCE_NS.parquet",
+      "sha256": "3b1ca39ce7274ea3227dc5ecfb65478cfa33b1dfc52bb68cb219f70eb34089eb",
+      "filename": "RELIANCE_NS.parquet",
+      "provider": "Yahoo Finance via yfinance; third-party archive",
+      "price_basis": "adjusted",
+      "lineage_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/scripts/fetch_all_stocks.py",
+      "rows": 3946,
+      "date_start": "2010-01-04",
+      "date_end": "2025-12-31",
+      "gaps_over_seven_calendar_days": 0,
+      "source_file_rows": 7728,
+      "study_start": "2010-01-01",
+      "study_end": "2025-12-31",
+      "removed_zero_volume_rows": 3,
+      "source_license": "Non-commercial research and personal use only; copyright 2026 Aswin V. Commercial use requires the author's explicit written permission.",
+      "source_license_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/LICENSE",
+      "commercial_use_permitted": false
+    },
+    {
+      "ticker": "TCS.NS",
+      "url": "https://raw.githubusercontent.com/aswinv90/indian-market-historical-data/5dffc0832c63d1558930510d081e076929608d82/data/NSE/TCS_NS.parquet",
+      "sha256": "3a6a81d9ff6257ca6eddfafc017de30bae0c8e9fad662c6fd46bb70f1614b7ab",
+      "filename": "TCS_NS.parquet",
+      "provider": "Yahoo Finance via yfinance; third-party archive",
+      "price_basis": "adjusted",
+      "lineage_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/scripts/fetch_all_stocks.py",
+      "rows": 3946,
+      "date_start": "2010-01-04",
+      "date_end": "2025-12-31",
+      "gaps_over_seven_calendar_days": 0,
+      "source_file_rows": 6004,
+      "study_start": "2010-01-01",
+      "study_end": "2025-12-31",
+      "removed_zero_volume_rows": 3,
+      "source_license": "Non-commercial research and personal use only; copyright 2026 Aswin V. Commercial use requires the author's explicit written permission.",
+      "source_license_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/LICENSE",
+      "commercial_use_permitted": false
+    },
+    {
+      "ticker": "INFY.NS",
+      "url": "https://raw.githubusercontent.com/aswinv90/indian-market-historical-data/5dffc0832c63d1558930510d081e076929608d82/data/NSE/INFY_NS.parquet",
+      "sha256": "9f73af06716697381708bfc99f561a123d23b46613504038b958f09ed2f19cca",
+      "filename": "INFY_NS.parquet",
+      "provider": "Yahoo Finance via yfinance; third-party archive",
+      "price_basis": "adjusted",
+      "lineage_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/scripts/fetch_all_stocks.py",
+      "rows": 3946,
+      "date_start": "2010-01-04",
+      "date_end": "2025-12-31",
+      "gaps_over_seven_calendar_days": 0,
+      "source_file_rows": 7731,
+      "study_start": "2010-01-01",
+      "study_end": "2025-12-31",
+      "removed_zero_volume_rows": 3,
+      "source_license": "Non-commercial research and personal use only; copyright 2026 Aswin V. Commercial use requires the author's explicit written permission.",
+      "source_license_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/LICENSE",
+      "commercial_use_permitted": false
+    },
+    {
+      "ticker": "HDFCBANK.NS",
+      "url": "https://raw.githubusercontent.com/aswinv90/indian-market-historical-data/5dffc0832c63d1558930510d081e076929608d82/data/NSE/HDFCBANK_NS.parquet",
+      "sha256": "a3b2c359431958167585f8c7eb5a24457b19209686e5dae474dc010bbc3d0e40",
+      "filename": "HDFCBANK_NS.parquet",
+      "provider": "Yahoo Finance via yfinance; third-party archive",
+      "price_basis": "adjusted",
+      "lineage_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/scripts/fetch_all_stocks.py",
+      "rows": 3946,
+      "date_start": "2010-01-04",
+      "date_end": "2025-12-31",
+      "gaps_over_seven_calendar_days": 0,
+      "source_file_rows": 7731,
+      "study_start": "2010-01-01",
+      "study_end": "2025-12-31",
+      "removed_zero_volume_rows": 3,
+      "source_license": "Non-commercial research and personal use only; copyright 2026 Aswin V. Commercial use requires the author's explicit written permission.",
+      "source_license_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/LICENSE",
+      "commercial_use_permitted": false
+    },
+    {
+      "ticker": "ITC.NS",
+      "url": "https://raw.githubusercontent.com/aswinv90/indian-market-historical-data/5dffc0832c63d1558930510d081e076929608d82/data/NSE/ITC_NS.parquet",
+      "sha256": "af03d6c408ed47d3c2868bef0058ad21d58fda6c6692eae945f31d5fcb0701d9",
+      "filename": "ITC_NS.parquet",
+      "provider": "Yahoo Finance via yfinance; third-party archive",
+      "price_basis": "adjusted",
+      "lineage_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/scripts/fetch_all_stocks.py",
+      "rows": 3947,
+      "date_start": "2010-01-04",
+      "date_end": "2025-12-31",
+      "gaps_over_seven_calendar_days": 0,
+      "source_file_rows": 7728,
+      "study_start": "2010-01-01",
+      "study_end": "2025-12-31",
+      "removed_zero_volume_rows": 2,
+      "source_license": "Non-commercial research and personal use only; copyright 2026 Aswin V. Commercial use requires the author's explicit written permission.",
+      "source_license_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/LICENSE",
+      "commercial_use_permitted": false
+    }
+  ],
+  "model_id": "e32eede599ed0098030850402c89b8386763b72ce8c29e39c0f1de607353d8e4",
+  "selection": {
+    "probability_model": "prior",
+    "return_model": "mean",
+    "probability_kind": "prior",
+    "return_kind": "mean",
+    "probability_penalty": 0.01,
+    "return_penalty": 0.1,
+    "probability_baseline": "prior",
+    "return_baseline": "mean",
+    "criterion": "2016/2017 expanding validation Brier/MAE; a learned model requires a paired 95% upper loss-difference bound below zero against the best baseline",
+    "stability_rule": {
+      "minimum_calendar_quarters": 8,
+      "resamples": 2000,
+      "seed": 2708,
+      "confidence_level": 0.95,
+      "upper_bound_strictly_below": 0
+    },
+    "development_end": "2020-12-31",
+    "admission": {
+      "passed": false,
+      "reason": "Baseline retained; no feature-model superiority established. Interval evidence is empirical, with only eight time blocks and no future-coverage guarantee. No action or deployment promotion."
+    }
+  },
+  "validation": {
+    "sample_size": 80,
+    "origin_dates": 16,
+    "as_of_start": "2016-01-01",
+    "as_of_end": "2017-11-07",
+    "target_end": "2017-12-19",
+    "metrics": {
+      "selected": {
+        "brier": 0.24295143058321242,
+        "log_loss": 0.6790232396524873,
+        "accuracy": 0.5875,
+        "balanced_accuracy": 0.5,
+        "mae_return": 0.057172457975650695,
+        "rmse_return": 0.0697229270752891,
+        "realized_up_rate": 0.5875
+      }
+    },
+    "selected_metrics": {
+      "brier": 0.24295143058321242,
+      "log_loss": 0.6790232396524873,
+      "accuracy": 0.5875,
+      "balanced_accuracy": 0.5,
+      "mae_return": 0.057172457975650695,
+      "rmse_return": 0.0697229270752891,
+      "realized_up_rate": 0.5875
+    },
+    "folds": [
+      {
+        "start": "2016-01-01",
+        "end": "2016-12-31",
+        "training_rows": 6935,
+        "training_target_end": "2015-12-31",
+        "validation_rows": 40,
+        "validation_origin_dates": 8
+      },
+      {
+        "start": "2017-01-01",
+        "end": "2017-12-31",
+        "training_rows": 8015,
+        "training_target_end": "2016-12-30",
+        "validation_rows": 40,
+        "validation_origin_dates": 8
+      }
+    ],
+    "candidate_metrics": {
+      "prior": {
+        "brier": 0.24295143058321242,
+        "log_loss": 0.6790232396524873,
+        "accuracy": 0.5875,
+        "balanced_accuracy": 0.5,
+        "mae_return": 0.057172457975650695,
+        "rmse_return": 0.0697229270752891,
+        "realized_up_rate": 0.5875
+      },
+      "constant_half": {
+        "brier": 0.25,
+        "log_loss": 0.6931471805599453,
+        "accuracy": 0.5875,
+        "balanced_accuracy": 0.5,
+        "mae_return": 0.057172457975650695,
+        "rmse_return": 0.0697229270752891,
+        "realized_up_rate": 0.5875
+      },
+      "logistic_0.01": {
+        "brier": 0.2468233310765461,
+        "log_loss": 0.6889134649004058,
+        "accuracy": 0.5375,
+        "balanced_accuracy": 0.461960025789813,
+        "mae_return": 0.057172457975650695,
+        "rmse_return": 0.0697229270752891,
+        "realized_up_rate": 0.5875
+      },
+      "logistic_0.1": {
+        "brier": 0.24686296492441556,
+        "log_loss": 0.68775882753245,
+        "accuracy": 0.6,
+        "balanced_accuracy": 0.5151515151515151,
+        "mae_return": 0.057172457975650695,
+        "rmse_return": 0.0697229270752891,
+        "realized_up_rate": 0.5875
+      },
+      "logistic_1.0": {
+        "brier": 0.2440427359816363,
+        "log_loss": 0.681260734876617,
+        "accuracy": 0.5875,
+        "balanced_accuracy": 0.5,
+        "mae_return": 0.057172457975650695,
+        "rmse_return": 0.0697229270752891,
+        "realized_up_rate": 0.5875
+      },
+      "mean": {
+        "brier": 0.24295143058321242,
+        "log_loss": 0.6790232396524873,
+        "accuracy": 0.5875,
+        "balanced_accuracy": 0.5,
+        "mae_return": 0.057172457975650695,
+        "rmse_return": 0.0697229270752891,
+        "realized_up_rate": 0.5875
+      },
+      "zero": {
+        "brier": 0.24295143058321242,
+        "log_loss": 0.6790232396524873,
+        "accuracy": 0.5875,
+        "balanced_accuracy": 0.5,
+        "mae_return": 0.05841734216967263,
+        "rmse_return": 0.07208507022992894,
+        "realized_up_rate": 0.5875
+      },
+      "ridge_0.1": {
+        "brier": 0.24295143058321242,
+        "log_loss": 0.6790232396524873,
+        "accuracy": 0.5875,
+        "balanced_accuracy": 0.5,
+        "mae_return": 0.05693825599408644,
+        "rmse_return": 0.0703310509518841,
+        "realized_up_rate": 0.5875
+      },
+      "ridge_1.0": {
+        "brier": 0.24295143058321242,
+        "log_loss": 0.6790232396524873,
+        "accuracy": 0.5875,
+        "balanced_accuracy": 0.5,
+        "mae_return": 0.0568967292034549,
+        "rmse_return": 0.06981958658105926,
+        "realized_up_rate": 0.5875
+      },
+      "ridge_10.0": {
+        "brier": 0.24295143058321242,
+        "log_loss": 0.6790232396524873,
+        "accuracy": 0.5875,
+        "balanced_accuracy": 0.5,
+        "mae_return": 0.056943709303413546,
+        "rmse_return": 0.06950289927122681,
+        "realized_up_rate": 0.5875
+      }
+    },
+    "stability_results": {
+      "probability": {
+        "logistic_0.01": {
+          "baseline": "prior",
+          "difference": 0.003871900493333652,
+          "low": -0.010193188470525886,
+          "high": 0.01609815719500874,
+          "level": 0.95,
+          "calendar_quarter_blocks": 8,
+          "resamples": 2000,
+          "seed": 2708,
+          "eligible": false,
+          "reason": "Insufficient quarters or improvement not supported by paired uncertainty"
+        },
+        "logistic_0.1": {
+          "baseline": "prior",
+          "difference": 0.00391153434120315,
+          "low": -0.00960506183906974,
+          "high": 0.01549806403705787,
+          "level": 0.95,
+          "calendar_quarter_blocks": 8,
+          "resamples": 2000,
+          "seed": 2708,
+          "eligible": false,
+          "reason": "Insufficient quarters or improvement not supported by paired uncertainty"
+        },
+        "logistic_1.0": {
+          "baseline": "prior",
+          "difference": 0.001091305398423877,
+          "low": -0.006612867652555382,
+          "high": 0.007547811464560585,
+          "level": 0.95,
+          "calendar_quarter_blocks": 8,
+          "resamples": 2000,
+          "seed": 2708,
+          "eligible": false,
+          "reason": "Insufficient quarters or improvement not supported by paired uncertainty"
+        }
+      },
+      "return": {
+        "ridge_0.1": {
+          "baseline": "mean",
+          "difference": -0.00023420198156424104,
+          "low": -0.004379022398759784,
+          "high": 0.0032766405974708943,
+          "level": 0.95,
+          "calendar_quarter_blocks": 8,
+          "resamples": 2000,
+          "seed": 2708,
+          "eligible": false,
+          "reason": "Insufficient quarters or improvement not supported by paired uncertainty"
+        },
+        "ridge_1.0": {
+          "baseline": "mean",
+          "difference": -0.0002757287721957968,
+          "low": -0.0036449214997617703,
+          "high": 0.002620676629754126,
+          "level": 0.95,
+          "calendar_quarter_blocks": 8,
+          "resamples": 2000,
+          "seed": 2708,
+          "eligible": false,
+          "reason": "Insufficient quarters or improvement not supported by paired uncertainty"
+        },
+        "ridge_10.0": {
+          "baseline": "mean",
+          "difference": -0.000228748672237148,
+          "low": -0.001364996226813843,
+          "high": 0.0007363291836835353,
+          "level": 0.95,
+          "calendar_quarter_blocks": 8,
+          "resamples": 2000,
+          "seed": 2708,
+          "eligible": false,
+          "reason": "Insufficient quarters or improvement not supported by paired uncertainty"
+        }
+      }
+    },
+    "limitations": [
+      "Only sixteen shared origin dates and eight quarters; estimates are unstable.",
+      "Quarter bootstrap jointly samples stocks, but adjacent quarters can remain dependent.",
+      "Candidate comparisons are exploratory development checks, not proof of an investment edge.",
+      "The reported 2019-2020 holdout is spent and used only in the final development fit."
+    ]
+  },
+  "calibration": {
+    "sample_size": 120,
+    "shared_dates": 24,
+    "as_of_start": "2021-01-01",
+    "as_of_end": "2023-10-16",
+    "target_end": "2023-11-30",
+    "scale_floor": 0.0555099494352827,
+    "floor_fitted_on": "Only pre-2021 development price/volatility features",
+    "primary": "security_vol_scaled",
+    "point_models": {
+      "selected": {
+        "alpha": 0.1,
+        "scale_floor": 0.0555099494352827,
+        "sample_size": 120,
+        "shared_dates": 24,
+        "securities": [
+          "HDFCBANK.NS",
+          "INFY.NS",
+          "ITC.NS",
+          "RELIANCE.NS",
+          "TCS.NS"
+        ],
+        "primary": "security_vol_scaled",
+        "methods": {
+          "pooled_absolute": {
+            "available": true,
+            "nominal_coverage": 0.9,
+            "radius": 0.12024119597784752,
+            "quantile_units": 120,
+            "shared_dates": 24,
+            "unit": "pooled correlated security/date residuals; no IID interpretation"
+          },
+          "security_absolute": {
+            "available": true,
+            "nominal_coverage": 0.9,
+            "radius_by_ticker": {
+              "HDFCBANK.NS": 0.11183425367762753,
+              "INFY.NS": 0.16715440702044262,
+              "ITC.NS": 0.14139984550549253,
+              "RELIANCE.NS": 0.12362590393820236,
+              "TCS.NS": 0.12226753379414382
+            },
+            "quantile_units_by_ticker": {
+              "HDFCBANK.NS": 24,
+              "INFY.NS": 24,
+              "ITC.NS": 24,
+              "RELIANCE.NS": 24,
+              "TCS.NS": 24
+            },
+            "unit": "distinct non-overlapping forecast dates per security"
+          },
+          "security_vol_scaled": {
+            "available": true,
+            "nominal_coverage": 0.9,
+            "radius_by_ticker": {
+              "HDFCBANK.NS": 1.397661614192853,
+              "INFY.NS": 2.14018908295821,
+              "ITC.NS": 1.8796669232229781,
+              "RELIANCE.NS": 1.93581339398886,
+              "TCS.NS": 1.5852633187894123
+            },
+            "quantile_units_by_ticker": {
+              "HDFCBANK.NS": 24,
+              "INFY.NS": 24,
+              "ITC.NS": 24,
+              "RELIANCE.NS": 24,
+              "TCS.NS": 24
+            },
+            "unit": "distinct non-overlapping forecast dates per security"
+          },
+          "joint_vol_scaled": {
+            "available": true,
+            "nominal_coverage": 0.9,
+            "radius": 2.818790182759547,
+            "quantile_units": 24,
+            "unit": "maximum standardized residual across securities at each shared date",
+            "coverage_target": "simultaneous across the declared securities, rather than marginal"
+          }
+        },
+        "scale_rule": "max(past 20/past 60 observed-row return volatility) * sqrt(30), floored at training-only 5th percentile",
+        "guarantee": "Empirical nominal coverage only; market regimes are not exchangeable"
+      },
+      "prior_mean": {
+        "alpha": 0.1,
+        "scale_floor": 0.0555099494352827,
+        "sample_size": 120,
+        "shared_dates": 24,
+        "securities": [
+          "HDFCBANK.NS",
+          "INFY.NS",
+          "ITC.NS",
+          "RELIANCE.NS",
+          "TCS.NS"
+        ],
+        "primary": "security_vol_scaled",
+        "methods": {
+          "pooled_absolute": {
+            "available": true,
+            "nominal_coverage": 0.9,
+            "radius": 0.12024119597784752,
+            "quantile_units": 120,
+            "shared_dates": 24,
+            "unit": "pooled correlated security/date residuals; no IID interpretation"
+          },
+          "security_absolute": {
+            "available": true,
+            "nominal_coverage": 0.9,
+            "radius_by_ticker": {
+              "HDFCBANK.NS": 0.11183425367762753,
+              "INFY.NS": 0.16715440702044262,
+              "ITC.NS": 0.14139984550549253,
+              "RELIANCE.NS": 0.12362590393820236,
+              "TCS.NS": 0.12226753379414382
+            },
+            "quantile_units_by_ticker": {
+              "HDFCBANK.NS": 24,
+              "INFY.NS": 24,
+              "ITC.NS": 24,
+              "RELIANCE.NS": 24,
+              "TCS.NS": 24
+            },
+            "unit": "distinct non-overlapping forecast dates per security"
+          },
+          "security_vol_scaled": {
+            "available": true,
+            "nominal_coverage": 0.9,
+            "radius_by_ticker": {
+              "HDFCBANK.NS": 1.397661614192853,
+              "INFY.NS": 2.14018908295821,
+              "ITC.NS": 1.8796669232229781,
+              "RELIANCE.NS": 1.93581339398886,
+              "TCS.NS": 1.5852633187894123
+            },
+            "quantile_units_by_ticker": {
+              "HDFCBANK.NS": 24,
+              "INFY.NS": 24,
+              "ITC.NS": 24,
+              "RELIANCE.NS": 24,
+              "TCS.NS": 24
+            },
+            "unit": "distinct non-overlapping forecast dates per security"
+          },
+          "joint_vol_scaled": {
+            "available": true,
+            "nominal_coverage": 0.9,
+            "radius": 2.818790182759547,
+            "quantile_units": 24,
+            "unit": "maximum standardized residual across securities at each shared date",
+            "coverage_target": "simultaneous across the declared securities, rather than marginal"
+          }
+        },
+        "scale_rule": "max(past 20/past 60 observed-row return volatility) * sqrt(30), floored at training-only 5th percentile",
+        "guarantee": "Empirical nominal coverage only; market regimes are not exchangeable"
+      },
+      "constant_half_zero": {
+        "alpha": 0.1,
+        "scale_floor": 0.0555099494352827,
+        "sample_size": 120,
+        "shared_dates": 24,
+        "securities": [
+          "HDFCBANK.NS",
+          "INFY.NS",
+          "ITC.NS",
+          "RELIANCE.NS",
+          "TCS.NS"
+        ],
+        "primary": "security_vol_scaled",
+        "methods": {
+          "pooled_absolute": {
+            "available": true,
+            "nominal_coverage": 0.9,
+            "radius": 0.12145896190871941,
+            "quantile_units": 120,
+            "shared_dates": 24,
+            "unit": "pooled correlated security/date residuals; no IID interpretation"
+          },
+          "security_absolute": {
+            "available": true,
+            "nominal_coverage": 0.9,
+            "radius_by_ticker": {
+              "HDFCBANK.NS": 0.12145896190871941,
+              "INFY.NS": 0.1790422314953808,
+              "ITC.NS": 0.16398169298115195,
+              "RELIANCE.NS": 0.14620775141386178,
+              "TCS.NS": 0.0996856863184844
+            },
+            "quantile_units_by_ticker": {
+              "HDFCBANK.NS": 24,
+              "INFY.NS": 24,
+              "ITC.NS": 24,
+              "RELIANCE.NS": 24,
+              "TCS.NS": 24
+            },
+            "unit": "distinct non-overlapping forecast dates per security"
+          },
+          "security_vol_scaled": {
+            "available": true,
+            "nominal_coverage": 0.9,
+            "radius_by_ticker": {
+              "HDFCBANK.NS": 1.377893440662984,
+              "INFY.NS": 2.4490814824191616,
+              "ITC.NS": 2.0924109693212642,
+              "RELIANCE.NS": 2.2894143903160273,
+              "TCS.NS": 1.4688995770155855
+            },
+            "quantile_units_by_ticker": {
+              "HDFCBANK.NS": 24,
+              "INFY.NS": 24,
+              "ITC.NS": 24,
+              "RELIANCE.NS": 24,
+              "TCS.NS": 24
+            },
+            "unit": "distinct non-overlapping forecast dates per security"
+          },
+          "joint_vol_scaled": {
+            "available": true,
+            "nominal_coverage": 0.9,
+            "radius": 2.8394290804136304,
+            "quantile_units": 24,
+            "unit": "maximum standardized residual across securities at each shared date",
+            "coverage_target": "simultaneous across the declared securities, rather than marginal"
+          }
+        },
+        "scale_rule": "max(past 20/past 60 observed-row return volatility) * sqrt(30), floored at training-only 5th percentile",
+        "guarantee": "Empirical nominal coverage only; market regimes are not exchangeable"
+      },
+      "always_up_zero": {
+        "alpha": 0.1,
+        "scale_floor": 0.0555099494352827,
+        "sample_size": 120,
+        "shared_dates": 24,
+        "securities": [
+          "HDFCBANK.NS",
+          "INFY.NS",
+          "ITC.NS",
+          "RELIANCE.NS",
+          "TCS.NS"
+        ],
+        "primary": "security_vol_scaled",
+        "methods": {
+          "pooled_absolute": {
+            "available": true,
+            "nominal_coverage": 0.9,
+            "radius": 0.12145896190871941,
+            "quantile_units": 120,
+            "shared_dates": 24,
+            "unit": "pooled correlated security/date residuals; no IID interpretation"
+          },
+          "security_absolute": {
+            "available": true,
+            "nominal_coverage": 0.9,
+            "radius_by_ticker": {
+              "HDFCBANK.NS": 0.12145896190871941,
+              "INFY.NS": 0.1790422314953808,
+              "ITC.NS": 0.16398169298115195,
+              "RELIANCE.NS": 0.14620775141386178,
+              "TCS.NS": 0.0996856863184844
+            },
+            "quantile_units_by_ticker": {
+              "HDFCBANK.NS": 24,
+              "INFY.NS": 24,
+              "ITC.NS": 24,
+              "RELIANCE.NS": 24,
+              "TCS.NS": 24
+            },
+            "unit": "distinct non-overlapping forecast dates per security"
+          },
+          "security_vol_scaled": {
+            "available": true,
+            "nominal_coverage": 0.9,
+            "radius_by_ticker": {
+              "HDFCBANK.NS": 1.377893440662984,
+              "INFY.NS": 2.4490814824191616,
+              "ITC.NS": 2.0924109693212642,
+              "RELIANCE.NS": 2.2894143903160273,
+              "TCS.NS": 1.4688995770155855
+            },
+            "quantile_units_by_ticker": {
+              "HDFCBANK.NS": 24,
+              "INFY.NS": 24,
+              "ITC.NS": 24,
+              "RELIANCE.NS": 24,
+              "TCS.NS": 24
+            },
+            "unit": "distinct non-overlapping forecast dates per security"
+          },
+          "joint_vol_scaled": {
+            "available": true,
+            "nominal_coverage": 0.9,
+            "radius": 2.8394290804136304,
+            "quantile_units": 24,
+            "unit": "maximum standardized residual across securities at each shared date",
+            "coverage_target": "simultaneous across the declared securities, rather than marginal"
+          }
+        },
+        "scale_rule": "max(past 20/past 60 observed-row return volatility) * sqrt(30), floored at training-only 5th percentile",
+        "guarantee": "Empirical nominal coverage only; market regimes are not exchangeable"
+      },
+      "momentum": {
+        "alpha": 0.1,
+        "scale_floor": 0.0555099494352827,
+        "sample_size": 120,
+        "shared_dates": 24,
+        "securities": [
+          "HDFCBANK.NS",
+          "INFY.NS",
+          "ITC.NS",
+          "RELIANCE.NS",
+          "TCS.NS"
+        ],
+        "primary": "security_vol_scaled",
+        "methods": {
+          "pooled_absolute": {
+            "available": true,
+            "nominal_coverage": 0.9,
+            "radius": 0.12600635600598145,
+            "quantile_units": 120,
+            "shared_dates": 24,
+            "unit": "pooled correlated security/date residuals; no IID interpretation"
+          },
+          "security_absolute": {
+            "available": true,
+            "nominal_coverage": 0.9,
+            "radius_by_ticker": {
+              "HDFCBANK.NS": 0.11759941370576146,
+              "INFY.NS": 0.1613892469923087,
+              "ITC.NS": 0.14112821606366088,
+              "RELIANCE.NS": 0.1293910639663363,
+              "TCS.NS": 0.132013588287834
+            },
+            "quantile_units_by_ticker": {
+              "HDFCBANK.NS": 24,
+              "INFY.NS": 24,
+              "ITC.NS": 24,
+              "RELIANCE.NS": 24,
+              "TCS.NS": 24
+            },
+            "unit": "distinct non-overlapping forecast dates per security"
+          },
+          "security_vol_scaled": {
+            "available": true,
+            "nominal_coverage": 0.9,
+            "radius_by_ticker": {
+              "HDFCBANK.NS": 1.308156886358886,
+              "INFY.NS": 2.006874828618387,
+              "ITC.NS": 1.8460402126701916,
+              "RELIANCE.NS": 1.995567294879061,
+              "TCS.NS": 1.604197319126004
+            },
+            "quantile_units_by_ticker": {
+              "HDFCBANK.NS": 24,
+              "INFY.NS": 24,
+              "ITC.NS": 24,
+              "RELIANCE.NS": 24,
+              "TCS.NS": 24
+            },
+            "unit": "distinct non-overlapping forecast dates per security"
+          },
+          "joint_vol_scaled": {
+            "available": true,
+            "nominal_coverage": 0.9,
+            "radius": 2.8138968358083245,
+            "quantile_units": 24,
+            "unit": "maximum standardized residual across securities at each shared date",
+            "coverage_target": "simultaneous across the declared securities, rather than marginal"
+          }
+        },
+        "scale_rule": "max(past 20/past 60 observed-row return volatility) * sqrt(30), floored at training-only 5th percentile",
+        "guarantee": "Empirical nominal coverage only; market regimes are not exchangeable"
+      },
+      "legacy_selected": {
+        "alpha": 0.1,
+        "scale_floor": 0.0555099494352827,
+        "sample_size": 120,
+        "shared_dates": 24,
+        "securities": [
+          "HDFCBANK.NS",
+          "INFY.NS",
+          "ITC.NS",
+          "RELIANCE.NS",
+          "TCS.NS"
+        ],
+        "primary": "security_vol_scaled",
+        "methods": {
+          "pooled_absolute": {
+            "available": true,
+            "nominal_coverage": 0.9,
+            "radius": 0.12289606054714003,
+            "quantile_units": 120,
+            "shared_dates": 24,
+            "unit": "pooled correlated security/date residuals; no IID interpretation"
+          },
+          "security_absolute": {
+            "available": true,
+            "nominal_coverage": 0.9,
+            "radius_by_ticker": {
+              "HDFCBANK.NS": 0.11106720748306945,
+              "INFY.NS": 0.15982604440776174,
+              "ITC.NS": 0.13952715853323844,
+              "RELIANCE.NS": 0.12499296963371413,
+              "TCS.NS": 0.1316448343874101
+            },
+            "quantile_units_by_ticker": {
+              "HDFCBANK.NS": 24,
+              "INFY.NS": 24,
+              "ITC.NS": 24,
+              "RELIANCE.NS": 24,
+              "TCS.NS": 24
+            },
+            "unit": "distinct non-overlapping forecast dates per security"
+          },
+          "security_vol_scaled": {
+            "available": true,
+            "nominal_coverage": 0.9,
+            "radius_by_ticker": {
+              "HDFCBANK.NS": 1.3190728434315542,
+              "INFY.NS": 2.115113051771893,
+              "ITC.NS": 1.7578675399956856,
+              "RELIANCE.NS": 1.9572197821286568,
+              "TCS.NS": 1.599716310571131
+            },
+            "quantile_units_by_ticker": {
+              "HDFCBANK.NS": 24,
+              "INFY.NS": 24,
+              "ITC.NS": 24,
+              "RELIANCE.NS": 24,
+              "TCS.NS": 24
+            },
+            "unit": "distinct non-overlapping forecast dates per security"
+          },
+          "joint_vol_scaled": {
+            "available": true,
+            "nominal_coverage": 0.9,
+            "radius": 2.784125434498193,
+            "quantile_units": 24,
+            "unit": "maximum standardized residual across securities at each shared date",
+            "coverage_target": "simultaneous across the declared securities, rather than marginal"
+          }
+        },
+        "scale_rule": "max(past 20/past 60 observed-row return volatility) * sqrt(30), floored at training-only 5th percentile",
+        "guarantee": "Empirical nominal coverage only; market regimes are not exchangeable"
+      }
+    },
+    "guarantee": "No market exchangeability or future-coverage guarantee"
+  },
+  "test": {
+    "sample_size": 80,
+    "as_of_start": "2024-01-01",
+    "as_of_end": "2025-10-29",
+    "target_end": "2025-12-11",
+    "metrics": {
+      "selected": {
+        "brier": 0.24631615303910684,
+        "log_loss": 0.6859159379911108,
+        "accuracy": 0.575,
+        "balanced_accuracy": 0.5,
+        "mae_return": 0.05482491432199106,
+        "rmse_return": 0.07065650047982358,
+        "realized_up_rate": 0.575
+      },
+      "prior_mean": {
+        "brier": 0.24631615303910684,
+        "log_loss": 0.6859159379911108,
+        "accuracy": 0.575,
+        "balanced_accuracy": 0.5,
+        "mae_return": 0.05482491432199106,
+        "rmse_return": 0.07065650047982358,
+        "realized_up_rate": 0.575
+      },
+      "constant_half_zero": {
+        "brier": 0.25,
+        "log_loss": 0.6931471805599453,
+        "accuracy": 0.575,
+        "balanced_accuracy": 0.5,
+        "mae_return": 0.05337099193723114,
+        "rmse_return": 0.06897329352808307,
+        "realized_up_rate": 0.575
+      },
+      "always_up_zero": {
+        "brier": 0.425,
+        "log_loss": 8.807387993297045,
+        "accuracy": 0.575,
+        "balanced_accuracy": 0.5,
+        "mae_return": 0.05337099193723114,
+        "rmse_return": 0.06897329352808307,
+        "realized_up_rate": 0.575
+      },
+      "momentum": {
+        "brier": 0.2452804206566066,
+        "log_loss": 0.6838016970229515,
+        "accuracy": 0.575,
+        "balanced_accuracy": 0.5,
+        "mae_return": 0.05506971683598847,
+        "rmse_return": 0.07075582894824044,
+        "realized_up_rate": 0.575
+      },
+      "legacy_selected": {
+        "brier": 0.24591461075927828,
+        "log_loss": 0.6850665803182773,
+        "accuracy": 0.575,
+        "balanced_accuracy": 0.5,
+        "mae_return": 0.055761761352499974,
+        "rmse_return": 0.07101564667008707,
+        "realized_up_rate": 0.575
+      }
+    },
+    "intervals": {
+      "selected": {
+        "pooled_absolute": {
+          "coverage": 0.875,
+          "mean_width": 0.24048239195569504,
+          "interval_score": 0.29837645070764757,
+          "lower_miss_rate": 0.1,
+          "upper_miss_rate": 0.025,
+          "nominal_coverage": 0.9,
+          "uncertainty": {
+            "coverage": {
+              "estimate": 0.875,
+              "low": 0.7749583333333333,
+              "high": 0.9625,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "width": {
+              "estimate": 0.24048239195569504,
+              "low": 0.24048239195569504,
+              "high": 0.2404823919556951,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "interval_score": {
+              "estimate": 0.29837645070764757,
+              "low": 0.2560221663446317,
+              "high": 0.3465703317458186,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            }
+          },
+          "simultaneous_security_coverage": 0.5,
+          "by_ticker": {
+            "HDFCBANK.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.24048239195569504,
+              "interval_score": 0.3807384859615166,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "INFY.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.24048239195569504,
+              "interval_score": 0.2906360960360058,
+              "lower_miss_rate": 0.125,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "ITC.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.24048239195569504,
+              "interval_score": 0.2540853890166701,
+              "lower_miss_rate": 0.125,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "RELIANCE.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.24048239195569504,
+              "interval_score": 0.2771920681843538,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "TCS.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.24048239195569504,
+              "interval_score": 0.2892302143396914,
+              "lower_miss_rate": 0.125,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "by_year": {
+            "2024": {
+              "sample_size": 45,
+              "coverage": 0.8666666666666667,
+              "mean_width": 0.240482391955695,
+              "interval_score": 0.3098278429881841,
+              "lower_miss_rate": 0.08888888888888889,
+              "upper_miss_rate": 0.044444444444444446,
+              "nominal_coverage": 0.9
+            },
+            "2025": {
+              "sample_size": 35,
+              "coverage": 0.8857142857142857,
+              "mean_width": 0.240482391955695,
+              "interval_score": 0.2836532320612433,
+              "lower_miss_rate": 0.11428571428571428,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "simultaneous_coverage_details": {
+            "coverage": 0.5,
+            "complete_forecast_dates": 10,
+            "excluded_partial_forecast_dates": 12,
+            "calendar_quarters": 5,
+            "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+            "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+          }
+        },
+        "security_absolute": {
+          "coverage": 0.9375,
+          "mean_width": 0.26651277757436354,
+          "interval_score": 0.3137532713972293,
+          "lower_miss_rate": 0.05,
+          "upper_miss_rate": 0.0125,
+          "nominal_coverage": 0.9,
+          "uncertainty": {
+            "coverage": {
+              "estimate": 0.9375,
+              "low": 0.9125,
+              "high": 0.9714285714285714,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "width": {
+              "estimate": 0.26651277757436354,
+              "low": 0.26651277757436354,
+              "high": 0.2665127775743636,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "interval_score": {
+              "estimate": 0.3137532713972293,
+              "low": 0.2806170635711555,
+              "high": 0.3562301074817049,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            }
+          },
+          "simultaneous_security_coverage": 0.6,
+          "by_ticker": {
+            "HDFCBANK.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.22366850735525506,
+              "interval_score": 0.3849419571116266,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "INFY.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.33430881404088525,
+              "interval_score": 0.33430881404088525,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "ITC.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.28279969101098507,
+              "interval_score": 0.28279969101098507,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "RELIANCE.NS": {
+              "sample_size": 16,
+              "coverage": 0.9375,
+              "mean_width": 0.24725180787640472,
+              "interval_score": 0.27849884939110625,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "TCS.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.24453506758828764,
+              "interval_score": 0.28821704543154325,
+              "lower_miss_rate": 0.125,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "by_year": {
+            "2024": {
+              "sample_size": 45,
+              "coverage": 0.9333333333333333,
+              "mean_width": 0.26651277757436354,
+              "interval_score": 0.3349645078040784,
+              "lower_miss_rate": 0.044444444444444446,
+              "upper_miss_rate": 0.022222222222222223,
+              "nominal_coverage": 0.9
+            },
+            "2025": {
+              "sample_size": 35,
+              "coverage": 0.9428571428571428,
+              "mean_width": 0.26651277757436354,
+              "interval_score": 0.2864816817312804,
+              "lower_miss_rate": 0.05714285714285714,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "simultaneous_coverage_details": {
+            "coverage": 0.6,
+            "complete_forecast_dates": 10,
+            "excluded_partial_forecast_dates": 12,
+            "calendar_quarters": 5,
+            "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+            "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+          }
+        },
+        "security_vol_scaled": {
+          "coverage": 0.9125,
+          "mean_width": 0.2736371854228293,
+          "interval_score": 0.34153091284753884,
+          "lower_miss_rate": 0.05,
+          "upper_miss_rate": 0.0375,
+          "nominal_coverage": 0.9,
+          "uncertainty": {
+            "coverage": {
+              "estimate": 0.9125,
+              "low": 0.8469934640522876,
+              "high": 0.9846153846153847,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "width": {
+              "estimate": 0.2736371854228293,
+              "low": 0.2583232308460862,
+              "high": 0.28502616498565003,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "interval_score": {
+              "estimate": 0.34153091284753884,
+              "low": 0.2758352270848083,
+              "high": 0.4239032282772708,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            }
+          },
+          "simultaneous_security_coverage": 0.6,
+          "by_ticker": {
+            "HDFCBANK.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.2031468111256189,
+              "interval_score": 0.4340035410681713,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "INFY.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.3836864445592113,
+              "interval_score": 0.3836864445592113,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "ITC.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.24147769640042582,
+              "interval_score": 0.26907485448659463,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "RELIANCE.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.3042243730822033,
+              "interval_score": 0.3655749967313815,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "TCS.NS": {
+              "sample_size": 16,
+              "coverage": 0.9375,
+              "mean_width": 0.235650601946687,
+              "interval_score": 0.2553147273923353,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "by_year": {
+            "2024": {
+              "sample_size": 45,
+              "coverage": 0.8666666666666667,
+              "mean_width": 0.2798190492395785,
+              "interval_score": 0.39352732005838703,
+              "lower_miss_rate": 0.06666666666666667,
+              "upper_miss_rate": 0.06666666666666667,
+              "nominal_coverage": 0.9
+            },
+            "2025": {
+              "sample_size": 35,
+              "coverage": 0.9714285714285714,
+              "mean_width": 0.2656890748012945,
+              "interval_score": 0.27467838929073374,
+              "lower_miss_rate": 0.02857142857142857,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "simultaneous_coverage_details": {
+            "coverage": 0.6,
+            "complete_forecast_dates": 10,
+            "excluded_partial_forecast_dates": 12,
+            "calendar_quarters": 5,
+            "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+            "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+          }
+        },
+        "joint_vol_scaled": {
+          "coverage": 0.9875,
+          "mean_width": 0.4278356749797279,
+          "interval_score": 0.4405989025418844,
+          "lower_miss_rate": 0.0125,
+          "upper_miss_rate": 0.0,
+          "nominal_coverage": 0.9,
+          "uncertainty": {
+            "coverage": {
+              "estimate": 0.9875,
+              "low": 0.96,
+              "high": 1.0,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "width": {
+              "estimate": 0.4278356749797279,
+              "low": 0.4028323729935987,
+              "high": 0.44710860125738755,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "interval_score": {
+              "estimate": 0.4405989025418844,
+              "low": 0.4044248050039974,
+              "high": 0.4782835808601655,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            }
+          },
+          "simultaneous_security_coverage": 0.9,
+          "by_ticker": {
+            "HDFCBANK.NS": {
+              "sample_size": 16,
+              "coverage": 0.9375,
+              "mean_width": 0.40970448858645536,
+              "interval_score": 0.47352062639723774,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "INFY.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.5053439398384869,
+              "interval_score": 0.5053439398384869,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "ITC.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.3621253061163564,
+              "interval_score": 0.3621253061163564,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "RELIANCE.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.4429893288594672,
+              "interval_score": 0.4429893288594672,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "TCS.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.41901531149787397,
+              "interval_score": 0.41901531149787397,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "by_year": {
+            "2024": {
+              "sample_size": 45,
+              "coverage": 0.9777777777777777,
+              "mean_width": 0.44007231780195616,
+              "interval_score": 0.46276250013467884,
+              "lower_miss_rate": 0.022222222222222223,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "2025": {
+              "sample_size": 35,
+              "coverage": 1.0,
+              "mean_width": 0.4121028484940059,
+              "interval_score": 0.4121028484940059,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "simultaneous_coverage_details": {
+            "coverage": 0.9,
+            "complete_forecast_dates": 10,
+            "excluded_partial_forecast_dates": 12,
+            "calendar_quarters": 5,
+            "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+            "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+          }
+        }
+      },
+      "prior_mean": {
+        "pooled_absolute": {
+          "coverage": 0.875,
+          "mean_width": 0.24048239195569504,
+          "interval_score": 0.29837645070764757,
+          "lower_miss_rate": 0.1,
+          "upper_miss_rate": 0.025,
+          "nominal_coverage": 0.9,
+          "uncertainty": {
+            "coverage": {
+              "estimate": 0.875,
+              "low": 0.7749583333333333,
+              "high": 0.9625,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "width": {
+              "estimate": 0.24048239195569504,
+              "low": 0.24048239195569504,
+              "high": 0.2404823919556951,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "interval_score": {
+              "estimate": 0.29837645070764757,
+              "low": 0.2560221663446317,
+              "high": 0.3465703317458186,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            }
+          },
+          "simultaneous_security_coverage": 0.5,
+          "by_ticker": {
+            "HDFCBANK.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.24048239195569504,
+              "interval_score": 0.3807384859615166,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "INFY.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.24048239195569504,
+              "interval_score": 0.2906360960360058,
+              "lower_miss_rate": 0.125,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "ITC.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.24048239195569504,
+              "interval_score": 0.2540853890166701,
+              "lower_miss_rate": 0.125,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "RELIANCE.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.24048239195569504,
+              "interval_score": 0.2771920681843538,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "TCS.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.24048239195569504,
+              "interval_score": 0.2892302143396914,
+              "lower_miss_rate": 0.125,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "by_year": {
+            "2024": {
+              "sample_size": 45,
+              "coverage": 0.8666666666666667,
+              "mean_width": 0.240482391955695,
+              "interval_score": 0.3098278429881841,
+              "lower_miss_rate": 0.08888888888888889,
+              "upper_miss_rate": 0.044444444444444446,
+              "nominal_coverage": 0.9
+            },
+            "2025": {
+              "sample_size": 35,
+              "coverage": 0.8857142857142857,
+              "mean_width": 0.240482391955695,
+              "interval_score": 0.2836532320612433,
+              "lower_miss_rate": 0.11428571428571428,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "simultaneous_coverage_details": {
+            "coverage": 0.5,
+            "complete_forecast_dates": 10,
+            "excluded_partial_forecast_dates": 12,
+            "calendar_quarters": 5,
+            "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+            "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+          }
+        },
+        "security_absolute": {
+          "coverage": 0.9375,
+          "mean_width": 0.26651277757436354,
+          "interval_score": 0.3137532713972293,
+          "lower_miss_rate": 0.05,
+          "upper_miss_rate": 0.0125,
+          "nominal_coverage": 0.9,
+          "uncertainty": {
+            "coverage": {
+              "estimate": 0.9375,
+              "low": 0.9125,
+              "high": 0.9714285714285714,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "width": {
+              "estimate": 0.26651277757436354,
+              "low": 0.26651277757436354,
+              "high": 0.2665127775743636,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "interval_score": {
+              "estimate": 0.3137532713972293,
+              "low": 0.2806170635711555,
+              "high": 0.3562301074817049,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            }
+          },
+          "simultaneous_security_coverage": 0.6,
+          "by_ticker": {
+            "HDFCBANK.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.22366850735525506,
+              "interval_score": 0.3849419571116266,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "INFY.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.33430881404088525,
+              "interval_score": 0.33430881404088525,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "ITC.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.28279969101098507,
+              "interval_score": 0.28279969101098507,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "RELIANCE.NS": {
+              "sample_size": 16,
+              "coverage": 0.9375,
+              "mean_width": 0.24725180787640472,
+              "interval_score": 0.27849884939110625,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "TCS.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.24453506758828764,
+              "interval_score": 0.28821704543154325,
+              "lower_miss_rate": 0.125,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "by_year": {
+            "2024": {
+              "sample_size": 45,
+              "coverage": 0.9333333333333333,
+              "mean_width": 0.26651277757436354,
+              "interval_score": 0.3349645078040784,
+              "lower_miss_rate": 0.044444444444444446,
+              "upper_miss_rate": 0.022222222222222223,
+              "nominal_coverage": 0.9
+            },
+            "2025": {
+              "sample_size": 35,
+              "coverage": 0.9428571428571428,
+              "mean_width": 0.26651277757436354,
+              "interval_score": 0.2864816817312804,
+              "lower_miss_rate": 0.05714285714285714,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "simultaneous_coverage_details": {
+            "coverage": 0.6,
+            "complete_forecast_dates": 10,
+            "excluded_partial_forecast_dates": 12,
+            "calendar_quarters": 5,
+            "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+            "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+          }
+        },
+        "security_vol_scaled": {
+          "coverage": 0.9125,
+          "mean_width": 0.2736371854228293,
+          "interval_score": 0.34153091284753884,
+          "lower_miss_rate": 0.05,
+          "upper_miss_rate": 0.0375,
+          "nominal_coverage": 0.9,
+          "uncertainty": {
+            "coverage": {
+              "estimate": 0.9125,
+              "low": 0.8469934640522876,
+              "high": 0.9846153846153847,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "width": {
+              "estimate": 0.2736371854228293,
+              "low": 0.2583232308460862,
+              "high": 0.28502616498565003,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "interval_score": {
+              "estimate": 0.34153091284753884,
+              "low": 0.2758352270848083,
+              "high": 0.4239032282772708,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            }
+          },
+          "simultaneous_security_coverage": 0.6,
+          "by_ticker": {
+            "HDFCBANK.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.2031468111256189,
+              "interval_score": 0.4340035410681713,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "INFY.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.3836864445592113,
+              "interval_score": 0.3836864445592113,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "ITC.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.24147769640042582,
+              "interval_score": 0.26907485448659463,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "RELIANCE.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.3042243730822033,
+              "interval_score": 0.3655749967313815,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "TCS.NS": {
+              "sample_size": 16,
+              "coverage": 0.9375,
+              "mean_width": 0.235650601946687,
+              "interval_score": 0.2553147273923353,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "by_year": {
+            "2024": {
+              "sample_size": 45,
+              "coverage": 0.8666666666666667,
+              "mean_width": 0.2798190492395785,
+              "interval_score": 0.39352732005838703,
+              "lower_miss_rate": 0.06666666666666667,
+              "upper_miss_rate": 0.06666666666666667,
+              "nominal_coverage": 0.9
+            },
+            "2025": {
+              "sample_size": 35,
+              "coverage": 0.9714285714285714,
+              "mean_width": 0.2656890748012945,
+              "interval_score": 0.27467838929073374,
+              "lower_miss_rate": 0.02857142857142857,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "simultaneous_coverage_details": {
+            "coverage": 0.6,
+            "complete_forecast_dates": 10,
+            "excluded_partial_forecast_dates": 12,
+            "calendar_quarters": 5,
+            "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+            "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+          }
+        },
+        "joint_vol_scaled": {
+          "coverage": 0.9875,
+          "mean_width": 0.4278356749797279,
+          "interval_score": 0.4405989025418844,
+          "lower_miss_rate": 0.0125,
+          "upper_miss_rate": 0.0,
+          "nominal_coverage": 0.9,
+          "uncertainty": {
+            "coverage": {
+              "estimate": 0.9875,
+              "low": 0.96,
+              "high": 1.0,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "width": {
+              "estimate": 0.4278356749797279,
+              "low": 0.4028323729935987,
+              "high": 0.44710860125738755,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "interval_score": {
+              "estimate": 0.4405989025418844,
+              "low": 0.4044248050039974,
+              "high": 0.4782835808601655,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            }
+          },
+          "simultaneous_security_coverage": 0.9,
+          "by_ticker": {
+            "HDFCBANK.NS": {
+              "sample_size": 16,
+              "coverage": 0.9375,
+              "mean_width": 0.40970448858645536,
+              "interval_score": 0.47352062639723774,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "INFY.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.5053439398384869,
+              "interval_score": 0.5053439398384869,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "ITC.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.3621253061163564,
+              "interval_score": 0.3621253061163564,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "RELIANCE.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.4429893288594672,
+              "interval_score": 0.4429893288594672,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "TCS.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.41901531149787397,
+              "interval_score": 0.41901531149787397,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "by_year": {
+            "2024": {
+              "sample_size": 45,
+              "coverage": 0.9777777777777777,
+              "mean_width": 0.44007231780195616,
+              "interval_score": 0.46276250013467884,
+              "lower_miss_rate": 0.022222222222222223,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "2025": {
+              "sample_size": 35,
+              "coverage": 1.0,
+              "mean_width": 0.4121028484940059,
+              "interval_score": 0.4121028484940059,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "simultaneous_coverage_details": {
+            "coverage": 0.9,
+            "complete_forecast_dates": 10,
+            "excluded_partial_forecast_dates": 12,
+            "calendar_quarters": 5,
+            "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+            "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+          }
+        }
+      },
+      "constant_half_zero": {
+        "pooled_absolute": {
+          "coverage": 0.9,
+          "mean_width": 0.24291792381743882,
+          "interval_score": 0.2879260351011947,
+          "lower_miss_rate": 0.05,
+          "upper_miss_rate": 0.05,
+          "nominal_coverage": 0.9,
+          "uncertainty": {
+            "coverage": {
+              "estimate": 0.9,
+              "low": 0.8352941176470589,
+              "high": 0.9714285714285714,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "width": {
+              "estimate": 0.24291792381743882,
+              "low": 0.2429179238174388,
+              "high": 0.24291792381743885,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "interval_score": {
+              "estimate": 0.2879260351011947,
+              "low": 0.2541777672679941,
+              "high": 0.3276938996699732,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            }
+          },
+          "simultaneous_security_coverage": 0.5,
+          "by_ticker": {
+            "HDFCBANK.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.24291792381743882,
+              "interval_score": 0.3801296029960806,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "INFY.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.24291792381743882,
+              "interval_score": 0.2678531458562139,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "ITC.NS": {
+              "sample_size": 16,
+              "coverage": 0.9375,
+              "mean_width": 0.24291792381743882,
+              "interval_score": 0.2686666242444956,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "RELIANCE.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.24291792381743882,
+              "interval_score": 0.27658318521891784,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "TCS.NS": {
+              "sample_size": 16,
+              "coverage": 0.9375,
+              "mean_width": 0.24291792381743882,
+              "interval_score": 0.24639761719026546,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "by_year": {
+            "2024": {
+              "sample_size": 45,
+              "coverage": 0.8666666666666667,
+              "mean_width": 0.24291792381743882,
+              "interval_score": 0.31658223465629765,
+              "lower_miss_rate": 0.044444444444444446,
+              "upper_miss_rate": 0.08888888888888889,
+              "nominal_coverage": 0.9
+            },
+            "2025": {
+              "sample_size": 35,
+              "coverage": 0.9428571428571428,
+              "mean_width": 0.24291792381743882,
+              "interval_score": 0.2510823499589195,
+              "lower_miss_rate": 0.05714285714285714,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "simultaneous_coverage_details": {
+            "coverage": 0.5,
+            "complete_forecast_dates": 10,
+            "excluded_partial_forecast_dates": 12,
+            "calendar_quarters": 5,
+            "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+            "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+          }
+        },
+        "security_absolute": {
+          "coverage": 0.95,
+          "mean_width": 0.2841505296470393,
+          "interval_score": 0.3203292610514188,
+          "lower_miss_rate": 0.0375,
+          "upper_miss_rate": 0.0125,
+          "nominal_coverage": 0.9,
+          "uncertainty": {
+            "coverage": {
+              "estimate": 0.95,
+              "low": 0.9142857142857143,
+              "high": 0.9857142857142858,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "width": {
+              "estimate": 0.2841505296470393,
+              "low": 0.28415052964703924,
+              "high": 0.2841505296470393,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "interval_score": {
+              "estimate": 0.3203292610514188,
+              "low": 0.2919162145969514,
+              "high": 0.3532181464010458,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            }
+          },
+          "simultaneous_security_coverage": 0.7,
+          "by_ticker": {
+            "HDFCBANK.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.24291792381743882,
+              "interval_score": 0.3801296029960806,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "INFY.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.3580844629907616,
+              "interval_score": 0.3580844629907616,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "ITC.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.3279633859623039,
+              "interval_score": 0.3279633859623039,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "RELIANCE.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.29241550282772355,
+              "interval_score": 0.29241550282772355,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "TCS.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.1993713726369688,
+              "interval_score": 0.24305335048022447,
+              "lower_miss_rate": 0.125,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "by_year": {
+            "2024": {
+              "sample_size": 45,
+              "coverage": 0.9555555555555556,
+              "mean_width": 0.28415052964703935,
+              "interval_score": 0.33293690446611196,
+              "lower_miss_rate": 0.022222222222222223,
+              "upper_miss_rate": 0.022222222222222223,
+              "nominal_coverage": 0.9
+            },
+            "2025": {
+              "sample_size": 35,
+              "coverage": 0.9428571428571428,
+              "mean_width": 0.2841505296470394,
+              "interval_score": 0.30411943380395623,
+              "lower_miss_rate": 0.05714285714285714,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "simultaneous_coverage_details": {
+            "coverage": 0.7,
+            "complete_forecast_dates": 10,
+            "excluded_partial_forecast_dates": 12,
+            "calendar_quarters": 5,
+            "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+            "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+          }
+        },
+        "security_vol_scaled": {
+          "coverage": 0.925,
+          "mean_width": 0.2972587430753297,
+          "interval_score": 0.3536073000609722,
+          "lower_miss_rate": 0.025,
+          "upper_miss_rate": 0.05,
+          "nominal_coverage": 0.9,
+          "uncertainty": {
+            "coverage": {
+              "estimate": 0.925,
+              "low": 0.8856766917293233,
+              "high": 0.9692307692307692,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "width": {
+              "estimate": 0.2972587430753297,
+              "low": 0.2806503502317074,
+              "high": 0.30986261895918643,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "interval_score": {
+              "estimate": 0.3536073000609722,
+              "low": 0.2963913022691542,
+              "high": 0.4210929990005621,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            }
+          },
+          "simultaneous_security_coverage": 0.7,
+          "by_ticker": {
+            "HDFCBANK.NS": {
+              "sample_size": 16,
+              "coverage": 0.8125,
+              "mean_width": 0.20027355384102935,
+              "interval_score": 0.4436814220970846,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.125,
+              "nominal_coverage": 0.9
+            },
+            "INFY.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.4390637135324361,
+              "interval_score": 0.4390637135324361,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "ITC.NS": {
+              "sample_size": 16,
+              "coverage": 0.9375,
+              "mean_width": 0.2688085716422125,
+              "interval_score": 0.28407436620501747,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "RELIANCE.NS": {
+              "sample_size": 16,
+              "coverage": 0.9375,
+              "mean_width": 0.3597948334183683,
+              "interval_score": 0.3806987911952016,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "TCS.NS": {
+              "sample_size": 16,
+              "coverage": 0.9375,
+              "mean_width": 0.21835304294260222,
+              "interval_score": 0.2205182072751214,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "by_year": {
+            "2024": {
+              "sample_size": 45,
+              "coverage": 0.9111111111111111,
+              "mean_width": 0.30363404213793627,
+              "interval_score": 0.3996328697422279,
+              "lower_miss_rate": 0.022222222222222223,
+              "upper_miss_rate": 0.06666666666666667,
+              "nominal_coverage": 0.9
+            },
+            "2025": {
+              "sample_size": 35,
+              "coverage": 0.9428571428571428,
+              "mean_width": 0.28906192999483543,
+              "interval_score": 0.29443156761364364,
+              "lower_miss_rate": 0.02857142857142857,
+              "upper_miss_rate": 0.02857142857142857,
+              "nominal_coverage": 0.9
+            }
+          },
+          "simultaneous_coverage_details": {
+            "coverage": 0.7,
+            "complete_forecast_dates": 10,
+            "excluded_partial_forecast_dates": 12,
+            "calendar_quarters": 5,
+            "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+            "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+          }
+        },
+        "joint_vol_scaled": {
+          "coverage": 0.9875,
+          "mean_width": 0.4309682446767133,
+          "interval_score": 0.4377995943286604,
+          "lower_miss_rate": 0.0125,
+          "upper_miss_rate": 0.0,
+          "nominal_coverage": 0.9,
+          "uncertainty": {
+            "coverage": {
+              "estimate": 0.9875,
+              "low": 0.96,
+              "high": 1.0,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "width": {
+              "estimate": 0.4309682446767133,
+              "low": 0.40578187103315383,
+              "high": 0.45038228537834546,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "interval_score": {
+              "estimate": 0.4377995943286604,
+              "low": 0.4072965441598342,
+              "high": 0.4657159028360644,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            }
+          },
+          "simultaneous_security_coverage": 0.9,
+          "by_ticker": {
+            "HDFCBANK.NS": {
+              "sample_size": 16,
+              "coverage": 0.9375,
+              "mean_width": 0.4127043035638427,
+              "interval_score": 0.44686105182357816,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "INFY.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.5090440172398589,
+              "interval_score": 0.5090440172398589,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "ITC.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.36477675111449825,
+              "interval_score": 0.36477675111449825,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "RELIANCE.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.44623285208304786,
+              "interval_score": 0.44623285208304786,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "TCS.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.4220832993823188,
+              "interval_score": 0.4220832993823188,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "by_year": {
+            "2024": {
+              "sample_size": 45,
+              "coverage": 0.9777777777777777,
+              "mean_width": 0.4432944829645361,
+              "interval_score": 0.4554391045679976,
+              "lower_miss_rate": 0.022222222222222223,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "2025": {
+              "sample_size": 35,
+              "coverage": 1.0,
+              "mean_width": 0.4151202240209412,
+              "interval_score": 0.4151202240209412,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "simultaneous_coverage_details": {
+            "coverage": 0.9,
+            "complete_forecast_dates": 10,
+            "excluded_partial_forecast_dates": 12,
+            "calendar_quarters": 5,
+            "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+            "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+          }
+        }
+      },
+      "always_up_zero": {
+        "pooled_absolute": {
+          "coverage": 0.9,
+          "mean_width": 0.24291792381743882,
+          "interval_score": 0.2879260351011947,
+          "lower_miss_rate": 0.05,
+          "upper_miss_rate": 0.05,
+          "nominal_coverage": 0.9,
+          "uncertainty": {
+            "coverage": {
+              "estimate": 0.9,
+              "low": 0.8352941176470589,
+              "high": 0.9714285714285714,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "width": {
+              "estimate": 0.24291792381743882,
+              "low": 0.2429179238174388,
+              "high": 0.24291792381743885,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "interval_score": {
+              "estimate": 0.2879260351011947,
+              "low": 0.2541777672679941,
+              "high": 0.3276938996699732,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            }
+          },
+          "simultaneous_security_coverage": 0.5,
+          "by_ticker": {
+            "HDFCBANK.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.24291792381743882,
+              "interval_score": 0.3801296029960806,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "INFY.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.24291792381743882,
+              "interval_score": 0.2678531458562139,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "ITC.NS": {
+              "sample_size": 16,
+              "coverage": 0.9375,
+              "mean_width": 0.24291792381743882,
+              "interval_score": 0.2686666242444956,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "RELIANCE.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.24291792381743882,
+              "interval_score": 0.27658318521891784,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "TCS.NS": {
+              "sample_size": 16,
+              "coverage": 0.9375,
+              "mean_width": 0.24291792381743882,
+              "interval_score": 0.24639761719026546,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "by_year": {
+            "2024": {
+              "sample_size": 45,
+              "coverage": 0.8666666666666667,
+              "mean_width": 0.24291792381743882,
+              "interval_score": 0.31658223465629765,
+              "lower_miss_rate": 0.044444444444444446,
+              "upper_miss_rate": 0.08888888888888889,
+              "nominal_coverage": 0.9
+            },
+            "2025": {
+              "sample_size": 35,
+              "coverage": 0.9428571428571428,
+              "mean_width": 0.24291792381743882,
+              "interval_score": 0.2510823499589195,
+              "lower_miss_rate": 0.05714285714285714,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "simultaneous_coverage_details": {
+            "coverage": 0.5,
+            "complete_forecast_dates": 10,
+            "excluded_partial_forecast_dates": 12,
+            "calendar_quarters": 5,
+            "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+            "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+          }
+        },
+        "security_absolute": {
+          "coverage": 0.95,
+          "mean_width": 0.2841505296470393,
+          "interval_score": 0.3203292610514188,
+          "lower_miss_rate": 0.0375,
+          "upper_miss_rate": 0.0125,
+          "nominal_coverage": 0.9,
+          "uncertainty": {
+            "coverage": {
+              "estimate": 0.95,
+              "low": 0.9142857142857143,
+              "high": 0.9857142857142858,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "width": {
+              "estimate": 0.2841505296470393,
+              "low": 0.28415052964703924,
+              "high": 0.2841505296470393,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "interval_score": {
+              "estimate": 0.3203292610514188,
+              "low": 0.2919162145969514,
+              "high": 0.3532181464010458,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            }
+          },
+          "simultaneous_security_coverage": 0.7,
+          "by_ticker": {
+            "HDFCBANK.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.24291792381743882,
+              "interval_score": 0.3801296029960806,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "INFY.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.3580844629907616,
+              "interval_score": 0.3580844629907616,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "ITC.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.3279633859623039,
+              "interval_score": 0.3279633859623039,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "RELIANCE.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.29241550282772355,
+              "interval_score": 0.29241550282772355,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "TCS.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.1993713726369688,
+              "interval_score": 0.24305335048022447,
+              "lower_miss_rate": 0.125,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "by_year": {
+            "2024": {
+              "sample_size": 45,
+              "coverage": 0.9555555555555556,
+              "mean_width": 0.28415052964703935,
+              "interval_score": 0.33293690446611196,
+              "lower_miss_rate": 0.022222222222222223,
+              "upper_miss_rate": 0.022222222222222223,
+              "nominal_coverage": 0.9
+            },
+            "2025": {
+              "sample_size": 35,
+              "coverage": 0.9428571428571428,
+              "mean_width": 0.2841505296470394,
+              "interval_score": 0.30411943380395623,
+              "lower_miss_rate": 0.05714285714285714,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "simultaneous_coverage_details": {
+            "coverage": 0.7,
+            "complete_forecast_dates": 10,
+            "excluded_partial_forecast_dates": 12,
+            "calendar_quarters": 5,
+            "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+            "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+          }
+        },
+        "security_vol_scaled": {
+          "coverage": 0.925,
+          "mean_width": 0.2972587430753297,
+          "interval_score": 0.3536073000609722,
+          "lower_miss_rate": 0.025,
+          "upper_miss_rate": 0.05,
+          "nominal_coverage": 0.9,
+          "uncertainty": {
+            "coverage": {
+              "estimate": 0.925,
+              "low": 0.8856766917293233,
+              "high": 0.9692307692307692,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "width": {
+              "estimate": 0.2972587430753297,
+              "low": 0.2806503502317074,
+              "high": 0.30986261895918643,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "interval_score": {
+              "estimate": 0.3536073000609722,
+              "low": 0.2963913022691542,
+              "high": 0.4210929990005621,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            }
+          },
+          "simultaneous_security_coverage": 0.7,
+          "by_ticker": {
+            "HDFCBANK.NS": {
+              "sample_size": 16,
+              "coverage": 0.8125,
+              "mean_width": 0.20027355384102935,
+              "interval_score": 0.4436814220970846,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.125,
+              "nominal_coverage": 0.9
+            },
+            "INFY.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.4390637135324361,
+              "interval_score": 0.4390637135324361,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "ITC.NS": {
+              "sample_size": 16,
+              "coverage": 0.9375,
+              "mean_width": 0.2688085716422125,
+              "interval_score": 0.28407436620501747,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "RELIANCE.NS": {
+              "sample_size": 16,
+              "coverage": 0.9375,
+              "mean_width": 0.3597948334183683,
+              "interval_score": 0.3806987911952016,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "TCS.NS": {
+              "sample_size": 16,
+              "coverage": 0.9375,
+              "mean_width": 0.21835304294260222,
+              "interval_score": 0.2205182072751214,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "by_year": {
+            "2024": {
+              "sample_size": 45,
+              "coverage": 0.9111111111111111,
+              "mean_width": 0.30363404213793627,
+              "interval_score": 0.3996328697422279,
+              "lower_miss_rate": 0.022222222222222223,
+              "upper_miss_rate": 0.06666666666666667,
+              "nominal_coverage": 0.9
+            },
+            "2025": {
+              "sample_size": 35,
+              "coverage": 0.9428571428571428,
+              "mean_width": 0.28906192999483543,
+              "interval_score": 0.29443156761364364,
+              "lower_miss_rate": 0.02857142857142857,
+              "upper_miss_rate": 0.02857142857142857,
+              "nominal_coverage": 0.9
+            }
+          },
+          "simultaneous_coverage_details": {
+            "coverage": 0.7,
+            "complete_forecast_dates": 10,
+            "excluded_partial_forecast_dates": 12,
+            "calendar_quarters": 5,
+            "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+            "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+          }
+        },
+        "joint_vol_scaled": {
+          "coverage": 0.9875,
+          "mean_width": 0.4309682446767133,
+          "interval_score": 0.4377995943286604,
+          "lower_miss_rate": 0.0125,
+          "upper_miss_rate": 0.0,
+          "nominal_coverage": 0.9,
+          "uncertainty": {
+            "coverage": {
+              "estimate": 0.9875,
+              "low": 0.96,
+              "high": 1.0,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "width": {
+              "estimate": 0.4309682446767133,
+              "low": 0.40578187103315383,
+              "high": 0.45038228537834546,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "interval_score": {
+              "estimate": 0.4377995943286604,
+              "low": 0.4072965441598342,
+              "high": 0.4657159028360644,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            }
+          },
+          "simultaneous_security_coverage": 0.9,
+          "by_ticker": {
+            "HDFCBANK.NS": {
+              "sample_size": 16,
+              "coverage": 0.9375,
+              "mean_width": 0.4127043035638427,
+              "interval_score": 0.44686105182357816,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "INFY.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.5090440172398589,
+              "interval_score": 0.5090440172398589,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "ITC.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.36477675111449825,
+              "interval_score": 0.36477675111449825,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "RELIANCE.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.44623285208304786,
+              "interval_score": 0.44623285208304786,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "TCS.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.4220832993823188,
+              "interval_score": 0.4220832993823188,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "by_year": {
+            "2024": {
+              "sample_size": 45,
+              "coverage": 0.9777777777777777,
+              "mean_width": 0.4432944829645361,
+              "interval_score": 0.4554391045679976,
+              "lower_miss_rate": 0.022222222222222223,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "2025": {
+              "sample_size": 35,
+              "coverage": 1.0,
+              "mean_width": 0.4151202240209412,
+              "interval_score": 0.4151202240209412,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "simultaneous_coverage_details": {
+            "coverage": 0.9,
+            "complete_forecast_dates": 10,
+            "excluded_partial_forecast_dates": 12,
+            "calendar_quarters": 5,
+            "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+            "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+          }
+        }
+      },
+      "momentum": {
+        "pooled_absolute": {
+          "coverage": 0.9125,
+          "mean_width": 0.2520127120119629,
+          "interval_score": 0.2984646299447275,
+          "lower_miss_rate": 0.0625,
+          "upper_miss_rate": 0.025,
+          "nominal_coverage": 0.9,
+          "uncertainty": {
+            "coverage": {
+              "estimate": 0.9125,
+              "low": 0.8588235294117647,
+              "high": 0.9647058823529412,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "width": {
+              "estimate": 0.2520127120119629,
+              "low": 0.25201271201196285,
+              "high": 0.2520127120119629,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "interval_score": {
+              "estimate": 0.2984646299447275,
+              "low": 0.2639254824155496,
+              "high": 0.33804820050092704,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            }
+          },
+          "simultaneous_security_coverage": 0.6,
+          "by_ticker": {
+            "HDFCBANK.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.2520127120119629,
+              "interval_score": 0.3703099191099926,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "INFY.NS": {
+              "sample_size": 16,
+              "coverage": 0.9375,
+              "mean_width": 0.2520127120119629,
+              "interval_score": 0.3011183356637347,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "ITC.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.2520127120119629,
+              "interval_score": 0.2520127120119629,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "RELIANCE.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.2520127120119629,
+              "interval_score": 0.28185547500774377,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "TCS.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.2520127120119629,
+              "interval_score": 0.2870267079302037,
+              "lower_miss_rate": 0.125,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "by_year": {
+            "2024": {
+              "sample_size": 45,
+              "coverage": 0.9111111111111111,
+              "mean_width": 0.2520127120119629,
+              "interval_score": 0.3046847013786511,
+              "lower_miss_rate": 0.044444444444444446,
+              "upper_miss_rate": 0.044444444444444446,
+              "nominal_coverage": 0.9
+            },
+            "2025": {
+              "sample_size": 35,
+              "coverage": 0.9142857142857143,
+              "mean_width": 0.2520127120119629,
+              "interval_score": 0.29046739524396864,
+              "lower_miss_rate": 0.08571428571428572,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "simultaneous_coverage_details": {
+            "coverage": 0.6,
+            "complete_forecast_dates": 10,
+            "excluded_partial_forecast_dates": 12,
+            "calendar_quarters": 5,
+            "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+            "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+          }
+        },
+        "security_absolute": {
+          "coverage": 0.925,
+          "mean_width": 0.2726086116063605,
+          "interval_score": 0.3103221348589356,
+          "lower_miss_rate": 0.0625,
+          "upper_miss_rate": 0.0125,
+          "nominal_coverage": 0.9,
+          "uncertainty": {
+            "coverage": {
+              "estimate": 0.925,
+              "low": 0.88,
+              "high": 0.9692307692307692,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "width": {
+              "estimate": 0.2726086116063605,
+              "low": 0.27260861160636046,
+              "high": 0.2726086116063605,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "interval_score": {
+              "estimate": 0.3103221348589356,
+              "low": 0.28128754704781567,
+              "high": 0.34952551443610397,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            }
+          },
+          "simultaneous_security_coverage": 0.6,
+          "by_ticker": {
+            "HDFCBANK.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.23519882741152293,
+              "interval_score": 0.37451339026010255,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "INFY.NS": {
+              "sample_size": 16,
+              "coverage": 0.9375,
+              "mean_width": 0.3227784939846174,
+              "interval_score": 0.3276555039034801,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "ITC.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.28225643212732177,
+              "interval_score": 0.28225643212732177,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "RELIANCE.NS": {
+              "sample_size": 16,
+              "coverage": 0.9375,
+              "mean_width": 0.2587821279326726,
+              "interval_score": 0.2831622562144963,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "TCS.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.264027176575668,
+              "interval_score": 0.28402309178927737,
+              "lower_miss_rate": 0.125,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "by_year": {
+            "2024": {
+              "sample_size": 45,
+              "coverage": 0.9333333333333333,
+              "mean_width": 0.2726086116063606,
+              "interval_score": 0.33081116845272623,
+              "lower_miss_rate": 0.044444444444444446,
+              "upper_miss_rate": 0.022222222222222223,
+              "nominal_coverage": 0.9
+            },
+            "2025": {
+              "sample_size": 35,
+              "coverage": 0.9142857142857143,
+              "mean_width": 0.2726086116063605,
+              "interval_score": 0.2839790916669192,
+              "lower_miss_rate": 0.08571428571428572,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "simultaneous_coverage_details": {
+            "coverage": 0.6,
+            "complete_forecast_dates": 10,
+            "excluded_partial_forecast_dates": 12,
+            "calendar_quarters": 5,
+            "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+            "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+          }
+        },
+        "security_vol_scaled": {
+          "coverage": 0.9125,
+          "mean_width": 0.2678323443161742,
+          "interval_score": 0.3359381296587891,
+          "lower_miss_rate": 0.05,
+          "upper_miss_rate": 0.0375,
+          "nominal_coverage": 0.9,
+          "uncertainty": {
+            "coverage": {
+              "estimate": 0.9125,
+              "low": 0.8469934640522876,
+              "high": 0.9846153846153847,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "width": {
+              "estimate": 0.2678323443161742,
+              "low": 0.25256907354572156,
+              "high": 0.2792250566278771,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "interval_score": {
+              "estimate": 0.3359381296587891,
+              "low": 0.27030772099395617,
+              "high": 0.4167442695873595,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            }
+          },
+          "simultaneous_security_coverage": 0.6,
+          "by_ticker": {
+            "HDFCBANK.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.19013751055136133,
+              "interval_score": 0.42689657573177053,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "INFY.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.35978627953920883,
+              "interval_score": 0.35978627953920883,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "ITC.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.23715772859044407,
+              "interval_score": 0.26229125310621126,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "RELIANCE.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.31361504735586326,
+              "interval_score": 0.37399337369917807,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "TCS.NS": {
+              "sample_size": 16,
+              "coverage": 0.9375,
+              "mean_width": 0.2384651555439934,
+              "interval_score": 0.25672316621757685,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "by_year": {
+            "2024": {
+              "sample_size": 45,
+              "coverage": 0.8666666666666667,
+              "mean_width": 0.2740279850743985,
+              "interval_score": 0.3886131996662176,
+              "lower_miss_rate": 0.06666666666666667,
+              "upper_miss_rate": 0.06666666666666667,
+              "nominal_coverage": 0.9
+            },
+            "2025": {
+              "sample_size": 35,
+              "coverage": 0.9714285714285714,
+              "mean_width": 0.2598665204841715,
+              "interval_score": 0.2682130396492382,
+              "lower_miss_rate": 0.02857142857142857,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "simultaneous_coverage_details": {
+            "coverage": 0.6,
+            "complete_forecast_dates": 10,
+            "excluded_partial_forecast_dates": 12,
+            "calendar_quarters": 5,
+            "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+            "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+          }
+        },
+        "joint_vol_scaled": {
+          "coverage": 0.9875,
+          "mean_width": 0.42709296329845736,
+          "interval_score": 0.4384828082140384,
+          "lower_miss_rate": 0.0125,
+          "upper_miss_rate": 0.0,
+          "nominal_coverage": 0.9,
+          "uncertainty": {
+            "coverage": {
+              "estimate": 0.9875,
+              "low": 0.96,
+              "high": 1.0,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "width": {
+              "estimate": 0.42709296329845736,
+              "low": 0.40213306639877006,
+              "high": 0.4463324322738962,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "interval_score": {
+              "estimate": 0.4384828082140384,
+              "low": 0.4037227339883294,
+              "high": 0.4734939245538125,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            }
+          },
+          "simultaneous_security_coverage": 0.9,
+          "by_ticker": {
+            "HDFCBANK.NS": {
+              "sample_size": 16,
+              "coverage": 0.9375,
+              "mean_width": 0.4089932521764562,
+              "interval_score": 0.4659424767543608,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "INFY.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.5044666758113692,
+              "interval_score": 0.5044666758113692,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "ITC.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.36149666593821084,
+              "interval_score": 0.36149666593821084,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "RELIANCE.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.44222031082646257,
+              "interval_score": 0.44222031082646257,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "TCS.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.41828791173978824,
+              "interval_score": 0.41828791173978824,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "by_year": {
+            "2024": {
+              "sample_size": 45,
+              "coverage": 0.9777777777777777,
+              "mean_width": 0.4393083636248046,
+              "interval_score": 0.45955697680805957,
+              "lower_miss_rate": 0.022222222222222223,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "2025": {
+              "sample_size": 35,
+              "coverage": 1.0,
+              "mean_width": 0.41138744859315407,
+              "interval_score": 0.41138744859315407,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "simultaneous_coverage_details": {
+            "coverage": 0.9,
+            "complete_forecast_dates": 10,
+            "excluded_partial_forecast_dates": 12,
+            "calendar_quarters": 5,
+            "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+            "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+          }
+        }
+      },
+      "legacy_selected": {
+        "pooled_absolute": {
+          "coverage": 0.9,
+          "mean_width": 0.2457921210942801,
+          "interval_score": 0.29715001797862345,
+          "lower_miss_rate": 0.0625,
+          "upper_miss_rate": 0.0375,
+          "nominal_coverage": 0.9,
+          "uncertainty": {
+            "coverage": {
+              "estimate": 0.9,
+              "low": 0.85,
+              "high": 0.9571428571428572,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "width": {
+              "estimate": 0.2457921210942801,
+              "low": 0.24579212109428006,
+              "high": 0.2457921210942801,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "interval_score": {
+              "estimate": 0.29715001797862345,
+              "low": 0.2608730356015676,
+              "high": 0.33819969970093294,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            }
+          },
+          "simultaneous_security_coverage": 0.5,
+          "by_ticker": {
+            "HDFCBANK.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.24579212109428006,
+              "interval_score": 0.3591369791802704,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "INFY.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.24579212109428006,
+              "interval_score": 0.2948291228474951,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "ITC.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.24579212109428006,
+              "interval_score": 0.24579212109428006,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "RELIANCE.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.24579212109428006,
+              "interval_score": 0.2941715421440503,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "TCS.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.24579212109428006,
+              "interval_score": 0.29182032462702134,
+              "lower_miss_rate": 0.125,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "by_year": {
+            "2024": {
+              "sample_size": 45,
+              "coverage": 0.8888888888888888,
+              "mean_width": 0.24579212109428,
+              "interval_score": 0.3044162833166654,
+              "lower_miss_rate": 0.044444444444444446,
+              "upper_miss_rate": 0.06666666666666667,
+              "nominal_coverage": 0.9
+            },
+            "2025": {
+              "sample_size": 35,
+              "coverage": 0.9142857142857143,
+              "mean_width": 0.24579212109428,
+              "interval_score": 0.2878076768297121,
+              "lower_miss_rate": 0.08571428571428572,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "simultaneous_coverage_details": {
+            "coverage": 0.5,
+            "complete_forecast_dates": 10,
+            "excluded_partial_forecast_dates": 12,
+            "calendar_quarters": 5,
+            "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+            "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+          }
+        },
+        "security_absolute": {
+          "coverage": 0.925,
+          "mean_width": 0.26682328577807757,
+          "interval_score": 0.30886536738039116,
+          "lower_miss_rate": 0.05,
+          "upper_miss_rate": 0.025,
+          "nominal_coverage": 0.9,
+          "uncertainty": {
+            "coverage": {
+              "estimate": 0.925,
+              "low": 0.8856766917293233,
+              "high": 0.9692307692307692,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "width": {
+              "estimate": 0.26682328577807757,
+              "low": 0.26682328577807757,
+              "high": 0.2668232857780776,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "interval_score": {
+              "estimate": 0.30886536738039116,
+              "low": 0.27689901464307703,
+              "high": 0.350076254769401,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            }
+          },
+          "simultaneous_security_coverage": 0.6,
+          "by_ticker": {
+            "HDFCBANK.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.2221344149661389,
+              "interval_score": 0.36505140571230565,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "INFY.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.3196520888155235,
+              "interval_score": 0.3196520888155235,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "ITC.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.2790543170664769,
+              "interval_score": 0.2790543170664769,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "RELIANCE.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.24998593926742824,
+              "interval_score": 0.2931230876007632,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "TCS.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.2632896687748202,
+              "interval_score": 0.2874459377068863,
+              "lower_miss_rate": 0.125,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "by_year": {
+            "2024": {
+              "sample_size": 45,
+              "coverage": 0.9111111111111111,
+              "mean_width": 0.26682328577807757,
+              "interval_score": 0.33297586856190037,
+              "lower_miss_rate": 0.044444444444444446,
+              "upper_miss_rate": 0.044444444444444446,
+              "nominal_coverage": 0.9
+            },
+            "2025": {
+              "sample_size": 35,
+              "coverage": 0.9428571428571428,
+              "mean_width": 0.26682328577807757,
+              "interval_score": 0.2778661515755935,
+              "lower_miss_rate": 0.05714285714285714,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "simultaneous_coverage_details": {
+            "coverage": 0.6,
+            "complete_forecast_dates": 10,
+            "excluded_partial_forecast_dates": 12,
+            "calendar_quarters": 5,
+            "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+            "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+          }
+        },
+        "security_vol_scaled": {
+          "coverage": 0.9125,
+          "mean_width": 0.26842658084893173,
+          "interval_score": 0.3398815462373442,
+          "lower_miss_rate": 0.05,
+          "upper_miss_rate": 0.0375,
+          "nominal_coverage": 0.9,
+          "uncertainty": {
+            "coverage": {
+              "estimate": 0.9125,
+              "low": 0.8469934640522876,
+              "high": 0.9846153846153847,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "width": {
+              "estimate": 0.26842658084893173,
+              "low": 0.25343995442626277,
+              "high": 0.27961076590996836,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "interval_score": {
+              "estimate": 0.3398815462373442,
+              "low": 0.27208523558689096,
+              "high": 0.4221017880661533,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            }
+          },
+          "simultaneous_security_coverage": 0.6,
+          "by_ticker": {
+            "HDFCBANK.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.19172411910322984,
+              "interval_score": 0.41411494520427317,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "INFY.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.3791908916540283,
+              "interval_score": 0.3791908916540283,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "ITC.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.22583033136923822,
+              "interval_score": 0.26376076242859076,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "RELIANCE.NS": {
+              "sample_size": 16,
+              "coverage": 0.875,
+              "mean_width": 0.30758851191500935,
+              "interval_score": 0.3841944302159741,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0625,
+              "nominal_coverage": 0.9
+            },
+            "TCS.NS": {
+              "sample_size": 16,
+              "coverage": 0.9375,
+              "mean_width": 0.23779905020315295,
+              "interval_score": 0.25814670168385456,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "by_year": {
+            "2024": {
+              "sample_size": 45,
+              "coverage": 0.8666666666666667,
+              "mean_width": 0.27429930592217655,
+              "interval_score": 0.39409563497510486,
+              "lower_miss_rate": 0.06666666666666667,
+              "upper_miss_rate": 0.06666666666666667,
+              "nominal_coverage": 0.9
+            },
+            "2025": {
+              "sample_size": 35,
+              "coverage": 0.9714285714285714,
+              "mean_width": 0.26087593432618833,
+              "interval_score": 0.2701777178602234,
+              "lower_miss_rate": 0.02857142857142857,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "simultaneous_coverage_details": {
+            "coverage": 0.6,
+            "complete_forecast_dates": 10,
+            "excluded_partial_forecast_dates": 12,
+            "calendar_quarters": 5,
+            "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+            "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+          }
+        },
+        "joint_vol_scaled": {
+          "coverage": 0.9875,
+          "mean_width": 0.422574263165146,
+          "interval_score": 0.43215233415047216,
+          "lower_miss_rate": 0.0125,
+          "upper_miss_rate": 0.0,
+          "nominal_coverage": 0.9,
+          "uncertainty": {
+            "coverage": {
+              "estimate": 0.9875,
+              "low": 0.96,
+              "high": 1.0,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "width": {
+              "estimate": 0.422574263165146,
+              "low": 0.39787844528136423,
+              "high": 0.4416101760099646,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "interval_score": {
+              "estimate": 0.43215233415047216,
+              "low": 0.3994512939772256,
+              "high": 0.4635286483686676,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            }
+          },
+          "simultaneous_security_coverage": 0.9,
+          "by_ticker": {
+            "HDFCBANK.NS": {
+              "sample_size": 16,
+              "coverage": 0.9375,
+              "mean_width": 0.40466604938467965,
+              "interval_score": 0.4525564043113103,
+              "lower_miss_rate": 0.0625,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "INFY.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.4991293515491405,
+              "interval_score": 0.4991293515491405,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "ITC.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.3576719833212202,
+              "interval_score": 0.3576719833212202,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "RELIANCE.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.4375415613522219,
+              "interval_score": 0.4375415613522219,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "TCS.NS": {
+              "sample_size": 16,
+              "coverage": 1.0,
+              "mean_width": 0.4138623702184677,
+              "interval_score": 0.4138623702184677,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "by_year": {
+            "2024": {
+              "sample_size": 45,
+              "coverage": 0.9777777777777777,
+              "mean_width": 0.4346604229377344,
+              "interval_score": 0.4516881046894253,
+              "lower_miss_rate": 0.022222222222222223,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            },
+            "2025": {
+              "sample_size": 35,
+              "coverage": 1.0,
+              "mean_width": 0.40703491488610377,
+              "interval_score": 0.40703491488610377,
+              "lower_miss_rate": 0.0,
+              "upper_miss_rate": 0.0,
+              "nominal_coverage": 0.9
+            }
+          },
+          "simultaneous_coverage_details": {
+            "coverage": 0.9,
+            "complete_forecast_dates": 10,
+            "excluded_partial_forecast_dates": 12,
+            "calendar_quarters": 5,
+            "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+            "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+          }
+        },
+        "frozen_2018_absolute": {
+          "coverage": 0.8625,
+          "mean_width": 0.23818790859488198,
+          "interval_score": 0.29852665838756753,
+          "lower_miss_rate": 0.0875,
+          "upper_miss_rate": 0.05,
+          "nominal_coverage": 0.9,
+          "uncertainty": {
+            "coverage": {
+              "estimate": 0.8625,
+              "low": 0.7866666666666666,
+              "high": 0.9466666666666667,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "width": {
+              "estimate": 0.23818790859488198,
+              "low": 0.23818790859488195,
+              "high": 0.23818790859488198,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            },
+            "interval_score": {
+              "estimate": 0.29852665838756753,
+              "low": 0.256995087902749,
+              "high": 0.3439002082492729,
+              "level": 0.95,
+              "calendar_quarter_blocks": 8,
+              "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+            }
+          },
+          "calibration_period": "Frozen original 2018 residuals; point model trained through 2017"
+        }
+      }
+    },
+    "uncertainty": {
+      "selected_minus_prior_mean_brier": {
+        "estimate": 0.0,
+        "low": 0.0,
+        "high": 0.0,
+        "level": 0.95,
+        "calendar_quarter_blocks": 8,
+        "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+      },
+      "selected_minus_prior_mean_mae_return": {
+        "estimate": 0.0,
+        "low": 0.0,
+        "high": 0.0,
+        "level": 0.95,
+        "calendar_quarter_blocks": 8,
+        "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+      },
+      "selected_minus_constant_half_zero_brier": {
+        "estimate": -0.0036838469608931447,
+        "low": -0.02451908767196357,
+        "high": 0.014174930791452933,
+        "level": 0.95,
+        "calendar_quarter_blocks": 8,
+        "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+      },
+      "selected_minus_constant_half_zero_mae_return": {
+        "estimate": 0.0014539223847599317,
+        "low": -0.0013487839169773047,
+        "high": 0.005106137667838399,
+        "level": 0.95,
+        "calendar_quarter_blocks": 8,
+        "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+      },
+      "selected_minus_momentum_brier": {
+        "estimate": 0.0010357323825002345,
+        "low": -0.0037949625025851404,
+        "high": 0.005722552160205041,
+        "level": 0.95,
+        "calendar_quarter_blocks": 8,
+        "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+      },
+      "selected_minus_momentum_mae_return": {
+        "estimate": -0.0002448025139974015,
+        "low": -0.0014359140858227714,
+        "high": 0.0009723919093099537,
+        "level": 0.95,
+        "calendar_quarter_blocks": 8,
+        "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+      },
+      "selected_minus_legacy_selected_brier": {
+        "estimate": 0.0004015422798285921,
+        "low": -0.0004420704740202685,
+        "high": 0.0011246389259847583,
+        "level": 0.95,
+        "calendar_quarter_blocks": 8,
+        "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+      },
+      "selected_minus_legacy_selected_mae_return": {
+        "estimate": -0.0009368470305089061,
+        "low": -0.0033781787078006466,
+        "high": 0.0013292272955200337,
+        "level": 0.95,
+        "calendar_quarter_blocks": 8,
+        "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+      },
+      "primary_minus_selected__pooled_absolute_coverage": {
+        "estimate": 0.0375,
+        "low": -0.025,
+        "high": 0.12857142857142856,
+        "level": 0.95,
+        "calendar_quarter_blocks": 8,
+        "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+      },
+      "primary_minus_selected__pooled_absolute_width": {
+        "estimate": 0.033154793467134236,
+        "low": 0.017840838890391227,
+        "high": 0.04454377302995497,
+        "level": 0.95,
+        "calendar_quarter_blocks": 8,
+        "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+      },
+      "primary_minus_selected__pooled_absolute_interval_score": {
+        "estimate": 0.04315446213989127,
+        "low": -0.0070143437675877504,
+        "high": 0.08779729034742044,
+        "level": 0.95,
+        "calendar_quarter_blocks": 8,
+        "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+      },
+      "primary_minus_selected__security_absolute_coverage": {
+        "estimate": -0.025,
+        "low": -0.08235294117647059,
+        "high": 0.02857142857142857,
+        "level": 0.95,
+        "calendar_quarter_blocks": 8,
+        "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+      },
+      "primary_minus_selected__security_absolute_width": {
+        "estimate": 0.0071244078484657275,
+        "low": -0.008189546728277281,
+        "high": 0.018513387411286473,
+        "level": 0.95,
+        "calendar_quarter_blocks": 8,
+        "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+      },
+      "primary_minus_selected__security_absolute_interval_score": {
+        "estimate": 0.02777764145030952,
+        "low": -0.010123200470347907,
+        "high": 0.06809580618583319,
+        "level": 0.95,
+        "calendar_quarter_blocks": 8,
+        "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+      },
+      "primary_minus_selected__joint_vol_scaled_coverage": {
+        "estimate": -0.075,
+        "low": -0.12222222222222222,
+        "high": -0.015384615384615385,
+        "level": 0.95,
+        "calendar_quarter_blocks": 8,
+        "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+      },
+      "primary_minus_selected__joint_vol_scaled_width": {
+        "estimate": -0.1541984895568987,
+        "low": -0.16201860615635322,
+        "high": -0.1443590998984593,
+        "level": 0.95,
+        "calendar_quarter_blocks": 8,
+        "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+      },
+      "primary_minus_selected__joint_vol_scaled_interval_score": {
+        "estimate": -0.09906798969434565,
+        "low": -0.13736525264403238,
+        "high": -0.050497237306764434,
+        "level": 0.95,
+        "calendar_quarter_blocks": 8,
+        "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+      },
+      "primary_minus_prior_mean__security_vol_scaled_coverage": {
+        "estimate": 0.0,
+        "low": 0.0,
+        "high": 0.0,
+        "level": 0.95,
+        "calendar_quarter_blocks": 8,
+        "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+      },
+      "primary_minus_prior_mean__security_vol_scaled_width": {
+        "estimate": 0.0,
+        "low": 0.0,
+        "high": 0.0,
+        "level": 0.95,
+        "calendar_quarter_blocks": 8,
+        "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+      },
+      "primary_minus_prior_mean__security_vol_scaled_interval_score": {
+        "estimate": 0.0,
+        "low": 0.0,
+        "high": 0.0,
+        "level": 0.95,
+        "calendar_quarter_blocks": 8,
+        "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+      },
+      "primary_minus_constant_half_zero__security_vol_scaled_coverage": {
+        "estimate": -0.0125,
+        "low": -0.05,
+        "high": 0.02857142857142857,
+        "level": 0.95,
+        "calendar_quarter_blocks": 8,
+        "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+      },
+      "primary_minus_constant_half_zero__security_vol_scaled_width": {
+        "estimate": -0.023621557652500434,
+        "low": -0.024781439334306654,
+        "high": -0.022205514372905657,
+        "level": 0.95,
+        "calendar_quarter_blocks": 8,
+        "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+      },
+      "primary_minus_constant_half_zero__security_vol_scaled_interval_score": {
+        "estimate": -0.012076387213433428,
+        "low": -0.035441336369095335,
+        "high": 0.010622575811167828,
+        "level": 0.95,
+        "calendar_quarter_blocks": 8,
+        "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+      },
+      "primary_minus_legacy_selected__frozen_2018_absolute_coverage": {
+        "estimate": 0.05,
+        "low": 0.0,
+        "high": 0.12503289473684193,
+        "level": 0.95,
+        "calendar_quarter_blocks": 8,
+        "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+      },
+      "primary_minus_legacy_selected__frozen_2018_absolute_width": {
+        "estimate": 0.03544927682794729,
+        "low": 0.020135322251204287,
+        "high": 0.04683825639076803,
+        "level": 0.95,
+        "calendar_quarter_blocks": 8,
+        "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+      },
+      "primary_minus_legacy_selected__frozen_2018_absolute_interval_score": {
+        "estimate": 0.043004254459971254,
+        "low": -0.010533827690225392,
+        "high": 0.09412917458504196,
+        "level": 0.95,
+        "calendar_quarter_blocks": 8,
+        "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+      }
+    },
+    "shared_dates": 22,
+    "primary_interval_method": "security_vol_scaled",
+    "interval": {
+      "coverage": 0.9125,
+      "mean_width": 0.2736371854228293,
+      "interval_score": 0.34153091284753884,
+      "lower_miss_rate": 0.05,
+      "upper_miss_rate": 0.0375,
+      "nominal_coverage": 0.9,
+      "uncertainty": {
+        "coverage": {
+          "estimate": 0.9125,
+          "low": 0.8469934640522876,
+          "high": 0.9846153846153847,
+          "level": 0.95,
+          "calendar_quarter_blocks": 8,
+          "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+        },
+        "width": {
+          "estimate": 0.2736371854228293,
+          "low": 0.2583232308460862,
+          "high": 0.28502616498565003,
+          "level": 0.95,
+          "calendar_quarter_blocks": 8,
+          "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+        },
+        "interval_score": {
+          "estimate": 0.34153091284753884,
+          "low": 0.2758352270848083,
+          "high": 0.4239032282772708,
+          "level": 0.95,
+          "calendar_quarter_blocks": 8,
+          "method": "Paired shared-calendar-quarter percentile bootstrap, approximate and low-power"
+        }
+      },
+      "simultaneous_security_coverage": 0.6,
+      "by_ticker": {
+        "HDFCBANK.NS": {
+          "sample_size": 16,
+          "coverage": 0.875,
+          "mean_width": 0.2031468111256189,
+          "interval_score": 0.4340035410681713,
+          "lower_miss_rate": 0.0625,
+          "upper_miss_rate": 0.0625,
+          "nominal_coverage": 0.9
+        },
+        "INFY.NS": {
+          "sample_size": 16,
+          "coverage": 1.0,
+          "mean_width": 0.3836864445592113,
+          "interval_score": 0.3836864445592113,
+          "lower_miss_rate": 0.0,
+          "upper_miss_rate": 0.0,
+          "nominal_coverage": 0.9
+        },
+        "ITC.NS": {
+          "sample_size": 16,
+          "coverage": 0.875,
+          "mean_width": 0.24147769640042582,
+          "interval_score": 0.26907485448659463,
+          "lower_miss_rate": 0.0625,
+          "upper_miss_rate": 0.0625,
+          "nominal_coverage": 0.9
+        },
+        "RELIANCE.NS": {
+          "sample_size": 16,
+          "coverage": 0.875,
+          "mean_width": 0.3042243730822033,
+          "interval_score": 0.3655749967313815,
+          "lower_miss_rate": 0.0625,
+          "upper_miss_rate": 0.0625,
+          "nominal_coverage": 0.9
+        },
+        "TCS.NS": {
+          "sample_size": 16,
+          "coverage": 0.9375,
+          "mean_width": 0.235650601946687,
+          "interval_score": 0.2553147273923353,
+          "lower_miss_rate": 0.0625,
+          "upper_miss_rate": 0.0,
+          "nominal_coverage": 0.9
+        }
+      },
+      "by_year": {
+        "2024": {
+          "sample_size": 45,
+          "coverage": 0.8666666666666667,
+          "mean_width": 0.2798190492395785,
+          "interval_score": 0.39352732005838703,
+          "lower_miss_rate": 0.06666666666666667,
+          "upper_miss_rate": 0.06666666666666667,
+          "nominal_coverage": 0.9
+        },
+        "2025": {
+          "sample_size": 35,
+          "coverage": 0.9714285714285714,
+          "mean_width": 0.2656890748012945,
+          "interval_score": 0.27467838929073374,
+          "lower_miss_rate": 0.02857142857142857,
+          "upper_miss_rate": 0.0,
+          "nominal_coverage": 0.9
+        }
+      },
+      "simultaneous_coverage_details": {
+        "coverage": 0.6,
+        "complete_forecast_dates": 10,
+        "excluded_partial_forecast_dates": 12,
+        "calendar_quarters": 5,
+        "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+        "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+      }
+    },
+    "by_ticker": {
+      "HDFCBANK.NS": {
+        "sample_size": 16,
+        "metrics": {
+          "selected": {
+            "brier": 0.23441030120420947,
+            "log_loss": 0.6616382363278217,
+            "accuracy": 0.625,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.06156369449778296,
+            "rmse_return": 0.08019946921073204,
+            "realized_up_rate": 0.625
+          },
+          "prior_mean": {
+            "brier": 0.23441030120420947,
+            "log_loss": 0.6616382363278217,
+            "accuracy": 0.625,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.06156369449778296,
+            "rmse_return": 0.08019946921073204,
+            "realized_up_rate": 0.625
+          },
+          "constant_half_zero": {
+            "brier": 0.25,
+            "log_loss": 0.6931471805599453,
+            "accuracy": 0.625,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.06282817430898036,
+            "rmse_return": 0.08131052139339642,
+            "realized_up_rate": 0.625
+          },
+          "always_up_zero": {
+            "brier": 0.375,
+            "log_loss": 7.771224700085629,
+            "accuracy": 0.625,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.06282817430898036,
+            "rmse_return": 0.08131052139339642,
+            "realized_up_rate": 0.625
+          },
+          "momentum": {
+            "brier": 0.22328428839883557,
+            "log_loss": 0.6379114002245891,
+            "accuracy": 0.625,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.057523443749322396,
+            "rmse_return": 0.07751480699511419,
+            "realized_up_rate": 0.625
+          },
+          "legacy_selected": {
+            "brier": 0.23449082335515167,
+            "log_loss": 0.6618085130874525,
+            "accuracy": 0.625,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.055042294094528384,
+            "rmse_return": 0.07518452060485918,
+            "realized_up_rate": 0.625
+          }
+        }
+      },
+      "INFY.NS": {
+        "sample_size": 16,
+        "metrics": {
+          "selected": {
+            "brier": 0.26417493079145293,
+            "log_loss": 0.7223324904860446,
+            "accuracy": 0.5,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.06750377713003286,
+            "rmse_return": 0.07767239903694226,
+            "realized_up_rate": 0.5
+          },
+          "prior_mean": {
+            "brier": 0.26417493079145293,
+            "log_loss": 0.7223324904860446,
+            "accuracy": 0.5,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.06750377713003286,
+            "rmse_return": 0.07767239903694226,
+            "realized_up_rate": 0.5
+          },
+          "constant_half_zero": {
+            "brier": 0.25,
+            "log_loss": 0.6931471805599453,
+            "accuracy": 0.5,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.06676292922255678,
+            "rmse_return": 0.07687530167999808,
+            "realized_up_rate": 0.5
+          },
+          "always_up_zero": {
+            "brier": 0.5,
+            "log_loss": 10.361632933114171,
+            "accuracy": 0.5,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.06676292922255678,
+            "rmse_return": 0.07687530167999808,
+            "realized_up_rate": 0.5
+          },
+          "momentum": {
+            "brier": 0.27572499506781156,
+            "log_loss": 0.7473735966547084,
+            "accuracy": 0.5,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.06931418550748529,
+            "rmse_return": 0.07982079055601353,
+            "realized_up_rate": 0.5
+          },
+          "legacy_selected": {
+            "brier": 0.2630502918654682,
+            "log_loss": 0.7199536811645145,
+            "accuracy": 0.5,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.07157307827378914,
+            "rmse_return": 0.08128433615405709,
+            "realized_up_rate": 0.5
+          }
+        }
+      },
+      "ITC.NS": {
+        "sample_size": 16,
+        "metrics": {
+          "selected": {
+            "brier": 0.26417493079145293,
+            "log_loss": 0.7223324904860446,
+            "accuracy": 0.5,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.050300817164503825,
+            "rmse_return": 0.06528282371087943,
+            "realized_up_rate": 0.5
+          },
+          "prior_mean": {
+            "brier": 0.26417493079145293,
+            "log_loss": 0.7223324904860446,
+            "accuracy": 0.5,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.050300817164503825,
+            "rmse_return": 0.06528282371087943,
+            "realized_up_rate": 0.5
+          },
+          "constant_half_zero": {
+            "brier": 0.25,
+            "log_loss": 0.6931471805599453,
+            "accuracy": 0.5,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.04513711510232822,
+            "rmse_return": 0.06091704604677558,
+            "realized_up_rate": 0.5
+          },
+          "always_up_zero": {
+            "brier": 0.5,
+            "log_loss": 10.361632933114171,
+            "accuracy": 0.5,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.04513711510232822,
+            "rmse_return": 0.06091704604677558,
+            "realized_up_rate": 0.5
+          },
+          "momentum": {
+            "brier": 0.26046173393472793,
+            "log_loss": 0.7146225601585692,
+            "accuracy": 0.5,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.04951958608366941,
+            "rmse_return": 0.06410180355445562,
+            "realized_up_rate": 0.5
+          },
+          "legacy_selected": {
+            "brier": 0.2630502918654682,
+            "log_loss": 0.7199536811645145,
+            "accuracy": 0.5,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.049802624267039866,
+            "rmse_return": 0.0637762586546043,
+            "realized_up_rate": 0.5
+          }
+        }
+      },
+      "RELIANCE.NS": {
+        "sample_size": 16,
+        "metrics": {
+          "selected": {
+            "brier": 0.21952798641058774,
+            "log_loss": 0.6312911092487102,
+            "accuracy": 0.6875,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.05099489932022978,
+            "rmse_return": 0.06801925759452318,
+            "realized_up_rate": 0.6875
+          },
+          "prior_mean": {
+            "brier": 0.21952798641058774,
+            "log_loss": 0.6312911092487102,
+            "accuracy": 0.6875,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.05099489932022978,
+            "rmse_return": 0.06801925759452318,
+            "realized_up_rate": 0.6875
+          },
+          "constant_half_zero": {
+            "brier": 0.25,
+            "log_loss": 0.6931471805599453,
+            "accuracy": 0.6875,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.054039748494674,
+            "rmse_return": 0.06885031882112407,
+            "realized_up_rate": 0.6875
+          },
+          "always_up_zero": {
+            "brier": 0.3125,
+            "log_loss": 6.476020583571357,
+            "accuracy": 0.6875,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.054039748494674,
+            "rmse_return": 0.06885031882112407,
+            "realized_up_rate": 0.6875
+          },
+          "momentum": {
+            "brier": 0.2158887677592085,
+            "log_loss": 0.6233707298239369,
+            "accuracy": 0.6875,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.05215288321029568,
+            "rmse_return": 0.06857027433553593,
+            "realized_up_rate": 0.6875
+          },
+          "legacy_selected": {
+            "brier": 0.2202110890999934,
+            "log_loss": 0.6327359290489214,
+            "accuracy": 0.6875,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.05387209063338318,
+            "rmse_return": 0.06997625731089611,
+            "realized_up_rate": 0.6875
+          }
+        }
+      },
+      "TCS.NS": {
+        "sample_size": 16,
+        "metrics": {
+          "selected": {
+            "brier": 0.2492926159978312,
+            "log_loss": 0.6919853634069332,
+            "accuracy": 0.5625,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.043761383497405895,
+            "rmse_return": 0.0600689802732121,
+            "realized_up_rate": 0.5625
+          },
+          "prior_mean": {
+            "brier": 0.2492926159978312,
+            "log_loss": 0.6919853634069332,
+            "accuracy": 0.5625,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.043761383497405895,
+            "rmse_return": 0.0600689802732121,
+            "realized_up_rate": 0.5625
+          },
+          "constant_half_zero": {
+            "brier": 0.25,
+            "log_loss": 0.6931471805599453,
+            "accuracy": 0.5625,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.03808699255761631,
+            "rmse_return": 0.05304818848993277,
+            "realized_up_rate": 0.5625
+          },
+          "always_up_zero": {
+            "brier": 0.4375,
+            "log_loss": 9.066428816599899,
+            "accuracy": 0.5625,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.03808699255761631,
+            "rmse_return": 0.05304818848993277,
+            "realized_up_rate": 0.5625
+          },
+          "momentum": {
+            "brier": 0.2510423181224496,
+            "log_loss": 0.6957301982529536,
+            "accuracy": 0.5625,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.046838485629169556,
+            "rmse_return": 0.06197668110589529,
+            "realized_up_rate": 0.5625
+          },
+          "legacy_selected": {
+            "brier": 0.24877055761030992,
+            "log_loss": 0.6908810971259836,
+            "accuracy": 0.5625,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.04851871949375927,
+            "rmse_return": 0.06318359883739819,
+            "realized_up_rate": 0.5625
+          }
+        }
+      }
+    },
+    "by_year": {
+      "2024": {
+        "sample_size": 45,
+        "metrics": {
+          "selected": {
+            "brier": 0.24565471682605705,
+            "log_loss": 0.6845671767875948,
+            "accuracy": 0.5777777777777777,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.059986167311292665,
+            "rmse_return": 0.07596407468278626,
+            "realized_up_rate": 0.5777777777777777
+          },
+          "prior_mean": {
+            "brier": 0.24565471682605705,
+            "log_loss": 0.6845671767875948,
+            "accuracy": 0.5777777777777777,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.059986167311292665,
+            "rmse_return": 0.07596407468278626,
+            "realized_up_rate": 0.5777777777777777
+          },
+          "constant_half_zero": {
+            "brier": 0.25,
+            "log_loss": 0.6931471805599452,
+            "accuracy": 0.5777777777777777,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.05870704639226521,
+            "rmse_return": 0.075594360409313,
+            "realized_up_rate": 0.5777777777777777
+          },
+          "always_up_zero": {
+            "brier": 0.4222222222222222,
+            "log_loss": 8.749823365896408,
+            "accuracy": 0.5777777777777777,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.05870704639226521,
+            "rmse_return": 0.075594360409313,
+            "realized_up_rate": 0.5777777777777777
+          },
+          "momentum": {
+            "brier": 0.24304769880057206,
+            "log_loss": 0.6790612144279199,
+            "accuracy": 0.5777777777777777,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.05997304829331037,
+            "rmse_return": 0.07538648399754766,
+            "realized_up_rate": 0.5777777777777777
+          },
+          "legacy_selected": {
+            "brier": 0.24527995590349339,
+            "log_loss": 0.6837744654721204,
+            "accuracy": 0.5777777777777777,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.05981470557307959,
+            "rmse_return": 0.07551226458140421,
+            "realized_up_rate": 0.5777777777777777
+          }
+        }
+      },
+      "2025": {
+        "sample_size": 35,
+        "metrics": {
+          "selected": {
+            "brier": 0.2471665710273139,
+            "log_loss": 0.6876500595384888,
+            "accuracy": 0.5714285714285714,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.04818901762146044,
+            "rmse_return": 0.0631806832812254,
+            "realized_up_rate": 0.5714285714285714
+          },
+          "prior_mean": {
+            "brier": 0.2471665710273139,
+            "log_loss": 0.6876500595384888,
+            "accuracy": 0.5714285714285714,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.04818901762146044,
+            "rmse_return": 0.0631806832812254,
+            "realized_up_rate": 0.5714285714285714
+          },
+          "constant_half_zero": {
+            "brier": 0.25,
+            "log_loss": 0.6931471805599452,
+            "accuracy": 0.5714285714285714,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.04651035049504447,
+            "rmse_return": 0.059385517222563515,
+            "realized_up_rate": 0.5714285714285714
+          },
+          "always_up_zero": {
+            "brier": 0.42857142857142855,
+            "log_loss": 8.881399657097859,
+            "accuracy": 0.5714285714285714,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.04651035049504447,
+            "rmse_return": 0.059385517222563515,
+            "realized_up_rate": 0.5714285714285714
+          },
+          "momentum": {
+            "brier": 0.24815106304293671,
+            "log_loss": 0.6898966032165634,
+            "accuracy": 0.5714285714285714,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.04876543353371744,
+            "rmse_return": 0.0643140726178182,
+            "realized_up_rate": 0.5714285714285714
+          },
+          "legacy_selected": {
+            "brier": 0.24673059557385868,
+            "log_loss": 0.6867278708347647,
+            "accuracy": 0.5714285714285714,
+            "balanced_accuracy": 0.5,
+            "mae_return": 0.0505508330688976,
+            "rmse_return": 0.06477723832116872,
+            "realized_up_rate": 0.5714285714285714
+          }
+        }
+      }
+    }
+  },
+  "model_readiness": "research_only",
+  "period_status": "2024-2025 is spent; this derived report corrects joint denominators only",
+  "horizon_definition": "30 observed positive-volume vendor rows; exchange calendar completeness not established",
+  "development_status": "2019-2020 is spent development data; reused for refitting, never re-labelled as a test",
+  "limitations": [
+    "Third-party retrospective Yahoo archive; independent provider cross-check and exchange-calendar completeness not established.",
+    "Thirty observed vendor traded rows, not a guaranteed complete exchange-session calendar or executable trading strategy.",
+    "Existing five-stock survivor universe; no point-in-time index constituents, authentic historical text or personalized effectiveness target.",
+    "Same-date securities share shocks. Per-security calibration has only about twenty-four non-overlapping dates; dependence across time remains.",
+    "Quarter-cluster confidence intervals are approximate, with only eight test quarters and dependence across boundaries possible.",
+    "Volatility at forecast time cannot anticipate every future regime jump; nominal 90% is a target, never a coverage guarantee.",
+    "Joint intervals target simultaneous coverage over the five securities; compare them separately from marginal intervals.",
+    "Primary interval and baseline preference were fixed before fresh scores; reported comparators are not selected using this test.",
+    "Original 2019-2020 results remain frozen and spent. This 2024-2025 evaluation is now spent too; no retuning or automatic promotion.",
+    "Only ten complete five-security origins remain, across five quarters, for joint coverage; they do not represent all of 2025."
+  ],
+  "selection_id": "e32eede599ed0098030850402c89b8386763b72ce8c29e39c0f1de607353d8e4",
+  "original_selection_id": "b58951e961db26b4ef935ae79cc96c34b51a46e39cbe86dc76719d88cc2e3e46",
+  "original_artifact_hashes": {
+    ".runtime/forecast/selection.json": "4b8f99676c1656677f732be4b22197f6c4c54a39422cbf1b5bc67a53b6437c16",
+    ".runtime/forecast/report.json": "69e24bfaf8ecfc9a652eecf701a930f813b1c334acd7458c422c2b012fd90084",
+    ".runtime/forecast/policies.json": "1bdaf89b0d353dd548311f5ee6e9c7806e4e016df26da0bbb3c87a0e107c3e0f",
+    "docs/assets/forecast-summary.json": "29c03a7729e146f61afd8de2c6a9af39b6c7f95baafa3a53adb96a8f94fd0aec",
+    "docs/assets/historical-policy-summary.json": "539c7ee78b7ad948d82474006c9e49cc8070730ae9b44fe4b4513f02db614008"
+  },
+  "runtime": {
+    "python": "3.11.17",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "pyarrow": "26.0.0"
+  },
+  "evaluated_at_utc": "2026-10-14T19:19:10.447647+00:00",
+  "data_quality": {
+    "excluded_zero_volume_dates": {
+      "RELIANCE.NS": [
+        "2014-04-24",
+        "2014-10-15",
+        "2025-03-18"
+      ],
+      "TCS.NS": [
+        "2014-04-24",
+        "2014-10-15",
+        "2025-03-18"
+      ],
+      "INFY.NS": [
+        "2014-04-24",
+        "2014-10-15",
+        "2025-03-18"
+      ],
+      "HDFCBANK.NS": [
+        "2014-04-24",
+        "2014-10-15",
+        "2025-03-18"
+      ],
+      "ITC.NS": [
+        "2014-04-24",
+        "2014-10-15"
+      ]
+    },
+    "finding": "Four securities contain stale zero-volume vendor rows on 2025-03-18 while ITC traded. Exclusion makes vendor-row calendars security-specific; do not realign the spent test.",
+    "independent_exchange_verification": false
+  },
+  "analysis_status": "Exploratory correction derived from already inspected saved predictions; no refit, new radii or row changes",
+  "correction": {
+    "source_report_sha256": "552f28a6fe7b45d573981fd809cf327b8a42f739d7b4396849bfa7f97dfc57f7",
+    "method": "Complete declared five-security origins only; partial groups excluded and counted",
+    "changes": {
+      "selected__pooled_absolute": {
+        "previous_available_group_value": 0.7272727272727273,
+        "corrected": {
+          "coverage": 0.5,
+          "complete_forecast_dates": 10,
+          "excluded_partial_forecast_dates": 12,
+          "calendar_quarters": 5,
+          "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+          "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+        }
+      },
+      "selected__security_absolute": {
+        "previous_available_group_value": 0.7727272727272727,
+        "corrected": {
+          "coverage": 0.6,
+          "complete_forecast_dates": 10,
+          "excluded_partial_forecast_dates": 12,
+          "calendar_quarters": 5,
+          "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+          "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+        }
+      },
+      "selected__security_vol_scaled": {
+        "previous_available_group_value": 0.7727272727272727,
+        "corrected": {
+          "coverage": 0.6,
+          "complete_forecast_dates": 10,
+          "excluded_partial_forecast_dates": 12,
+          "calendar_quarters": 5,
+          "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+          "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+        }
+      },
+      "selected__joint_vol_scaled": {
+        "previous_available_group_value": 0.9545454545454546,
+        "corrected": {
+          "coverage": 0.9,
+          "complete_forecast_dates": 10,
+          "excluded_partial_forecast_dates": 12,
+          "calendar_quarters": 5,
+          "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+          "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+        }
+      },
+      "prior_mean__pooled_absolute": {
+        "previous_available_group_value": 0.7272727272727273,
+        "corrected": {
+          "coverage": 0.5,
+          "complete_forecast_dates": 10,
+          "excluded_partial_forecast_dates": 12,
+          "calendar_quarters": 5,
+          "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+          "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+        }
+      },
+      "prior_mean__security_absolute": {
+        "previous_available_group_value": 0.7727272727272727,
+        "corrected": {
+          "coverage": 0.6,
+          "complete_forecast_dates": 10,
+          "excluded_partial_forecast_dates": 12,
+          "calendar_quarters": 5,
+          "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+          "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+        }
+      },
+      "prior_mean__security_vol_scaled": {
+        "previous_available_group_value": 0.7727272727272727,
+        "corrected": {
+          "coverage": 0.6,
+          "complete_forecast_dates": 10,
+          "excluded_partial_forecast_dates": 12,
+          "calendar_quarters": 5,
+          "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+          "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+        }
+      },
+      "prior_mean__joint_vol_scaled": {
+        "previous_available_group_value": 0.9545454545454546,
+        "corrected": {
+          "coverage": 0.9,
+          "complete_forecast_dates": 10,
+          "excluded_partial_forecast_dates": 12,
+          "calendar_quarters": 5,
+          "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+          "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+        }
+      },
+      "constant_half_zero__pooled_absolute": {
+        "previous_available_group_value": 0.7727272727272727,
+        "corrected": {
+          "coverage": 0.5,
+          "complete_forecast_dates": 10,
+          "excluded_partial_forecast_dates": 12,
+          "calendar_quarters": 5,
+          "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+          "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+        }
+      },
+      "constant_half_zero__security_absolute": {
+        "previous_available_group_value": 0.8181818181818182,
+        "corrected": {
+          "coverage": 0.7,
+          "complete_forecast_dates": 10,
+          "excluded_partial_forecast_dates": 12,
+          "calendar_quarters": 5,
+          "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+          "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+        }
+      },
+      "constant_half_zero__security_vol_scaled": {
+        "previous_available_group_value": 0.7727272727272727,
+        "corrected": {
+          "coverage": 0.7,
+          "complete_forecast_dates": 10,
+          "excluded_partial_forecast_dates": 12,
+          "calendar_quarters": 5,
+          "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+          "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+        }
+      },
+      "constant_half_zero__joint_vol_scaled": {
+        "previous_available_group_value": 0.9545454545454546,
+        "corrected": {
+          "coverage": 0.9,
+          "complete_forecast_dates": 10,
+          "excluded_partial_forecast_dates": 12,
+          "calendar_quarters": 5,
+          "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+          "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+        }
+      },
+      "always_up_zero__pooled_absolute": {
+        "previous_available_group_value": 0.7727272727272727,
+        "corrected": {
+          "coverage": 0.5,
+          "complete_forecast_dates": 10,
+          "excluded_partial_forecast_dates": 12,
+          "calendar_quarters": 5,
+          "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+          "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+        }
+      },
+      "always_up_zero__security_absolute": {
+        "previous_available_group_value": 0.8181818181818182,
+        "corrected": {
+          "coverage": 0.7,
+          "complete_forecast_dates": 10,
+          "excluded_partial_forecast_dates": 12,
+          "calendar_quarters": 5,
+          "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+          "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+        }
+      },
+      "always_up_zero__security_vol_scaled": {
+        "previous_available_group_value": 0.7727272727272727,
+        "corrected": {
+          "coverage": 0.7,
+          "complete_forecast_dates": 10,
+          "excluded_partial_forecast_dates": 12,
+          "calendar_quarters": 5,
+          "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+          "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+        }
+      },
+      "always_up_zero__joint_vol_scaled": {
+        "previous_available_group_value": 0.9545454545454546,
+        "corrected": {
+          "coverage": 0.9,
+          "complete_forecast_dates": 10,
+          "excluded_partial_forecast_dates": 12,
+          "calendar_quarters": 5,
+          "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+          "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+        }
+      },
+      "momentum__pooled_absolute": {
+        "previous_available_group_value": 0.7727272727272727,
+        "corrected": {
+          "coverage": 0.6,
+          "complete_forecast_dates": 10,
+          "excluded_partial_forecast_dates": 12,
+          "calendar_quarters": 5,
+          "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+          "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+        }
+      },
+      "momentum__security_absolute": {
+        "previous_available_group_value": 0.7727272727272727,
+        "corrected": {
+          "coverage": 0.6,
+          "complete_forecast_dates": 10,
+          "excluded_partial_forecast_dates": 12,
+          "calendar_quarters": 5,
+          "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+          "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+        }
+      },
+      "momentum__security_vol_scaled": {
+        "previous_available_group_value": 0.7727272727272727,
+        "corrected": {
+          "coverage": 0.6,
+          "complete_forecast_dates": 10,
+          "excluded_partial_forecast_dates": 12,
+          "calendar_quarters": 5,
+          "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+          "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+        }
+      },
+      "momentum__joint_vol_scaled": {
+        "previous_available_group_value": 0.9545454545454546,
+        "corrected": {
+          "coverage": 0.9,
+          "complete_forecast_dates": 10,
+          "excluded_partial_forecast_dates": 12,
+          "calendar_quarters": 5,
+          "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+          "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+        }
+      },
+      "legacy_selected__pooled_absolute": {
+        "previous_available_group_value": 0.7272727272727273,
+        "corrected": {
+          "coverage": 0.5,
+          "complete_forecast_dates": 10,
+          "excluded_partial_forecast_dates": 12,
+          "calendar_quarters": 5,
+          "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+          "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+        }
+      },
+      "legacy_selected__security_absolute": {
+        "previous_available_group_value": 0.7727272727272727,
+        "corrected": {
+          "coverage": 0.6,
+          "complete_forecast_dates": 10,
+          "excluded_partial_forecast_dates": 12,
+          "calendar_quarters": 5,
+          "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+          "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+        }
+      },
+      "legacy_selected__security_vol_scaled": {
+        "previous_available_group_value": 0.7727272727272727,
+        "corrected": {
+          "coverage": 0.6,
+          "complete_forecast_dates": 10,
+          "excluded_partial_forecast_dates": 12,
+          "calendar_quarters": 5,
+          "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+          "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+        }
+      },
+      "legacy_selected__joint_vol_scaled": {
+        "previous_available_group_value": 0.9545454545454546,
+        "corrected": {
+          "coverage": 0.9,
+          "complete_forecast_dates": 10,
+          "excluded_partial_forecast_dates": 12,
+          "calendar_quarters": 5,
+          "definition": "All declared securities at the same origin; security-specific vendor-row targets may end on different dates",
+          "limitation": "Partial groups are unscored; complete origins may cover fewer periods than marginal evaluation"
+        }
+      }
+    }
+  },
+  "complete_derived_report_sha256": "0d8963acf17f0455de22e4651d329bdf35482a60a2ec139747308cc76fe67aa4",
+  "complete_derived_report_location": ".runtime/forecast-followup/exploratory-report.json"
+}

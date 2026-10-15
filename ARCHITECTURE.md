@@ -1,5 +1,13 @@
 # Architecture and verification boundaries
 
+The 15 October forecasting investigation is documented in
+[`docs/FORECASTING_FOLLOWUP.md`](docs/FORECASTING_FOLLOWUP.md). Stable point
+selection retains prior/mean baselines; revised uncertainty uses development-only
+causal scales and per-security residual ranks, with declared same-date interval
+comparators. A shared start ledger marks evaluation spent before scoring.
+Original artifacts are preserved, and joint coverage excludes incomplete security
+groups. These research modules do not enter synthesis or change portfolio guards.
+
 ## Flow and contracts
 
 ```mermaid
@@ -14,6 +22,9 @@ flowchart LR
     V --> S[Portfolio policies and weighted synthesis]
     S --> DB[Atomic SQLite session or explicit unsaved result]
     S --> UI
+    H[Checksum-pinned historical prices] --> F[Offline prepare and frozen research test]
+    F --> J[Saved research report]
+    J -->|Read-only evaluation summary| API
 ```
 
 Pydantic preserves the original Citation, AgentOutput, UserProfile and Recommendation
@@ -32,6 +43,8 @@ The engine also bounds market/retriever initialization and queries. Invalid mark
 are not charted; failed retrieval withholds textual claims. Corpus files with invalid
 metadata are skipped with explicit warnings. Optional model failures disable that
 backend for the Retriever instance and retain BM25.
+Retriever initialization has a 60-second default timeout; the demo launcher has a
+120-second service-readiness deadline. Both apply in the package implementation.
 
 ## Signals and financial extraction
 
@@ -71,8 +84,10 @@ Optional local CPU MiniLM plus Chroma ranks are fused with reciprocal rank fusio
 The model revision is pinned. A model/corpus fingerprint isolates indexes; only
 the matching index is reconciled, not another corpus's active collection.
 Chroma telemetry is disabled. Successful real MiniLM retrieval has not been
-verified because model downloads are blocked. Real Chroma fixture-vector tests are
-reported separately; they are not neural retrieval evidence.
+independently verified in this cloud audit. An earlier cloud run encountered a
+blocked model download, while the user subsequently reported real MiniLM + BM25
+retrieval with 21 chunks locally that remained hybrid after analysis. Real Chroma
+fixture-vector checks from the earlier run are separate evidence.
 
 Citation validation matches chunk ID, source ID, title, date, excerpt and relevance
 score against the session registry. Statement validation:
@@ -152,7 +167,8 @@ remains available. Sources show an escaped original-document view with exact spa
 VIBEFINANCE_API_TOKEN provides shared Bearer/password access. External launcher
 bindings require it. This is not per-user accounts or privacy isolation. The
 Docker setup runs non-root, keeps API loopback-only, and persists SQLite on /data.
-Public hosting is not provisioned.
+The user reports a BM25 deployment on Render's free tier at
+https://vibefinance.onrender.com; this cloud audit has not independently checked it.
 
 ## Evaluation and timing
 
@@ -177,10 +193,67 @@ outputs. It measures real sequential and parallel compute windows without delays
 Persistence, HTTP and downloads are excluded. Local results may show a slowdown;
 neither concurrency nor synthetic accuracy demonstrates a production advantage.
 
+## Historical forecasting research
+
+`scripts/forecast.py` implements explicit `download`, `prepare` and `test` stages.
+`vibefinance/data/historical.py` checks manifest lineage, HTTPS source URLs and raw
+artifact SHA-256 hashes before reading dated OHLCV. The pinned manifest uses the
+aswinv90/indian-market-historical-data Yahoo archive under its noncommercial
+research-only license. Adjusted close is used explicitly, with OHLC adjusted
+consistently where needed. Invalid dates, non-finite values and inconsistent OHLC
+fail rather than falling back to synthetic data. Zero-volume holiday placeholders
+are excluded uniformly; positive-volume weekend sessions are retained.
+
+`vibefinance/evaluation/forecast.py` predicts a 30-session adjusted return and
+P(return > 0) from ten causal features: returns over 1/5/20/60 sessions, volatility
+over 20/60 sessions, the SMA20/SMA50 ratio, normalized RSI, normalized MACD
+histogram and a volume ratio. Scaling and coefficients are fitted from matured
+training targets. L2 logistic and ridge regression use small declared penalty
+grids; the first minimizes expanding-validation Brier score, the second return
+MAE. Probability selection includes the training prior and constant 50%; return
+selection includes the training mean and zero. Constant 50%, always-up and momentum
+baselines are
+scored on the same held-out observations.
+
+The default chronological protocol is 2010–2015 initial training, expanding
+2016–2017 yearly validation, 2018 split residual calibration, and a 2019–2020 test
+period. Validation/calibration/test targets are spaced 30 sessions apart per ticker
+and purged at each period's right boundary. Training labels may overlap, and
+cross-stock observations share shocks. The residual interval is a separate-period
+absolute-error quantile; market dependence provides no exchangeability guarantee.
+Paired uncertainty uses calendar-quarter clusters rather than treating stock rows
+as independent draws.
+
+Preparation freezes coefficients, preprocessing, feature definitions, source
+hashes, protocol and selection in `.runtime/forecast/selection.json`. Testing
+checks the frozen artifact and data fingerprints before producing
+`.runtime/forecast/report.json`. Exclusive writes protect completed artifacts.
+Once reported, this historical holdout is spent: additional tuning requires a new
+untouched period. The acceptance check is a research gate, not automatic admission
+to recommendation logic or investment suitability.
+
+`GET /evaluation/forecast` reads the saved artifact selected by
+`VIBEFINANCE_FORECAST_REPORT`, defaulting to
+`VIBEFINANCE_STATE_DIR/forecast/report.json`. It retains the API's shared-access
+protection, validates the summary schema, excludes row-level records, and returns
+an explicit unavailable status for absent or unreadable reports. It downloads
+nothing, trains nothing and forces `model_readiness=research_only`. The dashboard
+loads it through an explicit **Load real-history forecast audit** button in Metrics.
+
+The price research model uses no filings, news, profile or portfolio inputs. It does
+not calibrate five-agent recommendation confidence or attach current forecasts to
+decisions. Concentration precedence, cash/sector guards and missing-evidence
+behavior remain intact. The five surviving tickers, retrospective vendor
+adjustments and limited historical regime coverage constrain interpretation.
+See [FORECASTING_AUDIT.md](docs/FORECASTING_AUDIT.md) for results and remaining work.
+
 ## Remaining limits
 
-No real filing/PDF ingestion, licensed news, neural-model success, successful live
-feed, optional LLM narration, calibrated recommendation-success model, trading
-simulation, transaction costs, portfolio optimization or regulatory approval.
-Shared demo access is not multi-tenant security. Public hosting and native macOS
-operation are unverified. See docs/VALIDATION.md and docs/HANDOFF_FOR_CLAUDE.md.
+No real filing/PDF ingestion, licensed news, independently verified live feed in
+this cloud audit, optional LLM narration, calibrated recommendation-success model,
+trading simulation, transaction costs, portfolio optimization or regulatory approval.
+Shared demo access is not multi-tenant security. User-reported local MiniLM and
+Render success are distinguished from independent cloud validation. Native macOS
+operation is unverified. Historical forecast reports remain research evidence;
+they do not establish predictive edge or personalized investment benefit.
+See docs/VALIDATION.md and docs/HANDOFF_FOR_CLAUDE.md.

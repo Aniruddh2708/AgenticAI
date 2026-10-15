@@ -1,0 +1,523 @@
+{
+  "schema_version": 1,
+  "kind": "historical_price_forecast",
+  "protocol": {
+    "train_start": "2010-01-01",
+    "train_end": "2015-12-31",
+    "validation_start": "2016-01-01",
+    "validation_end": "2017-12-31",
+    "calibration_start": "2018-01-01",
+    "calibration_end": "2018-12-31",
+    "test_start": "2019-01-01",
+    "test_end": "2020-12-31",
+    "horizon_sessions": 30,
+    "interval_alpha": 0.1
+  },
+  "data": [
+    {
+      "ticker": "RELIANCE.NS",
+      "url": "https://raw.githubusercontent.com/aswinv90/indian-market-historical-data/5dffc0832c63d1558930510d081e076929608d82/data/NSE/RELIANCE_NS.parquet",
+      "sha256": "3b1ca39ce7274ea3227dc5ecfb65478cfa33b1dfc52bb68cb219f70eb34089eb",
+      "filename": "RELIANCE_NS.parquet",
+      "provider": "Yahoo Finance via yfinance; third-party archive",
+      "price_basis": "adjusted",
+      "lineage_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/scripts/fetch_all_stocks.py",
+      "rows": 2711,
+      "date_start": "2010-01-04",
+      "date_end": "2020-12-31",
+      "gaps_over_seven_calendar_days": 0,
+      "source_file_rows": 7728,
+      "study_start": "2010-01-01",
+      "study_end": "2020-12-31",
+      "removed_zero_volume_rows": 2,
+      "source_license": "Non-commercial research and personal use only; copyright 2026 Aswin V. Commercial use requires the author's explicit written permission.",
+      "source_license_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/LICENSE",
+      "commercial_use_permitted": false
+    },
+    {
+      "ticker": "TCS.NS",
+      "url": "https://raw.githubusercontent.com/aswinv90/indian-market-historical-data/5dffc0832c63d1558930510d081e076929608d82/data/NSE/TCS_NS.parquet",
+      "sha256": "3a6a81d9ff6257ca6eddfafc017de30bae0c8e9fad662c6fd46bb70f1614b7ab",
+      "filename": "TCS_NS.parquet",
+      "provider": "Yahoo Finance via yfinance; third-party archive",
+      "price_basis": "adjusted",
+      "lineage_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/scripts/fetch_all_stocks.py",
+      "rows": 2711,
+      "date_start": "2010-01-04",
+      "date_end": "2020-12-31",
+      "gaps_over_seven_calendar_days": 0,
+      "source_file_rows": 6004,
+      "study_start": "2010-01-01",
+      "study_end": "2020-12-31",
+      "removed_zero_volume_rows": 2,
+      "source_license": "Non-commercial research and personal use only; copyright 2026 Aswin V. Commercial use requires the author's explicit written permission.",
+      "source_license_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/LICENSE",
+      "commercial_use_permitted": false
+    },
+    {
+      "ticker": "INFY.NS",
+      "url": "https://raw.githubusercontent.com/aswinv90/indian-market-historical-data/5dffc0832c63d1558930510d081e076929608d82/data/NSE/INFY_NS.parquet",
+      "sha256": "9f73af06716697381708bfc99f561a123d23b46613504038b958f09ed2f19cca",
+      "filename": "INFY_NS.parquet",
+      "provider": "Yahoo Finance via yfinance; third-party archive",
+      "price_basis": "adjusted",
+      "lineage_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/scripts/fetch_all_stocks.py",
+      "rows": 2711,
+      "date_start": "2010-01-04",
+      "date_end": "2020-12-31",
+      "gaps_over_seven_calendar_days": 0,
+      "source_file_rows": 7731,
+      "study_start": "2010-01-01",
+      "study_end": "2020-12-31",
+      "removed_zero_volume_rows": 2,
+      "source_license": "Non-commercial research and personal use only; copyright 2026 Aswin V. Commercial use requires the author's explicit written permission.",
+      "source_license_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/LICENSE",
+      "commercial_use_permitted": false
+    },
+    {
+      "ticker": "HDFCBANK.NS",
+      "url": "https://raw.githubusercontent.com/aswinv90/indian-market-historical-data/5dffc0832c63d1558930510d081e076929608d82/data/NSE/HDFCBANK_NS.parquet",
+      "sha256": "a3b2c359431958167585f8c7eb5a24457b19209686e5dae474dc010bbc3d0e40",
+      "filename": "HDFCBANK_NS.parquet",
+      "provider": "Yahoo Finance via yfinance; third-party archive",
+      "price_basis": "adjusted",
+      "lineage_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/scripts/fetch_all_stocks.py",
+      "rows": 2711,
+      "date_start": "2010-01-04",
+      "date_end": "2020-12-31",
+      "gaps_over_seven_calendar_days": 0,
+      "source_file_rows": 7731,
+      "study_start": "2010-01-01",
+      "study_end": "2020-12-31",
+      "removed_zero_volume_rows": 2,
+      "source_license": "Non-commercial research and personal use only; copyright 2026 Aswin V. Commercial use requires the author's explicit written permission.",
+      "source_license_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/LICENSE",
+      "commercial_use_permitted": false
+    },
+    {
+      "ticker": "ITC.NS",
+      "url": "https://raw.githubusercontent.com/aswinv90/indian-market-historical-data/5dffc0832c63d1558930510d081e076929608d82/data/NSE/ITC_NS.parquet",
+      "sha256": "af03d6c408ed47d3c2868bef0058ad21d58fda6c6692eae945f31d5fcb0701d9",
+      "filename": "ITC_NS.parquet",
+      "provider": "Yahoo Finance via yfinance; third-party archive",
+      "price_basis": "adjusted",
+      "lineage_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/scripts/fetch_all_stocks.py",
+      "rows": 2711,
+      "date_start": "2010-01-04",
+      "date_end": "2020-12-31",
+      "gaps_over_seven_calendar_days": 0,
+      "source_file_rows": 7728,
+      "study_start": "2010-01-01",
+      "study_end": "2020-12-31",
+      "removed_zero_volume_rows": 2,
+      "source_license": "Non-commercial research and personal use only; copyright 2026 Aswin V. Commercial use requires the author's explicit written permission.",
+      "source_license_url": "https://github.com/aswinv90/indian-market-historical-data/blob/5dffc0832c63d1558930510d081e076929608d82/LICENSE",
+      "commercial_use_permitted": false
+    }
+  ],
+  "features": [
+    "return_1",
+    "return_5",
+    "return_20",
+    "return_60",
+    "volatility_20",
+    "volatility_60",
+    "dma_ratio",
+    "rsi",
+    "macd_hist",
+    "volume_ratio"
+  ],
+  "model_id": "b58951e961db26b4ef935ae79cc96c34b51a46e39cbe86dc76719d88cc2e3e46",
+  "selection": {
+    "probability_model": "prior",
+    "return_model": "ridge_1.0",
+    "probability_kind": "prior",
+    "return_kind": "ridge",
+    "probability_penalty": 0.01,
+    "return_penalty": 1.0,
+    "criterion": "Expanding-year validation Brier / return MAE; test never used",
+    "admission": {
+      "passed": false,
+      "reason": "Research gate requires learned models, eight quarters, paired 95% improvements over prior/zero baselines for both targets, and >=85% interval coverage. Independent replication still required."
+    }
+  },
+  "validation": {
+    "sample_size": 80,
+    "as_of_start": "2016-01-01",
+    "as_of_end": "2017-11-07",
+    "target_end": "2017-12-19",
+    "metrics": {
+      "selected": {
+        "brier": 0.24295143058321242,
+        "log_loss": 0.6790232396524873,
+        "accuracy": 0.5875,
+        "balanced_accuracy": 0.5,
+        "mae_return": 0.0568967292034549,
+        "rmse_return": 0.06981958658105926,
+        "realized_up_rate": 0.5875
+      }
+    },
+    "folds": [
+      {
+        "start": "2016-01-01",
+        "end": "2016-12-31",
+        "training_rows": 6935,
+        "training_target_end": "2015-12-31",
+        "validation_rows": 40
+      },
+      {
+        "start": "2017-01-01",
+        "end": "2017-12-31",
+        "training_rows": 8015,
+        "training_target_end": "2016-12-30",
+        "validation_rows": 40
+      }
+    ],
+    "candidate_metrics": {
+      "prior": {
+        "brier": 0.24295143058321242,
+        "log_loss": 0.6790232396524873,
+        "accuracy": 0.5875,
+        "balanced_accuracy": 0.5,
+        "mae_return": 0.057172457975650695,
+        "rmse_return": 0.0697229270752891,
+        "realized_up_rate": 0.5875
+      },
+      "constant_half": {
+        "brier": 0.25,
+        "log_loss": 0.6931471805599453,
+        "accuracy": 0.5875,
+        "balanced_accuracy": 0.5,
+        "mae_return": 0.057172457975650695,
+        "rmse_return": 0.0697229270752891,
+        "realized_up_rate": 0.5875
+      },
+      "logistic_0.01": {
+        "brier": 0.2468233310765461,
+        "log_loss": 0.6889134649004058,
+        "accuracy": 0.5375,
+        "balanced_accuracy": 0.461960025789813,
+        "mae_return": 0.057172457975650695,
+        "rmse_return": 0.0697229270752891,
+        "realized_up_rate": 0.5875
+      },
+      "logistic_0.1": {
+        "brier": 0.24686296492441556,
+        "log_loss": 0.68775882753245,
+        "accuracy": 0.6,
+        "balanced_accuracy": 0.5151515151515151,
+        "mae_return": 0.057172457975650695,
+        "rmse_return": 0.0697229270752891,
+        "realized_up_rate": 0.5875
+      },
+      "logistic_1.0": {
+        "brier": 0.2440427359816363,
+        "log_loss": 0.681260734876617,
+        "accuracy": 0.5875,
+        "balanced_accuracy": 0.5,
+        "mae_return": 0.057172457975650695,
+        "rmse_return": 0.0697229270752891,
+        "realized_up_rate": 0.5875
+      },
+      "mean": {
+        "brier": 0.24295143058321242,
+        "log_loss": 0.6790232396524873,
+        "accuracy": 0.5875,
+        "balanced_accuracy": 0.5,
+        "mae_return": 0.057172457975650695,
+        "rmse_return": 0.0697229270752891,
+        "realized_up_rate": 0.5875
+      },
+      "zero": {
+        "brier": 0.24295143058321242,
+        "log_loss": 0.6790232396524873,
+        "accuracy": 0.5875,
+        "balanced_accuracy": 0.5,
+        "mae_return": 0.05841734216967263,
+        "rmse_return": 0.07208507022992894,
+        "realized_up_rate": 0.5875
+      },
+      "ridge_0.1": {
+        "brier": 0.24295143058321242,
+        "log_loss": 0.6790232396524873,
+        "accuracy": 0.5875,
+        "balanced_accuracy": 0.5,
+        "mae_return": 0.05693825599408644,
+        "rmse_return": 0.0703310509518841,
+        "realized_up_rate": 0.5875
+      },
+      "ridge_1.0": {
+        "brier": 0.24295143058321242,
+        "log_loss": 0.6790232396524873,
+        "accuracy": 0.5875,
+        "balanced_accuracy": 0.5,
+        "mae_return": 0.0568967292034549,
+        "rmse_return": 0.06981958658105926,
+        "realized_up_rate": 0.5875
+      },
+      "ridge_10.0": {
+        "brier": 0.24295143058321242,
+        "log_loss": 0.6790232396524873,
+        "accuracy": 0.5875,
+        "balanced_accuracy": 0.5,
+        "mae_return": 0.056943709303413546,
+        "rmse_return": 0.06950289927122681,
+        "realized_up_rate": 0.5875
+      }
+    },
+    "selected_metrics": {
+      "brier": 0.24295143058321242,
+      "log_loss": 0.6790232396524873,
+      "accuracy": 0.5875,
+      "balanced_accuracy": 0.5,
+      "mae_return": 0.0568967292034549,
+      "rmse_return": 0.06981958658105926,
+      "realized_up_rate": 0.5875
+    }
+  },
+  "calibration": {
+    "sample_size": 40,
+    "as_of_start": "2018-01-01",
+    "target_end": "2018-12-21",
+    "interval_radius": 0.11909395429744099,
+    "nominal_coverage": 0.9,
+    "method": "Split absolute-residual quantile on separate calibration period; no exchangeability guarantee in markets"
+  },
+  "test": {
+    "sample_size": 80,
+    "as_of_start": "2019-01-01",
+    "as_of_end": "2020-10-29",
+    "target_end": "2020-12-11",
+    "metrics": {
+      "selected": {
+        "brier": 0.22306703595102503,
+        "log_loss": 0.6385504458566273,
+        "accuracy": 0.675,
+        "balanced_accuracy": 0.5,
+        "mae_return": 0.0934237688947575,
+        "rmse_return": 0.13494266720728126,
+        "realized_up_rate": 0.675
+      },
+      "prior_mean": {
+        "brier": 0.22306703595102503,
+        "log_loss": 0.6385504458566273,
+        "accuracy": 0.675,
+        "balanced_accuracy": 0.5,
+        "mae_return": 0.09305023730204043,
+        "rmse_return": 0.13524010199125375,
+        "realized_up_rate": 0.675
+      },
+      "constant_half_zero": {
+        "brier": 0.25,
+        "log_loss": 0.6931471805599453,
+        "accuracy": 0.675,
+        "balanced_accuracy": 0.5,
+        "mae_return": 0.09761080073646758,
+        "rmse_return": 0.1383465114356526,
+        "realized_up_rate": 0.675
+      },
+      "always_up_zero": {
+        "brier": 0.325,
+        "log_loss": 6.735061406874212,
+        "accuracy": 0.675,
+        "balanced_accuracy": 0.5,
+        "mae_return": 0.09761080073646758,
+        "rmse_return": 0.1383465114356526,
+        "realized_up_rate": 0.675
+      },
+      "momentum": {
+        "brier": 0.2253964598379102,
+        "log_loss": 0.6432603032054066,
+        "accuracy": 0.675,
+        "balanced_accuracy": 0.5,
+        "mae_return": 0.09319725950348885,
+        "rmse_return": 0.13591311084656052,
+        "realized_up_rate": 0.675
+      }
+    },
+    "calibration": [
+      {
+        "bucket": "0.0-0.2",
+        "count": 0,
+        "mean_probability_up": null,
+        "realized_up_rate": null
+      },
+      {
+        "bucket": "0.2-0.4",
+        "count": 0,
+        "mean_probability_up": null,
+        "realized_up_rate": null
+      },
+      {
+        "bucket": "0.4-0.6",
+        "count": 0,
+        "mean_probability_up": null,
+        "realized_up_rate": null
+      },
+      {
+        "bucket": "0.6-0.8",
+        "count": 80,
+        "mean_probability_up": 0.6142378740412661,
+        "realized_up_rate": 0.675
+      },
+      {
+        "bucket": "0.8-1.0",
+        "count": 0,
+        "mean_probability_up": null,
+        "realized_up_rate": null
+      }
+    ],
+    "uncertainty": {
+      "selected_minus_prior_mean_brier": {
+        "difference": 0.0,
+        "low": 0.0,
+        "high": 0.0,
+        "level": 0.95,
+        "calendar_quarter_blocks": 8
+      },
+      "selected_minus_prior_mean_mae_return": {
+        "difference": 0.0003735315927170595,
+        "low": -0.005602486011837633,
+        "high": 0.005379237428383348,
+        "level": 0.95,
+        "calendar_quarter_blocks": 8
+      },
+      "selected_minus_constant_half_zero_brier": {
+        "difference": -0.026932964048974956,
+        "low": -0.04742858262696681,
+        "high": -0.00979728294278504,
+        "level": 0.95,
+        "calendar_quarter_blocks": 8
+      },
+      "selected_minus_constant_half_zero_mae_return": {
+        "difference": -0.004187031841710089,
+        "low": -0.009291819575616813,
+        "high": 0.0004825000477857244,
+        "level": 0.95,
+        "calendar_quarter_blocks": 8
+      },
+      "selected_minus_momentum_brier": {
+        "difference": -0.0023294238868851744,
+        "low": -0.011628601115448032,
+        "high": 0.005672161352165494,
+        "level": 0.95,
+        "calendar_quarter_blocks": 8
+      },
+      "selected_minus_momentum_mae_return": {
+        "difference": 0.00022650939126864187,
+        "low": -0.004722309521545153,
+        "high": 0.0037771695589559717,
+        "level": 0.95,
+        "calendar_quarter_blocks": 8
+      }
+    },
+    "interval": {
+      "nominal_coverage": 0.9,
+      "observed_coverage": 0.7875,
+      "radius_return": 0.11909395429744099,
+      "method": "Split absolute-residual quantile on separate calibration period; no exchangeability guarantee in markets"
+    },
+    "by_ticker": {
+      "HDFCBANK.NS": {
+        "sample_size": 16,
+        "brier": 0.2202110890999934,
+        "log_loss": 0.6327359290489214,
+        "accuracy": 0.6875,
+        "balanced_accuracy": 0.5,
+        "mae_return": 0.08076998128451232,
+        "rmse_return": 0.12486810874304,
+        "realized_up_rate": 0.6875
+      },
+      "INFY.NS": {
+        "sample_size": 16,
+        "brier": 0.19165162058967689,
+        "log_loss": 0.5745907609718592,
+        "accuracy": 0.8125,
+        "balanced_accuracy": 0.5,
+        "mae_return": 0.08281208502887329,
+        "rmse_return": 0.11962660853774433,
+        "realized_up_rate": 0.8125
+      },
+      "ITC.NS": {
+        "sample_size": 16,
+        "brier": 0.2630502918654682,
+        "log_loss": 0.7199536811645145,
+        "accuracy": 0.5,
+        "balanced_accuracy": 0.5,
+        "mae_return": 0.10270459612085311,
+        "rmse_return": 0.13737442669607855,
+        "realized_up_rate": 0.5
+      },
+      "RELIANCE.NS": {
+        "sample_size": 16,
+        "brier": 0.22021108909999343,
+        "log_loss": 0.6327359290489214,
+        "accuracy": 0.6875,
+        "balanced_accuracy": 0.5,
+        "mae_return": 0.13696641337986348,
+        "rmse_return": 0.18910159971674712,
+        "realized_up_rate": 0.6875
+      },
+      "TCS.NS": {
+        "sample_size": 16,
+        "brier": 0.2202110890999934,
+        "log_loss": 0.6327359290489214,
+        "accuracy": 0.6875,
+        "balanced_accuracy": 0.5,
+        "mae_return": 0.06386576865968523,
+        "rmse_return": 0.08070872931882773,
+        "realized_up_rate": 0.6875
+      }
+    },
+    "by_year": {
+      "2019": {
+        "sample_size": 45,
+        "brier": 0.2300482393646579,
+        "log_loss": 0.652763709164354,
+        "accuracy": 0.6444444444444445,
+        "balanced_accuracy": 0.5,
+        "mae_return": 0.05181504909068243,
+        "rmse_return": 0.06509892578039139,
+        "realized_up_rate": 0.6444444444444445
+      },
+      "2020": {
+        "sample_size": 35,
+        "brier": 0.21409120299063988,
+        "log_loss": 0.6202762501752653,
+        "accuracy": 0.7142857142857143,
+        "balanced_accuracy": 0.5,
+        "mae_return": 0.1469206943571397,
+        "rmse_return": 0.19019221243197734,
+        "realized_up_rate": 0.7142857142857143
+      }
+    },
+    "original_momentum_direction": {
+      "total_windows": 80,
+      "neutral_abstentions": 16,
+      "scored_windows": 64,
+      "hit_rate": 0.546875,
+      "always_up_same_mask_hit_rate": 0.6875,
+      "fair_coin_expected_hit_rate": 0.5
+    }
+  },
+  "model_readiness": "research_only",
+  "limitations": [
+    "Five present-day selected stocks form a survivor universe, not point-in-time index constituents; no general-market claim.",
+    "Historical vendor adjustments may be retrospective. Ratio features avoid absolute-level leakage but do not reconstruct vintage releases.",
+    "30-session close-to-close forecast after observing close; not an executable trading strategy, realized P&L or investment advice.",
+    "Training targets overlap. Validation/calibration/test targets do not overlap within each ticker; stocks share market shocks.",
+    "Quarter-cluster bootstrap jointly samples stocks; eight holdout quarters give approximate, low-power intervals, with dependence across blocks possible.",
+    "Split-residual intervals assume exchangeability for coverage guarantees; financial regime shifts violate this assumption. Report empirical coverage.",
+    "No news/filings or profile features enter this price model. Five-agent action confidence and personalized effectiveness remain unvalidated.",
+    "A historical holdout is spent after reporting; future tuning must reserve a new untouched period. No automatic promotion to portfolio actions."
+  ],
+  "selection_id": "b58951e961db26b4ef935ae79cc96c34b51a46e39cbe86dc76719d88cc2e3e46",
+  "evaluated_at_utc": "2026-10-14T18:44:03.480725+00:00",
+  "runtime": {
+    "python": "3.11.17",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3"
+  },
+  "full_report_sha256": "69e24bfaf8ecfc9a652eecf701a930f813b1c334acd7458c422c2b012fd90084",
+  "full_report_location": ".runtime/forecast/report.json"
+}
