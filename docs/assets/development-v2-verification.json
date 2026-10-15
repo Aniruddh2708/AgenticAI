@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "implementation_revision": "e09878900ee739ade9f18320feba5dd50a020ba1",
+  "application_tests": {
+    "passed": 794,
+    "skipped": 14,
+    "warnings": 2,
+    "seconds": 44.1,
+    "scope": "local Linux CPython 3.11.17"
+  },
+  "disposable_postgres": {
+    "passed": 121,
+    "seconds": 10.35,
+    "tls": "verify-full",
+    "provider": "owned local PostgreSQL 17 fixture; no Supabase"
+  },
+  "research_reporting_tests": {
+    "passed": 13,
+    "development_only": true,
+    "new_holdout_evaluated": false
+  },
+  "api_smoke": {
+    "passed": true,
+    "isolated_local_state": true
+  },
+  "dashboard_scripts": {
+    "standard": true,
+    "extended": true
+  },
+  "browser": {
+    "real_chromium": true,
+    "research_report_rendered": true,
+    "historical_and_no_admission_labels": true,
+    "exact_source_highlight": true,
+    "page_errors": []
+  },
+  "container": {
+    "kind": "local_candidate_container",
+    "created_at_utc": "2026-10-15T15:15:39.066964+00:00",
+    "source_revision": "e09878900ee739ade9f18320feba5dd50a020ba1",
+    "scope": "local core-only demo; not hosted/provider acceptance",
+    "image_id": "sha256:4af8420cb2100b4a9914e90dcd29c6bc740cf5a8ecc2a412a3ddc682a45a6abd",
+    "python_files_verified": 50,
+    "ok": true,
+    "checks": [
+      "assigned port, exact supplied revision, BM25 and storage health",
+      "HTML shell and protected API",
+      "packaged historical report, no fresh evaluation or model promotion",
+      "concentration priority despite missing evidence; saved session",
+      "UID 10001 and exact packaged Python source hashes",
+      "exact-session SQLite persistence across container restart"
+    ],
+    "hosted_acceptance": false
+  },
+  "preserved_original_sha256": {
+    "docs/BLUEPRINT.md": "9b31bebebc7a44b0b2c89187863cac1e8aec13ff6fbcaba06fcd8617fdb3af42",
+    "data/forecast_manifest.json": "6163fde1cde0c3feeca2eeb038f669b176810b100673784bc0d52804eaecfcdf",
+    "data/forecast_protocol.json": "666985a55846dc9dfc335d96f7c2195e405bbeb2247a42564f50207550cee308",
+    "data/forecast_followup_manifest.json": "ddbd54ba5860e7df9c1661e5f4b2278d0e425f6de3b9de1f703f526faf15f40f",
+    "data/forecast_followup_protocol.json": "1048c7b715d575aa1dee675d4625451ac075804ca4ea9cdaaaa013af13f2a4bb",
+    "data/prospective_protocol.json": "05a54b0f0c106465875d6b13aa4ff5e0abf7ff2350243c9648e3ae9e5e2011ac",
+    "docs/assets/forecast-summary.json": "29c03a7729e146f61afd8de2c6a9af39b6c7f95baafa3a53adb96a8f94fd0aec",
+    "docs/assets/forecast-followup-summary.json": "c460db66ae1664cb0d58311a1c9aede2611dca358b835a763a6038bf309240e3",
+    "docs/assets/independent-source-review.json": "5c3589e8a31c34a3ef448c905ff4c662dbe6ec949ae7b43f886a9fd174ca3e7c",
+    "requirements.lock": "8170f46a972dfce4f876e61a930f9e96eb4f0c9c07493ba2bad7e0a95450bb53",
+    "requirements-ci.lock": "e2c181f44821771e85622834acfd47503665e3be0c2c3f40b95a47c3bccfd99f",
+    "requirements-auth.lock": "8ecabdf88f34ee81370d7f19a87282d531fce4a105a5486646b46d59c256e60b",
+    "requirements-production.lock": "ae60fa558f75613047234db94e40d1ced9ed085022512bbfca89a57ee74d4da3",
+    "vibefinance/data/market_sim.py": "7a8fcda6377b38b91a15a82968f7d4313adf504778f3c392cbc019875bb08df0",
+    "vibefinance/data/users.json": "ba7094ac3f7cafe9b730f774a33d53d0a62d3330b216a8ebdd5dbeec9f061f10"
+  },
+  "neural_acceptance": false,
+  "authentic_corpus_acceptance": false,
+  "full_independent_data_approval": false,
+  "hosted_acceptance": false,
+  "supabase_project_exists": false,
+  "render_changed": false,
+  "paid_resources_created": false,
+  "fresh_forecast_issued": false,
+  "predictive_advantage_established": false,
+  "remote_ci": "pending new branch push; historical CI is separate",
+  "configuration": {
+    "draft_saved": true,
+    "fields": [
+      "install_script",
+      "start_skill",
+      "network.allowed_domains"
+    ],
+    "published": false,
+    "runtime_network_access_applied": false
+  }
+}

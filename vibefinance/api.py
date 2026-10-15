@@ -21,6 +21,7 @@ from vibefinance.profiles.production_store import (StorageUnavailableError, crea
 from vibefinance.config import ROOT, TICKERS
 from vibefinance.evaluation.backtest import backtest
 from vibefinance.evaluation.forecast_report import load_forecast_report
+from vibefinance.evaluation.development_report import load_development_report
 from vibefinance.deployment import release_revision
 from vibefinance.orchestrator import analyze, compare_users, prepare_retriever
 from vibefinance.profiles.store import Store
@@ -273,6 +274,10 @@ def create_app(db_path=None):
     @app.get("/evaluation/forecast")
     def forecast_evaluation():
         return load_forecast_report()
+
+    @app.get("/evaluation/forecast/development")
+    def forecast_development():
+        return load_development_report()
 
     @app.get("/evaluation/policies")
     async def policies():

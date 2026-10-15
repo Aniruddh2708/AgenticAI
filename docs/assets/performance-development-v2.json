@@ -1,0 +1,400 @@
+{
+  "kind": "local_workload_performance",
+  "created_at_utc": "2026-10-15T15:00:37.589479+00:00",
+  "workloads": {
+    "RELIANCE.NS": {
+      "repeats_per_mode": 7,
+      "warmup_runs_per_mode": 1,
+      "alternating_execution_order": true,
+      "persist": false,
+      "identical_outputs": true,
+      "unchanged_market_input": true,
+      "workload": {
+        "ticker": "RELIANCE.NS",
+        "user_id": "evaluation_moderate",
+        "data_mode": "simulated",
+        "retrieval_mode": "bm25",
+        "market_fingerprint": "market:RELIANCE.NS:seed:42:2026-09-30:b776769587004c02"
+      },
+      "wall_time_ms": {
+        "parallel": [
+          9.608506999938982,
+          9.903332000021692,
+          10.244988000067679,
+          8.406150999917372,
+          9.96146000011322,
+          12.073547999989387,
+          11.939266000126736
+        ],
+        "sequential": [
+          11.698356999886528,
+          11.27387099995758,
+          9.212518999902386,
+          9.015522000026976,
+          10.132597999927384,
+          9.713886000099592,
+          11.21294399990802
+        ]
+      },
+      "agent_phase_ms": {
+        "parallel": [
+          2.6174820000051113,
+          2.188252999985707,
+          2.3995120000108727,
+          1.72883000004731,
+          2.3117099999581114,
+          1.9961629998306307,
+          1.877675000059753
+        ],
+        "sequential": [
+          2.7222749999964435,
+          3.801889999976993,
+          2.522849000115457,
+          2.4395329999151727,
+          2.331339999955162,
+          2.3901679999198677,
+          2.676225999948656
+        ]
+      },
+      "median_wall_time_ms": {
+        "parallel": 9.96146000011322,
+        "sequential": 10.132597999927384
+      },
+      "measured_speedup": 1.0171800117464929,
+      "speedup_interval": {
+        "low": 0.8136083072440532,
+        "high": 1.173321828253773,
+        "level": 0.95,
+        "method": "paired bootstrap of repeated timings; describes local scheduling variability"
+      },
+      "limitations": "Real timings of identical warmed local workloads, including retrieval, agents, synthesis and metrics. Excludes cold-start setup, HTTP, persistence and network/model downloads. Small repetition count and host scheduling limit precision. Lightweight agents can run slower in parallel; a ratio below one is a slowdown, not evidence of a broken benchmark. This result does not establish production throughput or performance on live feeds."
+    },
+    "TCS.NS": {
+      "repeats_per_mode": 7,
+      "warmup_runs_per_mode": 1,
+      "alternating_execution_order": true,
+      "persist": false,
+      "identical_outputs": true,
+      "unchanged_market_input": true,
+      "workload": {
+        "ticker": "TCS.NS",
+        "user_id": "evaluation_moderate",
+        "data_mode": "simulated",
+        "retrieval_mode": "bm25",
+        "market_fingerprint": "market:TCS.NS:seed:42:2026-09-30:e31021e5779fa863"
+      },
+      "wall_time_ms": {
+        "parallel": [
+          9.272187999840753,
+          8.967108999968332,
+          8.58481699992808,
+          8.378640000046289,
+          8.260662000111552,
+          9.259058999987246,
+          10.225317000049472
+        ],
+        "sequential": [
+          9.707741000056558,
+          9.544481000148153,
+          16.031528999974398,
+          9.643179000022428,
+          8.876701999952274,
+          8.50307799987604,
+          11.366490999989765
+        ]
+      },
+      "agent_phase_ms": {
+        "parallel": [
+          1.8645749998995598,
+          1.660766999975749,
+          1.7383800000061456,
+          1.4520519998768577,
+          1.6429699999207514,
+          2.0980270001018653,
+          1.8396069999653264
+        ],
+        "sequential": [
+          2.6012920000084705,
+          2.370879000181958,
+          2.431269999988217,
+          2.207663000035609,
+          2.069524000035017,
+          1.9537400000899652,
+          3.172530000028928
+        ]
+      },
+      "median_wall_time_ms": {
+        "parallel": 8.967108999968332,
+        "sequential": 9.643179000022428
+      },
+      "measured_speedup": 1.075394421998939,
+      "speedup_interval": {
+        "low": 0.9587045508581922,
+        "high": 1.3240225155742968,
+        "level": 0.95,
+        "method": "paired bootstrap of repeated timings; describes local scheduling variability"
+      },
+      "limitations": "Real timings of identical warmed local workloads, including retrieval, agents, synthesis and metrics. Excludes cold-start setup, HTTP, persistence and network/model downloads. Small repetition count and host scheduling limit precision. Lightweight agents can run slower in parallel; a ratio below one is a slowdown, not evidence of a broken benchmark. This result does not establish production throughput or performance on live feeds."
+    },
+    "ITC.NS": {
+      "repeats_per_mode": 7,
+      "warmup_runs_per_mode": 1,
+      "alternating_execution_order": true,
+      "persist": false,
+      "identical_outputs": true,
+      "unchanged_market_input": true,
+      "workload": {
+        "ticker": "ITC.NS",
+        "user_id": "evaluation_moderate",
+        "data_mode": "simulated",
+        "retrieval_mode": "bm25",
+        "market_fingerprint": "market:ITC.NS:seed:42:2026-09-30:dd6f0770635927e1"
+      },
+      "wall_time_ms": {
+        "parallel": [
+          9.944012999994811,
+          10.135136999906535,
+          7.965010999896549,
+          7.714587999998912,
+          7.56591300000764,
+          7.55452599992168,
+          7.898043999830406
+        ],
+        "sequential": [
+          9.44607199994607,
+          9.486332000051334,
+          8.508627000082924,
+          9.158686999853671,
+          8.136385000170776,
+          7.967368999970859,
+          7.21523399988655
+        ]
+      },
+      "agent_phase_ms": {
+        "parallel": [
+          1.3051600001290353,
+          2.4405340000157594,
+          1.4201790002061898,
+          1.36480100013614,
+          1.3581910000084463,
+          1.2845999999626656,
+          1.4418870000554307
+        ],
+        "sequential": [
+          1.8480300000192074,
+          1.9873599999300495,
+          2.03202800003055,
+          2.0568949998960306,
+          1.9881020000411809,
+          2.0362650000151916,
+          1.6083479999906558
+        ]
+      },
+      "median_wall_time_ms": {
+        "parallel": 7.898043999830406,
+        "sequential": 8.508627000082924
+      },
+      "measured_speedup": 1.0773081284765733,
+      "speedup_interval": {
+        "low": 0.9499255481615922,
+        "high": 1.1871906833981236,
+        "level": 0.95,
+        "method": "paired bootstrap of repeated timings; describes local scheduling variability"
+      },
+      "limitations": "Real timings of identical warmed local workloads, including retrieval, agents, synthesis and metrics. Excludes cold-start setup, HTTP, persistence and network/model downloads. Small repetition count and host scheduling limit precision. Lightweight agents can run slower in parallel; a ratio below one is a slowdown, not evidence of a broken benchmark. This result does not establish production throughput or performance on live feeds."
+    },
+    "HDFCBANK.NS": {
+      "repeats_per_mode": 7,
+      "warmup_runs_per_mode": 1,
+      "alternating_execution_order": true,
+      "persist": false,
+      "identical_outputs": true,
+      "unchanged_market_input": true,
+      "workload": {
+        "ticker": "HDFCBANK.NS",
+        "user_id": "evaluation_moderate",
+        "data_mode": "simulated",
+        "retrieval_mode": "bm25",
+        "market_fingerprint": "market:HDFCBANK.NS:seed:42:2026-09-30:97e4e72c0d6ae7c4"
+      },
+      "wall_time_ms": {
+        "parallel": [
+          5.099238999946465,
+          6.134883000186164,
+          5.285931000116761,
+          5.2149529999496735,
+          5.023944999948071,
+          5.3051849999974365,
+          5.043173999865758
+        ],
+        "sequential": [
+          5.726105000121606,
+          6.690582000146605,
+          5.585262000067814,
+          5.602568000085739,
+          6.402792000017143,
+          6.208253000067998,
+          5.22515900001963
+        ]
+      },
+      "agent_phase_ms": {
+        "parallel": [
+          0.5160189998605347,
+          0.6469669999660255,
+          0.7169430000431021,
+          0.6290999999691849,
+          0.5826289998367429,
+          0.4868850001003011,
+          0.5795849999685743
+        ],
+        "sequential": [
+          1.0029640000084328,
+          0.9913369999594579,
+          0.7981349999681697,
+          0.9546809999392281,
+          1.081417999785117,
+          1.0437560001719248,
+          0.8883620000688097
+        ]
+      },
+      "median_wall_time_ms": {
+        "parallel": 5.2149529999496735,
+        "sequential": 5.726105000121606
+      },
+      "measured_speedup": 1.0980166072785058,
+      "speedup_interval": {
+        "low": 1.0566278674361131,
+        "high": 1.2695956951292136,
+        "level": 0.95,
+        "method": "paired bootstrap of repeated timings; describes local scheduling variability"
+      },
+      "limitations": "Real timings of identical warmed local workloads, including retrieval, agents, synthesis and metrics. Excludes cold-start setup, HTTP, persistence and network/model downloads. Small repetition count and host scheduling limit precision. Lightweight agents can run slower in parallel; a ratio below one is a slowdown, not evidence of a broken benchmark. This result does not establish production throughput or performance on live feeds."
+    },
+    "synthetic_20x_corpus": {
+      "repeats_per_mode": 7,
+      "warmup_runs_per_mode": 1,
+      "alternating_execution_order": true,
+      "persist": false,
+      "identical_outputs": true,
+      "unchanged_market_input": true,
+      "workload": {
+        "ticker": "RELIANCE.NS",
+        "user_id": "evaluation_moderate",
+        "data_mode": "simulated",
+        "retrieval_mode": "bm25",
+        "market_fingerprint": "market:RELIANCE.NS:seed:42:2026-09-30:b776769587004c02"
+      },
+      "wall_time_ms": {
+        "parallel": [
+          10.55751900003088,
+          10.317066999959934,
+          11.14093099999991,
+          10.74943000003259,
+          11.58547200020621,
+          10.67843200007701,
+          10.590438999997787
+        ],
+        "sequential": [
+          10.5532029999722,
+          11.173298999892722,
+          11.441329000035694,
+          12.57309300012821,
+          11.125737999918783,
+          11.235052000074575,
+          10.515987000189853
+        ]
+      },
+      "agent_phase_ms": {
+        "parallel": [
+          2.249165999955949,
+          1.8306540000594396,
+          1.8045849999452912,
+          2.6222800001960422,
+          2.3500679999415297,
+          2.1658399998614186,
+          1.9947010000578302
+        ],
+        "sequential": [
+          2.8036440000960283,
+          2.343618000168135,
+          2.5564489999396756,
+          2.4460929998895153,
+          2.403869000090708,
+          2.2887560000981466,
+          2.391620999787847
+        ]
+      },
+      "median_wall_time_ms": {
+        "parallel": 10.67843200007701,
+        "sequential": 11.173298999892722
+      },
+      "measured_speedup": 1.046342665272593,
+      "speedup_interval": {
+        "low": 0.9964839984418403,
+        "high": 1.064366110575259,
+        "level": 0.95,
+        "method": "paired bootstrap of repeated timings; describes local scheduling variability"
+      },
+      "limitations": "Real timings of identical warmed local workloads, including retrieval, agents, synthesis and metrics. Excludes cold-start setup, HTTP, persistence and network/model downloads. Small repetition count and host scheduling limit precision. Lightweight agents can run slower in parallel; a ratio below one is a slowdown, not evidence of a broken benchmark. This result does not establish production throughput or performance on live feeds."
+    }
+  },
+  "api_asgi_sqlite": {
+    "samples_ms": [
+      23.071998999967036,
+      23.866083000029903,
+      24.433390000012878,
+      26.57535299999836,
+      23.727664000034565,
+      22.526941000023726,
+      23.642134000056103
+    ],
+    "median_ms": 23.727664000034565,
+    "persistence_verified": true,
+    "scope": "in-process HTTP client plus real SQLite; excludes network and production load"
+  },
+  "identical_market_profile_actions": {
+    "arjun": "ACCUMULATE",
+    "meera": "REDUCE",
+    "rohan": "BUY"
+  },
+  "limitations": "Warm local timings, synthetic inputs and corpus load fixture. No throughput, neural retrieval or hosted performance claim.",
+  "before_optimization": {
+    "RELIANCE.NS": {
+      "median_wall_time_ms": {
+        "parallel": 27.066283000067415,
+        "sequential": 29.971314000022176
+      },
+      "measured_speedup": 1.107330252918272
+    },
+    "TCS.NS": {
+      "median_wall_time_ms": {
+        "parallel": 30.215848999887385,
+        "sequential": 30.507843000123103
+      },
+      "measured_speedup": 1.0096636040323343
+    },
+    "ITC.NS": {
+      "median_wall_time_ms": {
+        "parallel": 25.00407999991694,
+        "sequential": 24.28088800002115
+      },
+      "measured_speedup": 0.9710770402311066
+    },
+    "HDFCBANK.NS": {
+      "median_wall_time_ms": {
+        "parallel": 20.77066900005775,
+        "sequential": 22.19880400002694
+      },
+      "measured_speedup": 1.0687572942385832
+    },
+    "synthetic_20x_corpus": {
+      "median_wall_time_ms": {
+        "parallel": 26.255960000071354,
+        "sequential": 28.399886999977753
+      },
+      "measured_speedup": 1.08165486997621
+    }
+  },
+  "before_api_median_ms": 38.76616699994884,
+  "optimization": "Reuse immutable validated indicator snapshot in both market agents and canonical checks; no signal/policy arithmetic changes"
+}

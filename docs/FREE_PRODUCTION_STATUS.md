@@ -1,3 +1,31 @@
+Latest delivery: [draft PR #3](https://github.com/Aniruddh2708/AgenticAI/pull/3).
+Corrective implementation `9d2bb0b` passed actual Linux, Windows and PostgreSQL CI;
+see [final evidence](assets/development-v2-final-verification.json). The initial
+Windows CRLF regression is fixed with the original assertion preserved. Remaining
+provider/data/neural/prospective limitations still apply.
+
+# Latest continuation status — 15 October 2026
+
+The owner confirms no Supabase Free project exists yet. Creating one is authorized,
+but this environment has no authenticated Supabase provisioning connection. Provider
+activation, restricted role configuration, two confirmed accounts and secure
+settings are still required for real hosted acceptance. Do not infer live success
+from the **121-passing new local TLS PostgreSQL run**.
+
+Current feature work is on `codex/credible-forecast-development`, based on main
+`ed7a5f4`. [Development v2](FORECAST_DEVELOPMENT_V2.md) adds actual bounded model
+development and versioned data/uncertainty evidence; baselines remain selected and
+predictive advantage remains unproven. The local application suite now passes 795
+tests. [Retrieval work](AUTHENTIC_RETRIEVAL.md) is implemented, with real neural and
+authentic-corpus acceptance still blocked by the stated prerequisites.
+
+No Render change, paid resource, provider account, live data permission, fresh
+forecast or deployment is claimed. See the current [validation](VALIDATION.md).
+The implementation/release status below is the preserved earlier record and its
+main/branch/revision markers must not be treated as current.
+
+---
+
 # Free accounts, storage and forecasting: current delivery status
 
 Updated 15 October 2026, Asia/Calcutta. Work started from clean `main` at

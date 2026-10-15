@@ -1,3 +1,55 @@
+Latest delivery: [draft PR #3](https://github.com/Aniruddh2708/AgenticAI/pull/3).
+Corrective implementation `9d2bb0b` passed actual Linux, Windows and PostgreSQL CI;
+see [final evidence](assets/development-v2-final-verification.json). The initial
+Windows CRLF regression is fixed with the original assertion preserved. Remaining
+provider/data/neural/prospective limitations still apply.
+
+# Latest handoff — development v2, 15 October 2026
+
+Continue from branch `codex/credible-forecast-development`, based on clean local
+and remote main `ed7a5f4602fa2b241847b366f91e2ff2229500eb`. Terminal access is working.
+Read [development v2](FORECAST_DEVELOPMENT_V2.md), [authentic retrieval](AUTHENTIC_RETRIEVAL.md)
+and the newest [validation](VALIDATION.md) before the historical handoff below.
+
+Implemented and locally checked: causal 18-feature engineering; two logistic,
+ridge/Huber and constrained boosting candidates; strict expanding-fold selection,
+training-only preprocessing, matured residual updates and complete joint cohorts;
+read-only research API/HTML display; timestamped/hash-bound authentic text import;
+source-kind/span provenance and ranking evaluator; immutable indicator reuse.
+All old portfolio rules remain enforced. No extra model API or paid service exists.
+
+Development comparisons have 160 rows / 32 origins / 16 quarters, 2014–2017.
+The retained models are constant-half probability and train-fitted momentum-label
+mean returns. Learned point improvements have uncertainty spanning zero. Final
+calibration reuses inspected 2021–2023, not an unseen test. No candidate is admitted
+or issued as a current market forecast. Both old evaluations remain spent and
+excluded from model selection. Full raw/prediction artifacts are ignored; tracked
+versioned summaries include their identities. Preserve every older result.
+
+Current checks: 795 application passes (14 opt-in database skips), 121 real TLS
+PostgreSQL passes, API/dashboard checks and actual Chromium source/research view.
+The test fixtures are not real Supabase accounts, authentic filings or neural
+retrieval evidence. See validation for container and remote CI evidence.
+
+The owner says no free Supabase project exists yet and authorizes creating one,
+but this environment has no authenticated provisioning capability. Owner creation
+or an authenticated connection is required. Put database URLs/passwords and confirmed
+acceptance-account credentials in secure environment settings, never chat. No
+private existing demo credential was requested. Keep Render unchanged until the
+candidate/settings/state migration and limitations are reviewed and deployment approved.
+
+Next independent research prerequisite is complete authorized price/calendar/action
+and adjustment-vintage evidence, not another search on spent evaluation dates.
+For retrieval, obtain genuinely permitted text plus independently judged held-out
+questions; apply the saved network-domain additions and verify actual MiniLM weights.
+For hosted acceptance, obtain the real project, restricted database role, confirmed
+operator accounts and off-service recovery destination/key in secure settings.
+No live deployment/account/recovery acceptance or future outcomes are claimed.
+
+The handoff below is historical; its main/branch and release counts are superseded.
+
+---
+
 # VibeFinance continuation handoff — 15 October 2026
 
 ## Latest zero-cost accounts, data review and prospective operations

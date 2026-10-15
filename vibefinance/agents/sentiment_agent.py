@@ -1,4 +1,4 @@
-from datetime import date, datetime
+from datetime import date, datetime, time, timezone
 
 from vibefinance.agents.base import AgentOutput, EvidenceClaim
 from vibefinance.analysis.text import sentences, tone, tone_cues
@@ -16,8 +16,15 @@ def analyze(ticker, retrieved, outage=False, *, transcripts=None, as_of=None):
         return AgentOutput(agent="sentiment_agent", ticker=ticker, dimension="sentiment", label="MIXED",
             confidence=0, evidence=[], status="degraded", degraded_reason="Sentiment feed unavailable; no sentiment claims emitted.")
 
+    instant = None
+    if isinstance(as_of, str) and "T" in as_of:
+        from vibefinance.rag.authentic import timestamp
+        as_of = timestamp(as_of)
     if isinstance(as_of, datetime):
-        cutoff = as_of.date()
+        if as_of.tzinfo is None:
+            raise ValueError("Intraday as_of requires a timezone")
+        instant = as_of.astimezone(timezone.utc)
+        cutoff = instant.date()
     elif isinstance(as_of, str):
         cutoff = date.fromisoformat(as_of)
         if cutoff.isoformat() != as_of:
@@ -26,6 +33,8 @@ def analyze(ticker, retrieved, outage=False, *, transcripts=None, as_of=None):
         cutoff = as_of
     if cutoff is not None and not isinstance(cutoff, date):
         raise ValueError("as_of must be a date or YYYY-MM-DD")
+    instant = instant or (datetime.combine(cutoff, time.min, tzinfo=timezone.utc)
+                          if cutoff else datetime.now(timezone.utc))
 
     claims = []
     citations = []
@@ -37,6 +46,10 @@ def analyze(ticker, retrieved, outage=False, *, transcripts=None, as_of=None):
             available = date.fromisoformat(chunk.date)
             if available.isoformat() != chunk.date or (cutoff is not None and available > cutoff):
                 continue
+            if getattr(chunk, "source_kind", "synthetic") == "authentic":
+                from vibefinance.rag.authentic import timestamp
+                if timestamp(chunk.available_at) > instant:
+                    continue
         except (TypeError, ValueError):
             continue
         available_types.add(chunk.doc_type)

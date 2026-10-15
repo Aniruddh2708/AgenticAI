@@ -1,0 +1,15 @@
+{
+  "kind": "real_chroma_metadata_with_fixture_vectors",
+  "actual_chroma_package": true,
+  "genuine_neural_model": false,
+  "fixture_encoder_only": true,
+  "checks": [
+    "ticker",
+    "doc_type",
+    "source_kind",
+    "intraday_available_timestamp",
+    "persistent_reopen"
+  ],
+  "passed": true,
+  "semantic_relevance_acceptance": false
+}

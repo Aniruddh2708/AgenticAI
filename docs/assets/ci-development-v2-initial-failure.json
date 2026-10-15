@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "revision": "2c56506563974e02ccdd756bc93ad25cb51791ec",
+  "run_url": "https://github.com/Aniruddh2708/AgenticAI/actions/runs/38758926478",
+  "jobs": {
+    "ubuntu": "success",
+    "postgresql_17_tls": "success",
+    "windows": "failure"
+  },
+  "failing_test": "tests.test_retrieval_resilience::test_invalid_documents_skipped_with_explicit_warnings_and_full_body",
+  "source": "GitHub Actions check-run annotations; log-download destination blocked",
+  "diagnosis": "Raw-byte ingestion broke the legacy synthetic LF contract by retaining Windows CRLF. Restore normalization only for synthetic bodies, preserving authentic source bytes.",
+  "correction": "Original assertion kept. Added Linux-reproducible CRLF synthetic regression; source code correction is isolated from research/data/model selection.",
+  "remaining": "Require actual passing remote Windows rerun; do not treat initial failure as a pass"
+}

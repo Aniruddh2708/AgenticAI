@@ -1,0 +1,1029 @@
+{
+  "schema_version": 2,
+  "kind": "vendor_data_quality_inventory",
+  "status": "not_independently_validated",
+  "scope": {
+    "start": "2010-01-01",
+    "end": "2023-12-31",
+    "securities": [
+      "HDFCBANK.NS",
+      "INFY.NS",
+      "ITC.NS",
+      "RELIANCE.NS",
+      "TCS.NS"
+    ]
+  },
+  "source_manifest_sha256": "c610d7f03f9d513db179eb7037b32a80cf99dc4c84613612fd29a386082ce53a",
+  "archive_commit": "5dffc0832c63d1558930510d081e076929608d82",
+  "source_license": "Non-commercial research and personal use only; copyright 2026 Aswin V. Commercial use requires the author's explicit written permission.",
+  "commercial_use_permitted": false,
+  "sources": [
+    {
+      "ticker": "RELIANCE.NS",
+      "source_sha256": "3b1ca39ce7274ea3227dc5ecfb65478cfa33b1dfc52bb68cb219f70eb34089eb",
+      "start": "2010-01-04",
+      "end": "2023-12-29",
+      "source_rows_in_scope": 3454,
+      "positive_volume_rows": 3452,
+      "duplicates": 0,
+      "chronological": true,
+      "intraday_labels": 0,
+      "nonfinite_cells": 0,
+      "nonpositive_price_cells": 0,
+      "negative_or_fractional_volumes": 0,
+      "ohlc_bound_violations": 0,
+      "positive_volume_weekend_dates": [
+        "2019-10-27",
+        "2020-11-14"
+      ],
+      "gaps_over_seven_days": [],
+      "exclusions": [
+        {
+          "date": "2014-04-24",
+          "reason": "zero_volume_vendor_observation",
+          "policy": "existing uniform exclusion; no repair; changes vendor-row horizon"
+        },
+        {
+          "date": "2014-10-15",
+          "reason": "zero_volume_vendor_observation",
+          "policy": "existing uniform exclusion; no repair; changes vendor-row horizon"
+        }
+      ],
+      "excluded_dates_sha256": "62787d4a09bfb9b1a1c88a463d612a153dad7c84a269c83496aef598ed18e35a",
+      "adjustment_factor_range": [
+        0.8850714053434943,
+        0.9880845682587419
+      ],
+      "adjustment_change_dates": [
+        "2010-05-10",
+        "2011-05-05",
+        "2012-05-31",
+        "2013-05-10",
+        "2014-05-16",
+        "2015-05-08",
+        "2016-03-17",
+        "2017-07-13",
+        "2018-06-27",
+        "2019-08-02",
+        "2020-07-02",
+        "2021-06-11",
+        "2022-08-18",
+        "2023-08-21"
+      ],
+      "corporate_actions": {
+        "Dividends": {
+          "present": true,
+          "missing": 0,
+          "events": [
+            {
+              "date": "2010-05-10",
+              "value": 1.733568
+            },
+            {
+              "date": "2011-05-05",
+              "value": 1.98122
+            },
+            {
+              "date": "2012-05-31",
+              "value": 2.105046
+            },
+            {
+              "date": "2013-05-10",
+              "value": 2.228873
+            },
+            {
+              "date": "2014-05-16",
+              "value": 2.352699
+            },
+            {
+              "date": "2015-05-08",
+              "value": 2.476525
+            },
+            {
+              "date": "2016-03-17",
+              "value": 2.600351
+            },
+            {
+              "date": "2017-07-13",
+              "value": 2.724178
+            },
+            {
+              "date": "2018-06-27",
+              "value": 2.97183
+            },
+            {
+              "date": "2019-08-02",
+              "value": 3.219483
+            },
+            {
+              "date": "2020-07-02",
+              "value": 3.25
+            },
+            {
+              "date": "2021-06-11",
+              "value": 3.5
+            },
+            {
+              "date": "2022-08-18",
+              "value": 4.0
+            },
+            {
+              "date": "2023-08-21",
+              "value": 4.5
+            }
+          ],
+          "independently_verified": false
+        },
+        "Stock Splits": {
+          "present": true,
+          "missing": 0,
+          "events": [
+            {
+              "date": "2017-09-07",
+              "value": 2.0
+            }
+          ],
+          "independently_verified": false
+        }
+      },
+      "adjustment_vintage": "retrospective vendor snapshot; unverified",
+      "security_identity": "symbol only; historical ISIN mapping and survivorship review unresolved"
+    },
+    {
+      "ticker": "TCS.NS",
+      "source_sha256": "3a6a81d9ff6257ca6eddfafc017de30bae0c8e9fad662c6fd46bb70f1614b7ab",
+      "start": "2010-01-04",
+      "end": "2023-12-29",
+      "source_rows_in_scope": 3454,
+      "positive_volume_rows": 3452,
+      "duplicates": 0,
+      "chronological": true,
+      "intraday_labels": 0,
+      "nonfinite_cells": 0,
+      "nonpositive_price_cells": 0,
+      "negative_or_fractional_volumes": 0,
+      "ohlc_bound_violations": 0,
+      "positive_volume_weekend_dates": [
+        "2019-10-27",
+        "2020-11-14"
+      ],
+      "gaps_over_seven_days": [],
+      "exclusions": [
+        {
+          "date": "2014-04-24",
+          "reason": "zero_volume_vendor_observation",
+          "policy": "existing uniform exclusion; no repair; changes vendor-row horizon"
+        },
+        {
+          "date": "2014-10-15",
+          "reason": "zero_volume_vendor_observation",
+          "policy": "existing uniform exclusion; no repair; changes vendor-row horizon"
+        }
+      ],
+      "excluded_dates_sha256": "62787d4a09bfb9b1a1c88a463d612a153dad7c84a269c83496aef598ed18e35a",
+      "adjustment_factor_range": [
+        0.6860779922555648,
+        0.9138530802675636
+      ],
+      "adjustment_change_dates": [
+        "2010-01-27",
+        "2010-06-15",
+        "2010-07-29",
+        "2010-11-01",
+        "2011-01-27",
+        "2011-06-08",
+        "2011-07-28",
+        "2011-10-25",
+        "2012-01-25",
+        "2012-06-07",
+        "2012-07-23",
+        "2012-10-31",
+        "2013-01-23",
+        "2013-06-06",
+        "2013-07-29",
+        "2013-10-25",
+        "2014-01-27",
+        "2014-06-06",
+        "2014-07-28",
+        "2014-10-29",
+        "2015-01-27",
+        "2015-06-05",
+        "2015-07-20",
+        "2015-10-23",
+        "2016-01-21",
+        "2016-06-06",
+        "2016-07-25",
+        "2016-10-24",
+        "2017-01-23",
+        "2017-06-13",
+        "2017-07-24",
+        "2017-10-25",
+        "2018-01-22",
+        "2018-05-31",
+        "2018-07-17",
+        "2018-10-23",
+        "2019-01-17",
+        "2019-06-04",
+        "2019-07-16",
+        "2019-10-17",
+        "2020-01-23",
+        "2020-03-19",
+        "2020-06-03",
+        "2020-07-16",
+        "2020-10-14",
+        "2021-01-14",
+        "2021-05-25",
+        "2021-07-15",
+        "2021-10-14",
+        "2022-01-19",
+        "2022-05-25",
+        "2022-07-14",
+        "2022-10-17",
+        "2023-01-16",
+        "2023-06-15",
+        "2023-07-20",
+        "2023-10-19"
+      ],
+      "corporate_actions": {
+        "Dividends": {
+          "present": true,
+          "missing": 0,
+          "events": [
+            {
+              "date": "2010-01-27",
+              "value": 1.0
+            },
+            {
+              "date": "2010-06-15",
+              "value": 7.0
+            },
+            {
+              "date": "2010-07-29",
+              "value": 1.0
+            },
+            {
+              "date": "2010-11-01",
+              "value": 1.0
+            },
+            {
+              "date": "2011-01-27",
+              "value": 1.0
+            },
+            {
+              "date": "2011-06-08",
+              "value": 4.0
+            },
+            {
+              "date": "2011-07-28",
+              "value": 1.5
+            },
+            {
+              "date": "2011-10-25",
+              "value": 1.5
+            },
+            {
+              "date": "2012-01-25",
+              "value": 1.5
+            },
+            {
+              "date": "2012-06-07",
+              "value": 8.0
+            },
+            {
+              "date": "2012-07-23",
+              "value": 1.5
+            },
+            {
+              "date": "2012-10-31",
+              "value": 1.5
+            },
+            {
+              "date": "2013-01-23",
+              "value": 1.5
+            },
+            {
+              "date": "2013-06-06",
+              "value": 6.5
+            },
+            {
+              "date": "2013-07-29",
+              "value": 2.0
+            },
+            {
+              "date": "2013-10-25",
+              "value": 2.0
+            },
+            {
+              "date": "2014-01-27",
+              "value": 2.0
+            },
+            {
+              "date": "2014-06-06",
+              "value": 10.0
+            },
+            {
+              "date": "2014-07-28",
+              "value": 22.5
+            },
+            {
+              "date": "2014-10-29",
+              "value": 2.5
+            },
+            {
+              "date": "2015-01-27",
+              "value": 2.5
+            },
+            {
+              "date": "2015-06-05",
+              "value": 12.0
+            },
+            {
+              "date": "2015-07-20",
+              "value": 2.75
+            },
+            {
+              "date": "2015-10-23",
+              "value": 2.75
+            },
+            {
+              "date": "2016-01-21",
+              "value": 2.75
+            },
+            {
+              "date": "2016-06-06",
+              "value": 13.5
+            },
+            {
+              "date": "2016-07-25",
+              "value": 3.25
+            },
+            {
+              "date": "2016-10-24",
+              "value": 3.25
+            },
+            {
+              "date": "2017-01-23",
+              "value": 3.25
+            },
+            {
+              "date": "2017-06-13",
+              "value": 13.75
+            },
+            {
+              "date": "2017-07-24",
+              "value": 3.5
+            },
+            {
+              "date": "2017-10-25",
+              "value": 3.5
+            },
+            {
+              "date": "2018-01-22",
+              "value": 3.5
+            },
+            {
+              "date": "2018-05-31",
+              "value": 14.5
+            },
+            {
+              "date": "2018-07-17",
+              "value": 4.0
+            },
+            {
+              "date": "2018-10-23",
+              "value": 4.0
+            },
+            {
+              "date": "2019-01-17",
+              "value": 4.0
+            },
+            {
+              "date": "2019-06-04",
+              "value": 18.0
+            },
+            {
+              "date": "2019-07-16",
+              "value": 5.0
+            },
+            {
+              "date": "2019-10-17",
+              "value": 45.0
+            },
+            {
+              "date": "2020-01-23",
+              "value": 5.0
+            },
+            {
+              "date": "2020-03-19",
+              "value": 12.0
+            },
+            {
+              "date": "2020-06-03",
+              "value": 6.0
+            },
+            {
+              "date": "2020-07-16",
+              "value": 5.0
+            },
+            {
+              "date": "2020-10-14",
+              "value": 12.0
+            },
+            {
+              "date": "2021-01-14",
+              "value": 6.0
+            },
+            {
+              "date": "2021-05-25",
+              "value": 15.0
+            },
+            {
+              "date": "2021-07-15",
+              "value": 7.0
+            },
+            {
+              "date": "2021-10-14",
+              "value": 7.0
+            },
+            {
+              "date": "2022-01-19",
+              "value": 7.0
+            },
+            {
+              "date": "2022-05-25",
+              "value": 22.0
+            },
+            {
+              "date": "2022-07-14",
+              "value": 8.0
+            },
+            {
+              "date": "2022-10-17",
+              "value": 8.0
+            },
+            {
+              "date": "2023-01-16",
+              "value": 75.0
+            },
+            {
+              "date": "2023-06-15",
+              "value": 24.0
+            },
+            {
+              "date": "2023-07-20",
+              "value": 9.0
+            },
+            {
+              "date": "2023-10-19",
+              "value": 9.0
+            }
+          ],
+          "independently_verified": false
+        },
+        "Stock Splits": {
+          "present": true,
+          "missing": 0,
+          "events": [
+            {
+              "date": "2018-05-31",
+              "value": 2.0
+            }
+          ],
+          "independently_verified": false
+        }
+      },
+      "adjustment_vintage": "retrospective vendor snapshot; unverified",
+      "security_identity": "symbol only; historical ISIN mapping and survivorship review unresolved"
+    },
+    {
+      "ticker": "INFY.NS",
+      "source_sha256": "9f73af06716697381708bfc99f561a123d23b46613504038b958f09ed2f19cca",
+      "start": "2010-01-04",
+      "end": "2023-12-29",
+      "source_rows_in_scope": 3454,
+      "positive_volume_rows": 3452,
+      "duplicates": 0,
+      "chronological": true,
+      "intraday_labels": 0,
+      "nonfinite_cells": 0,
+      "nonpositive_price_cells": 0,
+      "negative_or_fractional_volumes": 0,
+      "ohlc_bound_violations": 0,
+      "positive_volume_weekend_dates": [
+        "2019-10-27",
+        "2020-11-14"
+      ],
+      "gaps_over_seven_days": [],
+      "exclusions": [
+        {
+          "date": "2014-04-24",
+          "reason": "zero_volume_vendor_observation",
+          "policy": "existing uniform exclusion; no repair; changes vendor-row horizon"
+        },
+        {
+          "date": "2014-10-15",
+          "reason": "zero_volume_vendor_observation",
+          "policy": "existing uniform exclusion; no repair; changes vendor-row horizon"
+        }
+      ],
+      "excluded_dates_sha256": "62787d4a09bfb9b1a1c88a463d612a153dad7c84a269c83496aef598ed18e35a",
+      "adjustment_factor_range": [
+        0.6659189979142272,
+        0.9215433104924493
+      ],
+      "adjustment_change_dates": [
+        "2010-05-26",
+        "2010-10-21",
+        "2011-05-26",
+        "2011-10-20",
+        "2012-05-24",
+        "2012-10-18",
+        "2013-05-30",
+        "2013-10-17",
+        "2014-05-29",
+        "2014-10-16",
+        "2015-06-15",
+        "2015-10-16",
+        "2016-06-09",
+        "2016-10-21",
+        "2017-06-01",
+        "2017-10-31",
+        "2018-06-14",
+        "2018-10-25",
+        "2019-01-24",
+        "2019-06-13",
+        "2019-10-23",
+        "2020-05-29",
+        "2020-10-23",
+        "2021-05-31",
+        "2021-10-26",
+        "2022-05-31",
+        "2022-10-27",
+        "2023-06-02",
+        "2023-10-25"
+      ],
+      "corporate_actions": {
+        "Dividends": {
+          "present": true,
+          "missing": 0,
+          "events": [
+            {
+              "date": "2010-05-26",
+              "value": 1.875
+            },
+            {
+              "date": "2010-10-21",
+              "value": 5.0
+            },
+            {
+              "date": "2011-05-26",
+              "value": 2.5
+            },
+            {
+              "date": "2011-10-20",
+              "value": 1.875
+            },
+            {
+              "date": "2012-05-24",
+              "value": 4.0
+            },
+            {
+              "date": "2012-10-18",
+              "value": 1.875
+            },
+            {
+              "date": "2013-05-30",
+              "value": 3.375
+            },
+            {
+              "date": "2013-10-17",
+              "value": 2.5
+            },
+            {
+              "date": "2014-05-29",
+              "value": 5.375
+            },
+            {
+              "date": "2014-10-16",
+              "value": 3.75
+            },
+            {
+              "date": "2015-06-15",
+              "value": 7.375
+            },
+            {
+              "date": "2015-10-16",
+              "value": 5.0
+            },
+            {
+              "date": "2016-06-09",
+              "value": 7.125
+            },
+            {
+              "date": "2016-10-21",
+              "value": 5.5
+            },
+            {
+              "date": "2017-06-01",
+              "value": 7.375
+            },
+            {
+              "date": "2017-10-31",
+              "value": 6.5
+            },
+            {
+              "date": "2018-06-14",
+              "value": 15.25
+            },
+            {
+              "date": "2018-10-25",
+              "value": 7.0
+            },
+            {
+              "date": "2019-01-24",
+              "value": 4.0
+            },
+            {
+              "date": "2019-06-13",
+              "value": 10.5
+            },
+            {
+              "date": "2019-10-23",
+              "value": 8.0
+            },
+            {
+              "date": "2020-05-29",
+              "value": 9.5
+            },
+            {
+              "date": "2020-10-23",
+              "value": 12.0
+            },
+            {
+              "date": "2021-05-31",
+              "value": 15.0
+            },
+            {
+              "date": "2021-10-26",
+              "value": 15.0
+            },
+            {
+              "date": "2022-05-31",
+              "value": 16.0
+            },
+            {
+              "date": "2022-10-27",
+              "value": 16.5
+            },
+            {
+              "date": "2023-06-02",
+              "value": 17.5
+            },
+            {
+              "date": "2023-10-25",
+              "value": 18.0
+            }
+          ],
+          "independently_verified": false
+        },
+        "Stock Splits": {
+          "present": true,
+          "missing": 0,
+          "events": [
+            {
+              "date": "2014-12-02",
+              "value": 2.0
+            },
+            {
+              "date": "2015-06-15",
+              "value": 2.0
+            },
+            {
+              "date": "2018-09-04",
+              "value": 2.0
+            }
+          ],
+          "independently_verified": false
+        }
+      },
+      "adjustment_vintage": "retrospective vendor snapshot; unverified",
+      "security_identity": "symbol only; historical ISIN mapping and survivorship review unresolved"
+    },
+    {
+      "ticker": "HDFCBANK.NS",
+      "source_sha256": "a3b2c359431958167585f8c7eb5a24457b19209686e5dae474dc010bbc3d0e40",
+      "start": "2010-01-04",
+      "end": "2023-12-29",
+      "source_rows_in_scope": 3454,
+      "positive_volume_rows": 3452,
+      "duplicates": 0,
+      "chronological": true,
+      "intraday_labels": 0,
+      "nonfinite_cells": 0,
+      "nonpositive_price_cells": 0,
+      "negative_or_fractional_volumes": 0,
+      "ohlc_bound_violations": 0,
+      "positive_volume_weekend_dates": [
+        "2019-10-27",
+        "2020-11-14"
+      ],
+      "gaps_over_seven_days": [],
+      "exclusions": [
+        {
+          "date": "2014-04-24",
+          "reason": "zero_volume_vendor_observation",
+          "policy": "existing uniform exclusion; no repair; changes vendor-row horizon"
+        },
+        {
+          "date": "2014-10-15",
+          "reason": "zero_volume_vendor_observation",
+          "policy": "existing uniform exclusion; no repair; changes vendor-row horizon"
+        }
+      ],
+      "excluded_dates_sha256": "62787d4a09bfb9b1a1c88a463d612a153dad7c84a269c83496aef598ed18e35a",
+      "adjustment_factor_range": [
+        0.8644560699598285,
+        0.9575345007598172
+      ],
+      "adjustment_change_dates": [
+        "2010-06-10",
+        "2011-06-02",
+        "2012-06-28",
+        "2013-06-13",
+        "2014-06-05",
+        "2015-07-02",
+        "2016-06-29",
+        "2017-06-29",
+        "2018-05-31",
+        "2019-06-20",
+        "2019-08-01",
+        "2021-06-29",
+        "2022-05-12",
+        "2023-05-16"
+      ],
+      "corporate_actions": {
+        "Dividends": {
+          "present": true,
+          "missing": 0,
+          "events": [
+            {
+              "date": "2010-06-10",
+              "value": 0.6
+            },
+            {
+              "date": "2011-06-02",
+              "value": 0.825
+            },
+            {
+              "date": "2012-06-28",
+              "value": 1.075
+            },
+            {
+              "date": "2013-06-13",
+              "value": 1.375
+            },
+            {
+              "date": "2014-06-05",
+              "value": 1.7125
+            },
+            {
+              "date": "2015-07-02",
+              "value": 2.0
+            },
+            {
+              "date": "2016-06-29",
+              "value": 2.375
+            },
+            {
+              "date": "2017-06-29",
+              "value": 2.75
+            },
+            {
+              "date": "2018-05-31",
+              "value": 3.25
+            },
+            {
+              "date": "2019-06-20",
+              "value": 3.75
+            },
+            {
+              "date": "2019-08-01",
+              "value": 1.25
+            },
+            {
+              "date": "2021-06-29",
+              "value": 3.25
+            },
+            {
+              "date": "2022-05-12",
+              "value": 7.75
+            },
+            {
+              "date": "2023-05-16",
+              "value": 9.5
+            }
+          ],
+          "independently_verified": false
+        },
+        "Stock Splits": {
+          "present": true,
+          "missing": 0,
+          "events": [
+            {
+              "date": "2011-07-14",
+              "value": 5.0
+            },
+            {
+              "date": "2019-09-19",
+              "value": 2.0
+            }
+          ],
+          "independently_verified": false
+        }
+      },
+      "adjustment_vintage": "retrospective vendor snapshot; unverified",
+      "security_identity": "symbol only; historical ISIN mapping and survivorship review unresolved"
+    },
+    {
+      "ticker": "ITC.NS",
+      "source_sha256": "af03d6c408ed47d3c2868bef0058ad21d58fda6c6692eae945f31d5fcb0701d9",
+      "start": "2010-01-04",
+      "end": "2023-12-29",
+      "source_rows_in_scope": 3454,
+      "positive_volume_rows": 3452,
+      "duplicates": 0,
+      "chronological": true,
+      "intraday_labels": 0,
+      "nonfinite_cells": 0,
+      "nonpositive_price_cells": 0,
+      "negative_or_fractional_volumes": 0,
+      "ohlc_bound_violations": 0,
+      "positive_volume_weekend_dates": [
+        "2019-10-27",
+        "2020-11-14"
+      ],
+      "gaps_over_seven_days": [],
+      "exclusions": [
+        {
+          "date": "2014-04-24",
+          "reason": "zero_volume_vendor_observation",
+          "policy": "existing uniform exclusion; no repair; changes vendor-row horizon"
+        },
+        {
+          "date": "2014-10-15",
+          "reason": "zero_volume_vendor_observation",
+          "policy": "existing uniform exclusion; no repair; changes vendor-row horizon"
+        }
+      ],
+      "excluded_dates_sha256": "62787d4a09bfb9b1a1c88a463d612a153dad7c84a269c83496aef598ed18e35a",
+      "adjustment_factor_range": [
+        0.5939184194070095,
+        0.8914118179510543
+      ],
+      "adjustment_change_dates": [
+        "2010-06-09",
+        "2011-06-10",
+        "2012-06-11",
+        "2013-05-31",
+        "2014-06-03",
+        "2015-06-03",
+        "2016-05-30",
+        "2017-06-05",
+        "2018-05-25",
+        "2019-05-22",
+        "2020-07-06",
+        "2021-02-22",
+        "2021-06-10",
+        "2022-02-14",
+        "2022-05-26",
+        "2023-02-15",
+        "2023-05-30"
+      ],
+      "corporate_actions": {
+        "Dividends": {
+          "present": true,
+          "missing": 0,
+          "events": [
+            {
+              "date": "2010-06-09",
+              "value": 3.333333
+            },
+            {
+              "date": "2011-06-10",
+              "value": 2.966667
+            },
+            {
+              "date": "2012-06-11",
+              "value": 3.0
+            },
+            {
+              "date": "2013-05-31",
+              "value": 3.5
+            },
+            {
+              "date": "2014-06-03",
+              "value": 4.0
+            },
+            {
+              "date": "2015-06-03",
+              "value": 4.166667
+            },
+            {
+              "date": "2016-05-30",
+              "value": 5.666667
+            },
+            {
+              "date": "2017-06-05",
+              "value": 4.75
+            },
+            {
+              "date": "2018-05-25",
+              "value": 5.15
+            },
+            {
+              "date": "2019-05-22",
+              "value": 5.75
+            },
+            {
+              "date": "2020-07-06",
+              "value": 10.15
+            },
+            {
+              "date": "2021-02-22",
+              "value": 5.0
+            },
+            {
+              "date": "2021-06-10",
+              "value": 5.75
+            },
+            {
+              "date": "2022-02-14",
+              "value": 5.25
+            },
+            {
+              "date": "2022-05-26",
+              "value": 6.25
+            },
+            {
+              "date": "2023-02-15",
+              "value": 6.0
+            },
+            {
+              "date": "2023-05-30",
+              "value": 9.5
+            }
+          ],
+          "independently_verified": false
+        },
+        "Stock Splits": {
+          "present": true,
+          "missing": 0,
+          "events": [
+            {
+              "date": "2010-08-03",
+              "value": 2.0
+            },
+            {
+              "date": "2016-07-01",
+              "value": 1.5
+            }
+          ],
+          "independently_verified": false
+        }
+      },
+      "adjustment_vintage": "retrospective vendor snapshot; unverified",
+      "security_identity": "symbol only; historical ISIN mapping and survivorship review unresolved"
+    }
+  ],
+  "calendar": {
+    "vendor_union_dates": 3452,
+    "vendor_common_dates": 3452,
+    "missing_from_vendor_union_by_ticker": {
+      "RELIANCE.NS": [],
+      "TCS.NS": [],
+      "INFY.NS": [],
+      "HDFCBANK.NS": [],
+      "ITC.NS": []
+    },
+    "complete_exchange_calendar_verified": false,
+    "note": "Shared omissions cannot be detected from a vendor union; special sessions are not inferred."
+  },
+  "independent_evidence": {
+    "reference": "docs/assets/independent-source-review.json",
+    "scope": [
+      "2020-12-31",
+      "2025-03-18"
+    ],
+    "finding": "Prior two-date NSE review only; not re-downloaded or recertified in this audit",
+    "full_calendar_actions_adjusted_history_rights_approved": false
+  },
+  "unresolved": [
+    "Complete authorized independent prices and comparable volume basis",
+    "Exchange calendar including special sessions",
+    "Equivalent corporate-action adjustment vintage and actions",
+    "Point-in-time symbol/ISIN and survivor-universe review",
+    "Permission for any hosted/commercial use"
+  ],
+  "repairs_applied": false,
+  "independent_approval": false
+}

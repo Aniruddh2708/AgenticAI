@@ -8,7 +8,8 @@ def validate_citations(citations: list[Citation], allowed: dict[str, Citation]):
     for citation in citations:
         source = allowed.get(citation.chunk_id)
         if source is None or any(getattr(citation, field) != getattr(source, field)
-                                 for field in ("source_id", "doc_title", "excerpt", "date", "score")):
+                                 for field in ("source_id", "doc_title", "excerpt", "date", "score", "source_kind",
+                                               "source_url", "source_sha256", "published_at", "available_at", "span_start", "span_end")):
             rejected.append(citation.chunk_id)
         else:
             valid.append(citation)

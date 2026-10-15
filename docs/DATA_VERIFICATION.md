@@ -1,3 +1,15 @@
+# Latest inventory — 15 October 2026
+
+A new [read-only 2010–2023 quality inventory](assets/data-quality-development-v2.json)
+records all five pinned artifact hashes, observed dates, corporate-action fields,
+adjustment changes and exact zero-volume exclusions without repairing inputs.
+It is **not independently validated**. See [development v2](FORECAST_DEVELOPMENT_V2.md)
+for model eligibility and split effects. No new independent source, permission,
+calendar/action approval or full F1 pass is asserted. The earlier two-date source
+evidence and restrictions below remain applicable.
+
+---
+
 # Independent historical-data reconciliation
 
 The F1 verification tool is implemented. **Complete historical data is not yet

@@ -1,3 +1,97 @@
+# Corrected candidate accepted by CI — 15 October 2026
+
+Implementation **`9d2bb0bc70b7e9e386d8f7ad25b9e00caf20fcb1`** passed all three
+actual [remote CI jobs](https://github.com/Aniruddh2708/AgenticAI/actions/runs/38760064606):
+Linux Python 3.11, Windows Python 3.11, and PostgreSQL 17 isolation/recovery. Exact
+remote test counts are not inferred from local results. The failed initial Windows
+run and source correction are preserved below and in their separate evidence file.
+[Draft PR #3](https://github.com/Aniruddh2708/AgenticAI/pull/3) contains the candidate.
+
+Final local checks: **795 application tests passed / 14 opt-in database skips**
+(38.96 s); **121 real verified-TLS PostgreSQL checks passed** (8.77 s).
+[Final combined evidence](assets/development-v2-final-verification.json) and
+[corrected container receipt](assets/container-development-v2-corrected.json)
+record the actual revision. The new image is
+`sha256:1b144c503d0ca827db537b673f80bd8021bb3bd571fcae78bf5ef46a4b08c58f`; all 50 packaged Python files match,
+core-only dependencies, authentication, historical report, concentration safeguard
+and exact-session persistence after restart pass. No image was published.
+
+Real Chroma additionally passed the new ticker/type/source-kind/intraday timestamp
+filters and persistent reopen with an explicitly substituted fixture encoder;
+[metadata evidence](assets/retrieval-metadata-v2.json) says **genuine_neural_model=false**.
+No real semantic model, authentic investment corpus, live Supabase/Render account,
+full data approval, prospective issuance or predictive advantage is claimed.
+Default API/dashboard were restarted with updated code and prior SQLite state
+preserved. The saved installation script was executed again successfully; 60 core
+and 120 optional packages remain compatible. Environment scripts/domain additions
+are saved drafts, not published or applied network permissions.
+
+The next section records intermediate local/initial CI checks; the final record
+above supersedes its pending-rerun language and older container identity. No frozen
+research scores or original source files were changed by the newline correction.
+
+---
+
+# Development v2 validation — 15 October 2026
+
+Started from clean main `ed7a5f4602fa2b241847b366f91e2ff2229500eb`, with working
+terminal and remote Git access. Changes are on `codex/credible-forecast-development`.
+See [research evidence](FORECAST_DEVELOPMENT_V2.md) and
+[ingestion/retrieval scope](AUTHENTIC_RETRIEVAL.md). Earlier counts/release markers
+below remain historical and are not current verification.
+
+| New check | Actual result / limit |
+|---|---|
+| Application suite | **795 passed, 14 skipped, 2 upstream deprecation warnings**, Linux CPython 3.11.17, 38.96 s; all 14 skips require real disposable databases |
+| Disposable PostgreSQL | **121 passed**, verified TLS PostgreSQL 17 with restricted roles; 10.35 s. Includes account isolation, signed-identity fixtures, restart durability, encrypted recovery and forced RLS; not live Supabase |
+| Final research reporting | **13 targeted tests passed**, plus actual hash-pinned development reproduction after preserving calibration rows; no spent evaluation rerun |
+| API smoke | Passed personalized actions, conflict/outage/missing filing, safeguards, exact sources, supported claims, persistence and synthetic evaluation on isolated running state |
+| Dashboard scripts | Both `check_dashboard.py` and `check_dashboard_extended.py` passed with the actual local API/isolated test state |
+| Real Chromium | Analysis, saved historical research, baseline/coverage/no-admission/staleness disclosures and exact source highlight passed; no observed page errors. An initial automation selector matched two buttons; the corrected unique selector passed without app changes |
+| Temporal/mathematical controls | Exact 30-row target, future mutation and price-unit invariance, missing peer exclusion, training-only transforms, finite calibration, matured residual updates, complete joint denominator, baseline arithmetic and multiplicity screens passed |
+| Ingestion/provenance | Generated format fixtures verify no-overwrite import, byte/hash/span preservation, explicit rights/identity declarations, intraday availability, tampering refusal and missing relevance judgments. No authentic corpus acceptance claimed |
+| Neural packages | Separate Linux CPU hash lock installed; all 120 optional packages compatible; core 60 packages compatible. Core/auth/storage locks remain unchanged |
+| Real Chroma | Actual persisted query using explicitly labelled fixture vectors passed; does not establish neural semantics |
+| MiniLM | Local-only checker exits **2**: no model weights; fallback mode BM25, `real_model_verified=false`. Runtime HTTPS to Hugging Face is blocked; no verification disabled |
+| Local performance | Five declared warmed workloads, seven repeats/mode, alternating order and identical-output checks; immutable snapshot reduces redundant indicator arithmetic. See versioned timings; no hosted-throughput claim |
+| Preserved evidence | Fifteen original specification/protocol/summary/lock/seed files checked byte-identical to base. Raw archive files remain hash-identical; old frozen forecast modules, artifacts and studies are not rewritten |
+| Hosted Supabase/Render | **Not run**. Owner confirms no Supabase project exists; no authenticated provisioning connection or real confirmed operator account. Current runtime blocks public hosted requests. No existing Render configuration/service change |
+| Remote CI | First candidate run passed Ubuntu/PostgreSQL and failed Windows on synthetic CRLF compatibility; original assertion retained and a source fix/regression added. Final rerun required; see preserved initial failure evidence |
+
+The [initial Windows failure](assets/ci-development-v2-initial-failure.json) is
+preserved. Raw-byte ingestion changed the legacy synthetic universal-newline
+contract on Windows; synthetic documents now keep that LF contract, while authentic
+imports preserve original CRLF/hash/span evidence. The existing test was not
+weakened. A new explicit CRLF regression reproduces the problem on Linux.
+This correction does not change any market-data, model, calibration or evaluation
+artifact. Remote reruns must pass before claiming cross-platform acceptance.
+
+Full current-run JUnit/logs, browser screenshot, profiling and complete model/
+calibration rows are retained under ignored `.runtime/`. Tracked versioned summaries
+include reproducible identities. Tests validate implementation, not predictive value.
+The development selection retains baselines and admission is false. No new market
+outcome, genuine prospective registration, source permission, off-service hosted
+recovery, project creation or deployment is inferred from local test success.
+
+The [local container receipt](assets/container-development-v2.json) verifies
+image `sha256:4af8420cb2100b4a9914e90dcd29c6bc740cf5a8ecc2a412a3ddc682a45a6abd`, all **50 packaged Python files**, UID 10001,
+assigned port, temporary authentication gate, BM25, the packaged historical report,
+concentration priority and exact-session persistence after restart, against
+implementation `e09878900ee739ade9f18320feba5dd50a020ba1`. The checker rediscovered an
+ephemeral Docker host port after restart; two earlier harness attempts are preserved
+as failed/interrupted logs and were not application/storage failures. Owned containers
+and volumes were removed. Image not published; production/provider acceptance remains
+unperformed. Original deployment Dockerfiles and Render settings are unchanged.
+
+Reproduce this core-only container with the existing supported offline build after
+hash-verifying wheel downloads, then run `scripts/check_development_container.py
+--output .runtime/container-check-NEW.json`. The new checker refuses remote daemons
+and image pulls, uses a fresh gate credential only in process environment, verifies
+actual packaged hashes separately from the supplied revision marker, and removes only
+its own test resources. See [combined sanitized evidence](assets/development-v2-verification.json).
+
+---
+
 # Current free-account candidate — 15 October 2026
 
 The latest work starts at `459669b` and is delivered on
